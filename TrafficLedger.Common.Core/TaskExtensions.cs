@@ -13,7 +13,7 @@ public static class TaskExtensions
         {
             var result = await task;
 
-            if (EqualityComparer<TResult>.Default.Equals(result, default(TResult)))
+            if (EqualityComparer<TResult>.Default.Equals(result, default))
             {
                 throw exception();
             }
