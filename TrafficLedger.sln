@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36811.4 d17.14
+VisualStudioVersion = 17.14.36811.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLedger.Context", "TrafficLedger.Context\TrafficLedger.Context.csproj", "{479C9CA6-2E6F-4F31-92CE-B1F6BB12D23C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrafficLedger.Context", "TrafficLedger.Context\TrafficLedger.Context.csproj", "{479C9CA6-2E6F-4F31-92CE-B1F6BB12D23C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A9E7F351-593A-4599-9DD6-052B7BB96CEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{B3B666C7-DE42-4A55-B743-5EFC2BA615B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLedger.Common.Core", "TrafficLedger.Common.Core\TrafficLedger.Common.Core.csproj", "{2F8EDCF1-9D9E-439E-87D8-5B9338C1D4DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +21,16 @@ Global
 		{479C9CA6-2E6F-4F31-92CE-B1F6BB12D23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{479C9CA6-2E6F-4F31-92CE-B1F6BB12D23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{479C9CA6-2E6F-4F31-92CE-B1F6BB12D23C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F8EDCF1-9D9E-439E-87D8-5B9338C1D4DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F8EDCF1-9D9E-439E-87D8-5B9338C1D4DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F8EDCF1-9D9E-439E-87D8-5B9338C1D4DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F8EDCF1-9D9E-439E-87D8-5B9338C1D4DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2F8EDCF1-9D9E-439E-87D8-5B9338C1D4DF} = {A9E7F351-593A-4599-9DD6-052B7BB96CEE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F6E53330-DF18-4283-920C-FBFBECF9AD5C}
