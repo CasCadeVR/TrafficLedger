@@ -26,5 +26,5 @@ public interface ITransportReadRepository : IBaseReadRepository<Transport>
     /// <summary>
     /// Получает <see cref="Transport"/> по коду
     /// </summary>
-    Task<Transport> GetByTransportCode(string transportCode, CancellationToken cancellationToken);
+    Task<Transport?> GetByTransportCode(string transportCode, CancellationToken cancellationToken);
 }

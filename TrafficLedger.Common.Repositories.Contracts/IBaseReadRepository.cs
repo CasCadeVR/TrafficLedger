@@ -8,7 +8,7 @@ public interface IBaseReadRepository<TEntity> where TEntity : class
     /// <summary>
     /// Получает <see cref="TEntity"/> по идентификатору
     /// </summary>
-    Task<TEntity> GetById(Guid id, CancellationToken cancellationToken);
+    Task<TEntity?> GetById(Guid id, CancellationToken cancellationToken);
 
     /// <summary>
     /// Получает коллекцию <see cref="TEntity"/>

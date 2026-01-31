@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TrafficLedger.Common.Services.Contracts\TrafficLedger.Common.Services.Contracts.csproj" />
+    <ProjectReference Include="..\TrafficLedger.Entities.ValidationRules\TrafficLedger.Entities.ValidationRules.csproj" />
+    <ProjectReference Include="..\TrafficLedger.Entities\TrafficLedger.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -11,7 +11,7 @@ public interface IDriverLicenseReadRepository : IBaseReadRepository<DriverLicens
     /// <summary>
     /// Получает <see cref="DriverLicense"/> по идентификатору водителя
     /// </summary>
-    Task<DriverLicense> GetByDriverId(Guid driverId, CancellationToken cancellationToken);
+    Task<DriverLicense?> GetByDriverId(Guid driverId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Проверяет существование номера удостоверения

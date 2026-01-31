@@ -1,0 +1,111 @@
+﻿using TrafficLedger.Common.Core;
+using TrafficLedger.Common.Repositories.Contracts;
+using TrafficLedger.Context.Contracts;
+using TrafficLedger.Entities;
+using TrafficLedger.Repositories.Contracts.IReadRepositories;
+using TrafficLedger.Repositories.Contracts.IWriteRepositories;
+using TrafficLedger.Services.Contracts.Interfaces;
+using TrafficLedger.Services.Contracts.Models;
+
+namespace TrafficLedger.Services
+{
+    public class FineService : IFineService
+    {
+        private readonly IFineReadRepository fineReadRepository;
+        private readonly IFineWriteRepository fineWriteRepository;
+        private readonly ITransportReadRepository transportReadRepository;
+        private readonly IViolationReadRepository violationReadRepository;
+        private readonly IUnitOfWork unitOfWork;
+
+        public FineService(IFineReadRepository fineReadRepository,
+            IFineWriteRepository fineWriteRepository,
+            ITransportReadRepository transportReadRepository,
+            IViolationReadRepository violationReadRepository,
+            IUnitOfWork unitOfWork)
+        {
+            this.fineReadRepository = fineReadRepository;
+            this.fineWriteRepository = fineWriteRepository;
+            this.transportReadRepository = transportReadRepository;
+            this.violationReadRepository = violationReadRepository;
+            this.unitOfWork = unitOfWork;
+        }
+
+        async Task<IReadOnlyCollection<Fine>> IFineService.GetAllByTransportId(Guid transportId, CancellationToken cancellationToken)
+        {
+            await transportReadRepository.GetById(transportId, cancellationToken)
+                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {transportId}"));
+
+            return await fineReadRepository.GetAllByTransportId(transportId, cancellationToken);
+        }
+
+        async Task<Fine> IBaseService<Fine, FineRequest>.GetById(Guid id, CancellationToken cancellationToken)
+        {
+            return await fineReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
+        }
+
+        async Task<IReadOnlyCollection<Fine>> IBaseService<Fine, FineRequest>.GetAll(CancellationToken cancellationToken)
+        {
+            return await fineReadRepository.GetAll(cancellationToken);
+        }
+
+        async Task<Fine> IBaseService<Fine, FineRequest>.Create(FineRequest model, CancellationToken cancellationToken)
+        {
+            await transportReadRepository.GetById(model.TransportId, cancellationToken)
+               .OrThrowIfDefault(() => new InvalidOperationException($"Транспорт с id {model.TransportId} не существует"));
+
+            await violationReadRepository.GetById(model.ViolationId, cancellationToken)
+               .OrThrowIfDefault(() => new InvalidOperationException($"Нарушение с id {model.ViolationId} не существует"));
+
+            var fine = new Fine
+            {
+                Date = model.Date,
+                Address = model.Address,
+                Description = model.Description,
+                Status = Status.InProgress,
+                TransportId = model.TransportId,
+                ViolationId = model.ViolationId,
+            };
+
+            fineWriteRepository.Add(fine);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+
+            return fine;
+        }
+
+        async Task<Fine> IBaseService<Fine, FineRequest>.Update(Guid id, FineRequest model, CancellationToken cancellationToken)
+        {
+            var fine = await fineReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
+
+            var transport = await transportReadRepository.GetById(model.TransportId, cancellationToken)
+               .OrThrowIfDefault(() => new InvalidOperationException($"Транспорт с id {model.TransportId} не существует"));
+
+            var violation = await violationReadRepository.GetById(model.ViolationId, cancellationToken)
+               .OrThrowIfDefault(() => new InvalidOperationException($"Нарушение с id {model.ViolationId} не существует"));
+
+            fine.Date = model.Date;
+            fine.Status = model.Status;
+            fine.Address = model.Address;
+            fine.Description = model.Description;
+            fine.TransportId = model.TransportId;
+            fine.ViolationId = model.ViolationId;
+
+            fineWriteRepository.Update(fine);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+
+            return fine;
+        }
+
+        async Task IBaseService<Fine, FineRequest>.Delete(Guid id, CancellationToken cancellationToken)
+        {
+            var fine = await fineReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
+
+            fine.Status = Status.Finished;
+
+            fineWriteRepository.Delete(fine);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+        }
+    }
+}

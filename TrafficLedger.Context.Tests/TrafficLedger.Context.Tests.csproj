@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TrafficLedger.Context.Contracts\TrafficLedger.Context.Contracts.csproj" />
+    <ProjectReference Include="..\TrafficLedger.Context\TrafficLedger.Context.csproj" />
+  </ItemGroup>
+
 </Project>

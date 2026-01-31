@@ -11,7 +11,7 @@ public interface IUserReadRepository : IBaseReadRepository<User>
     /// <summary>
     /// Получает <see cref="User"/> по идентификатору
     /// </summary>
-    Task<User> GetByLogin(string login, CancellationToken cancellationToken);
+    Task<User?> GetByLogin(string login, CancellationToken cancellationToken);
 
     /// <summary>
     /// Проверяет существование логина
