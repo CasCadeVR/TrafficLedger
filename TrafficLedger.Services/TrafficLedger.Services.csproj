@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TrafficLedger.Common.Core\TrafficLedger.Common.Core.csproj" />
     <ProjectReference Include="..\TrafficLedger.Common.Repositories.Contracts\TrafficLedger.Common.Repositories.Contracts.csproj" />
+    <ProjectReference Include="..\TrafficLedger.Common.Services\TrafficLedger.Common.Services.csproj" />
     <ProjectReference Include="..\TrafficLedger.Context.Contracts\TrafficLedger.Context.Contracts.csproj" />
     <ProjectReference Include="..\TrafficLedger.Entities\TrafficLedger.Entities.csproj" />
     <ProjectReference Include="..\TrafficLedger.Repositories.Contracts\TrafficLedger.Repositories.Contracts.csproj" />

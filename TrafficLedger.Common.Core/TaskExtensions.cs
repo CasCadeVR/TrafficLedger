@@ -8,32 +8,22 @@ public static class TaskExtensions
     /// <summary>
     /// Выбрасывает исключение если результатом таски был <see langword="null"/>
     /// </summary>
-    public static async Task<TResult> OrThrowIfDefault<TResult, TException>(this Task<TResult> task, Func<TException> exception)
+    public static Task<TResult> OrThrowIfNull<TResult, TException>(this Task<TResult> task, Func<TException> exception)
         where TException : Exception
-        {
-            var result = await task;
-
-            if (EqualityComparer<TResult>.Default.Equals(result, default))
-            {
-                throw exception();
-            }
-
-            return result;
-        }
+        => task.ContinueWith(x => x.Result ?? throw exception.Invoke());
 
     /// <summary>
     /// Выбрасывает исключение если результатом таски был <see langword="true"/>
     /// </summary>
-    public static async Task AndThrowIfTrue<TException>(this Task<bool> task, Func<TException> exception)
+    public static Task AndThrowIfTrue<TException>(this Task<bool> task, Func<TException> exception)
         where TException : Exception
+        => task.ContinueWith(x =>
         {
-            var result = await task;
-
-            if (result == true)
+            if (x.Result)
             {
-                throw exception();
+                throw exception.Invoke();
             }
-        }
+        });
 
     /// <summary>
     /// Выбрасывает исключение если условие по результату таски выполнилось
@@ -56,16 +46,16 @@ public static class TaskExtensions
     /// Выбрасывает исключение если условие по результату таски выполнилось
     /// </summary>
     public static Task<TResult> OrThrowIf<TResult, TException>(this Task<TResult> task,
-        Func<TResult, bool> condition,
-        Func<TResult, TException> exception)
-        where TException : Exception
-        => task.ContinueWith(x =>
-        {
-            if (condition.Invoke(x.Result))
-            {
-                throw exception.Invoke(x.Result);
-            }
+       Func<TResult, bool> condition,
+       Func<TResult, TException> exception)
+       where TException : Exception
+       => task.ContinueWith(x =>
+       {
+           if (condition.Invoke(x.Result))
+           {
+               throw exception.Invoke(x.Result);
+           }
 
-            return x.Result;
-        });
+           return x.Result;
+       });
 }

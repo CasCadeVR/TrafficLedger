@@ -36,15 +36,17 @@ namespace TrafficLedger.Services
         async Task<IReadOnlyCollection<Payment>> IPaymentService.GetAllByUserId(Guid userId, CancellationToken cancellationToken)
         {
             await userReadRepository.GetById(userId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {userId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {userId}"));
 
             return await paymentReadRepository.GetAllByUserId(userId, cancellationToken);
         }
 
         async Task<Payment> IBaseService<Payment, PaymentRequest>.GetById(Guid id, CancellationToken cancellationToken)
         {
-            return await paymentReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {id}"));
+            var result = await paymentReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {id}"));
+
+            return result!;
         }
 
         async Task<IReadOnlyCollection<Payment>> IBaseService<Payment, PaymentRequest>.GetAll(CancellationToken cancellationToken)
@@ -55,9 +57,9 @@ namespace TrafficLedger.Services
         async Task IPaymentService.ApprovePayment(Guid paymentId, CancellationToken cancellationToken)
         {
             var payment = await paymentReadRepository.GetById(paymentId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {paymentId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {paymentId}"));
 
-            payment.Status = Status.Finished;
+            payment!.Status = Status.Finished;
 
             paymentWriteRepository.Update(payment);
             await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -66,12 +68,12 @@ namespace TrafficLedger.Services
         async Task IPaymentService.RejectPayment(Guid paymentId, CancellationToken cancellationToken)
         {
             var payment = await paymentReadRepository.GetById(paymentId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {paymentId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {paymentId}"));
 
-            var fine = await fineReadRepository.GetById(payment.FineId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Штраф с id {payment.FineId} не существует"));
+            var fine = await fineReadRepository.GetById(payment!.FineId, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Штраф с id {payment.FineId} не существует"));
 
-            fine.Status = Status.InProgress;
+            fine!.Status = Status.InProgress;
             fineWriteRepository.Update(fine);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -80,10 +82,10 @@ namespace TrafficLedger.Services
         async Task<Payment> IBaseService<Payment, PaymentRequest>.Create(PaymentRequest model, CancellationToken cancellationToken)
         {
             var fine = await fineReadRepository.GetById(model.FineId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Штраф с id {model.FineId} не существует"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Штраф с id {model.FineId} не существует"));
 
             var user = await userReadRepository.GetById(model.UserId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Пользователь с id {model.UserId} не существует"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Пользователь с id {model.UserId} не существует"));
 
             var payment = new Payment
             {
@@ -95,7 +97,7 @@ namespace TrafficLedger.Services
 
             paymentWriteRepository.Add(payment);
 
-            fine.Status = Status.Finished;
+            fine!.Status = Status.Finished;
             fineWriteRepository.Update(fine);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -106,15 +108,15 @@ namespace TrafficLedger.Services
         async Task<Payment> IBaseService<Payment, PaymentRequest>.Update(Guid id, PaymentRequest model, CancellationToken cancellationToken)
         {
             await fineReadRepository.GetById(model.FineId, cancellationToken)
-               .OrThrowIfDefault(() => new InvalidOperationException($"Штраф с id {model.FineId} не существует"));
+               .OrThrowIfNull(() => new InvalidOperationException($"Штраф с id {model.FineId} не существует"));
 
             await userReadRepository.GetById(model.UserId, cancellationToken)
-               .OrThrowIfDefault(() => new InvalidOperationException($"Пользователь с id {model.UserId} не существует"));
+               .OrThrowIfNull(() => new InvalidOperationException($"Пользователь с id {model.UserId} не существует"));
 
             var payment = await paymentReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {id}"));
 
-            payment.Date = model.Date;
+            payment!.Date = model.Date;
             payment.Status = model.Status;
             payment.FineId = model.FineId;
             payment.UserId = model.UserId;
@@ -128,9 +130,9 @@ namespace TrafficLedger.Services
         async Task IBaseService<Payment, PaymentRequest>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var payment = await paymentReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {id}"));
 
-            paymentWriteRepository.Delete(payment);
+            paymentWriteRepository.Delete(payment!);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }

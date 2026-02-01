@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TrafficLedger.Context\TrafficLedger.Context.csproj" />
+    <ProjectReference Include="..\TrafficLedger.Entities\TrafficLedger.Entities.csproj" />
+    <ProjectReference Include="..\TrafficLedger.Repositories\TrafficLedger.Repositories.csproj" />
+    <ProjectReference Include="..\TrafficLedger.Services\TrafficLedger.Services.csproj" />
+  </ItemGroup>
+
+</Project>

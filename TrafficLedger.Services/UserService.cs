@@ -1,4 +1,5 @@
 ﻿using TrafficLedger.Common.Core;
+using TrafficLedger.Common.Services;
 using TrafficLedger.Common.Repositories.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
@@ -26,17 +27,19 @@ namespace TrafficLedger.Services
 
         async Task<User> IBaseService<User, UserRequest>.GetById(Guid id, CancellationToken cancellationToken)
         {
-            return await userReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {id}"));
+            var result = await userReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {id}"));
+
+            return result!;
         }
 
         async Task<User> IUserService.GetByLoginAndPassword(LoginModel model, CancellationToken cancellationToken)
         {
             var message = "Пользователь с указанным логином и паролем не найден";
             var user = await userReadRepository.GetByLogin(model.Login.ToLower(), cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException(message));
+                .OrThrowIfNull(() => new InvalidOperationException(message));
 
-            var passwordHash = SecurityHelper.HashPassword32(model.Password, user.PasswordSalt);
+            var passwordHash = SecurityHelper.HashPassword32(model.Password, user!.PasswordSalt);
 
             if (passwordHash != user.PasswordHash)
             {
@@ -75,9 +78,9 @@ namespace TrafficLedger.Services
         async Task<User> IBaseService<User, UserRequest>.Update(Guid id, UserRequest model, CancellationToken cancellationToken)
         {
             var user = await userReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {id}"));
 
-            user.Login = model.Login.Trim();
+            user!.Login = model.Login.Trim();
             user.Role = model.Role;
 
             userWriteRepository.Update(user);
@@ -89,9 +92,9 @@ namespace TrafficLedger.Services
         async Task IBaseService<User, UserRequest>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var user = await userReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {id}"));
 
-            userWriteRepository.Delete(user);
+            userWriteRepository.Delete(user!);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }

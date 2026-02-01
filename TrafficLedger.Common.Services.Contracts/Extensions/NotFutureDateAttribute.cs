@@ -18,7 +18,8 @@ namespace TrafficLedger.Common.Services.Contracts.Extensions
                     return new ValidationResult("Дата не может быть в будущем.");
                 }
             }
-            return ValidationResult.Success;
+
+            return ValidationResult.Success!;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using TrafficLedger.Context.Contracts;
 
 namespace TrafficLedger.Context.Tests

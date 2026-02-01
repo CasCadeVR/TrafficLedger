@@ -36,15 +36,19 @@ namespace TrafficLedger.Services
         async Task<DriverLicense> IDriverLicenseService.GetByDriverId(Guid driverId, CancellationToken cancellationToken)
         {
             var driver = await driverReadRepository.GetById(driverId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {driverId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {driverId}"));
 
-            return await driverLicenseReadRepository.GetByDriverId(driver.Id, cancellationToken);
+            var result = await driverLicenseReadRepository.GetByDriverId(driver!.Id, cancellationToken);
+
+            return result!;
         }
 
         async Task<DriverLicense> IBaseService<DriverLicense, DriverLicenseRequest>.GetById(Guid id, CancellationToken cancellationToken)
         {
-            return await driverLicenseReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти водительское удостоверение с идентификатором {id}"));
+            var result = await driverLicenseReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водительское удостоверение с идентификатором {id}"));
+
+            return result!;
         }
 
         async Task<IReadOnlyCollection<DriverLicense>> IBaseService<DriverLicense, DriverLicenseRequest>.GetAll(CancellationToken cancellationToken)
@@ -58,7 +62,7 @@ namespace TrafficLedger.Services
                 .AndThrowIfTrue(() => new InvalidOperationException($"Водительское удостоверение с номером {model.LicenseNumber} уже существует"));
 
             await driverReadRepository.GetById(model.DriverId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {model.DriverId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {model.DriverId}"));
 
             await ValidateMissingCategories(model, cancellationToken);
 
@@ -93,18 +97,18 @@ namespace TrafficLedger.Services
         async Task<DriverLicense> IBaseService<DriverLicense, DriverLicenseRequest>.Update(Guid id, DriverLicenseRequest model, CancellationToken cancellationToken)
         {
             var existingDriverLicense = await driverLicenseReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти водительское удостоверение с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водительское удостоверение с идентификатором {id}"));
 
             var modelLicenseNumber = model.LicenseNumber.ToLower();
 
-            if (modelLicenseNumber != existingDriverLicense.LicenseNumber.ToLower())
+            if (modelLicenseNumber != existingDriverLicense!.LicenseNumber.ToLower())
             {
                 await driverLicenseReadRepository.IsLicenseNumberExists(model.LicenseNumber.ToLower(), cancellationToken)
                    .AndThrowIfTrue(() => new InvalidOperationException($"Водительское удостоверение с номером {model.LicenseNumber} уже существует"));
             }
 
             await driverReadRepository.GetById(model.DriverId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {model.DriverId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {model.DriverId}"));
 
             var modelCategories = model.LicenseCategories.Select(x =>
                 new LicenseCategory()
@@ -158,9 +162,9 @@ namespace TrafficLedger.Services
         async Task IBaseService<DriverLicense, DriverLicenseRequest>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var existingDriverLicense = await driverLicenseReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти водительское удостоверение с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водительское удостоверение с идентификатором {id}"));
 
-            driverLicenseWriteRepository.Delete(existingDriverLicense);
+            driverLicenseWriteRepository.Delete(existingDriverLicense!);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
 

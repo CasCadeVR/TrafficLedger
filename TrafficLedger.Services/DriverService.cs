@@ -40,15 +40,19 @@ namespace TrafficLedger.Services
         async Task<Driver> IDriverService.GetByUserId(Guid userId, CancellationToken cancellationToken)
         {
             await userReadRepository.GetById(userId, cancellationToken)
-               .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {userId}"));
+               .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {userId}"));
 
-            return await driverReadRepository.GetByUserId(userId, cancellationToken);
+            var result = await driverReadRepository.GetByUserId(userId, cancellationToken);
+
+            return result!;
         }
 
         async Task<Driver> IBaseService<Driver, DriverRequest>.GetById(Guid id, CancellationToken cancellationToken)
         {
-            return await driverReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {id}"));
+            var result = await driverReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {id}"));
+
+            return result!;
         }
 
         async Task<IReadOnlyCollection<Driver>> IBaseService<Driver, DriverRequest>.GetAll(CancellationToken cancellationToken)
@@ -59,7 +63,7 @@ namespace TrafficLedger.Services
         async Task<Driver> IBaseService<Driver, DriverRequest>.Create(DriverRequest model, CancellationToken cancellationToken)
         {
             var user = await userReadRepository.GetById(model.UserId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {model.UserId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {model.UserId}"));
 
             var existingDriver = await driverReadRepository.GetByUserId(model.UserId, cancellationToken);
 
@@ -100,10 +104,10 @@ namespace TrafficLedger.Services
         async Task<Driver> IBaseService<Driver, DriverRequest>.Update(Guid id, DriverRequest model, CancellationToken cancellationToken)
         {
             var existingDriver = await driverReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {id}"));
 
             var user = await userReadRepository.GetById(model.UserId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {model.UserId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {model.UserId}"));
 
             await ValidateMissingTransport(model, cancellationToken);
 
@@ -112,10 +116,10 @@ namespace TrafficLedger.Services
                 {
                     Date = x.Date,
                     TransportId = x.TransportId,
-                    DriverId = existingDriver.Id,
+                    DriverId = existingDriver!.Id,
                 }).ToList();
 
-            existingDriver.FullName = model.FullName.Trim();
+            existingDriver!.FullName = model.FullName.Trim();
             existingDriver.BirthDate = model.BirthDate;
             existingDriver.BirthPlace = model.BirthPlace;
             existingDriver.UserId = model.UserId;
@@ -157,9 +161,9 @@ namespace TrafficLedger.Services
         async Task IBaseService<Driver, DriverRequest>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var existingDriver = await driverReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {id}"));
 
-            var existingOwnerships = existingDriver.Ownerships;
+            var existingOwnerships = existingDriver!.Ownerships;
 
             foreach (var existingOwnership in existingOwnerships)
             {

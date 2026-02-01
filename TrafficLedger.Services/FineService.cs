@@ -33,15 +33,17 @@ namespace TrafficLedger.Services
         async Task<IReadOnlyCollection<Fine>> IFineService.GetAllByTransportId(Guid transportId, CancellationToken cancellationToken)
         {
             await transportReadRepository.GetById(transportId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {transportId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {transportId}"));
 
             return await fineReadRepository.GetAllByTransportId(transportId, cancellationToken);
         }
 
         async Task<Fine> IBaseService<Fine, FineRequest>.GetById(Guid id, CancellationToken cancellationToken)
         {
-            return await fineReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
+            var result = await fineReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
+
+            return result!;
         }
 
         async Task<IReadOnlyCollection<Fine>> IBaseService<Fine, FineRequest>.GetAll(CancellationToken cancellationToken)
@@ -52,10 +54,10 @@ namespace TrafficLedger.Services
         async Task<Fine> IBaseService<Fine, FineRequest>.Create(FineRequest model, CancellationToken cancellationToken)
         {
             await transportReadRepository.GetById(model.TransportId, cancellationToken)
-               .OrThrowIfDefault(() => new InvalidOperationException($"Транспорт с id {model.TransportId} не существует"));
+               .OrThrowIfNull(() => new InvalidOperationException($"Транспорт с id {model.TransportId} не существует"));
 
             await violationReadRepository.GetById(model.ViolationId, cancellationToken)
-               .OrThrowIfDefault(() => new InvalidOperationException($"Нарушение с id {model.ViolationId} не существует"));
+               .OrThrowIfNull(() => new InvalidOperationException($"Нарушение с id {model.ViolationId} не существует"));
 
             var fine = new Fine
             {
@@ -76,15 +78,15 @@ namespace TrafficLedger.Services
         async Task<Fine> IBaseService<Fine, FineRequest>.Update(Guid id, FineRequest model, CancellationToken cancellationToken)
         {
             var fine = await fineReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
 
             var transport = await transportReadRepository.GetById(model.TransportId, cancellationToken)
-               .OrThrowIfDefault(() => new InvalidOperationException($"Транспорт с id {model.TransportId} не существует"));
+               .OrThrowIfNull(() => new InvalidOperationException($"Транспорт с id {model.TransportId} не существует"));
 
             var violation = await violationReadRepository.GetById(model.ViolationId, cancellationToken)
-               .OrThrowIfDefault(() => new InvalidOperationException($"Нарушение с id {model.ViolationId} не существует"));
+               .OrThrowIfNull(() => new InvalidOperationException($"Нарушение с id {model.ViolationId} не существует"));
 
-            fine.Date = model.Date;
+            fine!.Date = model.Date;
             fine.Status = model.Status;
             fine.Address = model.Address;
             fine.Description = model.Description;
@@ -100,9 +102,9 @@ namespace TrafficLedger.Services
         async Task IBaseService<Fine, FineRequest>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var fine = await fineReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
 
-            fine.Status = Status.Finished;
+            fine!.Status = Status.Finished;
 
             fineWriteRepository.Delete(fine);
             await unitOfWork.SaveChangesAsync(cancellationToken);

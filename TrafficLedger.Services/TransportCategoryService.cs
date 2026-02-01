@@ -26,8 +26,10 @@ namespace TrafficLedger.Services
 
         async Task<TransportCategory> IBaseService<TransportCategory, TransportCategoryRequest>.GetById(Guid id, CancellationToken cancellationToken)
         {
-            return await transportCategoryReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти категорию транспорта с идентификатором {id}"));
+            var result = await transportCategoryReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти категорию транспорта с идентификатором {id}"));
+
+            return result!;
         }
 
         async Task<IReadOnlyCollection<TransportCategory>> IBaseService<TransportCategory, TransportCategoryRequest>.GetAll(CancellationToken cancellationToken)
@@ -55,9 +57,9 @@ namespace TrafficLedger.Services
         async Task<TransportCategory> IBaseService<TransportCategory, TransportCategoryRequest>.Update(Guid id, TransportCategoryRequest model, CancellationToken cancellationToken)
         {
             var category = await transportCategoryReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти категорию транспорта с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти категорию транспорта с идентификатором {id}"));
 
-            category.CategoryName = model.CategoryName.Trim();
+            category!.CategoryName = model.CategoryName.Trim();
             category.Description = model.Description;
 
             transportCategoryWriteRepository.Update(category);
@@ -69,9 +71,9 @@ namespace TrafficLedger.Services
         async Task IBaseService<TransportCategory, TransportCategoryRequest>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var category = await transportCategoryReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти категорию транспорта с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти категорию транспорта с идентификатором {id}"));
 
-            transportCategoryWriteRepository.Delete(category);
+            transportCategoryWriteRepository.Delete(category!);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }

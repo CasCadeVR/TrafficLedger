@@ -1,30 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentAssertions;
-using TrafficFinePayment.Context.Tests;
-using TrafficFinePayment.Entities;
+﻿using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
+using TrafficLedger.Context.Tests;
+using TrafficLedger.Entities;
 using Xunit;
 
-namespace TrafficFinePayment.Storage
+namespace TrafficLedger.Storage
 {
     /// <summary>
     /// Тесты для базы данных таблицы <see cref="Violation"/>
     /// </summary>
-    public class ViolationDatabaseTests : IClassFixture<DatabaseFixture>
+    public class ViolationDatabaseTests : TrafficLedgerContextInMemory
     {
-        private readonly DatabaseFixture fixture;
-
-        /// <summary>
-        /// Инициализирует новый экземпляр <see cref="ViolationDatabaseTests"/>
-        /// </summary>
-        public ViolationDatabaseTests(DatabaseFixture fixture)
-        {
-            this.fixture = fixture;
-        }
-
         /// <summary>
         /// Проверяет, что элемент не будет найден по пустому идентификатору
         /// </summary>
@@ -35,7 +21,7 @@ namespace TrafficFinePayment.Storage
             var emptyId = Guid.Empty;
 
             // Act
-            var result = await fixture.Context.Set<Violation>().SingleOrDefaultAsync(x => x.Id == emptyId);
+            var result = await Context.Set<Violation>().FirstOrDefaultAsync(x => x.Id == emptyId);
 
             // Assert
             result.Should().BeNull();
@@ -49,11 +35,11 @@ namespace TrafficFinePayment.Storage
         {
             // Arrange
             var target = CreateExample();
-            fixture.Context.Set<Violation>().Add(target);
-            await fixture.UnitOfWork.SaveChangesAsync();
+            Context.Set<Violation>().Add(target);
+            await UnitOfWork.SaveChangesAsync();
 
             // Act
-            var result = await fixture.Context.Set<Violation>().SingleOrDefaultAsync(x => x.Id == target.Id);
+            var result = await Context.Set<Violation>().FirstOrDefaultAsync(x => x.Id == target.Id);
 
             // Assert
             result.Should().BeEquivalentTo(target);
@@ -68,11 +54,11 @@ namespace TrafficFinePayment.Storage
             // Arrange
             var target = CreateExample();
             var target1 = CreateExample();
-            fixture.Context.Set<Violation>().AddRange(new List<Violation>() { target, target1 });
-            await fixture.UnitOfWork.SaveChangesAsync();
+            Context.Set<Violation>().AddRange(new List<Violation>() { target, target1 });
+            await UnitOfWork.SaveChangesAsync();
 
             // Act
-            var result = fixture.Context.Set<Violation>().ToList();
+            var result = Context.Set<Violation>().ToList();
 
             // Assert
             result.Should().NotBeEmpty()
@@ -90,9 +76,9 @@ namespace TrafficFinePayment.Storage
             var target = CreateExample();
 
             // Act
-            fixture.Context.Set<Violation>().Add(target);
-            await fixture.UnitOfWork.SaveChangesAsync();
-            var result = await fixture.Context.Set<Violation>().SingleOrDefaultAsync(x => x.Id == target.Id);
+            Context.Set<Violation>().Add(target);
+            await UnitOfWork.SaveChangesAsync();
+            var result = await Context.Set<Violation>().FirstOrDefaultAsync(x => x.Id == target.Id);
 
             // Assert
             result.Should().NotBeNull()
@@ -106,10 +92,10 @@ namespace TrafficFinePayment.Storage
         public void DeleteShouldThrowById()
         {
             // Arrange
-            Violation target = null;
+            Violation target = null!;
 
             // Act
-            Action act = () => fixture.Context.Set<Violation>().Remove(target);
+            Action act = () => Context.Set<Violation>().Remove(target);
 
             // Assert
             act.Should().Throw<ArgumentNullException>();
@@ -123,17 +109,17 @@ namespace TrafficFinePayment.Storage
         {
             // Arrange
             var newEntity = CreateExample();
-            fixture.Context.Set<Violation>().Add(newEntity);
-            await fixture.UnitOfWork.SaveChangesAsync();
+            Context.Set<Violation>().Add(newEntity);
+            await UnitOfWork.SaveChangesAsync();
 
             // Act
-            var target = await fixture.Context.Set<Violation>().SingleAsync(x => x.Id == newEntity.Id);
-            Action act = () => fixture.Context.Set<Violation>().Remove(target);
+            var target = await Context.Set<Violation>().SingleAsync(x => x.Id == newEntity.Id);
+            Action act = () => Context.Set<Violation>().Remove(target);
 
             // Assert
             act.Should().NotThrow();
-            await fixture.UnitOfWork.SaveChangesAsync();
-            var result = await fixture.Context.Set<Violation>().SingleOrDefaultAsync(x => x.Id == target.Id);
+            await UnitOfWork.SaveChangesAsync();
+            var result = await Context.Set<Violation>().SingleOrDefaultAsync(x => x.Id == target.Id);
             result.Should().BeNull();
         }
 
@@ -145,20 +131,20 @@ namespace TrafficFinePayment.Storage
         {
             // Arrange
             var newEntity = CreateExample();
-            fixture.Context.Set<Violation>().Add(newEntity);
-            await fixture.UnitOfWork.SaveChangesAsync();
+            Context.Set<Violation>().Add(newEntity);
+            await UnitOfWork.SaveChangesAsync();
             var requestModel = CreateExample();
-            var existingEntity = await fixture.Context.Set<Violation>().SingleAsync(x => x.Id == newEntity.Id);
+            var existingEntity = await Context.Set<Violation>().SingleAsync(x => x.Id == newEntity.Id);
             existingEntity.ViolationCode = requestModel.ViolationCode;
             existingEntity.Name = requestModel.Name;
             existingEntity.Description = requestModel.Description;
             existingEntity.FinePrice = requestModel.FinePrice;
 
             // Act
-            await fixture.UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.SaveChangesAsync();
 
             // Assert
-            var result = await fixture.Context.Set<Violation>().SingleAsync(x => x.Id == existingEntity.Id);
+            var result = await Context.Set<Violation>().SingleAsync(x => x.Id == existingEntity.Id);
             result.Should().BeEquivalentTo(requestModel, options => options
                 .Excluding(x => x.Id)
                 .Excluding(x => x.CreatedAt)

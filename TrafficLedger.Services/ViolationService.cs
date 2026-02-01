@@ -26,8 +26,10 @@ namespace TrafficLedger.Services
 
         async Task<Violation> IBaseService<Violation, ViolationRequest>.GetById(Guid id, CancellationToken cancellationToken)
         {
-            return await violationReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти нарушение с идентификатором {id}"));
+            var result = await violationReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти нарушение с идентификатором {id}"));
+
+            return result!;
         }
 
         async Task<IReadOnlyCollection<Violation>> IBaseService<Violation, ViolationRequest>.GetAll(CancellationToken cancellationToken)
@@ -57,9 +59,9 @@ namespace TrafficLedger.Services
         async Task<Violation> IBaseService<Violation, ViolationRequest>.Update(Guid id, ViolationRequest model, CancellationToken cancellationToken)
         {
             var violation = await violationReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти нарушение с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти нарушение с идентификатором {id}"));
 
-            violation.ViolationCode = model.ViolationCode.Trim();
+            violation!.ViolationCode = model.ViolationCode.Trim();
             violation.Name = model.Name.Trim();
             violation.Description = model.Description;
             violation.FinePrice = model.FinePrice;
@@ -73,9 +75,9 @@ namespace TrafficLedger.Services
         async Task IBaseService<Violation, ViolationRequest>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var violation = await violationReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти нарушение с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти нарушение с идентификатором {id}"));
 
-            violationWriteRepository.Delete(violation);
+            violationWriteRepository.Delete(violation!);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }

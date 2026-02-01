@@ -36,21 +36,25 @@ namespace TrafficLedger.Services
         async Task<IReadOnlyCollection<Transport>> ITransportService.GetAllByDriverId(Guid driverId, CancellationToken cancellationToken)
         {
             await driverReadRepository.GetById(driverId, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {driverId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {driverId}"));
 
             return await transportReadRepository.GetAllByDriverId(driverId, cancellationToken);
         }
 
         async Task<Transport> ITransportService.GetByTransportCode(string transportCode, CancellationToken cancellationToken)
         {
-            return await transportReadRepository.GetByTransportCode(transportCode, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти транспорт с кодом {transportCode}"));
+            var result = await transportReadRepository.GetByTransportCode(transportCode, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с кодом {transportCode}"));
+
+            return result!;
         }
 
         async Task<Transport> IBaseService<Transport, TransportRequest>.GetById(Guid id, CancellationToken cancellationToken)
         {
-            return await transportReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
+            var result = await transportReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
+
+            return result!;
         }
 
         async Task<IReadOnlyCollection<Transport>> IBaseService<Transport, TransportRequest>.GetAll(CancellationToken cancellationToken)
@@ -64,7 +68,7 @@ namespace TrafficLedger.Services
                 .AndThrowIfTrue(() => new InvalidOperationException($"Транспорт с кодом {model.TransportCode} уже существует"));
 
             var category = await transportCategoryReadRepository.GetById(model.TransportCategoryId, cancellationToken)
-               .OrThrowIfDefault(() => new InvalidOperationException($"Категория транспорта с id {model.TransportCategoryId} не существует"));
+               .OrThrowIfNull(() => new InvalidOperationException($"Категория транспорта с id {model.TransportCategoryId} не существует"));
 
             await ValidateMissingDrivers(model, cancellationToken);
 
@@ -76,7 +80,7 @@ namespace TrafficLedger.Services
                 Model = model.Model.Trim(),
                 Region = model.Region.Trim(),
                 Year = model.Year,
-                TransportCategoryId = category.Id,
+                TransportCategoryId = category!.Id,
             };
 
             var modelOwnerships = model.Ownerships.Select(x =>
@@ -101,10 +105,10 @@ namespace TrafficLedger.Services
         async Task<Transport> IBaseService<Transport, TransportRequest>.Update(Guid id, TransportRequest model, CancellationToken cancellationToken)
         {
             var existingTransport = await transportReadRepository.GetById(id, cancellationToken)
-                .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
 
             var existingCategory = await transportCategoryReadRepository.GetById(model.TransportCategoryId, cancellationToken)
-              .OrThrowIfDefault(() => new InvalidOperationException($"Категория транспорта с id {model.TransportCategoryId} не существует"));
+              .OrThrowIfNull(() => new InvalidOperationException($"Категория транспорта с id {model.TransportCategoryId} не существует"));
 
             await ValidateMissingDrivers(model, cancellationToken);
 
@@ -112,18 +116,18 @@ namespace TrafficLedger.Services
                 new Ownership()
                 {
                     Date = x.Date,
-                    TransportId = existingTransport.Id,
+                    TransportId = existingTransport!.Id,
                     DriverId = x.DriverId,
                 }).ToList();
 
-            existingTransport.TransportCode = model.TransportCode.Trim();
+            existingTransport!.TransportCode = model.TransportCode.Trim();
             existingTransport.Brand = model.Brand.Trim();
             existingTransport.MileAge = model.MileAge;
             existingTransport.Model = model.Model.Trim();
             existingTransport.Region = model.Region.Trim();
             existingTransport.Year = model.Year;
             existingTransport.TransportCategoryId = model.TransportCategoryId;
-            existingTransport.TransportCategory = existingCategory;
+            existingTransport.TransportCategory = existingCategory!;
 
             var existingOwnerships = existingTransport.Ownerships;
             var existingOwnershipsDictionary = existingOwnerships.ToDictionary(x => x.TransportId);
@@ -162,9 +166,9 @@ namespace TrafficLedger.Services
         async Task IBaseService<Transport, TransportRequest>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var existingTransport = await transportReadRepository.GetById(id, cancellationToken)
-               .OrThrowIfDefault(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
+               .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
 
-            var existingOwnerships = existingTransport.Ownerships;
+            var existingOwnerships = existingTransport!.Ownerships;
 
             foreach (var existingOwnership in existingOwnerships)
             {
