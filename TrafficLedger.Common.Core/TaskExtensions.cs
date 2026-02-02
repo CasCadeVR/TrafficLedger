@@ -8,22 +8,26 @@ public static class TaskExtensions
     /// <summary>
     /// Выбрасывает исключение если результатом таски был <see langword="null"/>
     /// </summary>
-    public static Task<TResult> OrThrowIfNull<TResult, TException>(this Task<TResult> task, Func<TException> exception)
+    public static async Task<TResult> OrThrowIfNull<TResult, TException>(this Task<TResult> task, Func<TException> exception)
         where TException : Exception
-        => task.ContinueWith(x => x.Result ?? throw exception.Invoke());
+    {
+        var result = await task;
+        return result == null ? throw exception() : result;
+    }
 
     /// <summary>
     /// Выбрасывает исключение если результатом таски был <see langword="true"/>
     /// </summary>
-    public static Task AndThrowIfTrue<TException>(this Task<bool> task, Func<TException> exception)
+    public static async Task AndThrowIfTrue<TException>(this Task<bool> task, Func<TException> exception)
         where TException : Exception
-        => task.ContinueWith(x =>
         {
-            if (x.Result)
+            var result = await task;
+
+            if (result == true)
             {
-                throw exception.Invoke();
+                throw exception();
             }
-        });
+        }
 
     /// <summary>
     /// Выбрасывает исключение если условие по результату таски выполнилось

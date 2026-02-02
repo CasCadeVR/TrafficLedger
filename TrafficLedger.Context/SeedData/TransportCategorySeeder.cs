@@ -1,4 +1,5 @@
-﻿using TrafficLedger.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using TrafficLedger.Entities;
 
 namespace TrafficLedger.Context.SeedData
 {
@@ -7,19 +8,10 @@ namespace TrafficLedger.Context.SeedData
     /// </summary>
     public static class TransportCategorySeeder
     {
-        /// <summary>
-        /// Загрузить данные <see cref="TransportCategory"/>
-        /// </summary>
-        public static void Seed(TrafficLedgerContext context)
-        {
-            if (context.Set<TransportCategory>().Any()) {
-                return;
-            }
-
-            var categories = new List<TransportCategory>
-            {
+        private static List<TransportCategory> Categories =>
+             [
                 new TransportCategory
-                { 
+                {
                     CategoryName = "A",
                     Description = "мотоциклы",
                 },
@@ -107,9 +99,42 @@ namespace TrafficLedger.Context.SeedData
                     CategoryName = "D1E",
                     Description = "подкатегория \"D1E\" - автомобили подкатегории \"D1\", сцепленные с прицепом, который не предназначен для перевозки пассажиров, разрешенная максимальная масса которого превышает 750 килограммов, но не превышает массы автомобиля без нагрузки, при условии, что общая разрешенная максимальная масса такого состава транспортных средств не превышает 12 000 килограммов",
                 },
-            };
+            ];
 
-            foreach (var category in categories)
+        /// <summary>
+        /// Загрузить данные <see cref="TransportCategory"/> асинхронно
+        /// </summary>
+        public static async Task SeedAsync(TrafficLedgerContext context, CancellationToken cancellationToken)
+        {
+            if (cancellationToken.IsCancellationRequested)
+            {
+                return;
+            }
+
+            if (await context.Set<TransportCategory>().AnyAsync()) {
+                return;
+            }
+
+            foreach (var category in Categories)
+            {
+                category.Id = Guid.NewGuid();
+                category.CreatedAt = DateTimeOffset.UtcNow;
+                category.UpdatedAt = DateTimeOffset.UtcNow;
+                await context.Set<TransportCategory>().AddAsync(category);
+            }
+        }
+
+        /// <summary>
+        /// Загрузить данные <see cref="TransportCategory"/>
+        /// </summary>
+        public static void Seed(TrafficLedgerContext context)
+        {
+            if (context.Set<TransportCategory>().Any())
+            {
+                return;
+            }
+
+            foreach (var category in Categories)
             {
                 category.Id = Guid.NewGuid();
                 category.CreatedAt = DateTimeOffset.UtcNow;

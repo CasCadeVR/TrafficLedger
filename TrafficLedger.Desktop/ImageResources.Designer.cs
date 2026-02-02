@@ -39,7 +39,7 @@ namespace TrafficLedger.Desktop {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrafficFinePayment.Desktop.ImageResources", typeof(ImageResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrafficLedger.Desktop.ImageResources", typeof(ImageResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

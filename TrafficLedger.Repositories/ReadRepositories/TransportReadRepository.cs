@@ -50,20 +50,19 @@ public class TransportReadRepository : ITransportReadRepository
 
     async Task<IReadOnlyCollection<Transport>> ITransportReadRepository.GetAllByDriverId(Guid driverId, CancellationToken cancellationToken)
     {
-        var transports = await reader.Read<Ownership>()
-        .NotDeletedAt()
-        .Where(x => x.DriverId == driverId)
-        .Select(x => x.Transport)
-        .Include(x => x.TransportCategory)
-        .ToReadOnlyCollectionAsync(cancellationToken);
+        var transports = await reader.Read<Transport>()
+            .Include(t => t.TransportCategory)
+            .Include(t => t.Ownerships)
+            .Where(t => t.Ownerships.Any(o => o.DriverId == driverId && o.DeletedAt == null))
+            .ToReadOnlyCollectionAsync(cancellationToken);
 
         foreach (var transport in transports)
         {
             if (transport != null)
             {
                 var activeOwnerships = await reader.Read<Ownership>()
-                    .Where(o => o.TransportId == transport.Id && o.DeletedAt == null)
                     .Include(o => o.Driver)
+                    .Where(o => o.TransportId == transport.Id && o.DeletedAt == null)
                     .ToListAsync(cancellationToken);
 
                 transport.Ownerships = activeOwnerships;
