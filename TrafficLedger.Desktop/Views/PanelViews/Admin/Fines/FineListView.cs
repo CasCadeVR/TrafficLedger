@@ -1,15 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Views.PanelViews.Fines;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Fines
@@ -38,7 +33,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Fines
         {
             var filteredByStatus = checkBoxShowUnactive.Checked
                 ? items
-                : items.Where(f => f.Status == Status.InProgress);
+                : items.Where(f => f.Status == RequestStatus.Pending);
 
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
@@ -73,7 +68,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Fines
             var navigationItem = new NavigationItem()
             {
                 Title = $"Редактирование штрафа на транспорт с номером {item.Transport.TransportCode}",
-                ViewType = null,
+                ViewType = null!,
                 ViewInstance = createView,
                 Parent = CurrentNavigationItem,
             };

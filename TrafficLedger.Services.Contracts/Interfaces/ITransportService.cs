@@ -7,7 +7,7 @@ namespace TrafficLedger.Services.Contracts.Interfaces;
 /// <summary>
 /// Сервис по работе с <see cref="Transport"/>
 /// </summary>
-public interface ITransportService : IBaseService<Transport, TransportRequest>
+public interface ITransportService : IBaseService<Transport, TransportCreateModel>
 {
     /// <summary>
     /// Получить все транспорты водителя с идентификатором

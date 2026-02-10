@@ -1,7 +1,7 @@
 ﻿namespace TrafficLedger.Entities.Contracts;
 
 /// <summary>
-/// Сущность для базы данных с идентификатором
+/// Сущность для базы данных с идентификатором и аудитами
 /// </summary>
 public class DataBaseEntity : IEntityWithId, IEntityWithAudit, IEntitySoftDeleted
 {

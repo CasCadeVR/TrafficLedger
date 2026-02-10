@@ -1,11 +1,11 @@
 ﻿using TrafficLedger.Entities;
 
-namespace TrafficLedger.Services.Contracts.Models;
+namespace TrafficLedger.Services.Contracts.Models.Ownerships;
 
 /// <summary>
 /// Модель запроса владения <see cref="Transport"/>'ом
 /// </summary>
-public class OwnershipTransportRequest : OwnershipBaseRequest
+public class OwnershipTransportCreateModel : OwnershipBaseCreateModel
 {
     /// <summary>
     /// Идентификатор <see cref="Transport"/>

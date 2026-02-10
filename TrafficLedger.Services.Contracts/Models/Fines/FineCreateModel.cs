@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TrafficLedger.Common.Services.Contracts.Extensions;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
-namespace TrafficLedger.Services.Contracts.Models;
+namespace TrafficLedger.Services.Contracts.Models.Fines;
 
 /// <summary>
 /// Модель запроса штрафа
 /// </summary>
-public class FineRequest
+public class FineCreateModel
 {
     /// <summary>
     /// Дата получения штрафа
@@ -29,7 +30,7 @@ public class FineRequest
     /// <summary>
     /// Статус штрафа
     /// </summary>
-    public Status Status { get; set; }
+    public RequestStatus Status { get; set; }
 
     /// <summary>
     /// Идентификатор <see cref="Violation"/>

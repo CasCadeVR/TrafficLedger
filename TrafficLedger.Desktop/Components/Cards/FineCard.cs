@@ -4,6 +4,7 @@ using TrafficLedger.Desktop.Contracts.Enums;
 using TrafficLedger.Desktop.Contracts.Views.Cards;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Desktop.Components.Cards
 {
@@ -15,17 +16,17 @@ namespace TrafficLedger.Desktop.Components.Cards
         /// <summary>
         /// Нажата кнопка редактирования
         /// </summary>
-        public event Action EditClicked;
+        public event Action EditClicked = null!;
 
         /// <summary>
         /// Нажата кнопка удаления
         /// </summary>
-        public event Action DeletedClicked;
+        public event Action DeletedClicked = null!;
 
         /// <summary>
         /// Нажата кнопка оплаты
         /// </summary>
-        public event Action PayClicked;
+        public event Action PayClicked = null!;
 
         /// <summary>
         /// Инициализирует новый экземпляр <see cref="FineCard"/>
@@ -47,9 +48,9 @@ namespace TrafficLedger.Desktop.Components.Cards
 
         private void FillFields(Fine request)
         {
-            status.Text = request.Status == Status.InProgress
+            status.Text = request.Status == RequestStatus.Pending
                 ? "В процессе"
-                : "Оплачен";
+                : "Одобрен";
 
             date.Text = request.Date.DateTime.ToLongDateString();
             address.Text = request.Address;
@@ -57,7 +58,7 @@ namespace TrafficLedger.Desktop.Components.Cards
             violationName.Text = request.Violation.Name;
             description.Text = request.Violation.Description;
             code.Text = request.Violation.ViolationCode;
-            finePrice.Text = request.Violation.FinePrice.ToString();
+            finePrice.Text = request.Violation.MinFinePrice.ToString();
             transportCode.Text = request.Transport.TransportCode;
         }
 

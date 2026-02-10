@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
+using TrafficLedger.Services.Contracts.Models.Ownerships;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
 {
     /// <summary>
-    /// Форма создания редактирования для <see cref="UserRequest"/>
+    /// Форма создания редактирования для <see cref="UserCreateModel"/>
     /// </summary>
-    public partial class TransportCreateView : BaseCreateView<TransportRequest>
+    public partial class TransportCreateView : BaseCreateView<TransportCreateModel>
     {
         private readonly ITransportCategoryService transportCategoryService;
         private readonly ITransportService transportService;
@@ -48,7 +43,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
                 var transport = await transportService.GetById(currentTransport.Id, CancellationToken.None);
 
                 EntityId = transport.Id;
-                CurrentModel = new TransportRequest
+                CurrentModel = new TransportCreateModel
                 {
                     TransportCode = transport.TransportCode,
                     Region = transport.Region,
@@ -57,13 +52,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
                     Model = transport.Model,
                     MileAge = transport.MileAge,
                     TransportCategoryId = transport.TransportCategoryId,
-                    Ownerships = new List<OwnershipDriverRequest>()
+                    Ownerships = new List<OwnershipDriverCreateModel>()
                 };
             }
             else
             {
                 EntityId = Guid.Empty;
-                CurrentModel = new TransportRequest
+                CurrentModel = new TransportCreateModel
                 {
                     TransportCode = string.Empty,
                     Region = string.Empty,
@@ -72,7 +67,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
                     Model = string.Empty,
                     MileAge = 0,
                     TransportCategoryId = Guid.Empty,
-                    Ownerships = new List<OwnershipDriverRequest>()
+                    Ownerships = new List<OwnershipDriverCreateModel>()
                 };
             }
         }

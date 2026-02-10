@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
@@ -10,9 +6,9 @@ using TrafficLedger.Services.Contracts.Models;
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Users
 {
     /// <summary>
-    /// Форма создания редактирования для <see cref="UserRequest"/>
+    /// Форма создания редактирования для <see cref="UserCreateModel"/>
     /// </summary>
-    public partial class UserCreateView : BaseCreateView<UserRequest>
+    public partial class UserCreateView : BaseCreateView<UserCreateModel>
     {
         private readonly IUserService userService;
         private User currentUser;
@@ -39,7 +35,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Users
             var dbUser = await userService.GetById(currentUser.Id, CancellationToken.None);
 
             EntityId = dbUser.Id;
-            CurrentModel = new UserRequest
+            CurrentModel = new UserCreateModel
             {
                 Login = dbUser.Login,
                 Role = dbUser.Role,

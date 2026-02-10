@@ -47,7 +47,7 @@ namespace TrafficLedger.Services
             return result!;
         }
 
-        async Task<Driver> IBaseService<Driver, DriverRequest>.GetById(Guid id, CancellationToken cancellationToken)
+        async Task<Driver> IBaseService<Driver, DriverCreateModel>.GetById(Guid id, CancellationToken cancellationToken)
         {
             var result = await driverReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {id}"));
@@ -55,12 +55,12 @@ namespace TrafficLedger.Services
             return result!;
         }
 
-        async Task<IReadOnlyCollection<Driver>> IBaseService<Driver, DriverRequest>.GetAll(CancellationToken cancellationToken)
+        async Task<IReadOnlyCollection<Driver>> IBaseService<Driver, DriverCreateModel>.GetAll(CancellationToken cancellationToken)
         {
             return await driverReadRepository.GetAll(cancellationToken);
         }
 
-        async Task<Driver> IBaseService<Driver, DriverRequest>.Create(DriverRequest model, CancellationToken cancellationToken)
+        async Task<Driver> IBaseService<Driver, DriverCreateModel>.Create(DriverCreateModel model, CancellationToken cancellationToken)
         {
             var user = await userReadRepository.GetById(model.UserId, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {model.UserId}"));
@@ -101,7 +101,7 @@ namespace TrafficLedger.Services
             return driver;
         }
 
-        async Task<Driver> IBaseService<Driver, DriverRequest>.Update(Guid id, DriverRequest model, CancellationToken cancellationToken)
+        async Task<Driver> IBaseService<Driver, DriverCreateModel>.Update(Guid id, DriverCreateModel model, CancellationToken cancellationToken)
         {
             var existingDriver = await driverReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {id}"));
@@ -158,7 +158,7 @@ namespace TrafficLedger.Services
             return existingDriver;
         }
 
-        async Task IBaseService<Driver, DriverRequest>.Delete(Guid id, CancellationToken cancellationToken)
+        async Task IBaseService<Driver, DriverCreateModel>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var existingDriver = await driverReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {id}"));
@@ -174,7 +174,7 @@ namespace TrafficLedger.Services
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
-        private async Task ValidateMissingTransport(DriverRequest model, CancellationToken cancellationToken)
+        private async Task ValidateMissingTransport(DriverCreateModel model, CancellationToken cancellationToken)
         {
             var modelTransportIds = model.Ownerships.Select(x => x.TransportId).ToList();
 

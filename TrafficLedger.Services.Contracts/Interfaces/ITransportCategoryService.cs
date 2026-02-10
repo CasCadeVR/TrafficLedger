@@ -7,4 +7,4 @@ namespace TrafficLedger.Services.Contracts.Interfaces;
 /// <summary>
 /// Сервис по работе с <see cref="TransportCategory"/>
 /// </summary>
-public interface ITransportCategoryService : IBaseService<TransportCategory, TransportCategoryRequest> { }
+public interface ITransportCategoryService : IBaseService<TransportCategory, TransportCategoryCreateModel> { }

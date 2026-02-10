@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLedger.Storage.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLedger.Desktop", "TrafficLedger.Desktop\TrafficLedger.Desktop.csproj", "{87A87EBD-7402-47CB-8E9C-3C1E0F0BA516}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLedger.Common.Core.Contracts", "TrafficLedger.Common.Core.Contracts\TrafficLedger.Common.Core.Contracts.csproj", "{2BE5758D-3062-4223-B3D4-D4BDE4745AE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{87A87EBD-7402-47CB-8E9C-3C1E0F0BA516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87A87EBD-7402-47CB-8E9C-3C1E0F0BA516}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87A87EBD-7402-47CB-8E9C-3C1E0F0BA516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BE5758D-3062-4223-B3D4-D4BDE4745AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE5758D-3062-4223-B3D4-D4BDE4745AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE5758D-3062-4223-B3D4-D4BDE4745AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE5758D-3062-4223-B3D4-D4BDE4745AE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,6 +144,7 @@ Global
 		{83B1787A-C9F8-417E-8B2E-CF82635073E1} = {B3B666C7-DE42-4A55-B743-5EFC2BA615B2}
 		{6ADE4472-1821-409C-A1AC-B3BFF723408B} = {B3B666C7-DE42-4A55-B743-5EFC2BA615B2}
 		{218C45CD-699F-4800-B5BE-8C5102D52A3F} = {B3B666C7-DE42-4A55-B743-5EFC2BA615B2}
+		{2BE5758D-3062-4223-B3D4-D4BDE4745AE5} = {A9E7F351-593A-4599-9DD6-052B7BB96CEE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F6E53330-DF18-4283-920C-FBFBECF9AD5C}

@@ -49,7 +49,7 @@ namespace TrafficLedger.Services
             return result!;
         }
 
-        async Task<Transport> IBaseService<Transport, TransportRequest>.GetById(Guid id, CancellationToken cancellationToken)
+        async Task<Transport> IBaseService<Transport, TransportCreateModel>.GetById(Guid id, CancellationToken cancellationToken)
         {
             var result = await transportReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
@@ -57,12 +57,12 @@ namespace TrafficLedger.Services
             return result!;
         }
 
-        async Task<IReadOnlyCollection<Transport>> IBaseService<Transport, TransportRequest>.GetAll(CancellationToken cancellationToken)
+        async Task<IReadOnlyCollection<Transport>> IBaseService<Transport, TransportCreateModel>.GetAll(CancellationToken cancellationToken)
         {
             return await transportReadRepository.GetAll(cancellationToken);
         }
 
-        async Task<Transport> IBaseService<Transport, TransportRequest>.Create(TransportRequest model, CancellationToken cancellationToken)
+        async Task<Transport> IBaseService<Transport, TransportCreateModel>.Create(TransportCreateModel model, CancellationToken cancellationToken)
         {
             await transportReadRepository.IsCodeExists(model.TransportCode.ToLower(), cancellationToken)
                 .AndThrowIfTrue(() => new InvalidOperationException($"Транспорт с кодом {model.TransportCode} уже существует"));
@@ -102,7 +102,7 @@ namespace TrafficLedger.Services
             return transport;
         }
 
-        async Task<Transport> IBaseService<Transport, TransportRequest>.Update(Guid id, TransportRequest model, CancellationToken cancellationToken)
+        async Task<Transport> IBaseService<Transport, TransportCreateModel>.Update(Guid id, TransportCreateModel model, CancellationToken cancellationToken)
         {
             var existingTransport = await transportReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
@@ -163,7 +163,7 @@ namespace TrafficLedger.Services
             return existingTransport;
         }
 
-        async Task IBaseService<Transport, TransportRequest>.Delete(Guid id, CancellationToken cancellationToken)
+        async Task IBaseService<Transport, TransportCreateModel>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var existingTransport = await transportReadRepository.GetById(id, cancellationToken)
                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
@@ -179,7 +179,7 @@ namespace TrafficLedger.Services
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
-        private async Task ValidateMissingDrivers(TransportRequest model, CancellationToken cancellationToken)
+        private async Task ValidateMissingDrivers(TransportCreateModel model, CancellationToken cancellationToken)
         {
             var modelDriverIds = model.Ownerships.Select(x => x.DriverId).ToList();
 

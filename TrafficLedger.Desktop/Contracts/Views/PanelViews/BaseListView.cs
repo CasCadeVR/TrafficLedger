@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing;
-using TrafficLedger.Desktop.Components.Controls.SearchBars;
+﻿using TrafficLedger.Desktop.Components.Controls.SearchBars;
 using TrafficLedger.Desktop.Components.Labels;
 using TrafficLedger.Desktop.Contracts.Views.PanelViews;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
@@ -21,19 +14,19 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         /// <summary>
         /// Хранитель записей
         /// </summary>
-        protected FlowLayoutPanel ItemsContainer { get; set; }
+        protected FlowLayoutPanel ItemsContainer { get; set; } = null!;
 
         /// <summary>
         /// Поисковое поле
         /// </summary>
-        protected SearchBar SearchBar { get; set; }
+        protected SearchBar SearchBar { get; set; } = null!;
 
         /// <summary>
         /// Сообщение при остутсвии элементов
         /// </summary>
         protected string NoItemsMessage { get; set; } = "Список пуст";
 
-        private List<TItem> allItems = new List<TItem>();
+        private List<TItem> allItems = [];
 
         /// <summary>
         /// Загружает все данные один раз (при открытии формы)

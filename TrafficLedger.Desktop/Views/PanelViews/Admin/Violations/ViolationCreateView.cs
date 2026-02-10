@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
@@ -10,9 +6,9 @@ using TrafficLedger.Services.Contracts.Models;
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
 {
     /// <summary>
-    /// Форма создания редактирования для <see cref="ViolationRequest"/>
+    /// Форма создания редактирования для <see cref="ViolationCreateModel"/>
     /// </summary>
-    public partial class ViolationCreateView : BaseCreateView<ViolationRequest>
+    public partial class ViolationCreateView : BaseCreateView<ViolationCreateModel>
     {
         private readonly IViolationService violationService;
         private Violation currentViolation;
@@ -41,23 +37,23 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
                 var violation = await violationService.GetById(currentViolation.Id, CancellationToken.None);
 
                 EntityId = violation.Id;
-                CurrentModel = new ViolationRequest
+                CurrentModel = new ViolationCreateModel
                 {
                     ViolationCode = violation.ViolationCode,
                     Name = violation.Name,
                     Description = violation.Description,
-                    FinePrice = violation.FinePrice,
+                    MinFinePrice = violation.MinFinePrice,
                 };
             }
             else
             {
                 EntityId = Guid.Empty;
-                CurrentModel = new ViolationRequest
+                CurrentModel = new ViolationCreateModel
                 {
                     ViolationCode = string.Empty,
                     Name = string.Empty,
                     Description = string.Empty,
-                    FinePrice = 0,
+                    MinFinePrice = 0,
                 };
             }
         }
@@ -67,7 +63,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
             textBoxCode.AddBindings(x => x.Text, CurrentModel, x => x.ViolationCode, errorProvider);
             textBoxName.AddBindings(x => x.Text, CurrentModel, x => x.Name, errorProvider);
             textBoxDescription.AddBindings(x => x.Text, CurrentModel, x => x.Description, errorProvider);
-            numericUpDownFinePrice.AddBindings(x => x.Value, CurrentModel, x => x.FinePrice, errorProvider);
+            numericUpDownFinePrice.AddBindings(x => x.Value, CurrentModel, x => x.MinFinePrice, errorProvider);
         }
 
         protected override void FillControls()
@@ -80,7 +76,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
             textBoxCode.Text = CurrentModel.ViolationCode;
             textBoxName.Text = CurrentModel.Name;
             textBoxDescription.Text = CurrentModel.Description;
-            numericUpDownFinePrice.Value = CurrentModel.FinePrice;
+            numericUpDownFinePrice.Value = CurrentModel.MinFinePrice;
         }
 
         protected override async Task OnSaveAsync()

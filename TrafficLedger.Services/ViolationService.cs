@@ -24,7 +24,7 @@ namespace TrafficLedger.Services
             this.unitOfWork = unitOfWork;
         }
 
-        async Task<Violation> IBaseService<Violation, ViolationRequest>.GetById(Guid id, CancellationToken cancellationToken)
+        async Task<Violation> IBaseService<Violation, ViolationCreateModel>.GetById(Guid id, CancellationToken cancellationToken)
         {
             var result = await violationReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти нарушение с идентификатором {id}"));
@@ -32,12 +32,12 @@ namespace TrafficLedger.Services
             return result!;
         }
 
-        async Task<IReadOnlyCollection<Violation>> IBaseService<Violation, ViolationRequest>.GetAll(CancellationToken cancellationToken)
+        async Task<IReadOnlyCollection<Violation>> IBaseService<Violation, ViolationCreateModel>.GetAll(CancellationToken cancellationToken)
         {
             return await violationReadRepository.GetAll(cancellationToken);
         }
 
-        async Task<Violation> IBaseService<Violation, ViolationRequest>.Create(ViolationRequest model, CancellationToken cancellationToken)
+        async Task<Violation> IBaseService<Violation, ViolationCreateModel>.Create(ViolationCreateModel model, CancellationToken cancellationToken)
         {
             await violationReadRepository.IsViolationCodeExists(model.Name.ToLower(), cancellationToken)
                 .AndThrowIfTrue(() => new InvalidOperationException($"Нарушение с кодом {model.ViolationCode} уже существует"));
@@ -47,7 +47,7 @@ namespace TrafficLedger.Services
                 ViolationCode = model.ViolationCode.Trim(),
                 Name = model.Name.Trim(),
                 Description = model.Description,
-                FinePrice = model.FinePrice,
+                MinFinePrice = model.MinFinePrice,
             };
 
             violationWriteRepository.Add(violation);
@@ -56,7 +56,7 @@ namespace TrafficLedger.Services
             return violation;
         }
 
-        async Task<Violation> IBaseService<Violation, ViolationRequest>.Update(Guid id, ViolationRequest model, CancellationToken cancellationToken)
+        async Task<Violation> IBaseService<Violation, ViolationCreateModel>.Update(Guid id, ViolationCreateModel model, CancellationToken cancellationToken)
         {
             var violation = await violationReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти нарушение с идентификатором {id}"));
@@ -64,7 +64,7 @@ namespace TrafficLedger.Services
             violation!.ViolationCode = model.ViolationCode.Trim();
             violation.Name = model.Name.Trim();
             violation.Description = model.Description;
-            violation.FinePrice = model.FinePrice;
+            violation.MinFinePrice = model.MinFinePrice;
 
             violationWriteRepository.Update(violation);
             await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -72,7 +72,7 @@ namespace TrafficLedger.Services
             return violation;
         }
 
-        async Task IBaseService<Violation, ViolationRequest>.Delete(Guid id, CancellationToken cancellationToken)
+        async Task IBaseService<Violation, ViolationCreateModel>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var violation = await violationReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти нарушение с идентификатором {id}"));

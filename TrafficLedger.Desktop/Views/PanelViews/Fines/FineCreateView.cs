@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
-using TrafficLedger.Services.Contracts.Models;
+using TrafficLedger.Services.Contracts.Models.Fines;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Fines
 {
     /// <summary>
-    /// Форма создания редактирования для <see cref="FineRequest"/>
+    /// Форма создания редактирования для <see cref="FineCreateModel"/>
     /// </summary>
-    public partial class FineCreateView : BaseCreateView<FineRequest>
+    public partial class FineCreateView : BaseCreateView<FineCreateModel>
     {
         private readonly IFineService fineService;
         private readonly IViolationService violationService;
@@ -50,7 +45,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                 var fine = await fineService.GetById(currentFine.Id, CancellationToken.None);
 
                 EntityId = fine.Id;
-                CurrentModel = new FineRequest
+                CurrentModel = new FineCreateModel
                 {
                     Date = fine.Date,
                     Address = fine.Address,
@@ -63,12 +58,12 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             else
             {
                 EntityId = Guid.Empty;
-                CurrentModel = new FineRequest
+                CurrentModel = new FineCreateModel
                 {
                     Address = string.Empty,
                     Description = string.Empty,
                     Date = DateTimeOffset.UtcNow,
-                    Status = Status.InProgress,
+                    Status = RequestStatus.Pending,
                     ViolationId = Guid.Empty,
                     TransportId = currentTransport.Id,
                 };
@@ -102,7 +97,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         {
             var selectedViolation = comboBoxViolation.SelectedItem as Violation;
             textBoxCode.Text = selectedViolation?.ViolationCode ?? ". . .";
-            textBoxFinePrice.Text = selectedViolation?.FinePrice.ToString() ?? ". . .";
+            textBoxFinePrice.Text = selectedViolation?.MinFinePrice.ToString() ?? ". . .";
             textBoxDescription.Text = selectedViolation?.Description ?? ". . .";
         }
 

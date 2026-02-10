@@ -7,7 +7,7 @@ namespace TrafficLedger.Services.Contracts.Interfaces;
 /// <summary>
 /// Сервис по работе с <see cref="User"/>
 /// </summary>
-public interface IUserService : IBaseService<User, UserRequest>
+public interface IUserService : IBaseService<User, UserCreateModel>
 {
     /// <summary>
     /// Получить пользователя по логину и паролю

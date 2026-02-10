@@ -7,7 +7,7 @@ namespace TrafficLedger.Services.Contracts.Interfaces;
 /// <summary>
 /// Сервис по работе с <see cref="Driver"/>
 /// </summary>
-public interface IDriverService : IBaseService<Driver, DriverRequest>
+public interface IDriverService : IBaseService<Driver, DriverCreateModel>
 {
     /// <summary>
     /// Получает <see cref="Driver"/> по идентификатору пользователя

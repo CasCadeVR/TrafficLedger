@@ -3,7 +3,9 @@ using TrafficLedger.Common.Repositories;
 using TrafficLedger.Common.Repositories.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Typing;
 using TrafficLedger.Repositories.Contracts.IReadRepositories;
+using TrafficLedger.Repositories.Contracts.Models.Payments;
 
 namespace TrafficLedger.Repositories.ReadRepositories;
 
@@ -17,100 +19,177 @@ public class PaymentReadRepository : IPaymentReadRepository
         this.reader = reader;
     }
 
-    async Task<IReadOnlyCollection<Payment>> IPaymentReadRepository.GetAllByUserId(Guid userId, CancellationToken cancellationToken)
+    async Task<IReadOnlyCollection<PaymentFineDBModel>> IPaymentReadRepository.GetAllFinesByUserId(Guid userId, CancellationToken cancellationToken)
     {
         var payments = await reader.Read<Payment>()
                     .NotDeletedAt()
                     .Where(x => x.UserId == userId)
-                    .Include(x => x.Fine)
+                    .ByEntityType(EntityTypes.FinePaymentType)
                     .Include(x => x.User)
                     .OrderByDescending(x => x.Date)
                     .ToReadOnlyCollectionAsync(cancellationToken);
 
+        if (!payments.Any())
+        {
+            return [];
+        }
+
+        var fines = await reader.Read<Fine>()
+            .NotDeletedAt()
+            .Where(f => payments.Select(p => p.EntityId).Contains(f.Id))
+            .Include(f => f.Transport).ThenInclude(t => t.TransportCategory)
+            .Include(f => f.Violation)
+            .ToDictionaryAsync(f => f.Id, cancellationToken);
+
+        var result = new List<PaymentFineDBModel>();
+
         foreach (var payment in payments)
         {
-            if (payment != null)
+            if (fines.TryGetValue(payment.EntityId, out var fine))
             {
-                var transport = await reader.Read<Transport>()
-                   .NotDeletedAt()
-                   .Where(x => x.Id == payment.Fine.TransportId)
-                   .Include(x => x.TransportCategory)
-                   .FirstOrDefaultAsync(cancellationToken);
-
-                payment.Fine.Transport = transport;
-
-                var violation = await reader.Read<Violation>()
-                   .NotDeletedAt()
-                   .Where(x => x.Id == payment.Fine.ViolationId)
-                   .FirstOrDefaultAsync(cancellationToken);
-
-                payment.Fine.Violation = violation;
+                result.Add(new PaymentFineDBModel
+                {
+                    Id = payment.Id,
+                    Date = payment.Date,
+                    Fine = fine,
+                });
             }
         }
 
-        return payments;
+        return result;
+    }
+
+    async Task<IReadOnlyCollection<PaymentFineDBModel>> IPaymentReadRepository.GetAllFines(CancellationToken cancellationToken)
+    {
+        var payments = await reader.Read<Payment>()
+                    .NotDeletedAt()
+                    .ByEntityType(EntityTypes.FinePaymentType)
+                    .Include(x => x.User)
+                    .OrderByDescending(x => x.Date)
+                    .ToReadOnlyCollectionAsync(cancellationToken);
+
+        if (!payments.Any())
+        {
+            return [];
+        }
+
+        var fines = await reader.Read<Fine>()
+            .NotDeletedAt()
+            .Where(f => payments.Select(p => p.EntityId).Contains(f.Id))
+            .Include(f => f.Transport).ThenInclude(t => t.TransportCategory)
+            .Include(f => f.Violation)
+            .ToDictionaryAsync(f => f.Id, cancellationToken);
+
+        var result = new List<PaymentFineDBModel>();
+
+        foreach (var payment in payments)
+        {
+            if (fines.TryGetValue(payment.EntityId, out var fine))
+            {
+                result.Add(new PaymentFineDBModel
+                {
+                    Id = payment.Id,
+                    Date = payment.Date,
+                    Fine = fine,
+                });
+            }
+        }
+
+        return result;
+    }
+
+    async Task<IReadOnlyCollection<PaymentParkingSessionDBModel>> IPaymentReadRepository.GetAllParkingSessionsByUserId(Guid userId, CancellationToken cancellationToken)
+    {
+        var payments = await reader.Read<Payment>()
+                    .NotDeletedAt()
+                    .Where(x => x.UserId == userId)
+                    .ByEntityType(EntityTypes.ParkingSessionPaymentType)
+                    .Include(x => x.User)
+                    .OrderByDescending(x => x.Date)
+                    .ToReadOnlyCollectionAsync(cancellationToken);
+
+        if (!payments.Any())
+        {
+            return [];
+        }
+
+        var parkingSessions = await reader.Read<ParkingSession>()
+            .NotDeletedAt()
+            .Where(f => payments.Select(x => x.EntityId).Contains(f.Id))
+            .Include(f => f.Transport).ThenInclude(t => t.TransportCategory)
+            .Include(f => f.User)
+            .Include(f => f.ParkingZone)
+            .ToDictionaryAsync(f => f.Id, cancellationToken);
+
+        var result = new List<PaymentParkingSessionDBModel>();
+
+        foreach (var payment in payments)
+        {
+            if (parkingSessions.TryGetValue(payment.EntityId, out var parkingSession))
+            {
+                result.Add(new PaymentParkingSessionDBModel
+                {
+                    Id = payment.Id,
+                    Date = payment.Date,
+                    ParkingSession = parkingSession,
+                });
+            }
+        }
+
+        return result;
+    }
+
+    async Task<IReadOnlyCollection<PaymentParkingSessionDBModel>> IPaymentReadRepository.GetAllParkingSessions(CancellationToken cancellationToken)
+    {
+        var payments = await reader.Read<Payment>()
+                    .NotDeletedAt()
+                    .ByEntityType(EntityTypes.ParkingSessionPaymentType)
+                    .Include(x => x.User)
+                    .OrderByDescending(x => x.Date)
+                    .ToReadOnlyCollectionAsync(cancellationToken);
+
+        if (!payments.Any())
+        {
+            return [];
+        }
+
+        var parkingSessions = await reader.Read<ParkingSession>()
+            .NotDeletedAt()
+            .Where(f => payments.Select(x => x.EntityId).Contains(f.Id))
+            .Include(f => f.Transport).ThenInclude(t => t.TransportCategory)
+            .Include(f => f.User)
+            .Include(f => f.ParkingZone)
+            .ToDictionaryAsync(f => f.Id, cancellationToken);
+
+        var result = new List<PaymentParkingSessionDBModel>();
+
+        foreach (var payment in payments)
+        {
+            if (parkingSessions.TryGetValue(payment.EntityId, out var parkingSession))
+            {
+                result.Add(new PaymentParkingSessionDBModel
+                {
+                    Id = payment.Id,
+                    Date = payment.Date,
+                    ParkingSession = parkingSession,
+                });
+            }
+        }
+
+        return result;
     }
 
     async Task<Payment?> IBaseReadRepository<Payment>.GetById(Guid id, CancellationToken cancellationToken)
-    {
-        var payment = await reader.Read<Payment>()
-            .NotDeletedAt()
-            .ById(id)
-            .Include(x => x.Fine)
-            .Include(x => x.User)
-            .FirstOrDefaultAsync(cancellationToken);
-
-        if (payment != null)
-        {
-            var transport = await reader.Read<Transport>()
-                .NotDeletedAt()
-                .Where(x => x.Id == payment.Fine.TransportId)
-                .Include(x => x.TransportCategory)
-                .FirstOrDefaultAsync(cancellationToken);
-
-            payment.Fine.Transport = transport;
-
-            var violation = await reader.Read<Violation>()
-                .NotDeletedAt()
-                .Where(x => x.Id == payment.Fine.ViolationId)
-                .FirstOrDefaultAsync(cancellationToken);
-
-            payment.Fine.Violation = violation;
-        }
-
-        return payment;
-    }
+        => await reader.Read<Payment>()
+        .NotDeletedAt()
+        .ById(id)
+        .Include(x => x.User)
+        .FirstOrDefaultAsync(cancellationToken);
 
     async Task<IReadOnlyCollection<Payment>> IBaseReadRepository<Payment>.GetAll(CancellationToken cancellationToken)
-    {
-        var payments = await reader.Read<Payment>()
-              .NotDeletedAt()
-               .Include(x => x.Fine)
-               .Include(x => x.User)
-               .OrderByDescending(x => x.Date)
-               .ToReadOnlyCollectionAsync(cancellationToken);
-
-        foreach (var payment in payments)
-        {
-            if (payment != null)
-            {
-                var transport = await reader.Read<Transport>()
-                   .NotDeletedAt()
-                   .Where(x => x.Id == payment.Fine.TransportId)
-                   .Include(x => x.TransportCategory)
-                   .FirstOrDefaultAsync(cancellationToken);
-
-                payment.Fine.Transport = transport;
-
-                var violation = await reader.Read<Violation>()
-                   .NotDeletedAt()
-                   .Where(x => x.Id == payment.Fine.ViolationId)
-                   .FirstOrDefaultAsync(cancellationToken);
-
-                payment.Fine.Violation = violation;
-            }
-        }
-
-        return payments;
-    }
+        => await reader.Read<Payment>()
+        .NotDeletedAt()
+        .Include(x => x.User)
+        .OrderByDescending(x => x.Date)
+        .ToReadOnlyCollectionAsync(cancellationToken);
 }

@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
+using TrafficLedger.Services.Contracts.Models.Ownerships;
 
 namespace TrafficLedger.Desktop.Views.PanelViews
 {
     /// <summary>
-    /// Форма создания редактирования для <see cref="DriverRequest"/>
+    /// Форма создания редактирования для <see cref="DriverCreateModel"/>
     /// </summary>
-    public partial class DriverCreateView : BaseCreateView<DriverRequest>
+    public partial class DriverCreateView : BaseCreateView<DriverCreateModel>
     {
         private readonly IDriverService driverService;
         private readonly AppUser currentUser;
@@ -45,26 +41,26 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
                 EntityId = existingDriver.Id;
                 uniqueId = existingDriver.UniqueId;
-                CurrentModel = new DriverRequest
+                CurrentModel = new DriverCreateModel
                 {
                     FullName = existingDriver.FullName,
                     BirthDate = existingDriver.BirthDate,
                     BirthPlace = existingDriver.BirthPlace,
                     UserId = currentUser.Id,
-                    Ownerships = new List<OwnershipTransportRequest>()
+                    Ownerships = new List<OwnershipTransportCreateModel>()
                 };
             }
             else
             {
                 EntityId = Guid.Empty;
                 uniqueId = 0;
-                CurrentModel = new DriverRequest
+                CurrentModel = new DriverCreateModel
                 {
                     FullName = string.Empty,
                     BirthDate = DateTimeOffset.UtcNow,
                     BirthPlace = string.Empty,
                     UserId = currentUser.Id,
-                    Ownerships = new List<OwnershipTransportRequest>()
+                    Ownerships = new List<OwnershipTransportCreateModel>()
                 };
             }
         }

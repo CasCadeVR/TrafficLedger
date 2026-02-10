@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TrafficLedger.Context\TrafficLedger.Context.csproj" />
     <ProjectReference Include="..\TrafficLedger.Entities\TrafficLedger.Entities.csproj" />
+    <ProjectReference Include="..\TrafficLedger.Repositories.Contracts\TrafficLedger.Repositories.Contracts.csproj" />
     <ProjectReference Include="..\TrafficLedger.Repositories\TrafficLedger.Repositories.csproj" />
     <ProjectReference Include="..\TrafficLedger.Services\TrafficLedger.Services.csproj" />
   </ItemGroup>

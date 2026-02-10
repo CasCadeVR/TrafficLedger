@@ -138,7 +138,7 @@ namespace TrafficLedger.Storage
             existingEntity.ViolationCode = requestModel.ViolationCode;
             existingEntity.Name = requestModel.Name;
             existingEntity.Description = requestModel.Description;
-            existingEntity.FinePrice = requestModel.FinePrice;
+            existingEntity.MinFinePrice = requestModel.MinFinePrice;
 
             // Act
             await UnitOfWork.SaveChangesAsync();
@@ -158,7 +158,7 @@ namespace TrafficLedger.Storage
             Name = $"Name {Guid.NewGuid()}",
             ViolationCode = $"Code {Guid.NewGuid()}",
             Description = $"Description {Guid.NewGuid()}",
-            FinePrice = new Random().Next(10, 150) * 100,
+            MinFinePrice = new Random().Next(10, 150) * 100,
         };
     }
 }

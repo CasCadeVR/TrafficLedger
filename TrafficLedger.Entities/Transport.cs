@@ -1,11 +1,11 @@
-﻿using TrafficLedger.Entities.Contracts;
+﻿using TrafficLedger.Entities.Generics;
 
 namespace TrafficLedger.Entities;
 
 /// <summary>
 /// Сущность транспорта
 /// </summary>
-public class Transport : DataBaseEntity
+public class Transport : RequestedDataBaseEntity
 {
     /// <summary>
     /// Код транспорта

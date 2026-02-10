@@ -1,51 +1,51 @@
-﻿using System;
-using System.Net;
-using TrafficLedger.Desktop.Contracts.Views.Cards;
+﻿using TrafficLedger.Desktop.Contracts.Views.Cards;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
+using TrafficLedger.Repositories.Contracts.Models.Payments;
 
 namespace TrafficLedger.Desktop.Components.Cards
 {
     /// <summary>
-    /// Карточка <see cref="Payment"/>
+    /// Карточка <see cref="PaymentFineDBModel"/>
     /// </summary>
-    public partial class PaymentCard : BaseCard
+    public partial class PaymentFineCard : BaseCard
     {
         /// <summary>
         /// Нажата кнопка одобрения
         /// </summary>
-        public event Action ApproveClicked;
+        public event Action ApproveClicked = null!;
 
         /// <summary>
         /// Нажата кнопка отклонения
         /// </summary>
-        public event Action RejectClicked;
+        public event Action RejectClicked = null!;
 
         /// <summary>
         /// Нажата кнопка удаления
         /// </summary>
-        public event Action DeletedClicked;
+        public event Action DeletedClicked = null!;
 
         /// <summary>
-        /// Инициализирует новый экземпляр <see cref="FineCard"/>
+        /// Инициализирует новый экземпляр <see cref="PaymentFineCard"/>
         /// </summary>
-        public PaymentCard(Payment request, bool asOwnPayment)
+        public PaymentFineCard(PaymentFineDBModel request, bool asOwnPayment)
         {
             InitializeComponent();
             FillFields(request);
 
-            buttonApprove.Visible = !asOwnPayment && request.Status == Status.InProgress
+            buttonApprove.Visible = !asOwnPayment && request.Status == RequestStatus.Pending
                 && AuthenticationService.Instance.HasAccessTo(Role.Admin);
 
-            buttonReject.Visible = !asOwnPayment && request.Status == Status.InProgress
+            buttonReject.Visible = !asOwnPayment && request.Status == RequestStatus.Pending
                 && AuthenticationService.Instance.HasAccessTo(Role.Admin);
 
             buttonDelete.Visible = !asOwnPayment && AuthenticationService.Instance.HasAccessTo(Role.Admin);
         }
 
-        private void FillFields(Payment request)
+        private void FillFields(PaymentFineDBModel request)
         {
-            status.Text = request.Status == Status.InProgress
+            status.Text = request.Status == RequestStatus.Pending
                 ? "В процессе"
                 : "Оплачен";
 
@@ -53,7 +53,7 @@ namespace TrafficLedger.Desktop.Components.Cards
             fineDate.Text = request.Fine.Date.DateTime.ToLongDateString();
             violationName.Text = request.Fine.Violation.Name;
             code.Text = request.Fine.Violation.ViolationCode;
-            finePrice.Text = request.Fine.Violation.FinePrice.ToString();
+            finePrice.Text = request.CapturedPrice.ToString();
             transportCode.Text = request.Fine.Transport.TransportCode;
             address.Text = request.Fine.Address;
             description.Text = request.Fine.Description;

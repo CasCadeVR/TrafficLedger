@@ -6,7 +6,7 @@ namespace TrafficLedger.Services.Contracts.Models;
 /// <summary>
 /// Модель запроса категории для водительсокого удостоверения 
 /// </summary>
-public class LicenseCategoryRequest
+public class LicenseCategoryCreateModel
 {
     /// <summary>
     /// Дата присуждения определённой категории

@@ -3,7 +3,7 @@
 /// <summary>
 /// Модель запроса категории транспорта
 /// </summary>
-public class TransportCategoryRequest
+public class TransportCategoryCreateModel
 {
     /// <summary>
     /// Название категории

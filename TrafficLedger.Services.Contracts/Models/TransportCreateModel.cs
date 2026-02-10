@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TrafficLedger.Entities;
 using TrafficLedger.Entities.ValidationRules;
+using TrafficLedger.Services.Contracts.Models.Ownerships;
 
 namespace TrafficLedger.Services.Contracts.Models;
 
 /// <summary>
 /// Модель запроса транспорта
 /// </summary>
-public class TransportRequest
+public class TransportCreateModel
 {
     /// <summary>
     /// Регистрационный номер
@@ -62,7 +63,7 @@ public class TransportRequest
     public Guid TransportCategoryId { get; set; }
 
     /// <summary>
-    /// Объект передачи данных <see cref="OwnershipDriverRequest"/>
+    /// Объект передачи данных <see cref="OwnershipDriverCreateModel"/>
     /// </summary>
-    public ICollection<OwnershipDriverRequest> Ownerships { get; set; } = null!;
+    public ICollection<OwnershipDriverCreateModel> Ownerships { get; set; } = null!;
 }

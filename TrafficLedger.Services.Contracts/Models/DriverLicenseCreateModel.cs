@@ -6,7 +6,7 @@ namespace TrafficLedger.Services.Contracts.Models;
 /// <summary>
 /// Модель запроса водительского удостверения
 /// </summary>
-public class DriverLicenseRequest
+public class DriverLicenseCreateModel
 {
     /// <summary>
     /// Номер удостоверения
@@ -40,7 +40,7 @@ public class DriverLicenseRequest
     public Guid DriverId { get; set; }
 
     /// <summary>
-    /// Навигационное свойство списка <see cref="LicenseCategoryRequest"/>
+    /// Навигационное свойство списка <see cref="LicenseCategoryCreateModel"/>
     /// </summary>
-    public ICollection<LicenseCategoryRequest> LicenseCategories { get; set; }
+    public ICollection<LicenseCategoryCreateModel> LicenseCategories { get; set; } = null!;
 }

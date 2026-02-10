@@ -1,12 +1,14 @@
 ﻿using TrafficLedger.Entities;
 using TrafficLedger.Common.Services.Contracts.Extensions;
+using TrafficLedger.Entities.Enums;
+using TrafficLedger.Common.Core.Contracts.Models;
 
 namespace TrafficLedger.Services.Contracts.Models;
 
 /// <summary>
 /// Модель запроса оплаты
 /// </summary>
-public class PaymentRequest
+public class PaymentCreateModel : MultiTypedEntity
 {
     /// <summary>
     /// Дата оплаты
@@ -17,12 +19,7 @@ public class PaymentRequest
     /// <summary>
     /// Статус оплаты
     /// </summary>
-    public Status Status { get; set; }
-
-    /// <summary>
-    /// Идентификатор <see cref="Fine"/>
-    /// </summary>
-    public Guid FineId { get; set; }
+    public RequestStatus Status { get; set; }
 
     /// <summary>
     /// Идентификатор <see cref="User"/>

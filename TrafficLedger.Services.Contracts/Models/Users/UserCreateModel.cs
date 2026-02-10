@@ -5,7 +5,7 @@ namespace TrafficLedger.Services.Contracts.Models;
 /// <summary>
 /// Модель запроса пользователя
 /// </summary>
-public class UserRequest
+public class UserCreateModel
 {
     /// <summary>
     /// Имя входа

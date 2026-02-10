@@ -127,8 +127,8 @@ namespace TrafficLedger.Desktop
 
             // Payment
             services.AddScoped<PaymentCreateView>();
-            services.AddScoped<PaymentListView>();
-            services.AddScoped<PaymentUserListView>();
+            services.AddScoped<PaymentFineListView>();
+            services.AddScoped<PaymentFineUserListView>();
 
             // Fines
             services.AddScoped<FineCreateView>();

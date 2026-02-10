@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TrafficLedger.Common.Core.Contracts\TrafficLedger.Common.Core.Contracts.csproj" />
     <ProjectReference Include="..\TrafficLedger.Entities.Contracts\TrafficLedger.Entities.Contracts.csproj" />
   </ItemGroup>
 

@@ -24,7 +24,7 @@ namespace TrafficLedger.Services
             this.unitOfWork = unitOfWork;
         }
 
-        async Task<TransportCategory> IBaseService<TransportCategory, TransportCategoryRequest>.GetById(Guid id, CancellationToken cancellationToken)
+        async Task<TransportCategory> IBaseService<TransportCategory, TransportCategoryCreateModel>.GetById(Guid id, CancellationToken cancellationToken)
         {
             var result = await transportCategoryReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти категорию транспорта с идентификатором {id}"));
@@ -32,12 +32,12 @@ namespace TrafficLedger.Services
             return result!;
         }
 
-        async Task<IReadOnlyCollection<TransportCategory>> IBaseService<TransportCategory, TransportCategoryRequest>.GetAll(CancellationToken cancellationToken)
+        async Task<IReadOnlyCollection<TransportCategory>> IBaseService<TransportCategory, TransportCategoryCreateModel>.GetAll(CancellationToken cancellationToken)
         {
             return await transportCategoryReadRepository.GetAll(cancellationToken);
         }
 
-        async Task<TransportCategory> IBaseService<TransportCategory, TransportCategoryRequest>.Create(TransportCategoryRequest model, CancellationToken cancellationToken)
+        async Task<TransportCategory> IBaseService<TransportCategory, TransportCategoryCreateModel>.Create(TransportCategoryCreateModel model, CancellationToken cancellationToken)
         {
             await transportCategoryReadRepository.IsNameExists(model.CategoryName.ToLower(), cancellationToken)
                 .AndThrowIfTrue(() => new InvalidOperationException($"Категорию транспорта с кодом {model.CategoryName} уже существует"));
@@ -54,7 +54,7 @@ namespace TrafficLedger.Services
             return category;
         }
 
-        async Task<TransportCategory> IBaseService<TransportCategory, TransportCategoryRequest>.Update(Guid id, TransportCategoryRequest model, CancellationToken cancellationToken)
+        async Task<TransportCategory> IBaseService<TransportCategory, TransportCategoryCreateModel>.Update(Guid id, TransportCategoryCreateModel model, CancellationToken cancellationToken)
         {
             var category = await transportCategoryReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти категорию транспорта с идентификатором {id}"));
@@ -68,7 +68,7 @@ namespace TrafficLedger.Services
             return category;
         }
 
-        async Task IBaseService<TransportCategory, TransportCategoryRequest>.Delete(Guid id, CancellationToken cancellationToken)
+        async Task IBaseService<TransportCategory, TransportCategoryCreateModel>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var category = await transportCategoryReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти категорию транспорта с идентификатором {id}"));

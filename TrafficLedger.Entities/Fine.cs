@@ -1,21 +1,16 @@
-﻿using TrafficLedger.Entities.Contracts;
+﻿using TrafficLedger.Entities.Generics;
 
 namespace TrafficLedger.Entities;
 
 /// <summary>
 /// Сущность штрафа
 /// </summary>
-public class Fine : DataBaseEntity
+public class Fine : RequestedDataBaseEntity
 {
     /// <summary>
     /// Дата получения штрафа
     /// </summary>
     public DateTimeOffset Date { get; set; }
-
-    /// <summary>
-    /// Статус штрафа
-    /// </summary>
-    public Status Status { get; set; }
 
     /// <summary>
     /// Адрес, по которому произошло нарушение

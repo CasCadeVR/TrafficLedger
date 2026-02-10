@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Enums;
 using TrafficLedger.Desktop.Contracts.Interfaces;
@@ -11,6 +6,7 @@ using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
+using TrafficLedger.Services.Contracts.Models.Ownerships;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships
 {
@@ -18,7 +14,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships
     {
         private readonly INavigationService navigationService;
         private readonly ITransportService transportService;
-        private Driver currentDriver;
+        private Driver currentDriver = null!;
 
         public OwnershipListView(INavigationService navigationService, ITransportService transportService)
         {
@@ -72,7 +68,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships
         private void Edit(Transport item)
         {
             var createView = navigationService.ServiceProvider.GetRequiredService<OwnershipCreateView>();
-            createView.Initialize(currentDriver, new OwnershipCodeRequest()
+            createView.Initialize(currentDriver, new OwnershipCodeCreateModel()
             {
                 TransportCode = item.TransportCode,
                 Date = item.Ownerships.First(x => x.DriverId == currentDriver.Id).Date,
@@ -81,7 +77,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships
             var navigationItem = new NavigationItem()
             {
                 Title = "Редактирование владения",
-                ViewType = null,
+                ViewType = null!,
                 ViewInstance = createView,
                 Parent = CurrentNavigationItem,
             };
@@ -101,13 +97,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships
             if (result == DialogResult.Yes)
             {
                 var ownerships = item.Ownerships.Where(x => x.TransportId != item.Id)
-                    .Select(x => new OwnershipDriverRequest()
+                    .Select(x => new OwnershipDriverCreateModel()
                     {
                         DriverId = currentDriver.Id,
                         Date = x.Date
                     });
                 
-                var request = new TransportRequest()
+                var request = new TransportCreateModel()
                 {
                     TransportCode = item.TransportCode,
                     Brand = item.Brand,

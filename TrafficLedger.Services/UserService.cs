@@ -25,7 +25,7 @@ namespace TrafficLedger.Services
             this.unitOfWork = unitOfWork;
         }
 
-        async Task<User> IBaseService<User, UserRequest>.GetById(Guid id, CancellationToken cancellationToken)
+        async Task<User> IBaseService<User, UserCreateModel>.GetById(Guid id, CancellationToken cancellationToken)
         {
             var result = await userReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {id}"));
@@ -49,12 +49,12 @@ namespace TrafficLedger.Services
             return user;
         }
 
-        async Task<IReadOnlyCollection<User>> IBaseService<User, UserRequest>.GetAll(CancellationToken cancellationToken)
+        async Task<IReadOnlyCollection<User>> IBaseService<User, UserCreateModel>.GetAll(CancellationToken cancellationToken)
         {
             return await userReadRepository.GetAll(cancellationToken);
         }
 
-        async Task<User> IBaseService<User, UserRequest>.Create(UserRequest model, CancellationToken cancellationToken)
+        async Task<User> IBaseService<User, UserCreateModel>.Create(UserCreateModel model, CancellationToken cancellationToken)
         {
             await userReadRepository.IsLoginExists(model.Login.ToLower(), cancellationToken)
                 .AndThrowIfTrue(() => new InvalidOperationException($"Пользователь с логином {model.Login} уже существует"));
@@ -75,7 +75,7 @@ namespace TrafficLedger.Services
             return user;
         }
 
-        async Task<User> IBaseService<User, UserRequest>.Update(Guid id, UserRequest model, CancellationToken cancellationToken)
+        async Task<User> IBaseService<User, UserCreateModel>.Update(Guid id, UserCreateModel model, CancellationToken cancellationToken)
         {
             var user = await userReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {id}"));
@@ -89,7 +89,7 @@ namespace TrafficLedger.Services
             return user;
         }
 
-        async Task IBaseService<User, UserRequest>.Delete(Guid id, CancellationToken cancellationToken)
+        async Task IBaseService<User, UserCreateModel>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var user = await userReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {id}"));

@@ -1,19 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TrafficLedger.Desktop.Components.Cards;
+﻿using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
+using TrafficLedger.Repositories.Contracts.Models.Payments;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
 {
-    public partial class PaymentListView : BaseListView<Payment>
+    public partial class PaymentFineListView : BaseListView<PaymentFineDBModel>
     {
         private readonly IPaymentService paymentService;
 
-        public PaymentListView(IPaymentService paymentService)
+        public PaymentFineListView(IPaymentService paymentService)
         {
             InitializeComponent();
             this.paymentService = paymentService;
@@ -22,16 +19,16 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
             SearchBar = searchBar;
         }
 
-        protected override async Task<IEnumerable<Payment>> LoadItemsAsync(CancellationToken cancellationToken)
+        protected override async Task<IEnumerable<PaymentFineDBModel>> LoadItemsAsync(CancellationToken cancellationToken)
         {
-            return await paymentService.GetAll(cancellationToken);
+            return await paymentService.GetAllFines(cancellationToken);
         }
 
-        protected override IEnumerable<Payment> FilterItems(string searchQuery, IEnumerable<Payment> items)
+        protected override IEnumerable<PaymentFineDBModel> FilterItems(string searchQuery, IEnumerable<PaymentFineDBModel> items)
         {
             var filteredByStatus = checkBoxShowUnactive.Checked
                ? items
-               : items.Where(f => f.Status != Status.Finished);
+               : items.Where(f => f.Status != RequestStatus.Approved);
 
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
@@ -43,14 +40,14 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
             return filteredByStatus.Where(t =>
                 t.Fine.Violation.ViolationCode.ToString() == lowerQuery ||
                 t.Fine.Transport.TransportCode.ToString().ToLowerInvariant().Contains(lowerQuery) ||
-                t.Fine.Violation.FinePrice.ToString() == lowerQuery ||
+                t.CapturedPrice.ToString() == lowerQuery ||
                 t.Date.ToString() == lowerQuery
             );
         }
 
-        protected override Control CreateItemControl(Payment item)
+        protected override Control CreateItemControl(PaymentFineDBModel item)
         {
-            var card = new PaymentCard(item, asOwnPayment: false);
+            var card = new PaymentFineCard(item, asOwnPayment: false);
 
             card.ApproveClicked += () => Approve(item);
             card.RejectClicked += () => Reject(item);

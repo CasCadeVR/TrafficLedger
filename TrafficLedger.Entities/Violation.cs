@@ -23,7 +23,12 @@ public class Violation : DataBaseEntity
     public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Сумма штрафа за нарушение
+    /// Минимальная сумма штрафа за нарушение
     /// </summary>
-    public decimal FinePrice { get; set; }
+    public decimal MinFinePrice { get; set; }
+
+    /// <summary>
+    /// Максимальная сумма штрафа за нарушение
+    /// </summary>
+    public decimal MaxFinePrice { get; set; }
 }

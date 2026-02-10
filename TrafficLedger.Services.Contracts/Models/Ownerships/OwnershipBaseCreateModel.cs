@@ -1,11 +1,11 @@
 ﻿using TrafficLedger.Common.Services.Contracts.Extensions;
 
-namespace TrafficLedger.Services.Contracts.Models;
+namespace TrafficLedger.Services.Contracts.Models.Ownerships;
 
 /// <summary>
 /// Базовая модель запроса владения транспортом
 /// </summary>
-public class OwnershipBaseRequest
+public class OwnershipBaseCreateModel
 {
     /// <summary>
     /// Дата подписания договора о владении

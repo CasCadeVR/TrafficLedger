@@ -36,7 +36,7 @@ namespace TrafficLedger.Desktop.Components.Cards
             violationName.Text = request.Name;
             description.Text = request.Description;
             code.Text = request.ViolationCode;
-            finePrice.Text = request.FinePrice.ToString();
+            finePrice.Text = request.MinFinePrice.ToString();
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)

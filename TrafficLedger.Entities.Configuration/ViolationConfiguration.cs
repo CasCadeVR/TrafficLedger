@@ -25,7 +25,7 @@ public class ViolationConfiguration : IEntityTypeConfiguration<Violation>
             .IsRequired()
             .HasMaxLength(ViolationValidationRules.NameMaxLength);
 
-        builder.Property(x => x.FinePrice).IsRequired();
+        builder.Property(x => x.MinFinePrice).IsRequired();
         builder.Property(x => x.Description);
 
         builder.HasIndex(x => x.ViolationCode, $"IX_{nameof(Violation)}_{nameof(Violation.ViolationCode)}")

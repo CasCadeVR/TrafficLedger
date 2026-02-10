@@ -1,11 +1,11 @@
-﻿using TrafficLedger.Entities.Contracts;
+﻿using TrafficLedger.Entities.Generics;
 
 namespace TrafficLedger.Entities;
 
 /// <summary>
 /// Сущность водительского удостверения
 /// </summary>
-public class DriverLicense : DataBaseEntity
+public class DriverLicense : RequestedDataBaseEntity
 {
     /// <summary>
     /// Номер удостоверения

@@ -45,7 +45,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
             return items.Where(t =>
                 t.ViolationCode?.ToLowerInvariant().Contains(lowerQuery) == true ||
                 t.Name?.ToLowerInvariant().Contains(lowerQuery) == true ||
-                t.FinePrice.ToString() == lowerQuery
+                t.MinFinePrice.ToString() == lowerQuery
             );
         }
 

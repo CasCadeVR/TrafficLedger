@@ -7,4 +7,4 @@ namespace TrafficLedger.Services.Contracts.Interfaces;
 /// <summary>
 /// Сервис по работе с <see cref="Violation"/>
 /// </summary>
-public interface IViolationService : IBaseService<Violation, ViolationRequest> { }
+public interface IViolationService : IBaseService<Violation, ViolationCreateModel> { }

@@ -1,6 +1,6 @@
 ﻿namespace TrafficLedger.Desktop.Components.Cards
 {
-    partial class PaymentCard
+    partial class PaymentFineCard
     {
         /// <summary> 
         /// Required designer variable.

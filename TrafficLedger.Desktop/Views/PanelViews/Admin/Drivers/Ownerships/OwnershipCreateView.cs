@@ -1,24 +1,19 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
-using TrafficLedger.Desktop.Services;
+using TrafficLedger.Services.Contracts.Models.Ownerships;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
 {
     /// <summary>
-    /// Форма создания редактирования для <see cref="OwnershipCodeRequest"/>
+    /// Форма создания редактирования для <see cref="OwnershipCodeCreateModel"/>
     /// </summary>
-    public partial class OwnershipCreateView : BaseCreateView<OwnershipCodeRequest>
+    public partial class OwnershipCreateView : BaseCreateView<OwnershipCodeCreateModel>
     {
         private readonly IDriverService driverService;
         private readonly ITransportService transportService;
-        private OwnershipCodeRequest currentOwnershipCodeRequest;
+        private OwnershipCodeCreateModel currentOwnershipCodeRequest;
         private Driver currentDriver;
 
         /// <summary>
@@ -34,7 +29,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
         /// <summary>
         /// Инициализирует необходимые параметры
         /// </summary>
-        public void Initialize(Driver entity, OwnershipCodeRequest ownershipCodeRequest)
+        public void Initialize(Driver entity, OwnershipCodeCreateModel ownershipCodeRequest)
         {
             currentDriver = entity;
             currentOwnershipCodeRequest = ownershipCodeRequest;
@@ -45,7 +40,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
             if (currentOwnershipCodeRequest != null)
             {
                 EntityId = Guid.Empty;
-                CurrentModel = new OwnershipCodeRequest
+                CurrentModel = new OwnershipCodeCreateModel
                 {
                     Date = currentOwnershipCodeRequest.Date,
                     TransportCode = currentOwnershipCodeRequest.TransportCode,
@@ -54,7 +49,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
             else
             {
                 EntityId = Guid.Empty;
-                CurrentModel = new OwnershipCodeRequest
+                CurrentModel = new OwnershipCodeCreateModel
                 {
                     Date = DateTime.Now,
                     TransportCode = string.Empty,
@@ -101,14 +96,14 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
                 DriverId = currentDriver.Id,
             });
 
-            var newRequest = new DriverRequest()
+            var newRequest = new DriverCreateModel()
             {
                 FullName = currentDriver.FullName,
                 BirthDate = currentDriver.BirthDate,
                 BirthPlace = currentDriver.BirthPlace,
                 UserId = currentDriver.UserId,
                 Ownerships = ownerships.Select(x => 
-                    new OwnershipTransportRequest()
+                    new OwnershipTransportCreateModel()
                         {
                             TransportId = x.TransportId,
                             Date = x.Date,

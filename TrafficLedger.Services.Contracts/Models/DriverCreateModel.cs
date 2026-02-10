@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TrafficLedger.Common.Services.Contracts.Extensions;
 using TrafficLedger.Entities;
+using TrafficLedger.Services.Contracts.Models.Ownerships;
 
 namespace TrafficLedger.Services.Contracts.Models;
 
 /// <summary>
 /// Модель запроса водителя
 /// </summary>
-public class DriverRequest
+public class DriverCreateModel
 {
     /// <summary>
     /// ФИО водителя
@@ -32,7 +33,7 @@ public class DriverRequest
     public Guid UserId { get; set; }
 
     /// <summary>
-    /// Объект передачи данных <see cref="OwnershipTransportRequest"/>
+    /// Объект передачи данных <see cref="OwnershipTransportCreateModel"/>
     /// </summary>
-    public ICollection<OwnershipTransportRequest> Ownerships { get; set; } = null!;
+    public ICollection<OwnershipTransportCreateModel> Ownerships { get; set; } = null!;
 }

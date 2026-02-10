@@ -55,7 +55,7 @@ namespace TrafficLedger.Desktop.Views
         {
             if (isRegistration)
             {
-                var userCreateModel = new UserRequest()
+                var userCreateModel = new UserCreateModel()
                 {
                     Login = textBoxLogin.Text.Trim(),
                     Password = textBoxPassword.Text.Trim(),

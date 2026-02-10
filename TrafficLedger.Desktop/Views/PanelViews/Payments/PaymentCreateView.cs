@@ -1,17 +1,14 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TrafficLedger.Entities;
+﻿using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Payments
 {
     /// <summary>
-    /// Форма создания редактирования для <see cref="PaymentRequest"/>
+    /// Форма создания редактирования для <see cref="PaymentCreateModel"/>
     /// </summary>
-    public partial class PaymentCreateView : BaseCreateView<PaymentRequest>
+    public partial class PaymentCreateView : BaseCreateView<PaymentCreateModel>
     {
         private readonly IPaymentService paymentService;
         private Payment currentPayment;
@@ -41,25 +38,25 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
         {
             if (currentPayment != null)
             {
-                var fine = await paymentService.GetById(currentPayment.Id, CancellationToken.None);
+                var payment = await paymentService.GetById(currentPayment.Id, CancellationToken.None);
 
-                EntityId = fine.Id;
-                CurrentModel = new PaymentRequest
+                EntityId = payment.Id;
+                CurrentModel = new PaymentCreateModel
                 {
-                    Date = fine.Date,
-                    Status = fine.Status,
-                    FineId = fine.FineId,
-                    UserId = fine.UserId,
+                    Date = payment.Date,
+                    Status = payment.Status,
+                    EntityId = payment.EntityId,
+                    UserId = payment.UserId,
                 };
             }
             else
             {
                 EntityId = Guid.Empty;
-                CurrentModel = new PaymentRequest
+                CurrentModel = new PaymentCreateModel
                 {
                     Date = DateTimeOffset.UtcNow,
-                    Status = Status.InProgress,
-                    FineId = currentFine.Id,
+                    Status = RequestStatus.Pending,
+                    EntityId = currentFine.Id,
                     UserId = currentUserId,
                 };
             }
@@ -75,7 +72,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxAddress.Text = currentFine.Address;
             textBoxFineDescription.Text = currentFine.Description;
             textBoxCode.Text = currentFine.Violation.ViolationCode;
-            textBoxFinePrice.Text = currentFine.Violation.FinePrice.ToString();
+            textBoxFinePrice.Text = currentFine.Violation.MinFinePrice.ToString();
             textBoxDescription.Text = currentFine.Violation.Description;
         }
 

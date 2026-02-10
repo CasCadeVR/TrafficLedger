@@ -1,5 +1,6 @@
 ﻿using TrafficLedger.Common.Repositories.Contracts;
 using TrafficLedger.Entities;
+using TrafficLedger.Repositories.Contracts.Models.Payments;
 using TrafficLedger.Services.Contracts.Models;
 
 namespace TrafficLedger.Services.Contracts.Interfaces;
@@ -7,12 +8,27 @@ namespace TrafficLedger.Services.Contracts.Interfaces;
 /// <summary>
 /// Сервис по работе с <see cref="Payment"/>
 /// </summary>
-public interface IPaymentService : IBaseService<Payment, PaymentRequest>
+public interface IPaymentService : IBaseService<Payment, PaymentCreateModel>
 {
     /// <summary>
-    /// Получает список <see cref="Payment"/> по идентификатору пользователя
+    /// Получает список <see cref="PaymentFineDBModel"/> по идентификатору пользователя
     /// </summary>
-    Task<IReadOnlyCollection<Payment>> GetAllByUserId(Guid userId, CancellationToken cancellationToken);
+    Task<IReadOnlyCollection<PaymentFineDBModel>> GetAllFinesByUserId(Guid userId, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Получает список <see cref="PaymentParkingSessionDBModel"/> по идентификатору пользователя
+    /// </summary>
+    Task<IReadOnlyCollection<PaymentParkingSessionDBModel>> GetAllParkingSessionsByUserId(Guid userId, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Получает список <see cref="PaymentFineDBModel"/>
+    /// </summary>
+    Task<IReadOnlyCollection<PaymentFineDBModel>> GetAllFines(CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Получает список <see cref="PaymentParkingSessionDBModel"/>
+    /// </summary>
+    Task<IReadOnlyCollection<PaymentParkingSessionDBModel>> GetAllParkingSessions(CancellationToken cancellationToken);
 
     /// <summary>
     /// Одобряет оплату по чеку <see cref="Payment"/> по идентификатору чека

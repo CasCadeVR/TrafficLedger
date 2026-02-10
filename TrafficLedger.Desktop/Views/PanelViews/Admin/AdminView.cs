@@ -86,7 +86,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             var navigationItem = new NavigationItem()
             {
                 Title = buttonPayments.Text,
-                ViewType = typeof(PaymentListView),
+                ViewType = typeof(PaymentFineListView),
                 Parent = CurrentNavigationItem,
             };
 

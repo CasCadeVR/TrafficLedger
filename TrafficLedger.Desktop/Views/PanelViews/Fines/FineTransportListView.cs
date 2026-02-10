@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.PanelViews.Payments;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Fines
@@ -18,7 +14,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
     {
         private readonly INavigationService navigationService;
         private readonly IFineService fineService;
-        private Transport currentTransport;
+        private Transport currentTransport = null!;
         private bool ownTransport;
 
         public FineTransportListView(INavigationService navigationService, IFineService fineService)
@@ -45,7 +41,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         protected override async Task<IEnumerable<Fine>> LoadItemsAsync(CancellationToken cancellationToken)
         {
             var allFines = await fineService.GetAllByTransportId(currentTransport.Id, cancellationToken);
-            var activeFines = allFines.Where(x => x.Status == Status.InProgress);
+            var activeFines = allFines.Where(x => x.Status == RequestStatus.Pending);
             return activeFines;
         }
 
@@ -84,7 +80,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             var navigationItem = new NavigationItem()
             {
                 Title = "Редактирование штрафа",
-                ViewType = null,
+                ViewType = null!,
                 ViewInstance = createView,
                 Parent = CurrentNavigationItem,
             };
@@ -113,12 +109,12 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         {
             var userId = AuthenticationService.Instance.CurrentUser.Id;
             var createView = navigationService.ServiceProvider.GetRequiredService<PaymentCreateView>();
-            createView.Initialize(item, userId, null);
+            createView.Initialize(item, userId, null!);
 
             var navigationItem = new NavigationItem()
             {
                 Title = "Оплата штрафа",
-                ViewType = null,
+                ViewType = null!,
                 ViewInstance = createView,
                 Parent = CurrentNavigationItem,
             };

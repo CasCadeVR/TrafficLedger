@@ -1,6 +1,6 @@
 ﻿namespace TrafficLedger.Desktop.Views.PanelViews.Payments
 {
-    partial class PaymentUserListView
+    partial class PaymentFineUserListView
     {
         /// <summary> 
         /// Required designer variable.

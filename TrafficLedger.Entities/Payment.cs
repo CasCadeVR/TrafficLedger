@@ -1,11 +1,11 @@
-﻿using TrafficLedger.Entities.Contracts;
+﻿using TrafficLedger.Entities.Generics;
 
 namespace TrafficLedger.Entities;
 
 /// <summary>
 /// Сущность оплаты
 /// </summary>
-public class Payment : DataBaseEntity
+public class Payment : RequestedMultiTypedDataBaseEntity
 {
     /// <summary>
     /// Дата оплаты
@@ -13,27 +13,7 @@ public class Payment : DataBaseEntity
     public DateTimeOffset Date { get; set; }
 
     /// <summary>
-    /// Статус оплаты
+    /// Запечатлённая сумма на момент оплаты
     /// </summary>
-    public Status Status { get; set; }
-
-    /// <summary>
-    /// Идентификатор <see cref="Fine"/>
-    /// </summary>
-    public Guid FineId { get; set; }
-
-    /// <summary>
-    /// Навигационное свойство <see cref="Fine"/>
-    /// </summary>
-    public Fine Fine { get; set; } = null!;
-
-    /// <summary>
-    /// Идентификатор <see cref="User"/>
-    /// </summary>
-    public Guid UserId { get; set; }
-
-    /// <summary>
-    /// Навигационное свойство <see cref="User"/>
-    /// </summary>
-    public User User { get; set; } = null!;
+    public decimal CapturedPrice { get; set; }
 }

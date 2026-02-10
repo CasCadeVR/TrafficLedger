@@ -108,7 +108,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
         private void buttonListUserPayments_Click(object sender, EventArgs e)
         {
-            var listView = navigationService.ServiceProvider.GetRequiredService<PaymentUserListView>();
+            var listView = navigationService.ServiceProvider.GetRequiredService<PaymentFineUserListView>();
             listView.Initialize(currentUser.Id, ownPayment: true);
 
             var navigationItem = new NavigationItem()

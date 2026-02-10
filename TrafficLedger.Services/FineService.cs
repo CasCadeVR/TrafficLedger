@@ -2,10 +2,11 @@
 using TrafficLedger.Common.Repositories.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Repositories.Contracts.IReadRepositories;
 using TrafficLedger.Repositories.Contracts.IWriteRepositories;
 using TrafficLedger.Services.Contracts.Interfaces;
-using TrafficLedger.Services.Contracts.Models;
+using TrafficLedger.Services.Contracts.Models.Fines;
 
 namespace TrafficLedger.Services
 {
@@ -38,7 +39,7 @@ namespace TrafficLedger.Services
             return await fineReadRepository.GetAllByTransportId(transportId, cancellationToken);
         }
 
-        async Task<Fine> IBaseService<Fine, FineRequest>.GetById(Guid id, CancellationToken cancellationToken)
+        async Task<Fine> IBaseService<Fine, FineCreateModel>.GetById(Guid id, CancellationToken cancellationToken)
         {
             var result = await fineReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
@@ -46,12 +47,12 @@ namespace TrafficLedger.Services
             return result!;
         }
 
-        async Task<IReadOnlyCollection<Fine>> IBaseService<Fine, FineRequest>.GetAll(CancellationToken cancellationToken)
+        async Task<IReadOnlyCollection<Fine>> IBaseService<Fine, FineCreateModel>.GetAll(CancellationToken cancellationToken)
         {
             return await fineReadRepository.GetAll(cancellationToken);
         }
 
-        async Task<Fine> IBaseService<Fine, FineRequest>.Create(FineRequest model, CancellationToken cancellationToken)
+        async Task<Fine> IBaseService<Fine, FineCreateModel>.Create(FineCreateModel model, CancellationToken cancellationToken)
         {
             await transportReadRepository.GetById(model.TransportId, cancellationToken)
                .OrThrowIfNull(() => new InvalidOperationException($"Транспорт с id {model.TransportId} не существует"));
@@ -64,7 +65,7 @@ namespace TrafficLedger.Services
                 Date = model.Date,
                 Address = model.Address,
                 Description = model.Description,
-                Status = Status.InProgress,
+                Status = RequestStatus.Pending,
                 TransportId = model.TransportId,
                 ViolationId = model.ViolationId,
             };
@@ -75,7 +76,7 @@ namespace TrafficLedger.Services
             return fine;
         }
 
-        async Task<Fine> IBaseService<Fine, FineRequest>.Update(Guid id, FineRequest model, CancellationToken cancellationToken)
+        async Task<Fine> IBaseService<Fine, FineCreateModel>.Update(Guid id, FineCreateModel model, CancellationToken cancellationToken)
         {
             var fine = await fineReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
@@ -99,12 +100,12 @@ namespace TrafficLedger.Services
             return fine;
         }
 
-        async Task IBaseService<Fine, FineRequest>.Delete(Guid id, CancellationToken cancellationToken)
+        async Task IBaseService<Fine, FineCreateModel>.Delete(Guid id, CancellationToken cancellationToken)
         {
             var fine = await fineReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти штраф с идентификатором {id}"));
 
-            fine!.Status = Status.Finished;
+            fine!.Status = RequestStatus.Rejected;
 
             fineWriteRepository.Delete(fine);
             await unitOfWork.SaveChangesAsync(cancellationToken);

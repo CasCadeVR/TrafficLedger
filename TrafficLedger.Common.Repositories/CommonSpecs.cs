@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Microsoft.EntityFrameworkCore;
 using TrafficLedger.Entities.Contracts;
+using TrafficLedger.Entities.Generics;
 
 namespace TrafficLedger.Common.Repositories
 {
@@ -22,6 +23,13 @@ namespace TrafficLedger.Common.Repositories
         public static IQueryable<TEntity> ById<TEntity>(this IQueryable<TEntity> query, Guid id)
             where TEntity : class, IEntityWithId
             => query.Where(x => x.Id == id);
+
+        /// <summary>
+        /// По типу сущности
+        /// </summary>
+        public static IQueryable<TEntity> ByEntityType<TEntity>(this IQueryable<TEntity> query, string entityType)
+            where TEntity : MultiTypedDataBaseEntity
+            => query.Where(x => x.EntityType == entityType);
 
         /// <summary>
         /// По идентификаторам
