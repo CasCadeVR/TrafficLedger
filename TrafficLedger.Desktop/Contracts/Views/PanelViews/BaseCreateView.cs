@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TrafficLedger.Desktop.Contracts.Views.PanelViews;
+﻿using System.ComponentModel.DataAnnotations;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 
-namespace TrafficLedger.Desktop.Views.PanelViews
+namespace TrafficLedger.Desktop.Contracts.Views.PanelViews
 {
     /// <summary>
-    /// Базовая форма создания и редактирования данных
+    /// Текущая модель типа <see cref="TModel"/>
     /// </summary>
     public class BaseCreateView<TModel> : BasePanelView
         where TModel : class, new()
     {
-        /// <inheritdoc cref="ErrorProvider"/>
-        protected ErrorProvider errorProvider = new ErrorProvider();
-
         /// <summary>
         /// Текущая модель типа <see cref="TModel"/>
         /// </summary>
         protected TModel CurrentModel { get; set; } = new TModel();
+
+        /// <inheritdoc cref="ErrorProvider"/>
+        protected ErrorProvider errorProvider = new ErrorProvider();
 
         /// <summary>
         /// Текущий идентификатор модели <see cref="TModel"/>

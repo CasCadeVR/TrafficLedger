@@ -1,4 +1,5 @@
-﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
+using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;

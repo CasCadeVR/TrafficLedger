@@ -1,5 +1,4 @@
-﻿using TrafficLedger.Common.Core;
-using TrafficLedger.Common.Services;
+﻿using TrafficLedger.Common.Services;
 using TrafficLedger.Common.Repositories.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
@@ -7,6 +6,7 @@ using TrafficLedger.Repositories.Contracts.IReadRepositories;
 using TrafficLedger.Repositories.Contracts.IWriteRepositories;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
+using TrafficLedger.Common.Core.Extensions;
 
 namespace TrafficLedger.Services
 {

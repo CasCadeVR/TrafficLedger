@@ -1,4 +1,5 @@
-﻿using TrafficLedger.Entities;
+﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
+using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;

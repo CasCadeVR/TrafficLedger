@@ -1,4 +1,6 @@
-﻿namespace TrafficLedger.Desktop.Views.PanelViews
+﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
+
+namespace TrafficLedger.Desktop.Views.PanelViews
 {
     partial class DriverCreateView
     {
@@ -28,185 +30,222 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.labelUniqueId = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.labelBirthDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.labelFullName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.textBoxFullName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
-            this.labelBirthPlace = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.textBoxBirthPlace = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
-            this.dateTimePickerBirthDate = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
-            this.textBoxUniqueId = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.buttonSave = new TrafficLedger.Desktop.Components.CommonButton();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            this.tableLayoutPanelMain.SuspendLayout();
-            this.SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DriverCreateView));
+            tableLayoutPanelMain = new TableLayoutPanel();
+            buttonSave = new TrafficLedger.Desktop.Components.CommonButton();
+            labelUniqueId = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxUniqueId = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelBirthPlace = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxBirthPlace = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            labelBirthDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            dateTimePickerBirthDate = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
+            labelFullName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxFullName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            pictureOpenFileDialog = new OpenFileDialog();
+            driverPhoto = new TrafficLedger.Desktop.Components.Controls.PictureBoxes.FunctionalPictureBox();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            tableLayoutPanelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)driverPhoto).BeginInit();
+            SuspendLayout();
             // 
             // splitContainer
             // 
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanelMain);
+            splitContainer.Panel2.Controls.Add(tableLayoutPanelMain);
             // 
             // tableLayoutPanelMain
             // 
-            this.tableLayoutPanelMain.ColumnCount = 2;
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.Controls.Add(this.labelUniqueId, 0, 3);
-            this.tableLayoutPanelMain.Controls.Add(this.labelBirthDate, 0, 1);
-            this.tableLayoutPanelMain.Controls.Add(this.labelFullName, 0, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxFullName, 1, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.labelBirthPlace, 0, 2);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxBirthPlace, 1, 2);
-            this.tableLayoutPanelMain.Controls.Add(this.dateTimePickerBirthDate, 1, 1);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxUniqueId, 1, 3);
-            this.tableLayoutPanelMain.Controls.Add(this.buttonSave, 0, 6);
-            this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            this.tableLayoutPanelMain.RowCount = 7;
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(704, 500);
-            this.tableLayoutPanelMain.TabIndex = 0;
-            // 
-            // labelUniqueId
-            // 
-            this.labelUniqueId.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelUniqueId.AutoSize = true;
-            this.labelUniqueId.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelUniqueId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelUniqueId.Location = new System.Drawing.Point(173, 240);
-            this.labelUniqueId.Name = "labelUniqueId";
-            this.labelUniqueId.Size = new System.Drawing.Size(176, 17);
-            this.labelUniqueId.TabIndex = 6;
-            this.labelUniqueId.Text = "Уникальный идентификатор:";
-            // 
-            // labelBirthDate
-            // 
-            this.labelBirthDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelBirthDate.AutoSize = true;
-            this.labelBirthDate.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelBirthDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelBirthDate.Location = new System.Drawing.Point(246, 98);
-            this.labelBirthDate.Name = "labelBirthDate";
-            this.labelBirthDate.Size = new System.Drawing.Size(103, 17);
-            this.labelBirthDate.TabIndex = 2;
-            this.labelBirthDate.Text = "Дата рождения:";
-            // 
-            // labelFullName
-            // 
-            this.labelFullName.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelFullName.AutoSize = true;
-            this.labelFullName.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelFullName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelFullName.Location = new System.Drawing.Point(309, 27);
-            this.labelFullName.Name = "labelFullName";
-            this.labelFullName.Size = new System.Drawing.Size(40, 17);
-            this.labelFullName.TabIndex = 0;
-            this.labelFullName.Text = "ФИО:";
-            // 
-            // textBoxFullName
-            // 
-            this.textBoxFullName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxFullName.BackColor = System.Drawing.Color.White;
-            this.textBoxFullName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxFullName.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.textBoxFullName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxFullName.Location = new System.Drawing.Point(355, 23);
-            this.textBoxFullName.Name = "textBoxFullName";
-            this.textBoxFullName.Size = new System.Drawing.Size(246, 25);
-            this.textBoxFullName.TabIndex = 1;
-            // 
-            // labelBirthPlace
-            // 
-            this.labelBirthPlace.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelBirthPlace.AutoSize = true;
-            this.labelBirthPlace.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelBirthPlace.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelBirthPlace.Location = new System.Drawing.Point(236, 169);
-            this.labelBirthPlace.Name = "labelBirthPlace";
-            this.labelBirthPlace.Size = new System.Drawing.Size(113, 17);
-            this.labelBirthPlace.TabIndex = 3;
-            this.labelBirthPlace.Text = "Место рождения:";
-            // 
-            // textBoxBirthPlace
-            // 
-            this.textBoxBirthPlace.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxBirthPlace.BackColor = System.Drawing.Color.White;
-            this.textBoxBirthPlace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxBirthPlace.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.textBoxBirthPlace.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxBirthPlace.Location = new System.Drawing.Point(355, 165);
-            this.textBoxBirthPlace.Name = "textBoxBirthPlace";
-            this.textBoxBirthPlace.Size = new System.Drawing.Size(246, 25);
-            this.textBoxBirthPlace.TabIndex = 4;
-            // 
-            // dateTimePickerBirthDate
-            // 
-            this.dateTimePickerBirthDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dateTimePickerBirthDate.BackColor = System.Drawing.Color.White;
-            this.dateTimePickerBirthDate.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.dateTimePickerBirthDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.dateTimePickerBirthDate.Location = new System.Drawing.Point(355, 94);
-            this.dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
-            this.dateTimePickerBirthDate.Size = new System.Drawing.Size(246, 25);
-            this.dateTimePickerBirthDate.TabIndex = 5;
-            this.dateTimePickerBirthDate.Tag = "";
-            // 
-            // textBoxUniqueId
-            // 
-            this.textBoxUniqueId.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxUniqueId.BackColor = System.Drawing.Color.GhostWhite;
-            this.textBoxUniqueId.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxUniqueId.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.textBoxUniqueId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxUniqueId.Location = new System.Drawing.Point(355, 239);
-            this.textBoxUniqueId.Name = "textBoxUniqueId";
-            this.textBoxUniqueId.ReadOnly = true;
-            this.textBoxUniqueId.Size = new System.Drawing.Size(246, 18);
-            this.textBoxUniqueId.TabIndex = 7;
+            tableLayoutPanelMain.ColumnCount = 2;
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.Controls.Add(buttonSave, 0, 6);
+            tableLayoutPanelMain.Controls.Add(labelUniqueId, 0, 5);
+            tableLayoutPanelMain.Controls.Add(textBoxUniqueId, 1, 5);
+            tableLayoutPanelMain.Controls.Add(labelBirthPlace, 0, 4);
+            tableLayoutPanelMain.Controls.Add(textBoxBirthPlace, 1, 4);
+            tableLayoutPanelMain.Controls.Add(labelBirthDate, 0, 3);
+            tableLayoutPanelMain.Controls.Add(dateTimePickerBirthDate, 1, 3);
+            tableLayoutPanelMain.Controls.Add(labelFullName, 0, 2);
+            tableLayoutPanelMain.Controls.Add(textBoxFullName, 1, 2);
+            tableLayoutPanelMain.Controls.Add(driverPhoto, 0, 0);
+            tableLayoutPanelMain.Dock = DockStyle.Fill;
+            tableLayoutPanelMain.Location = new Point(0, 0);
+            tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
+            tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            tableLayoutPanelMain.RowCount = 7;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
+            tableLayoutPanelMain.Size = new Size(821, 576);
+            tableLayoutPanelMain.TabIndex = 0;
             // 
             // buttonSave
             // 
-            this.buttonSave.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonSave.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanelMain.SetColumnSpan(this.buttonSave, 2);
-            this.buttonSave.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonSave.ForeColor = System.Drawing.Color.White;
-            this.buttonSave.Location = new System.Drawing.Point(179, 437);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonSave.Size = new System.Drawing.Size(346, 52);
-            this.buttonSave.TabIndex = 8;
-            this.buttonSave.Text = "Сохранить";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            buttonSave.Anchor = AnchorStyles.None;
+            buttonSave.BackColor = Color.Green;
+            tableLayoutPanelMain.SetColumnSpan(buttonSave, 2);
+            buttonSave.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonSave.FlatStyle = FlatStyle.Flat;
+            buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonSave.ForeColor = Color.White;
+            buttonSave.Location = new Point(208, 504);
+            buttonSave.Margin = new Padding(4, 3, 4, 3);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Padding = new Padding(9, 5, 9, 5);
+            buttonSave.Size = new Size(404, 60);
+            buttonSave.TabIndex = 8;
+            buttonSave.Text = "Сохранить";
+            buttonSave.UseVisualStyleBackColor = false;
+            buttonSave.Click += buttonSave_Click;
+            // 
+            // labelUniqueId
+            // 
+            labelUniqueId.Anchor = AnchorStyles.Right;
+            labelUniqueId.AutoSize = true;
+            labelUniqueId.Font = new Font("Segoe UI", 9.75F);
+            labelUniqueId.ForeColor = Color.FromArgb(0, 0, 0);
+            labelUniqueId.Location = new Point(230, 442);
+            labelUniqueId.Margin = new Padding(4, 0, 4, 0);
+            labelUniqueId.Name = "labelUniqueId";
+            labelUniqueId.Size = new Size(176, 17);
+            labelUniqueId.TabIndex = 6;
+            labelUniqueId.Text = "Уникальный идентификатор:";
+            // 
+            // textBoxUniqueId
+            // 
+            textBoxUniqueId.Anchor = AnchorStyles.Left;
+            textBoxUniqueId.BackColor = Color.GhostWhite;
+            textBoxUniqueId.BorderStyle = BorderStyle.None;
+            textBoxUniqueId.Font = new Font("Segoe UI", 9.75F);
+            textBoxUniqueId.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxUniqueId.Location = new Point(414, 442);
+            textBoxUniqueId.Margin = new Padding(4, 3, 4, 3);
+            textBoxUniqueId.Name = "textBoxUniqueId";
+            textBoxUniqueId.ReadOnly = true;
+            textBoxUniqueId.Size = new Size(287, 18);
+            textBoxUniqueId.TabIndex = 7;
+            // 
+            // labelBirthPlace
+            // 
+            labelBirthPlace.Anchor = AnchorStyles.Right;
+            labelBirthPlace.AutoSize = true;
+            labelBirthPlace.Font = new Font("Segoe UI", 9.75F);
+            labelBirthPlace.ForeColor = Color.FromArgb(0, 0, 0);
+            labelBirthPlace.Location = new Point(293, 360);
+            labelBirthPlace.Margin = new Padding(4, 0, 4, 0);
+            labelBirthPlace.Name = "labelBirthPlace";
+            labelBirthPlace.Size = new Size(113, 17);
+            labelBirthPlace.TabIndex = 3;
+            labelBirthPlace.Text = "Место рождения:";
+            // 
+            // textBoxBirthPlace
+            // 
+            textBoxBirthPlace.Anchor = AnchorStyles.Left;
+            textBoxBirthPlace.BackColor = Color.White;
+            textBoxBirthPlace.BorderStyle = BorderStyle.FixedSingle;
+            textBoxBirthPlace.Font = new Font("Segoe UI", 9.75F);
+            textBoxBirthPlace.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxBirthPlace.Location = new Point(414, 356);
+            textBoxBirthPlace.Margin = new Padding(4, 3, 4, 3);
+            textBoxBirthPlace.Name = "textBoxBirthPlace";
+            textBoxBirthPlace.Size = new Size(287, 25);
+            textBoxBirthPlace.TabIndex = 4;
+            // 
+            // labelBirthDate
+            // 
+            labelBirthDate.Anchor = AnchorStyles.Right;
+            labelBirthDate.AutoSize = true;
+            labelBirthDate.Font = new Font("Segoe UI", 9.75F);
+            labelBirthDate.ForeColor = Color.FromArgb(0, 0, 0);
+            labelBirthDate.Location = new Point(303, 278);
+            labelBirthDate.Margin = new Padding(4, 0, 4, 0);
+            labelBirthDate.Name = "labelBirthDate";
+            labelBirthDate.Size = new Size(103, 17);
+            labelBirthDate.TabIndex = 2;
+            labelBirthDate.Text = "Дата рождения:";
+            // 
+            // dateTimePickerBirthDate
+            // 
+            dateTimePickerBirthDate.Anchor = AnchorStyles.Left;
+            dateTimePickerBirthDate.BackColor = Color.White;
+            dateTimePickerBirthDate.Font = new Font("Segoe UI", 9.75F);
+            dateTimePickerBirthDate.ForeColor = Color.FromArgb(0, 0, 0);
+            dateTimePickerBirthDate.Location = new Point(414, 274);
+            dateTimePickerBirthDate.Margin = new Padding(4, 3, 4, 3);
+            dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
+            dateTimePickerBirthDate.Size = new Size(286, 25);
+            dateTimePickerBirthDate.TabIndex = 5;
+            dateTimePickerBirthDate.Tag = "";
+            // 
+            // labelFullName
+            // 
+            labelFullName.Anchor = AnchorStyles.Right;
+            labelFullName.AutoSize = true;
+            labelFullName.Font = new Font("Segoe UI", 9.75F);
+            labelFullName.ForeColor = Color.FromArgb(0, 0, 0);
+            labelFullName.Location = new Point(366, 196);
+            labelFullName.Margin = new Padding(4, 0, 4, 0);
+            labelFullName.Name = "labelFullName";
+            labelFullName.Size = new Size(40, 17);
+            labelFullName.TabIndex = 0;
+            labelFullName.Text = "ФИО:";
+            // 
+            // textBoxFullName
+            // 
+            textBoxFullName.Anchor = AnchorStyles.Left;
+            textBoxFullName.BackColor = Color.White;
+            textBoxFullName.BorderStyle = BorderStyle.FixedSingle;
+            textBoxFullName.Font = new Font("Segoe UI", 9.75F);
+            textBoxFullName.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxFullName.Location = new Point(414, 192);
+            textBoxFullName.Margin = new Padding(4, 3, 4, 3);
+            textBoxFullName.Name = "textBoxFullName";
+            textBoxFullName.Size = new Size(287, 25);
+            textBoxFullName.TabIndex = 1;
+            // 
+            // pictureOpenFileDialog
+            // 
+            pictureOpenFileDialog.FileName = "pictureOpenFileDialog";
+            // 
+            // driverPhoto
+            // 
+            driverPhoto.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            driverPhoto.BorderStyle = BorderStyle.FixedSingle;
+            tableLayoutPanelMain.SetColumnSpan(driverPhoto, 2);
+            driverPhoto.Image = (Image)resources.GetObject("driverPhoto.Image");
+            driverPhoto.Location = new Point(331, 3);
+            driverPhoto.MaximumSize = new Size(158, 158);
+            driverPhoto.MinimumSize = new Size(158, 158);
+            driverPhoto.Name = "driverPhoto";
+            tableLayoutPanelMain.SetRowSpan(driverPhoto, 2);
+            driverPhoto.Size = new Size(158, 158);
+            driverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+            driverPhoto.TabIndex = 9;
+            driverPhoto.TabStop = false;
             // 
             // DriverCreateView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "DriverCreateView";
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            this.tableLayoutPanelMain.ResumeLayout(false);
-            this.tableLayoutPanelMain.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Margin = new Padding(5, 3, 5, 3);
+            Name = "DriverCreateView";
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
+            splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            tableLayoutPanelMain.ResumeLayout(false);
+            tableLayoutPanelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)driverPhoto).EndInit();
+            ResumeLayout(false);
 
         }
 
@@ -222,5 +261,7 @@
         private Components.Labels.PrimaryLabel labelUniqueId;
         private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxUniqueId;
         private Components.CommonButton buttonSave;
+        private OpenFileDialog pictureOpenFileDialog;
+        private Components.Controls.PictureBoxes.FunctionalPictureBox driverPhoto;
     }
 }

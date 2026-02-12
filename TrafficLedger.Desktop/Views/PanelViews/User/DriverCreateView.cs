@@ -1,6 +1,8 @@
-﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
+using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Services;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
@@ -11,7 +13,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
     /// <summary>
     /// Форма создания редактирования для <see cref="DriverCreateModel"/>
     /// </summary>
-    public partial class DriverCreateView : BaseCreateView<DriverCreateModel>
+    public partial class DriverCreateView : DriverCreateWrapper
     {
         private readonly IDriverService driverService;
         private readonly AppUser currentUser;
@@ -19,7 +21,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         private int uniqueId;
 
         /// <summary>
-        /// Инициализирует новый экзмепляр <see cref="BaseCreateView"/>
+        /// Инициализирует новый экзмепляр <see cref=" = new TModel();"/>
         /// </summary>
         public DriverCreateView(IDriverService driverService)
         {

@@ -1,4 +1,4 @@
-﻿namespace TrafficLedger.Common.Core;
+﻿namespace TrafficLedger.Common.Core.Extensions;
 
 /// <summary>
 /// Методы расширения для тасков

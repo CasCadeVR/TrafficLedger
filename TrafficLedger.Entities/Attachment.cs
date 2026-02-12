@@ -1,5 +1,4 @@
-﻿using TrafficLedger.Entities.Contracts;
-using TrafficLedger.Entities.Generics;
+﻿using TrafficLedger.Entities.Generics;
 
 namespace TrafficLedger.Entities
 {
@@ -19,8 +18,8 @@ namespace TrafficLedger.Entities
         public string ContentType { get; set; } = string.Empty;
 
         /// <summary>
-        /// Путь к файлу
+        /// Побитовый контент
         /// </summary>
-        public string? StoragePath { get; set; }
+        public byte[]? Content { get; set; }
     }
 }
