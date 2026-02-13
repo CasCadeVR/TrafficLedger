@@ -1,5 +1,5 @@
-﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
@@ -10,7 +10,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
     /// <summary>
     /// Форма создания редактирования для <see cref="OwnershipCodeCreateModel"/>
     /// </summary>
-    public partial class OwnershipCreateView : BaseCreateView<OwnershipCodeCreateModel>
+    public partial class OwnershipCreateView : OwnershipCreateWrapper
     {
         private readonly IDriverService driverService;
         private readonly ITransportService transportService;

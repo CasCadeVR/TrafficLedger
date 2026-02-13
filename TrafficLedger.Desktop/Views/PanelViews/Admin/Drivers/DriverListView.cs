@@ -1,19 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
-using TrafficLedger.Entities;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships;
+using TrafficLedger.Desktop.Views.Wrappers;
+using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
 {
-    public partial class DriverListView : BaseListView<Driver>
+    public partial class DriverListView : DriverListWrapper
     {
         private readonly INavigationService navigationService;
         private readonly IDriverService driverService;

@@ -1,5 +1,5 @@
-﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
@@ -10,7 +10,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
     /// <summary>
     /// Форма создания редактирования для <see cref="FineCreateModel"/>
     /// </summary>
-    public partial class FineCreateView : BaseCreateView<FineCreateModel>
+    public partial class FineCreateView : FineCreateWrapper
     {
         private readonly IFineService fineService;
         private readonly IViolationService violationService;

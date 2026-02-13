@@ -1,4 +1,4 @@
-﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
+﻿using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
@@ -9,7 +9,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
     /// <summary>
     /// Форма создания редактирования для <see cref="PaymentCreateModel"/>
     /// </summary>
-    public partial class PaymentCreateView : BaseCreateView<PaymentCreateModel>
+    public partial class PaymentCreateView : PaymentCreateWrapper
     {
         private readonly IPaymentService paymentService;
         private Payment currentPayment;

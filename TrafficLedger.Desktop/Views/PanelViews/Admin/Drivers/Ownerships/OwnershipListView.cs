@@ -3,6 +3,7 @@ using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Enums;
 using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
@@ -10,7 +11,7 @@ using TrafficLedger.Services.Contracts.Models.Ownerships;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships
 {
-    public partial class OwnershipListView : BaseListView<Transport>
+    public partial class OwnershipListView : OwnershipListWrapper
     {
         private readonly INavigationService navigationService;
         private readonly ITransportService transportService;

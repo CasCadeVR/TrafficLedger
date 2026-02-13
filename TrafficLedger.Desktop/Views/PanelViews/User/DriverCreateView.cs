@@ -1,5 +1,4 @@
-﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.Wrappers;
@@ -21,7 +20,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         private int uniqueId;
 
         /// <summary>
-        /// Инициализирует новый экзмепляр <see cref=" = new TModel();"/>
+        /// Инициализирует новый экзмепляр <see cref="DriverCreateView"/>
         /// </summary>
         public DriverCreateView(IDriverService driverService)
         {

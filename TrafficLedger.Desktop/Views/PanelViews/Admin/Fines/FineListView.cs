@@ -3,13 +3,14 @@ using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Views.PanelViews.Fines;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Fines
 {
-    public partial class FineListView : BaseListView<Fine>
+    public partial class FineListView : FineListWrapper
     {
         private readonly INavigationService navigationService;
         private readonly IFineService fineService;

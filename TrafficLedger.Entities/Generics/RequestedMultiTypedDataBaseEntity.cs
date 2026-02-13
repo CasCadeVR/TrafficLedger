@@ -3,7 +3,7 @@
 namespace TrafficLedger.Entities.Generics
 {
     /// <summary>
-    /// Сущность, нуждающая в подтверждении уполномоченного лица и также мультипная
+    /// Сущность, нуждающая в подтверждении уполномоченного лица и также привязана к множеству типов сущностей
     /// </summary>
     public abstract class RequestedMultiTypedDataBaseEntity : MultiTypedDataBaseEntity
     {

@@ -1,18 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
 {
-    public partial class ViolationListView : BaseListView<Violation>
+    public partial class ViolationListView : ViolationListWrapper
     {
         private readonly INavigationService navigationService;
         private readonly IViolationService violationService;

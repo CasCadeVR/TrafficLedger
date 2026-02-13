@@ -1,5 +1,6 @@
 ﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
 using TrafficLedger.Desktop.Infrastructure.Extensions;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
@@ -10,7 +11,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
     /// <summary>
     /// Форма создания редактирования для <see cref="UserCreateModel"/>
     /// </summary>
-    public partial class TransportCreateView : BaseCreateView<TransportCreateModel>
+    public partial class TransportCreateView : TransportCreateWrapper
     {
         private readonly ITransportCategoryService transportCategoryService;
         private readonly ITransportService transportService;

@@ -20,4 +20,55 @@
     <ProjectReference Include="..\TrafficLedger.Services\TrafficLedger.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Views\Wrappers\Admin\Drivers\DriverListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Drivers\Ownerships\OwnershipListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Drivers\Ownerships\OwnershipCreateWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Fines\FineListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Payments\PaymentListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Transport\TransportCreateWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Transport\TransportListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Users\UserListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Users\UserCreateWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Violations\ViolationCreateWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Violations\ViolationListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Fines\FineCreateWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Fines\FineTransportListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Payments\PaymentCreateWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Payments\PaymentUserListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Transport\TransportUserListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,5 @@
-﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
@@ -9,7 +9,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
     /// <summary>
     /// Форма создания редактирования для <see cref="ViolationCreateModel"/>
     /// </summary>
-    public partial class ViolationCreateView : BaseCreateView<ViolationCreateModel>
+    public partial class ViolationCreateView : ViolationCreateWrapper
     {
         private readonly IViolationService violationService;
         private Violation currentViolation;

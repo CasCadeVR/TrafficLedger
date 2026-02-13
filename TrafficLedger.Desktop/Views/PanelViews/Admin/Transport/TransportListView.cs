@@ -1,21 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Enums;
 using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.Fines;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
 {
-    public partial class TransportListView : BaseListView<Transport>
+    public partial class TransportListView : TransportListWrapper
     {
         private readonly INavigationService navigationService;
         private readonly ITransportService transportService;

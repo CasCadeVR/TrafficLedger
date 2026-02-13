@@ -13,7 +13,7 @@ namespace TrafficLedger.Entities
         public string? Address { get; set; }
         
         /// <summary>
-        /// координаты для GeoJSON/WKT
+        /// координаты для WKT
         /// </summary>
         public string? GeometryWkt { get; set; }
 

@@ -1,5 +1,5 @@
-﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
@@ -9,7 +9,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Users
     /// <summary>
     /// Форма создания редактирования для <see cref="UserCreateModel"/>
     /// </summary>
-    public partial class UserCreateView : BaseCreateView<UserCreateModel>
+    public partial class UserCreateView : UserCreateWrapper
     {
         private readonly IUserService userService;
         private User currentUser;

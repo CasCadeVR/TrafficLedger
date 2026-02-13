@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Enums;
 using TrafficLedger.Desktop.Contracts.Interfaces;
@@ -12,12 +6,13 @@ using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.PanelViews.Fines;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews
 {
-    public partial class TransportUserListView : BaseListView<Transport>
+    public partial class TransportUserListView : TransportUserListWrapper
     {
         private readonly Lazy<INavigationService> navigationService;
         private readonly ITransportService transportService;
@@ -25,8 +20,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         private readonly AppUser currentUser;
 
         public TransportUserListView(
-            Lazy<INavigationService> navigationService, 
-            ITransportService transportService, 
+            Lazy<INavigationService> navigationService,
+            ITransportService transportService,
             IDriverService driverService)
         {
             InitializeComponent();

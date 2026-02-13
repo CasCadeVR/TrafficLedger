@@ -1,11 +1,12 @@
 ﻿using TrafficLedger.Desktop.Components.Cards;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities.Enums;
 using TrafficLedger.Repositories.Contracts.Models.Payments;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Payments
 {
-    public partial class PaymentFineUserListView : BaseListView<PaymentFineDBModel>
+    public partial class PaymentFineUserListView : PaymentUserListWrapper
     {
         private readonly IPaymentService paymentService;
         private bool ownPayment;

@@ -3,7 +3,7 @@
 namespace TrafficLedger.Entities.Generics
 {
     /// <summary>
-    /// Многотипная сущность
+    /// Сущность привязанная к множеству типов сущностей
     /// </summary>
     public abstract class MultiTypedDataBaseEntity : DataBaseEntity
     {
