@@ -18,7 +18,7 @@ namespace TrafficLedger.Context
         /// 3) dotnet ef migrations add [name] --project TrafficLedger.Context
         /// 4) dotnet ef database update --project TrafficLedger.Context --connection "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TrafficLedgerDBStorage;Integrated Security=True;"
         /// 5) dotnet ef migrations update [targetMigrationName] --project TrafficLedger.Context --connection "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TrafficLedgerDBStorage;Integrated Security=True;"
-        /// 6) dotnet ef migrations remove --project TrafficLedger.Context --connection "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TrafficLedgerDBStorage;Integrated Security=True;"
+        /// 6) dotnet ef migrations remove --project TrafficLedger.Context
         /// </remarks>
         public TrafficLedgerContext CreateDbContext(string[] args)
         {

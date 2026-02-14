@@ -12,8 +12,8 @@ using TrafficLedger.Context;
 namespace TrafficLedger.Context.Migrations
 {
     [DbContext(typeof(TrafficLedgerContext))]
-    [Migration("20260202151609_initialMigrate")]
-    partial class initialMigrate
+    [Migration("20260214161344_initMigration")]
+    partial class initMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,47 @@ namespace TrafficLedger.Context.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("TrafficLedger.Entities.Attachment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("Content")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DeletedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("EntityType")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Attachment", (string)null);
+                });
 
             modelBuilder.Entity("TrafficLedger.Entities.Driver", b =>
                 {
@@ -75,6 +116,10 @@ namespace TrafficLedger.Context.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Commentary")
+                        .HasMaxLength(2047)
+                        .HasColumnType("nvarchar(2047)");
+
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
@@ -97,17 +142,33 @@ namespace TrafficLedger.Context.Migrations
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
 
+                    b.Property<DateTimeOffset?>("ProcessedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid?>("ProcessedById")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Residence")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DriverId");
+
+                    b.HasIndex("ProcessedById");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex(new[] { "LicenseNumber" }, "IX_DriverLicense_LicenseNumber")
                         .IsUnique()
@@ -124,8 +185,12 @@ namespace TrafficLedger.Context.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(2047)
+                        .HasColumnType("nvarchar(2047)");
+
+                    b.Property<string>("Commentary")
+                        .HasMaxLength(2047)
+                        .HasColumnType("nvarchar(2047)");
 
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
@@ -140,6 +205,12 @@ namespace TrafficLedger.Context.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTimeOffset?>("ProcessedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid?>("ProcessedById")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -149,12 +220,19 @@ namespace TrafficLedger.Context.Migrations
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("ViolationId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProcessedById");
+
                     b.HasIndex("TransportId");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("ViolationId");
 
@@ -227,11 +305,102 @@ namespace TrafficLedger.Context.Migrations
                     b.ToTable("Ownership", (string)null);
                 });
 
+            modelBuilder.Entity("TrafficLedger.Entities.ParkingSession", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal?>("CapturedTotalCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DeletedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("EndTime")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("ParkingZoneId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("StartTime")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("TransportId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParkingZoneId");
+
+                    b.HasIndex("TransportId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ParkingSession", (string)null);
+                });
+
+            modelBuilder.Entity("TrafficLedger.Entities.ParkingZone", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(2047)
+                        .HasColumnType("nvarchar(2047)");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DeletedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("GeometryWkt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("HourlyRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "Address" }, "IX_ParkingZone_Address")
+                        .IsUnique()
+                        .HasFilter("\"DeletedAt\" IS NULL");
+
+                    b.ToTable("ParkingZone", (string)null);
+                });
+
             modelBuilder.Entity("TrafficLedger.Entities.Payment", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("CapturedPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Commentary")
+                        .HasMaxLength(2047)
+                        .HasColumnType("nvarchar(2047)");
 
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
@@ -242,7 +411,18 @@ namespace TrafficLedger.Context.Migrations
                     b.Property<DateTimeOffset?>("DeletedAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid>("FineId")
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("EntityType")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTimeOffset?>("ProcessedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid?>("ProcessedById")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
@@ -256,7 +436,7 @@ namespace TrafficLedger.Context.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FineId");
+                    b.HasIndex("ProcessedById");
 
                     b.HasIndex("UserId");
 
@@ -274,6 +454,10 @@ namespace TrafficLedger.Context.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("Commentary")
+                        .HasMaxLength(2047)
+                        .HasColumnType("nvarchar(2047)");
+
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
@@ -288,10 +472,19 @@ namespace TrafficLedger.Context.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<DateTimeOffset?>("ProcessedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid?>("ProcessedById")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Region")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("TransportCategoryId")
                         .HasColumnType("uniqueidentifier");
@@ -304,6 +497,9 @@ namespace TrafficLedger.Context.Migrations
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Year")
                         .IsRequired()
                         .HasMaxLength(4)
@@ -311,7 +507,11 @@ namespace TrafficLedger.Context.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProcessedById");
+
                     b.HasIndex("TransportCategoryId");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex(new[] { "TransportCode" }, "IX_Transport_TransportCode")
                         .IsUnique()
@@ -410,7 +610,10 @@ namespace TrafficLedger.Context.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("FinePrice")
+                    b.Property<decimal>("MaxFinePrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("MinFinePrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
@@ -454,15 +657,37 @@ namespace TrafficLedger.Context.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TrafficLedger.Entities.User", "ProcessedBy")
+                        .WithMany()
+                        .HasForeignKey("ProcessedById");
+
+                    b.HasOne("TrafficLedger.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .IsRequired();
+
                     b.Navigation("Driver");
+
+                    b.Navigation("ProcessedBy");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TrafficLedger.Entities.Fine", b =>
                 {
+                    b.HasOne("TrafficLedger.Entities.User", "ProcessedBy")
+                        .WithMany()
+                        .HasForeignKey("ProcessedById");
+
                     b.HasOne("TrafficLedger.Entities.Transport", "Transport")
                         .WithMany("Fines")
                         .HasForeignKey("TransportId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TrafficLedger.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .IsRequired();
 
                     b.HasOne("TrafficLedger.Entities.Violation", "Violation")
@@ -471,7 +696,11 @@ namespace TrafficLedger.Context.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("ProcessedBy");
+
                     b.Navigation("Transport");
+
+                    b.Navigation("User");
 
                     b.Navigation("Violation");
                 });
@@ -514,11 +743,17 @@ namespace TrafficLedger.Context.Migrations
                     b.Navigation("Transport");
                 });
 
-            modelBuilder.Entity("TrafficLedger.Entities.Payment", b =>
+            modelBuilder.Entity("TrafficLedger.Entities.ParkingSession", b =>
                 {
-                    b.HasOne("TrafficLedger.Entities.Fine", "Fine")
+                    b.HasOne("TrafficLedger.Entities.ParkingZone", "ParkingZone")
                         .WithMany()
-                        .HasForeignKey("FineId")
+                        .HasForeignKey("ParkingZoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TrafficLedger.Entities.Transport", "Transport")
+                        .WithMany()
+                        .HasForeignKey("TransportId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -528,20 +763,53 @@ namespace TrafficLedger.Context.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Fine");
+                    b.Navigation("ParkingZone");
+
+                    b.Navigation("Transport");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TrafficLedger.Entities.Payment", b =>
+                {
+                    b.HasOne("TrafficLedger.Entities.User", "ProcessedBy")
+                        .WithMany()
+                        .HasForeignKey("ProcessedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TrafficLedger.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProcessedBy");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("TrafficLedger.Entities.Transport", b =>
                 {
+                    b.HasOne("TrafficLedger.Entities.User", "ProcessedBy")
+                        .WithMany()
+                        .HasForeignKey("ProcessedById");
+
                     b.HasOne("TrafficLedger.Entities.TransportCategory", "TransportCategory")
                         .WithMany()
                         .HasForeignKey("TransportCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TrafficLedger.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .IsRequired();
+
+                    b.Navigation("ProcessedBy");
+
                     b.Navigation("TransportCategory");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TrafficLedger.Entities.Driver", b =>

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TrafficLedger.Entities\TrafficLedger.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

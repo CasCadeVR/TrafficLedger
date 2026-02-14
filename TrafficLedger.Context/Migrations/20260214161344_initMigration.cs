@@ -6,11 +6,48 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TrafficLedger.Context.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigrate : Migration
+    public partial class initMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Attachment",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    ContentType = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Content = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    EntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EntityType = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Attachment", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ParkingZone",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(2047)", maxLength: 2047, nullable: true),
+                    GeometryWkt = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HourlyRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ParkingZone", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "TransportCategory",
                 columns: table => new
@@ -53,7 +90,8 @@ namespace TrafficLedger.Context.Migrations
                     ViolationCode = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FinePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MinFinePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MaxFinePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
@@ -61,33 +99,6 @@ namespace TrafficLedger.Context.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Violation", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Transport",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TransportCode = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
-                    Region = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Brand = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Year = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false),
-                    Model = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    MileAge = table.Column<int>(type: "int", nullable: false),
-                    TransportCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transport", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Transport_TransportCategory_TransportCategoryId",
-                        column: x => x.TransportCategoryId,
-                        principalTable: "TransportCategory",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -117,35 +128,80 @@ namespace TrafficLedger.Context.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Fine",
+                name: "Payment",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ViolationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TransportId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CapturedPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    EntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EntityType = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    ProcessedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    Commentary = table.Column<string>(type: "nvarchar(2047)", maxLength: 2047, nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProcessedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Fine", x => x.Id);
+                    table.PrimaryKey("PK_Payment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Fine_Transport_TransportId",
-                        column: x => x.TransportId,
-                        principalTable: "Transport",
+                        name: "FK_Payment_User_ProcessedById",
+                        column: x => x.ProcessedById,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Payment_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transport",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TransportCode = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
+                    Region = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Brand = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Year = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    MileAge = table.Column<int>(type: "int", nullable: false),
+                    TransportCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    ProcessedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    Commentary = table.Column<string>(type: "nvarchar(2047)", maxLength: 2047, nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProcessedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transport", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Transport_TransportCategory_TransportCategoryId",
+                        column: x => x.TransportCategoryId,
+                        principalTable: "TransportCategory",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Fine_Violation_ViolationId",
-                        column: x => x.ViolationId,
-                        principalTable: "Violation",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Transport_User_ProcessedById",
+                        column: x => x.ProcessedById,
+                        principalTable: "User",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Transport_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -160,7 +216,12 @@ namespace TrafficLedger.Context.Migrations
                     DriverId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    ProcessedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    Commentary = table.Column<string>(type: "nvarchar(2047)", maxLength: 2047, nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProcessedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -169,6 +230,62 @@ namespace TrafficLedger.Context.Migrations
                         name: "FK_DriverLicense_Driver_DriverId",
                         column: x => x.DriverId,
                         principalTable: "Driver",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DriverLicense_User_ProcessedById",
+                        column: x => x.ProcessedById,
+                        principalTable: "User",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_DriverLicense_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Fine",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Date = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(2047)", maxLength: 2047, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ViolationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TransportId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    ProcessedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    Commentary = table.Column<string>(type: "nvarchar(2047)", maxLength: 2047, nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProcessedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Fine", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Fine_Transport_TransportId",
+                        column: x => x.TransportId,
+                        principalTable: "Transport",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Fine_User_ProcessedById",
+                        column: x => x.ProcessedById,
+                        principalTable: "User",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Fine_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Fine_Violation_ViolationId",
+                        column: x => x.ViolationId,
+                        principalTable: "Violation",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -203,29 +320,38 @@ namespace TrafficLedger.Context.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Payment",
+                name: "ParkingSession",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Date = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    StartTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    EndTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    CapturedTotalCost = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    FineId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TransportId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ParkingZoneId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Payment", x => x.Id);
+                    table.PrimaryKey("PK_ParkingSession", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Payment_Fine_FineId",
-                        column: x => x.FineId,
-                        principalTable: "Fine",
+                        name: "FK_ParkingSession_ParkingZone_ParkingZoneId",
+                        column: x => x.ParkingZoneId,
+                        principalTable: "ParkingZone",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Payment_User_UserId",
+                        name: "FK_ParkingSession_Transport_TransportId",
+                        column: x => x.TransportId,
+                        principalTable: "Transport",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ParkingSession_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
@@ -279,9 +405,29 @@ namespace TrafficLedger.Context.Migrations
                 filter: "\"DeletedAt\" IS NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DriverLicense_ProcessedById",
+                table: "DriverLicense",
+                column: "ProcessedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DriverLicense_UserId",
+                table: "DriverLicense",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Fine_ProcessedById",
+                table: "Fine",
+                column: "ProcessedById");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Fine_TransportId",
                 table: "Fine",
                 column: "TransportId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Fine_UserId",
+                table: "Fine",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Fine_ViolationId",
@@ -309,14 +455,41 @@ namespace TrafficLedger.Context.Migrations
                 column: "TransportId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payment_FineId",
+                name: "IX_ParkingSession_ParkingZoneId",
+                table: "ParkingSession",
+                column: "ParkingZoneId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParkingSession_TransportId",
+                table: "ParkingSession",
+                column: "TransportId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParkingSession_UserId",
+                table: "ParkingSession",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParkingZone_Address",
+                table: "ParkingZone",
+                column: "Address",
+                unique: true,
+                filter: "\"DeletedAt\" IS NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payment_ProcessedById",
                 table: "Payment",
-                column: "FineId");
+                column: "ProcessedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payment_UserId",
                 table: "Payment",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transport_ProcessedById",
+                table: "Transport",
+                column: "ProcessedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transport_TransportCategoryId",
@@ -329,6 +502,11 @@ namespace TrafficLedger.Context.Migrations
                 column: "TransportCode",
                 unique: true,
                 filter: "\"DeletedAt\" IS NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transport_UserId",
+                table: "Transport",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TransportCategory_CategoryName",
@@ -356,34 +534,43 @@ namespace TrafficLedger.Context.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Attachment");
+
+            migrationBuilder.DropTable(
+                name: "Fine");
+
+            migrationBuilder.DropTable(
                 name: "LicenseCategory");
 
             migrationBuilder.DropTable(
                 name: "Ownership");
 
             migrationBuilder.DropTable(
+                name: "ParkingSession");
+
+            migrationBuilder.DropTable(
                 name: "Payment");
-
-            migrationBuilder.DropTable(
-                name: "DriverLicense");
-
-            migrationBuilder.DropTable(
-                name: "Fine");
-
-            migrationBuilder.DropTable(
-                name: "Driver");
-
-            migrationBuilder.DropTable(
-                name: "Transport");
 
             migrationBuilder.DropTable(
                 name: "Violation");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "DriverLicense");
+
+            migrationBuilder.DropTable(
+                name: "ParkingZone");
+
+            migrationBuilder.DropTable(
+                name: "Transport");
+
+            migrationBuilder.DropTable(
+                name: "Driver");
 
             migrationBuilder.DropTable(
                 name: "TransportCategory");
+
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }

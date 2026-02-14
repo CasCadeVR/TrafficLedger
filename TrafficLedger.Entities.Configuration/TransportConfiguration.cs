@@ -37,12 +37,25 @@ public class TransportConfiguration : IEntityTypeConfiguration<Transport>
             .IsRequired()
             .HasMaxLength(TransportValidationRules.ModelMaxLength);
 
+        builder.Property(x => x.Commentary)
+            .HasMaxLength(RequestedDataBaseEntityValidationRules.CommentaryMaxLength);
+
         builder.Property(x => x.MileAge).IsRequired();
 
         builder.HasOne(x => x.TransportCategory)
              .WithMany()
              .HasForeignKey(x => x.TransportCategoryId)
              .IsRequired();
+
+        builder.HasOne(x => x.User)
+           .WithMany()
+           .HasForeignKey(x => x.UserId)
+           .OnDelete(DeleteBehavior.ClientSetNull);
+
+        builder.HasOne(x => x.ProcessedBy)
+           .WithMany()
+           .HasForeignKey(x => x.ProcessedById)
+           .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder.HasIndex(x => x.TransportCode, $"IX_{nameof(Transport)}_{nameof(Transport.TransportCode)}")
                 .IsUnique()

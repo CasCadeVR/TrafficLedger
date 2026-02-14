@@ -13,5 +13,5 @@ public static class FineValidationRules
     /// <summary>
     /// Максимальная длина <see cref="Fine.Address"/>
     /// </summary>
-    public const int AddressMaxLength = 255;
+    public const int AddressMaxLength = 2047;
 }

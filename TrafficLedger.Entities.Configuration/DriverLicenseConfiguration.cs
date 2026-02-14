@@ -21,6 +21,9 @@ public class DriverLicenseConfiguration : IEntityTypeConfiguration<DriverLicense
             .IsRequired()
             .HasMaxLength(DriverLicenseValidationRules.LicenseNumberLength);
 
+        builder.Property(x => x.Commentary)
+            .HasMaxLength(RequestedDataBaseEntityValidationRules.CommentaryMaxLength);
+
         builder.Property(x => x.DateOfIssue).IsRequired();
 
         builder.Property(x => x.IssuedBy)
@@ -30,6 +33,16 @@ public class DriverLicenseConfiguration : IEntityTypeConfiguration<DriverLicense
         builder.Property(x => x.Residence)
             .IsRequired()
             .HasMaxLength(DriverLicenseValidationRules.ResidenceMaxLength);
+
+        builder.HasOne(x => x.User)
+            .WithMany()
+            .HasForeignKey(x => x.UserId)
+            .OnDelete(DeleteBehavior.ClientSetNull);
+
+        builder.HasOne(x => x.ProcessedBy)
+           .WithMany()
+           .HasForeignKey(x => x.ProcessedById)
+           .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder.HasOne(x => x.Driver)
              .WithMany()

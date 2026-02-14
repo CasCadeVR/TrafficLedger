@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TrafficLedger.Entities.ValidationRules;
 
 namespace TrafficLedger.Entities.Configuration;
 
@@ -20,11 +21,22 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
         builder.Property(x => x.Date).IsRequired();
         builder.Property(x => x.Status).IsRequired();
         builder.Property(x => x.EntityId).IsRequired();
-        builder.Property(x => x.EntityType).IsRequired();
+
+        builder.Property(x => x.EntityType)
+            .IsRequired()
+            .HasMaxLength(MultiTypedDataBaseEntityValidationRules.EntityTypeMaxLength);
+
+        builder.Property(x => x.Commentary)
+            .HasMaxLength(RequestedDataBaseEntityValidationRules.CommentaryMaxLength);
 
         builder.HasOne(x => x.User)
-             .WithMany()
-             .HasForeignKey(x => x.UserId)
-             .IsRequired();
+            .WithMany()
+            .HasForeignKey(x => x.UserId)
+            .IsRequired();
+
+        builder.HasOne(x => x.ProcessedBy)
+           .WithMany()
+           .HasForeignKey(x => x.ProcessedById)
+           .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }
