@@ -25,6 +25,13 @@ namespace TrafficLedger.Common.Repositories
             => query.Where(x => x.Id == id);
 
         /// <summary>
+        /// По id сущности
+        /// </summary>
+        public static IQueryable<TEntity> ByEntityId<TEntity>(this IQueryable<TEntity> query, Guid entityId)
+            where TEntity : MultiTypedDataBaseEntity
+            => query.Where(x => x.EntityId == entityId);
+
+        /// <summary>
         /// По типу сущности
         /// </summary>
         public static IQueryable<TEntity> ByEntityType<TEntity>(this IQueryable<TEntity> query, string entityType)

@@ -41,5 +41,10 @@ namespace TrafficLedger.Entities
         /// Навигационное свойство списка <see cref="Ownership"/>
         /// </summary>
         public ICollection<Ownership> Ownerships { get; set; } = null!;
+
+        /// <summary>
+        /// Навигационное свойство списка <see cref="Attachment"/>
+        /// </summary>
+        public ICollection<Attachment> Attachments { get; set; } = null!;
     }
 }

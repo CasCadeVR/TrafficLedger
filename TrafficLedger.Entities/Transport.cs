@@ -56,4 +56,9 @@ public class Transport : RequestedDataBaseEntity
     /// Навигационное свойство списка <see cref="Fine"/>
     /// </summary>
     public ICollection<Fine> Fines { get; set; } = null!;
+
+    /// <summary>
+    /// Навигационное свойство списка <see cref="Attachment"/>
+    /// </summary>
+    public ICollection<Attachment> Attachments { get; set; } = null!;
 }

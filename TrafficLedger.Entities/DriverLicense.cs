@@ -41,4 +41,9 @@ public class DriverLicense : RequestedDataBaseEntity
     /// Навигационное свойство списка <see cref="LicenseCategory"/>
     /// </summary>
     public ICollection<LicenseCategory> LicenseCategories { get; set; } = null!;
+
+    /// <summary>
+    /// Навигационное свойство списка <see cref="Attachment"/>
+    /// </summary>
+    public ICollection<Attachment> Attachments { get; set; } = null!;
 }
