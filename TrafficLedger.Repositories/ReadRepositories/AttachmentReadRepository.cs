@@ -25,6 +25,13 @@ public class AttachmentReadRepository : IAttachmentReadRepository
         .ByEntityType(entityType)
         .FirstOrDefaultAsync(cancellationToken);
 
+    Task<Attachment?> IMultiTypedReadRepository<Attachment>.GetByEntityId(Guid entityId, string entityType, CancellationToken cancellationToken)
+        => reader.Read<Attachment>()
+        .NotDeletedAt()
+        .ByEntityId(entityId)
+        .ByEntityType(entityType)
+        .FirstOrDefaultAsync(cancellationToken);
+
     Task<IReadOnlyCollection<Attachment>> IMultiTypedReadRepository<Attachment>.GetAllByEntityId(Guid entityId, string entityType, CancellationToken cancellationToken)
         => reader.Read<Attachment>()
         .NotDeletedAt()

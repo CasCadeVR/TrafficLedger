@@ -58,6 +58,11 @@ public class TransportCreateModel
     public int MileAge { get; set; }
 
     /// <summary>
+    /// Фотки транспорта и документы на регистрацию
+    /// </summary>
+    public ICollection<AttachmentCreateModel> Attachments { get; set; } = null!;
+
+    /// <summary>
     /// Идентификатор <see cref="TransportCategory"/>
     /// </summary>
     public Guid TransportCategoryId { get; set; }

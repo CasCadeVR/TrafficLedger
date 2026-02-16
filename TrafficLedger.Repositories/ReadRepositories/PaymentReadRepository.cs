@@ -24,7 +24,7 @@ public class PaymentReadRepository : IPaymentReadRepository
         var payments = await reader.Read<Payment>()
                     .NotDeletedAt()
                     .Where(x => x.UserId == userId)
-                    .ByEntityType(EntityTypes.FinePaymentType)
+                    .ByEntityType(EntityTypes.FineType)
                     .Include(x => x.User)
                     .OrderByDescending(x => x.Date)
                     .ToReadOnlyCollectionAsync(cancellationToken);
@@ -63,7 +63,7 @@ public class PaymentReadRepository : IPaymentReadRepository
     {
         var payments = await reader.Read<Payment>()
                     .NotDeletedAt()
-                    .ByEntityType(EntityTypes.FinePaymentType)
+                    .ByEntityType(EntityTypes.FineType)
                     .Include(x => x.User)
                     .OrderByDescending(x => x.Date)
                     .ToReadOnlyCollectionAsync(cancellationToken);
@@ -103,7 +103,7 @@ public class PaymentReadRepository : IPaymentReadRepository
         var payments = await reader.Read<Payment>()
                     .NotDeletedAt()
                     .Where(x => x.UserId == userId)
-                    .ByEntityType(EntityTypes.ParkingSessionPaymentType)
+                    .ByEntityType(EntityTypes.ParkingSessionType)
                     .Include(x => x.User)
                     .OrderByDescending(x => x.Date)
                     .ToReadOnlyCollectionAsync(cancellationToken);
@@ -143,7 +143,7 @@ public class PaymentReadRepository : IPaymentReadRepository
     {
         var payments = await reader.Read<Payment>()
                     .NotDeletedAt()
-                    .ByEntityType(EntityTypes.ParkingSessionPaymentType)
+                    .ByEntityType(EntityTypes.ParkingSessionType)
                     .Include(x => x.User)
                     .OrderByDescending(x => x.Date)
                     .ToReadOnlyCollectionAsync(cancellationToken);

@@ -69,6 +69,8 @@ namespace TrafficLedger.Desktop
             services.AddScoped<IUnitOfWork>(x => x.GetRequiredService<TrafficLedgerContext>());
 
             // Repostories and services
+            services.AddScoped<IAttachmentReadRepository, AttachmentReadRepository>();
+            services.AddScoped<IAttachmentWriteRepository, AttachmentWriteRepository>();
             services.AddScoped<IOwnershipWriteRepository, OwnershipWriteRepository>();
             services.AddScoped<ILicenseCategoryWriteRepository, LicenseCategoryWriteRepository>();
 
@@ -103,6 +105,14 @@ namespace TrafficLedger.Desktop
             services.AddScoped<IDriverLicenseReadRepository, DriverLicenseReadRepository>();
             services.AddScoped<IDriverLicenseWriteRepository, DriverLicenseWriteRepository>();
             services.AddScoped<IDriverLicenseService, DriverLicenseService>();
+
+            services.AddScoped<IParkingZoneReadRepository, ParkingZoneReadRepository>();
+            services.AddScoped<IParkingZoneWriteRepository, ParkingZoneWriteRepository>();
+            services.AddScoped<IParkingZoneService, ParkingZoneService>();
+
+            services.AddScoped<IParkingSessionReadRepository, ParkingSessionReadRepository>();
+            services.AddScoped<IParkingSessionWriteRepository, ParkingSessionWriteRepository>();
+            services.AddScoped<IParkingSessionService, ParkingSessionService>();
 
             // Helper services
             services.AddSingleton<AuthenticationService>();

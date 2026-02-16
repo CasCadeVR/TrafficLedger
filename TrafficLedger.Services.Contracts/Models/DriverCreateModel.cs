@@ -33,6 +33,11 @@ public class DriverCreateModel
     public Guid UserId { get; set; }
 
     /// <summary>
+    /// Фото водителя
+    /// </summary>
+    public AttachmentCreateModel? Attachment { get; set; }
+
+    /// <summary>
     /// Объект передачи данных <see cref="OwnershipTransportCreateModel"/>
     /// </summary>
     public ICollection<OwnershipTransportCreateModel> Ownerships { get; set; } = null!;

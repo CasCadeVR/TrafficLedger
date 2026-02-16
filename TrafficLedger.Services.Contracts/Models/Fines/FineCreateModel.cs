@@ -33,6 +33,11 @@ public class FineCreateModel
     public RequestStatus Status { get; set; }
 
     /// <summary>
+    /// Фотки с места происшествия
+    /// </summary>
+    public ICollection<AttachmentCreateModel> Attachments { get; set; } = null!;
+
+    /// <summary>
     /// Идентификатор <see cref="Violation"/>
     /// </summary>
     public Guid ViolationId { get; set; }

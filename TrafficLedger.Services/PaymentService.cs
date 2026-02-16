@@ -85,9 +85,6 @@ namespace TrafficLedger.Services
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {paymentId}"));
 
             var fine = await fineReadRepository.GetById(payment!.EntityId, cancellationToken);
-
-            // TODO
-
             var parkingSession = await fineReadRepository.GetById(payment!.EntityId, cancellationToken);
 
             if (fine != null)

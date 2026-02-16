@@ -2,6 +2,7 @@
 using TrafficLedger.Common.Repositories.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Typing;
 using TrafficLedger.Repositories.Contracts.IReadRepositories;
 using TrafficLedger.Repositories.Contracts.IWriteRepositories;
 using TrafficLedger.Services.Contracts.Interfaces;
@@ -16,6 +17,8 @@ namespace TrafficLedger.Services
         private readonly ITransportCategoryReadRepository transportCategoryReadRepository;
         private readonly IOwnershipWriteRepository ownershipWriteRepository;
         private readonly IDriverReadRepository driverReadRepository;
+        private readonly IAttachmentReadRepository attachmentReadRepository;
+        private readonly IAttachmentWriteRepository attachmentWriteRepository;
         private readonly IUnitOfWork unitOfWork;
 
         public TransportService(ITransportReadRepository transportReadRepository,
@@ -23,6 +26,8 @@ namespace TrafficLedger.Services
             ITransportCategoryReadRepository transportCategoryReadRepository,
             IOwnershipWriteRepository ownershipWriteRepository,
             IDriverReadRepository driverReadRepository,
+            IAttachmentReadRepository attachmentReadRepository,
+            IAttachmentWriteRepository attachmentWriteRepository,
             IUnitOfWork unitOfWork)
         {
             this.transportReadRepository = transportReadRepository;
@@ -30,6 +35,8 @@ namespace TrafficLedger.Services
             this.transportCategoryReadRepository = transportCategoryReadRepository;
             this.ownershipWriteRepository = ownershipWriteRepository;
             this.driverReadRepository = driverReadRepository;
+            this.attachmentReadRepository = attachmentReadRepository;
+            this.attachmentWriteRepository = attachmentWriteRepository;
             this.unitOfWork = unitOfWork;
         }
 
@@ -38,13 +45,24 @@ namespace TrafficLedger.Services
             await driverReadRepository.GetById(driverId, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {driverId}"));
 
-            return await transportReadRepository.GetAllByDriverId(driverId, cancellationToken);
+            var existingList = await transportReadRepository.GetAllByDriverId(driverId, cancellationToken);
+
+            foreach (var entity in existingList)
+            {
+                var foundAttachments = await attachmentReadRepository.GetAllByEntityId(entity.Id, EntityTypes.TransportType, cancellationToken);
+                entity.Attachments = foundAttachments.ToList();
+            }
+
+            return existingList;
         }
 
         async Task<Transport> ITransportService.GetByTransportCode(string transportCode, CancellationToken cancellationToken)
         {
             var result = await transportReadRepository.GetByTransportCode(transportCode, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с кодом {transportCode}"));
+
+            var foundAttachments = await attachmentReadRepository.GetAllByEntityId(result!.Id, EntityTypes.TransportType, cancellationToken);
+            result.Attachments = foundAttachments.ToList();
 
             return result!;
         }
@@ -54,12 +72,23 @@ namespace TrafficLedger.Services
             var result = await transportReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
 
+            var foundAttachments = await attachmentReadRepository.GetAllByEntityId(result!.Id, EntityTypes.TransportType, cancellationToken);
+            result.Attachments = foundAttachments.ToList();
+
             return result!;
         }
 
         async Task<IReadOnlyCollection<Transport>> IBaseService<Transport, TransportCreateModel>.GetAll(CancellationToken cancellationToken)
         {
-            return await transportReadRepository.GetAll(cancellationToken);
+            var existingList = await transportReadRepository.GetAll(cancellationToken);
+
+            foreach (var entity in existingList)
+            {
+                var foundAttachments = await attachmentReadRepository.GetAllByEntityId(entity.Id, EntityTypes.TransportType, cancellationToken);
+                entity.Attachments = foundAttachments.ToList();
+            }
+
+            return existingList;
         }
 
         async Task<Transport> IBaseService<Transport, TransportCreateModel>.Create(TransportCreateModel model, CancellationToken cancellationToken)
@@ -96,6 +125,21 @@ namespace TrafficLedger.Services
                 ownershipWriteRepository.Add(ownership);
             }
 
+            var modelAttachments = model.Attachments.Select(x =>
+                new Attachment()
+                {
+                    EntityId = transport.Id,
+                    EntityType = EntityTypes.TransportType,
+                    FileName = x.FileName,
+                    ContentType = x.ContentType,
+                    Content = x.Content,
+                }).ToList();
+
+            foreach (var attachment in modelAttachments)
+            {
+                attachmentWriteRepository.Add(attachment);
+            }
+
             transportWriteRepository.Add(transport);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
@@ -112,14 +156,6 @@ namespace TrafficLedger.Services
 
             await ValidateMissingDrivers(model, cancellationToken);
 
-            var modelOwnerships = model.Ownerships.Select(x =>
-                new Ownership()
-                {
-                    Date = x.Date,
-                    TransportId = existingTransport!.Id,
-                    DriverId = x.DriverId,
-                }).ToList();
-
             existingTransport!.TransportCode = model.TransportCode.Trim();
             existingTransport.Brand = model.Brand.Trim();
             existingTransport.MileAge = model.MileAge;
@@ -131,6 +167,14 @@ namespace TrafficLedger.Services
 
             var existingOwnerships = existingTransport.Ownerships;
             var existingOwnershipsDictionary = existingOwnerships.ToDictionary(x => x.TransportId);
+
+            var modelOwnerships = model.Ownerships.Select(x =>
+               new Ownership()
+               {
+                   Date = x.Date,
+                   TransportId = existingTransport!.Id,
+                   DriverId = x.DriverId,
+               }).ToList();
 
             foreach (var ownership in modelOwnerships)
             {
@@ -157,6 +201,46 @@ namespace TrafficLedger.Services
                 }
             }
 
+            var modelAttachments = model.Attachments.Select(x =>
+               new Attachment()
+               {
+                   EntityId = existingTransport!.Id,
+                   EntityType = EntityTypes.TransportType,
+                   FileName = x.FileName,
+                   ContentType = x.ContentType,
+                   Content = x.Content,
+               }).ToList();
+
+            var existingAttachments = existingTransport.Attachments;
+            var existingAttachmentsDictionary = existingAttachments.ToDictionary(x => x.FileName);
+
+            foreach (var attachment in modelAttachments)
+            {
+                if (existingAttachmentsDictionary.TryGetValue(attachment.FileName, out var foundAttachment))
+                {
+                    foundAttachment.EntityId = attachment.EntityId;
+                    foundAttachment.EntityType = attachment.EntityType;
+                    foundAttachment.FileName = attachment.FileName;
+                    foundAttachment.Content = attachment.Content;
+                    foundAttachment.ContentType = attachment.ContentType;
+                    attachmentWriteRepository.Update(foundAttachment);
+                }
+                else
+                {
+                    attachmentWriteRepository.Add(attachment);
+                }
+            }
+
+            var attachmentsFileNamesToDelete = existingAttachments.Select(x => x.FileName).Except(modelAttachments.Select(x => x.FileName)).ToList();
+
+            foreach (var attachmentFileName in attachmentsFileNamesToDelete)
+            {
+                if (existingAttachmentsDictionary.TryGetValue(attachmentFileName, out var foundAttachment))
+                {
+                    attachmentWriteRepository.Delete(foundAttachment);
+                }
+            }
+           
             transportWriteRepository.Update(existingTransport);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
@@ -173,6 +257,13 @@ namespace TrafficLedger.Services
             foreach (var existingOwnership in existingOwnerships)
             {
                 ownershipWriteRepository.Delete(existingOwnership);
+            }
+
+            var previousAttachments = await attachmentReadRepository.GetAllByEntityId(id, EntityTypes.TransportType, cancellationToken);
+
+            foreach (var existingAttachment in previousAttachments)
+            {
+                attachmentWriteRepository.Delete(existingAttachment);
             }
 
             transportWriteRepository.Delete(existingTransport);

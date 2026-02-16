@@ -43,8 +43,8 @@ namespace TrafficLedger.Entities
         public ICollection<Ownership> Ownerships { get; set; } = null!;
 
         /// <summary>
-        /// Навигационное свойство списка <see cref="Attachment"/>
+        /// Навигационное свойство <see cref="Attachment"/>
         /// </summary>
-        public ICollection<Attachment> Attachments { get; set; } = null!;
+        public virtual Attachment? Attachment { get; set; } = null;
     }
 }

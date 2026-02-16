@@ -2,6 +2,7 @@
 using TrafficLedger.Common.Repositories.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Typing;
 using TrafficLedger.Repositories.Contracts.IReadRepositories;
 using TrafficLedger.Repositories.Contracts.IWriteRepositories;
 using TrafficLedger.Services.Contracts.Interfaces;
@@ -16,6 +17,8 @@ namespace TrafficLedger.Services
         private readonly IDriverReadRepository driverReadRepository;
         private readonly ITransportCategoryReadRepository transportCategoryReadRepository;
         private readonly ILicenseCategoryWriteRepository licenseCategoryWriteRepository;
+        private readonly IAttachmentReadRepository attachmentReadRepository;
+        private readonly IAttachmentWriteRepository attachmentWriteRepository;
         private readonly IUnitOfWork unitOfWork;
 
         public DriverLicenseService(IDriverLicenseReadRepository driverLicenseReadRepository,
@@ -23,6 +26,8 @@ namespace TrafficLedger.Services
             IDriverReadRepository driverReadRepository,
             ITransportCategoryReadRepository transportCategoryReadRepository,
             ILicenseCategoryWriteRepository licenseCategoryWriteRepository,
+            IAttachmentReadRepository attachmentReadRepository,
+            IAttachmentWriteRepository attachmentWriteRepository,
             IUnitOfWork unitOfWork)
         {
             this.driverLicenseReadRepository = driverLicenseReadRepository;
@@ -30,6 +35,8 @@ namespace TrafficLedger.Services
             this.driverReadRepository = driverReadRepository;
             this.transportCategoryReadRepository = transportCategoryReadRepository;
             this.licenseCategoryWriteRepository = licenseCategoryWriteRepository;
+            this.attachmentReadRepository = attachmentReadRepository;
+            this.attachmentWriteRepository = attachmentWriteRepository;
             this.unitOfWork = unitOfWork;
         }
 
@@ -40,6 +47,11 @@ namespace TrafficLedger.Services
 
             var result = await driverLicenseReadRepository.GetByDriverId(driver!.Id, cancellationToken);
 
+            if (result != null)
+            {
+                result.Attachment = await attachmentReadRepository.GetByEntityId(result.Id, EntityTypes.DriverLicenseType, cancellationToken);
+            }
+
             return result!;
         }
 
@@ -48,12 +60,21 @@ namespace TrafficLedger.Services
             var result = await driverLicenseReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водительское удостоверение с идентификатором {id}"));
 
+            result!.Attachment = await attachmentReadRepository.GetByEntityId(result.Id, EntityTypes.DriverLicenseType, cancellationToken);
+
             return result!;
         }
 
         async Task<IReadOnlyCollection<DriverLicense>> IBaseService<DriverLicense, DriverLicenseCreateModel>.GetAll(CancellationToken cancellationToken)
         {
-            return await driverLicenseReadRepository.GetAll(cancellationToken);
+            var existingList = await driverLicenseReadRepository.GetAll(cancellationToken);
+
+            foreach (var entity in existingList)
+            {
+                entity.Attachment = await attachmentReadRepository.GetByEntityId(entity.Id, EntityTypes.DriverLicenseType, cancellationToken);
+            }
+
+            return existingList;
         }
 
         async Task<DriverLicense> IBaseService<DriverLicense, DriverLicenseCreateModel>.Create(DriverLicenseCreateModel model, CancellationToken cancellationToken)
@@ -86,6 +107,20 @@ namespace TrafficLedger.Services
             foreach (var ownership in modelCategories)
             {
                 licenseCategoryWriteRepository.Add(ownership);
+            }
+
+            if (model.Attachment != null)
+            {
+                var attachment = new Attachment()
+                {
+                    EntityId = driverLicense.Id,
+                    EntityType = EntityTypes.DriverLicenseType,
+                    FileName = model.Attachment.FileName,
+                    ContentType = model.Attachment.ContentType,
+                    Content = model.Attachment.Content,
+                };
+
+                attachmentWriteRepository.Add(attachment);
             }
 
             driverLicenseWriteRepository.Add(driverLicense);
@@ -153,6 +188,24 @@ namespace TrafficLedger.Services
                 }
             }
 
+            var previousAttachment = await attachmentReadRepository.GetByEntityId(id, EntityTypes.DriverLicenseType, cancellationToken);
+
+            if (previousAttachment != null)
+            {
+                if (model.Attachment == null)
+                {
+                    attachmentWriteRepository.Delete(previousAttachment);
+                }
+
+                previousAttachment.EntityId = model.Attachment!.EntityId;
+                previousAttachment.EntityType = model.Attachment!.EntityType;
+                previousAttachment.FileName = model.Attachment!.FileName;
+                previousAttachment.Content = model.Attachment!.Content;
+                previousAttachment.ContentType = model.Attachment!.ContentType;
+
+                attachmentWriteRepository.Update(previousAttachment);
+            }
+
             driverLicenseWriteRepository.Update(existingDriverLicense);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
@@ -163,6 +216,13 @@ namespace TrafficLedger.Services
         {
             var existingDriverLicense = await driverLicenseReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водительское удостоверение с идентификатором {id}"));
+
+            var previousAttachment = await attachmentReadRepository.GetByEntityId(id, EntityTypes.DriverType, cancellationToken);
+
+            if (previousAttachment != null)
+            {
+                attachmentWriteRepository.Delete(previousAttachment);
+            }
 
             driverLicenseWriteRepository.Delete(existingDriverLicense!);
             await unitOfWork.SaveChangesAsync(cancellationToken);

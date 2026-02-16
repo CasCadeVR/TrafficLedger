@@ -2,6 +2,7 @@
 using TrafficLedger.Common.Repositories.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Typing;
 using TrafficLedger.Repositories.Contracts.IReadRepositories;
 using TrafficLedger.Repositories.Contracts.IWriteRepositories;
 using TrafficLedger.Services.Contracts.Interfaces;
@@ -16,6 +17,8 @@ namespace TrafficLedger.Services
         private readonly IOwnershipWriteRepository ownershipWriteRepository;
         private readonly ITransportReadRepository transportReadRepository;
         private readonly IUserReadRepository userReadRepository;
+        private readonly IAttachmentReadRepository attachmentReadRepository;
+        private readonly IAttachmentWriteRepository attachmentWriteRepository;
         private readonly IUnitOfWork unitOfWork;
 
         public DriverService(IDriverReadRepository driverReadRepository,
@@ -23,6 +26,8 @@ namespace TrafficLedger.Services
             IOwnershipWriteRepository ownershipWriteRepository,
             ITransportReadRepository transportReadRepository,
             IUserReadRepository userReadRepository,
+            IAttachmentReadRepository attachmentReadRepository,
+            IAttachmentWriteRepository attachmentWriteRepository,
             IUnitOfWork unitOfWork)
         {
             this.driverReadRepository = driverReadRepository;
@@ -30,6 +35,8 @@ namespace TrafficLedger.Services
             this.ownershipWriteRepository = ownershipWriteRepository;
             this.transportReadRepository = transportReadRepository;
             this.userReadRepository = userReadRepository;
+            this.attachmentReadRepository = attachmentReadRepository;
+            this.attachmentWriteRepository = attachmentWriteRepository;
             this.unitOfWork = unitOfWork;
         }
 
@@ -44,6 +51,11 @@ namespace TrafficLedger.Services
 
             var result = await driverReadRepository.GetByUserId(userId, cancellationToken);
 
+            if (result != null)
+            {
+                result.Attachment = await attachmentReadRepository.GetByEntityId(result.Id, EntityTypes.DriverType, cancellationToken);
+            }
+
             return result!;
         }
 
@@ -52,12 +64,21 @@ namespace TrafficLedger.Services
             var result = await driverReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {id}"));
 
+            result!.Attachment = await attachmentReadRepository.GetByEntityId(result.Id, EntityTypes.DriverType, cancellationToken);
+
             return result!;
         }
 
         async Task<IReadOnlyCollection<Driver>> IBaseService<Driver, DriverCreateModel>.GetAll(CancellationToken cancellationToken)
         {
-            return await driverReadRepository.GetAll(cancellationToken);
+            var existingList = await driverReadRepository.GetAll(cancellationToken);
+
+            foreach (var entity in existingList)
+            {
+                entity.Attachment = await attachmentReadRepository.GetByEntityId(entity.Id, EntityTypes.DriverType, cancellationToken);
+            }
+
+            return existingList;
         }
 
         async Task<Driver> IBaseService<Driver, DriverCreateModel>.Create(DriverCreateModel model, CancellationToken cancellationToken)
@@ -95,6 +116,20 @@ namespace TrafficLedger.Services
                 ownershipWriteRepository.Add(ownership);
             }
 
+            if (model.Attachment != null)
+            {
+                var attachment = new Attachment()
+                {
+                    EntityId = driver.Id,
+                    EntityType = EntityTypes.DriverType,
+                    FileName = model.Attachment.FileName,
+                    ContentType = model.Attachment.ContentType,
+                    Content = model.Attachment.Content,
+                };
+
+                attachmentWriteRepository.Add(attachment);
+            }
+
             driverWriteRepository.Add(driver);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
@@ -108,6 +143,8 @@ namespace TrafficLedger.Services
 
             var user = await userReadRepository.GetById(model.UserId, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {model.UserId}"));
+
+            
 
             await ValidateMissingTransport(model, cancellationToken);
 
@@ -152,6 +189,24 @@ namespace TrafficLedger.Services
                 }
             }
 
+            var previousAttachment = await attachmentReadRepository.GetByEntityId(id, EntityTypes.DriverType, cancellationToken);
+
+            if (previousAttachment != null)
+            {
+                if (model.Attachment == null)
+                {
+                    attachmentWriteRepository.Delete(previousAttachment);
+                }
+
+                previousAttachment.EntityId = model.Attachment!.EntityId;
+                previousAttachment.EntityType = model.Attachment!.EntityType;
+                previousAttachment.FileName = model.Attachment!.FileName;
+                previousAttachment.Content = model.Attachment!.Content;
+                previousAttachment.ContentType = model.Attachment!.ContentType;
+
+                attachmentWriteRepository.Update(previousAttachment);
+            }
+
             driverWriteRepository.Update(existingDriver);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
@@ -168,6 +223,13 @@ namespace TrafficLedger.Services
             foreach (var existingOwnership in existingOwnerships)
             {
                 ownershipWriteRepository.Delete(existingOwnership);
+            }
+
+            var previousAttachment = await attachmentReadRepository.GetByEntityId(id, EntityTypes.DriverType, cancellationToken);
+
+            if (previousAttachment != null)
+            {
+                attachmentWriteRepository.Delete(previousAttachment);
             }
 
             driverWriteRepository.Delete(existingDriver);

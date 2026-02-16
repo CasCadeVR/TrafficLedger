@@ -35,6 +35,11 @@ public class DriverLicenseCreateModel
     public string Residence { get; set; } = string.Empty;
 
     /// <summary>
+    /// Фото удостоверения
+    /// </summary>
+    public AttachmentCreateModel? Attachment { get; set; }
+
+    /// <summary>
     /// Идентификатор <see cref="Driver"/>
     /// </summary>
     public Guid DriverId { get; set; }
