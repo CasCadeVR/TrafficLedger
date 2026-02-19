@@ -19,7 +19,7 @@ namespace TrafficLedger.Desktop.Infrastructure.Services
                 string filePath = openFileDialog.FileName;
                 var image = Image.FromFile(filePath);
                 string format = Path.GetExtension(filePath).TrimStart('.').ToLowerInvariant();
-                return new ImageLoadResult(image, format);
+                return new ImageLoadResult(image, format, openFileDialog.SafeFileName);
             }
 
             return null;

@@ -27,5 +27,10 @@ public class DriverConfiguration : IEntityTypeConfiguration<Driver>
              .WithMany()
              .HasForeignKey(x => x.UserId)
              .IsRequired();
+
+        builder.HasOne(x => x.Attachment)
+            .WithMany()
+            .HasForeignKey(x => x.AttachmentId)
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

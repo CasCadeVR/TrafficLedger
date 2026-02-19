@@ -1,4 +1,5 @@
 ﻿using TrafficLedger.Common.Repositories.Contracts;
+using TrafficLedger.Context;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities.Contracts;
 
@@ -30,6 +31,16 @@ namespace TrafficLedger.Common.Repositories
         {
             BaseWriteRepository<T>.AuditUpdate(entity);
             writer.Update(entity);
+
+            // Защита от ошибок
+            if (entity is IEntityWithProtectedProperties protectable)
+            {
+                var entry = ((TrafficLedgerContext)writer).Entry(entity);
+                foreach (var prop in protectable.GetProtectedProperties())
+                {
+                    entry.Property(prop).IsModified = false;
+                }
+            }
         }
 
         void IDBWriter<T>.Delete(T entity)

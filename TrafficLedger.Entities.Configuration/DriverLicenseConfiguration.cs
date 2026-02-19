@@ -49,6 +49,11 @@ public class DriverLicenseConfiguration : IEntityTypeConfiguration<DriverLicense
              .HasForeignKey(x => x.DriverId)
              .IsRequired();
 
+        builder.HasOne(x => x.Attachment)
+            .WithMany()
+            .HasForeignKey(x => x.AttachmentId)
+            .OnDelete(DeleteBehavior.ClientSetNull);
+
         builder.HasIndex(x => x.LicenseNumber, $"IX_{nameof(DriverLicense)}_{nameof(DriverLicense.LicenseNumber)}")
                 .IsUnique()
                 .HasFilter($"\"{nameof(DriverLicense.DeletedAt)}\" IS NULL");

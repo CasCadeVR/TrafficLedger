@@ -21,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Components\Controls\ContextMenuStrips\PictureBoxContextMenuStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Views\Wrappers\Admin\Drivers\DriverListWrapper.cs">
       <SubType>UserControl</SubType>
     </Compile>

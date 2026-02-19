@@ -5,12 +5,12 @@ namespace TrafficLedger.Entities
     /// <summary>
     /// Сущность водителя
     /// </summary>
-    public class Driver : DataBaseEntity
+    public class Driver : DataBaseEntity, IEntityWithProtectedProperties
     {
         /// <summary>
         /// Уникальный номер для идентификации в пунктах гибдд
         /// </summary>
-        public int UniqueId { get; set; }
+        public int UniqueId { get; private set; }
 
         /// <summary>
         /// ФИО водителя
@@ -43,8 +43,16 @@ namespace TrafficLedger.Entities
         public ICollection<Ownership> Ownerships { get; set; } = null!;
 
         /// <summary>
+        /// Идентификатор <see cref="Attachment"/>
+        /// </summary>
+        public Guid AttachmentId { get; set; }
+
+        /// <summary>
         /// Навигационное свойство <see cref="Attachment"/>
         /// </summary>
         public virtual Attachment? Attachment { get; set; } = null;
+
+        /// <inheritdoc <see cref="IEntityWithProtectedProperties.GetProtectedProperties"/>/>
+        public string[] GetProtectedProperties() => [nameof(UniqueId)];
     }
 }

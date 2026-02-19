@@ -43,6 +43,11 @@ public class DriverLicense : RequestedDataBaseEntity
     public ICollection<LicenseCategory> LicenseCategories { get; set; } = null!;
 
     /// <summary>
+    /// Идентификатор <see cref="Attachment"/>
+    /// </summary>
+    public Guid AttachmentId { get; set; }
+
+    /// <summary>
     /// Навигационное свойство <see cref="Attachment"/>
     /// </summary>
     public virtual Attachment? Attachment { get; set; } = null;

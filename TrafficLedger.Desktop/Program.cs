@@ -24,6 +24,8 @@ using TrafficLedger.Repositories.ReadRepositories;
 using TrafficLedger.Repositories.WriteRepositories;
 using TrafficLedger.Services;
 using TrafficLedger.Services.Contracts.Interfaces;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace TrafficLedger.Desktop
 {
@@ -61,7 +63,10 @@ namespace TrafficLedger.Desktop
 
             services.AddDbContext<TrafficLedgerContext>(options =>
             {
-                options.UseSqlServer(connectionString).LogTo(Console.WriteLine);
+                options.UseSqlServer(connectionString).LogTo(
+                    message => Debug.WriteLine(message),
+                    new[] { DbLoggerCategory.Database.Command.Name },
+                    LogLevel.Information);
             });
 
             services.AddScoped<IWriter>(x => x.GetRequiredService<TrafficLedgerContext>());

@@ -48,8 +48,21 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                     BirthDate = existingDriver.BirthDate,
                     BirthPlace = existingDriver.BirthPlace,
                     UserId = currentUser.Id,
+                    Attachment = existingDriver.Attachment == null ? null : new AttachmentCreateModel()
+                    {
+                        EntityId = existingDriver.Attachment!.EntityId,
+                        EntityType = existingDriver.Attachment.EntityType,
+                        Content = existingDriver.Attachment.Content,
+                        ContentType = existingDriver.Attachment.ContentType,
+                        FileName = existingDriver.Attachment.FileName,
+                    },
                     Ownerships = new List<OwnershipTransportCreateModel>()
                 };
+
+                if (CurrentModel.Attachment != null)
+                {
+                    driverPhoto.SetImageFromBytes(CurrentModel.Attachment.Content);
+                }
             }
             else
             {
@@ -61,6 +74,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                     BirthDate = DateTimeOffset.UtcNow,
                     BirthPlace = string.Empty,
                     UserId = currentUser.Id,
+                    Attachment = new AttachmentCreateModel(),
                     Ownerships = new List<OwnershipTransportCreateModel>()
                 };
             }
@@ -78,6 +92,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                 dto => dto.DateTime,
                 dt => new DateTimeOffset(dt, TimeSpan.Zero),
                 errorProvider);
+
+            driverPhoto.ImageChanged += (sender, e) =>
+            {
+                CurrentModel.Attachment!.Content = driverPhoto.ImageBytes;
+                CurrentModel.Attachment!.FileName = driverPhoto.ImageName;
+                CurrentModel.Attachment!.ContentType = "фото";
+            };
         }
 
         protected override void FillControls()
@@ -90,6 +111,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             textBoxBirthPlace.Text = CurrentModel.BirthPlace;
             dateTimePickerBirthDate.Value = CurrentModel.BirthDate.DateTime;
             textBoxUniqueId.Text = uniqueId.ToString();
+            if (CurrentModel.Attachment != null)
+            {
+                driverPhoto.SetImageFromBytes(CurrentModel.Attachment.Content);
+            }
         }
 
         protected override async Task OnSaveAsync()

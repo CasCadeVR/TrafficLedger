@@ -100,21 +100,8 @@ namespace TrafficLedger.Services
                 FullName = model.FullName.Trim(),
                 BirthDate = model.BirthDate,
                 BirthPlace = model.BirthPlace,
-                UserId = model.UserId,
+                UserId = model.UserId
             };
-
-            var modelOwnerships = model.Ownerships.Select(x =>
-                new Ownership()
-                { 
-                    Date = x.Date,
-                    TransportId = x.TransportId,
-                    DriverId = driver.Id,
-                }).ToList();
-
-            foreach (var ownership in modelOwnerships)
-            {
-                ownershipWriteRepository.Add(ownership);
-            }
 
             if (model.Attachment != null)
             {
@@ -128,6 +115,24 @@ namespace TrafficLedger.Services
                 };
 
                 attachmentWriteRepository.Add(attachment);
+                await unitOfWork.SaveChangesAsync(cancellationToken);
+                var response = await attachmentReadRepository.GetByEntityId(driver.Id, EntityTypes.DriverType, cancellationToken)
+                    .OrThrowIfNull(() => new InvalidOperationException($"Не сохранить фотографию для водителя с именем {model.FullName}"));
+                
+                driver.AttachmentId = response!.Id;
+            }
+
+            var modelOwnerships = model.Ownerships.Select(x =>
+                new Ownership()
+                { 
+                    Date = x.Date,
+                    TransportId = x.TransportId,
+                    DriverId = driver.Id,
+                }).ToList();
+
+            foreach (var ownership in modelOwnerships)
+            {
+                ownershipWriteRepository.Add(ownership);
             }
 
             driverWriteRepository.Add(driver);
@@ -144,7 +149,25 @@ namespace TrafficLedger.Services
             var user = await userReadRepository.GetById(model.UserId, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {model.UserId}"));
 
-            
+            var previousAttachment = await attachmentReadRepository.GetByEntityId(id, EntityTypes.DriverType, cancellationToken);
+
+            if (previousAttachment != null)
+            {
+                if (model.Attachment == null)
+                {
+                    attachmentWriteRepository.Delete(previousAttachment);
+                } 
+                else
+                {
+                    previousAttachment.EntityId = model.Attachment!.EntityId;
+                    previousAttachment.EntityType = model.Attachment!.EntityType;
+                    previousAttachment.FileName = model.Attachment!.FileName;
+                    previousAttachment.Content = model.Attachment!.Content;
+                    previousAttachment.ContentType = model.Attachment!.ContentType;
+
+                    attachmentWriteRepository.Update(previousAttachment);
+                }
+            }
 
             await ValidateMissingTransport(model, cancellationToken);
 
@@ -187,24 +210,6 @@ namespace TrafficLedger.Services
                 {
                     ownershipWriteRepository.Delete(foundOwnership);
                 }
-            }
-
-            var previousAttachment = await attachmentReadRepository.GetByEntityId(id, EntityTypes.DriverType, cancellationToken);
-
-            if (previousAttachment != null)
-            {
-                if (model.Attachment == null)
-                {
-                    attachmentWriteRepository.Delete(previousAttachment);
-                }
-
-                previousAttachment.EntityId = model.Attachment!.EntityId;
-                previousAttachment.EntityType = model.Attachment!.EntityType;
-                previousAttachment.FileName = model.Attachment!.FileName;
-                previousAttachment.Content = model.Attachment!.Content;
-                previousAttachment.ContentType = model.Attachment!.ContentType;
-
-                attachmentWriteRepository.Update(previousAttachment);
             }
 
             driverWriteRepository.Update(existingDriver);

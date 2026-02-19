@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TrafficLedger.Desktop.Views.PanelViews;
+﻿using TrafficLedger.Desktop.Views.PanelViews;
 using TrafficLedger.Desktop.Views.PanelViews.FineCreate;
 using TrafficLedger.Entities;
 
@@ -27,6 +26,13 @@ namespace TrafficLedger.Desktop.Infrastructure.Navigation
                 {
                     Title = "Автомобили",
                     Icon = ImageResources.Car,
+                    ViewType = typeof(TransportUserListView)
+                },
+
+                new NavigationItem
+                {
+                    Title = "Парковки",
+                    Icon = ImageResources.Parking,
                     ViewType = typeof(TransportUserListView)
                 },
 

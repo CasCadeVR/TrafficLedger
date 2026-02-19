@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrafficLedger.Context;
 
@@ -11,9 +12,11 @@ using TrafficLedger.Context;
 namespace TrafficLedger.Context.Migrations
 {
     [DbContext(typeof(TrafficLedgerContext))]
-    partial class TrafficLedgerContextModelSnapshot : ModelSnapshot
+    [Migration("20260217172917_tryingToFigureOutAttachmentId")]
+    partial class tryingToFigureOutAttachmentId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
