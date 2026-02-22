@@ -1,0 +1,322 @@
+﻿namespace TrafficLedger.Desktop.Views.PanelViews
+{
+    partial class DriverLicenseCreateView
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            tableLayoutPanelMain = new TableLayoutPanel();
+            labelBirthDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            labelFullName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxLicenseNumber = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            labelBirthPlace = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxIssuedBy = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            dateTimePickerDateOfIssue = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
+            buttonSave = new TrafficLedger.Desktop.Components.CommonButton();
+            labelResidence = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxResidence = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            labelCategories = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            listBoxCategories = new ListBox();
+            multiImageUploader = new TrafficLedger.Desktop.Components.ComplexControls.MultiImageUploader();
+            labelStatus = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxStatus = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            tableLayoutPanelMain.SuspendLayout();
+            SuspendLayout();
+            // 
+            // splitContainer
+            // 
+            // 
+            // splitContainer.Panel2
+            // 
+            splitContainer.Panel2.Controls.Add(tableLayoutPanelMain);
+            // 
+            // tableLayoutPanelMain
+            // 
+            tableLayoutPanelMain.ColumnCount = 2;
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.Controls.Add(labelBirthDate, 0, 1);
+            tableLayoutPanelMain.Controls.Add(labelFullName, 0, 0);
+            tableLayoutPanelMain.Controls.Add(textBoxLicenseNumber, 1, 0);
+            tableLayoutPanelMain.Controls.Add(labelBirthPlace, 0, 2);
+            tableLayoutPanelMain.Controls.Add(textBoxIssuedBy, 1, 2);
+            tableLayoutPanelMain.Controls.Add(dateTimePickerDateOfIssue, 1, 1);
+            tableLayoutPanelMain.Controls.Add(labelResidence, 0, 3);
+            tableLayoutPanelMain.Controls.Add(textBoxResidence, 1, 3);
+            tableLayoutPanelMain.Controls.Add(labelCategories, 0, 4);
+            tableLayoutPanelMain.Controls.Add(listBoxCategories, 1, 4);
+            tableLayoutPanelMain.Controls.Add(multiImageUploader, 0, 7);
+            tableLayoutPanelMain.Controls.Add(labelStatus, 0, 6);
+            tableLayoutPanelMain.Controls.Add(textBoxStatus, 1, 6);
+            tableLayoutPanelMain.Controls.Add(buttonSave, 1, 10);
+            tableLayoutPanelMain.Dock = DockStyle.Fill;
+            tableLayoutPanelMain.Location = new Point(0, 0);
+            tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
+            tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            tableLayoutPanelMain.RowCount = 11;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332719F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332719F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332719F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332719F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332719F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332719F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.335218F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.335218F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.335218F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.331372F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333335F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333335F));
+            tableLayoutPanelMain.Size = new Size(821, 576);
+            tableLayoutPanelMain.TabIndex = 0;
+            // 
+            // labelBirthDate
+            // 
+            labelBirthDate.Anchor = AnchorStyles.Right;
+            labelBirthDate.AutoSize = true;
+            labelBirthDate.Font = new Font("Segoe UI", 9.75F);
+            labelBirthDate.ForeColor = Color.FromArgb(0, 0, 0);
+            labelBirthDate.Location = new Point(315, 62);
+            labelBirthDate.Margin = new Padding(4, 0, 4, 0);
+            labelBirthDate.Name = "labelBirthDate";
+            labelBirthDate.Size = new Size(91, 17);
+            labelBirthDate.TabIndex = 2;
+            labelBirthDate.Text = "Дата выдачи: ";
+            // 
+            // labelFullName
+            // 
+            labelFullName.Anchor = AnchorStyles.Right;
+            labelFullName.AutoSize = true;
+            labelFullName.Font = new Font("Segoe UI", 9.75F);
+            labelFullName.ForeColor = Color.FromArgb(0, 0, 0);
+            labelFullName.Location = new Point(256, 15);
+            labelFullName.Margin = new Padding(4, 0, 4, 0);
+            labelFullName.Name = "labelFullName";
+            labelFullName.Size = new Size(150, 17);
+            labelFullName.TabIndex = 0;
+            labelFullName.Text = "Номер удостоверения: ";
+            // 
+            // textBoxLicenseNumber
+            // 
+            textBoxLicenseNumber.Anchor = AnchorStyles.Left;
+            textBoxLicenseNumber.BackColor = Color.White;
+            textBoxLicenseNumber.BorderStyle = BorderStyle.FixedSingle;
+            textBoxLicenseNumber.Font = new Font("Segoe UI", 9.75F);
+            textBoxLicenseNumber.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxLicenseNumber.Location = new Point(414, 11);
+            textBoxLicenseNumber.Margin = new Padding(4, 3, 4, 3);
+            textBoxLicenseNumber.Name = "textBoxLicenseNumber";
+            textBoxLicenseNumber.Size = new Size(287, 25);
+            textBoxLicenseNumber.TabIndex = 1;
+            // 
+            // labelBirthPlace
+            // 
+            labelBirthPlace.Anchor = AnchorStyles.Right;
+            labelBirthPlace.AutoSize = true;
+            labelBirthPlace.Font = new Font("Segoe UI", 9.75F);
+            labelBirthPlace.ForeColor = Color.FromArgb(0, 0, 0);
+            labelBirthPlace.Location = new Point(318, 109);
+            labelBirthPlace.Margin = new Padding(4, 0, 4, 0);
+            labelBirthPlace.Name = "labelBirthPlace";
+            labelBirthPlace.Size = new Size(88, 17);
+            labelBirthPlace.TabIndex = 3;
+            labelBirthPlace.Text = "Кем выдано: ";
+            // 
+            // textBoxIssuedBy
+            // 
+            textBoxIssuedBy.Anchor = AnchorStyles.Left;
+            textBoxIssuedBy.BackColor = Color.White;
+            textBoxIssuedBy.BorderStyle = BorderStyle.FixedSingle;
+            textBoxIssuedBy.Font = new Font("Segoe UI", 9.75F);
+            textBoxIssuedBy.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxIssuedBy.Location = new Point(414, 105);
+            textBoxIssuedBy.Margin = new Padding(4, 3, 4, 3);
+            textBoxIssuedBy.Name = "textBoxIssuedBy";
+            textBoxIssuedBy.Size = new Size(287, 25);
+            textBoxIssuedBy.TabIndex = 4;
+            // 
+            // dateTimePickerDateOfIssue
+            // 
+            dateTimePickerDateOfIssue.Anchor = AnchorStyles.Left;
+            dateTimePickerDateOfIssue.BackColor = Color.White;
+            dateTimePickerDateOfIssue.Font = new Font("Segoe UI", 9.75F);
+            dateTimePickerDateOfIssue.ForeColor = Color.FromArgb(0, 0, 0);
+            dateTimePickerDateOfIssue.Location = new Point(414, 58);
+            dateTimePickerDateOfIssue.Margin = new Padding(4, 3, 4, 3);
+            dateTimePickerDateOfIssue.Name = "dateTimePickerDateOfIssue";
+            dateTimePickerDateOfIssue.Size = new Size(286, 25);
+            dateTimePickerDateOfIssue.TabIndex = 5;
+            dateTimePickerDateOfIssue.Tag = "";
+            // 
+            // buttonSave
+            // 
+            buttonSave.Anchor = AnchorStyles.None;
+            buttonSave.BackColor = Color.Green;
+            tableLayoutPanelMain.SetColumnSpan(buttonSave, 2);
+            buttonSave.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonSave.FlatStyle = FlatStyle.Flat;
+            buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonSave.ForeColor = Color.White;
+            buttonSave.Location = new Point(208, 525);
+            buttonSave.Margin = new Padding(4, 3, 4, 3);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Padding = new Padding(9, 5, 9, 5);
+            buttonSave.Size = new Size(404, 47);
+            buttonSave.TabIndex = 8;
+            buttonSave.Text = "Отправить заявку";
+            buttonSave.UseVisualStyleBackColor = false;
+            buttonSave.Click += buttonSave_Click;
+            // 
+            // labelResidence
+            // 
+            labelResidence.Anchor = AnchorStyles.Right;
+            labelResidence.AutoSize = true;
+            labelResidence.Font = new Font("Segoe UI", 9.75F);
+            labelResidence.ForeColor = Color.FromArgb(0, 0, 0);
+            labelResidence.Location = new Point(305, 156);
+            labelResidence.Margin = new Padding(4, 0, 4, 0);
+            labelResidence.Name = "labelResidence";
+            labelResidence.Size = new Size(101, 17);
+            labelResidence.TabIndex = 9;
+            labelResidence.Text = "Место выдачи: ";
+            // 
+            // textBoxResidence
+            // 
+            textBoxResidence.Anchor = AnchorStyles.Left;
+            textBoxResidence.BackColor = Color.White;
+            textBoxResidence.BorderStyle = BorderStyle.FixedSingle;
+            textBoxResidence.Font = new Font("Segoe UI", 9.75F);
+            textBoxResidence.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxResidence.Location = new Point(414, 152);
+            textBoxResidence.Margin = new Padding(4, 3, 4, 3);
+            textBoxResidence.Name = "textBoxResidence";
+            textBoxResidence.Size = new Size(287, 25);
+            textBoxResidence.TabIndex = 10;
+            // 
+            // labelCategories
+            // 
+            labelCategories.Anchor = AnchorStyles.Right;
+            labelCategories.AutoSize = true;
+            labelCategories.Font = new Font("Segoe UI", 9.75F);
+            labelCategories.ForeColor = Color.FromArgb(0, 0, 0);
+            labelCategories.Location = new Point(329, 203);
+            labelCategories.Margin = new Padding(4, 0, 4, 0);
+            labelCategories.Name = "labelCategories";
+            labelCategories.Size = new Size(77, 17);
+            labelCategories.TabIndex = 11;
+            labelCategories.Text = "Категории: ";
+            // 
+            // listBoxCategories
+            // 
+            listBoxCategories.Anchor = AnchorStyles.Left;
+            listBoxCategories.FormattingEnabled = true;
+            listBoxCategories.ItemHeight = 15;
+            listBoxCategories.Location = new Point(414, 191);
+            listBoxCategories.Margin = new Padding(4, 3, 4, 3);
+            listBoxCategories.Name = "listBoxCategories";
+            tableLayoutPanelMain.SetRowSpan(listBoxCategories, 2);
+            listBoxCategories.SelectionMode = SelectionMode.MultiSimple;
+            listBoxCategories.Size = new Size(286, 79);
+            listBoxCategories.TabIndex = 12;
+            listBoxCategories.SelectedIndexChanged += listBoxCategories_SelectedIndexChanged;
+            // 
+            // multiImageUploader
+            // 
+            multiImageUploader.AutoScroll = true;
+            multiImageUploader.BackColor = SystemColors.Control;
+            tableLayoutPanelMain.SetColumnSpan(multiImageUploader, 2);
+            multiImageUploader.Dock = DockStyle.Fill;
+            multiImageUploader.Location = new Point(3, 333);
+            multiImageUploader.Name = "multiImageUploader";
+            multiImageUploader.Padding = new Padding(5);
+            tableLayoutPanelMain.SetRowSpan(multiImageUploader, 4);
+            multiImageUploader.Size = new Size(815, 185);
+            multiImageUploader.TabIndex = 13;
+            // 
+            // labelStatus
+            // 
+            labelStatus.Anchor = AnchorStyles.Right;
+            labelStatus.AutoSize = true;
+            labelStatus.Font = new Font("Segoe UI", 9.75F);
+            labelStatus.ForeColor = Color.FromArgb(0, 0, 0);
+            labelStatus.Location = new Point(310, 297);
+            labelStatus.Margin = new Padding(4, 0, 4, 0);
+            labelStatus.Name = "labelStatus";
+            labelStatus.Size = new Size(96, 17);
+            labelStatus.TabIndex = 14;
+            labelStatus.Text = "Статус заявки: ";
+            // 
+            // textBoxStatus
+            // 
+            textBoxStatus.Anchor = AnchorStyles.Left;
+            textBoxStatus.BackColor = Color.GhostWhite;
+            textBoxStatus.BorderStyle = BorderStyle.None;
+            textBoxStatus.Font = new Font("Consolas", 9.75F);
+            textBoxStatus.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxStatus.Location = new Point(413, 298);
+            textBoxStatus.Name = "textBoxStatus";
+            textBoxStatus.ReadOnly = true;
+            textBoxStatus.Size = new Size(288, 16);
+            textBoxStatus.TabIndex = 15;
+            // 
+            // DriverLicenseCreateView
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Margin = new Padding(5, 3, 5, 3);
+            Name = "DriverLicenseCreateView";
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
+            splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            tableLayoutPanelMain.ResumeLayout(false);
+            tableLayoutPanelMain.PerformLayout();
+            ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
+        private Components.Labels.PrimaryLabel labelFullName;
+        private Components.Labels.PrimaryLabel labelBirthDate;
+        private Components.Controls.TextBoxes.DefaultTextBox textBoxLicenseNumber;
+        private Components.Labels.PrimaryLabel labelBirthPlace;
+        private Components.Controls.TextBoxes.DefaultTextBox textBoxIssuedBy;
+        private Components.Controls.DateTimePickers.DefaultDateTimePicker dateTimePickerDateOfIssue;
+        private Components.CommonButton buttonSave;
+        private Components.Labels.PrimaryLabel labelResidence;
+        private Components.Controls.TextBoxes.DefaultTextBox textBoxResidence;
+        private Components.Labels.PrimaryLabel labelCategories;
+        private System.Windows.Forms.ListBox listBoxCategories;
+        private Components.ComplexControls.MultiImageUploader multiImageUploader;
+        private Components.Labels.PrimaryLabel labelStatus;
+        private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxStatus;
+    }
+}

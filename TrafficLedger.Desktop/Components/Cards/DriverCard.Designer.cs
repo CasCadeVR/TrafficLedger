@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Components.Cards
+﻿using System.Windows.Forms;
+using TrafficLedger.Desktop.Components;
+
+namespace TrafficLedger.Desktop.Components.Cards
 {
     partial class DriverCard
     {
@@ -34,14 +37,15 @@
             this.labelBirthDateTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             this.fullName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             this.birthDate = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.buttonEdit = new TrafficLedger.Desktop.Components.CommonButton();
             this.buttonDeleteUser = new TrafficLedger.Desktop.Components.CommonButton();
             this.labelBirthPlaceTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             this.labelUniqueIdTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             this.birthPlace = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             this.uniqueId = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonEdit = new TrafficLedger.Desktop.Components.CommonButton();
             this.buttonConnectTransport = new TrafficLedger.Desktop.Components.CommonButton();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonConnectDriverLicense = new TrafficLedger.Desktop.Components.CommonButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +70,7 @@
             this.tableLayoutPanel1.Controls.Add(this.uniqueId, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.buttonEdit, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.buttonConnectTransport, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.buttonConnectDriverLicense, 4, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
@@ -131,24 +136,6 @@
             this.birthDate.Size = new System.Drawing.Size(216, 16);
             this.birthDate.TabIndex = 11;
             this.birthDate.Text = "Загрузка...";
-            // 
-            // buttonEdit
-            // 
-            this.buttonEdit.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanel1.SetColumnSpan(this.buttonEdit, 2);
-            this.buttonEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonEdit.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEdit.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonEdit.ForeColor = System.Drawing.Color.White;
-            this.buttonEdit.Location = new System.Drawing.Point(446, 101);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonEdit.Size = new System.Drawing.Size(217, 43);
-            this.buttonEdit.TabIndex = 12;
-            this.buttonEdit.Text = "Редактировать";
-            this.buttonEdit.UseVisualStyleBackColor = false;
-            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonDeleteUser
             // 
@@ -222,6 +209,24 @@
             this.uniqueId.TabIndex = 17;
             this.uniqueId.Text = "Загрузка...";
             // 
+            // buttonEdit
+            // 
+            this.buttonEdit.BackColor = System.Drawing.Color.Green;
+            this.tableLayoutPanel1.SetColumnSpan(this.buttonEdit, 2);
+            this.buttonEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonEdit.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEdit.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
+            this.buttonEdit.ForeColor = System.Drawing.Color.White;
+            this.buttonEdit.Location = new System.Drawing.Point(446, 101);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
+            this.buttonEdit.Size = new System.Drawing.Size(217, 43);
+            this.buttonEdit.TabIndex = 12;
+            this.buttonEdit.Text = "Редактировать";
+            this.buttonEdit.UseVisualStyleBackColor = false;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
             // buttonConnectTransport
             // 
             this.buttonConnectTransport.BackColor = System.Drawing.Color.Green;
@@ -236,9 +241,27 @@
             this.buttonConnectTransport.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
             this.buttonConnectTransport.Size = new System.Drawing.Size(217, 43);
             this.buttonConnectTransport.TabIndex = 18;
-            this.buttonConnectTransport.Text = "Привязать транспорт";
+            this.buttonConnectTransport.Text = "Привязка транспорта";
             this.buttonConnectTransport.UseVisualStyleBackColor = false;
             this.buttonConnectTransport.Click += new System.EventHandler(this.buttonConnectTransport_Click);
+            // 
+            // buttonConnectDriverLicense
+            // 
+            this.buttonConnectDriverLicense.BackColor = System.Drawing.Color.Green;
+            this.tableLayoutPanel1.SetColumnSpan(this.buttonConnectDriverLicense, 2);
+            this.buttonConnectDriverLicense.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonConnectDriverLicense.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.buttonConnectDriverLicense.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonConnectDriverLicense.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
+            this.buttonConnectDriverLicense.ForeColor = System.Drawing.Color.White;
+            this.buttonConnectDriverLicense.Location = new System.Drawing.Point(446, 3);
+            this.buttonConnectDriverLicense.Name = "buttonConnectDriverLicense";
+            this.buttonConnectDriverLicense.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
+            this.buttonConnectDriverLicense.Size = new System.Drawing.Size(217, 43);
+            this.buttonConnectDriverLicense.TabIndex = 19;
+            this.buttonConnectDriverLicense.Text = "Удостоверение";
+            this.buttonConnectDriverLicense.UseVisualStyleBackColor = false;
+            this.buttonConnectDriverLicense.Click += new System.EventHandler(this.buttonConnectDriverLicense_Click);
             // 
             // DriverCard
             // 
@@ -268,5 +291,6 @@
         private Controls.TextBoxes.ReadOnlyTextBox birthPlace;
         private Controls.TextBoxes.ReadOnlyTextBox uniqueId;
         private CommonButton buttonConnectTransport;
+        private CommonButton buttonConnectDriverLicense;
     }
 }

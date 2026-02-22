@@ -32,7 +32,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
-            NoItemsMessage = "У вас не зарегистрирован не один транспорт. Обратитесь к пункту гибдд с уникальным идентификатором водителя и документами о владении транспортом для регистрации транспорта";
+            NoItemsMessage = "У вас не зарегистрирован не один транспорт. Нажмите на кнопку \"Привязать транспорт\" чтобы отправить заявку на добавления транспорта";
         }
 
         protected override async Task<IEnumerable<Transport>> LoadItemsAsync(CancellationToken cancellationToken)

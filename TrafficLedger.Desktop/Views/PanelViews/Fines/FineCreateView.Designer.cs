@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Views.PanelViews.Fines
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Views.PanelViews.Fines
 {
     partial class FineCreateView
     {
@@ -313,7 +316,7 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private Components.Labels.PrimaryLabel labelDate;
-        private Components.CommonButton buttonSave;
+        private CommonButton buttonSave;
         private Components.Labels.PrimaryLabel labelName;
         private Components.Labels.PrimaryLabel labelDescription;
         private Components.Labels.PrimaryLabel labelFinePrice;

@@ -1,4 +1,4 @@
-﻿using TrafficLedger.Common.Repositories.Contracts;
+﻿using TrafficLedger.Common.Services.Contracts;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Models.Fines;
 

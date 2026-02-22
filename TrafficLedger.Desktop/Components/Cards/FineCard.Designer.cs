@@ -1,4 +1,6 @@
-﻿namespace TrafficLedger.Desktop.Components.Cards
+﻿using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Components.Cards
 {
     partial class FineCard
     {

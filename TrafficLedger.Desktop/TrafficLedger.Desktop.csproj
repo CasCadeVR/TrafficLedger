@@ -21,8 +21,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Components\Cards\DriverLicenseCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\Cards\TransportRequestCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Components\Controls\ContextMenuStrips\PictureBoxContextMenuStrip.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Views\PanelViews\Admin\Requests\RequestView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\PanelViews\Admin\Requests\DriverLicenseListView.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Wrappers\Admin\Drivers\DriverListWrapper.cs">
       <SubType>UserControl</SubType>
@@ -37,6 +49,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Wrappers\Admin\Payments\PaymentListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Requests\TransportListWrapper.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Wrappers\Admin\Transport\TransportCreateWrapper.cs">
@@ -70,6 +85,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Wrappers\Transport\TransportUserListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\User\DriverLicenseCreateWrapper.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

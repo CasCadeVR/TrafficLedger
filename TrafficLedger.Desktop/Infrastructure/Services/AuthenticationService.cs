@@ -1,5 +1,4 @@
-﻿using System;
-using TrafficLedger.Desktop.Infrastructure.Models;
+﻿using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Entities;
 
 namespace TrafficLedger.Desktop.Services

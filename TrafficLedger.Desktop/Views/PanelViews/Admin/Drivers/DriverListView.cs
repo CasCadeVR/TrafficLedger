@@ -5,6 +5,7 @@ using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
+using TrafficLedger.Services;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
@@ -13,12 +14,15 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
     {
         private readonly INavigationService navigationService;
         private readonly IDriverService driverService;
+        private readonly IDriverLicenseService driverLicenseService;
 
         public DriverListView(INavigationService navigationService,
+            IDriverLicenseService driverLicenseService,
             IDriverService driverService)
         {
             InitializeComponent();
             this.navigationService = navigationService;
+            this.driverLicenseService = driverLicenseService;
             this.driverService = driverService;
 
             ItemsContainer = flowLayoutPanel;
@@ -52,6 +56,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
             card.EditClicked += () => EditDriver(driver);
             card.DeleteClicked += () => DeleteDriver(driver);
             card.ConnectTransportClicked += () => ConnectDriver(driver);
+            card.ConnectDriverLicenseClicked += () => ConnectDriverLicense(driver);
 
             return card;
         }
@@ -97,6 +102,25 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
             var navigationItem = new NavigationItem()
             {
                 Title = "Редактирование владениями",
+                ViewType = null,
+                ViewInstance = createView,
+                Parent = CurrentNavigationItem,
+            };
+
+            navigationService.NavigateTo(navigationItem);
+        }
+
+        private async void ConnectDriverLicense(Driver driver)
+        {
+            var driverLicense = await driverLicenseService.GetByDriverId(driver.Id, CancellationToken.None);
+            var createView = navigationService.ServiceProvider.GetRequiredService<DriverLicenseCreateView>();
+            createView.Initialize(driver, driverLicense, isOwnDriver: false);
+
+            var createTitle = driverLicense == null ? "Создание" : "Редактирование";
+
+            var navigationItem = new NavigationItem()
+            {
+                Title = $"{createTitle} лизенции",
                 ViewType = null,
                 ViewInstance = createView,
                 Parent = CurrentNavigationItem,

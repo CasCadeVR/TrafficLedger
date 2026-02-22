@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Contracts.Views.PanelViews
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Contracts.Views.PanelViews
 {
     partial class BasePanelView
     {
@@ -124,6 +127,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         protected System.Windows.Forms.Label title;
         protected System.Windows.Forms.SplitContainer splitContainer;
-        private Components.CommonButton BackButton;
+        private CommonButton BackButton;
     }
 }

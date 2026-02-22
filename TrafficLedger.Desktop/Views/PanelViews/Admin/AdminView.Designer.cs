@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Views.PanelViews
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Views.PanelViews
 {
     partial class AdminView
     {
@@ -28,192 +31,223 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonFines = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonTransports = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonDrivers = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonUsers = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonViolations = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonPayments = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonStatistics = new TrafficLedger.Desktop.Components.CommonButton();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            this.tableLayoutPanelMain.SuspendLayout();
-            this.SuspendLayout();
+            tableLayoutPanelMain = new TableLayoutPanel();
+            buttonRequests = new CommonButton();
+            buttonDrivers = new CommonButton();
+            buttonUsers = new CommonButton();
+            buttonTransports = new CommonButton();
+            buttonFines = new CommonButton();
+            buttonPayments = new CommonButton();
+            buttonViolations = new CommonButton();
+            buttonStatistics = new CommonButton();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            tableLayoutPanelMain.SuspendLayout();
+            SuspendLayout();
             // 
             // splitContainer
             // 
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanelMain);
+            splitContainer.Panel2.Controls.Add(tableLayoutPanelMain);
             // 
             // tableLayoutPanelMain
             // 
-            this.tableLayoutPanelMain.ColumnCount = 1;
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelMain.Controls.Add(this.buttonDrivers, 0, 1);
-            this.tableLayoutPanelMain.Controls.Add(this.buttonUsers, 0, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.buttonTransports, 0, 2);
-            this.tableLayoutPanelMain.Controls.Add(this.buttonFines, 0, 3);
-            this.tableLayoutPanelMain.Controls.Add(this.buttonPayments, 0, 4);
-            this.tableLayoutPanelMain.Controls.Add(this.buttonViolations, 0, 5);
-            this.tableLayoutPanelMain.Controls.Add(this.buttonStatistics, 0, 6);
-            this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            this.tableLayoutPanelMain.RowCount = 7;
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(704, 500);
-            this.tableLayoutPanelMain.TabIndex = 0;
+            tableLayoutPanelMain.ColumnCount = 1;
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelMain.Controls.Add(buttonRequests, 0, 6);
+            tableLayoutPanelMain.Controls.Add(buttonDrivers, 0, 1);
+            tableLayoutPanelMain.Controls.Add(buttonUsers, 0, 0);
+            tableLayoutPanelMain.Controls.Add(buttonTransports, 0, 2);
+            tableLayoutPanelMain.Controls.Add(buttonFines, 0, 3);
+            tableLayoutPanelMain.Controls.Add(buttonPayments, 0, 4);
+            tableLayoutPanelMain.Controls.Add(buttonViolations, 0, 5);
+            tableLayoutPanelMain.Controls.Add(buttonStatistics, 0, 7);
+            tableLayoutPanelMain.Dock = DockStyle.Fill;
+            tableLayoutPanelMain.Location = new Point(0, 0);
+            tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
+            tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            tableLayoutPanelMain.RowCount = 8;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            tableLayoutPanelMain.Size = new Size(821, 576);
+            tableLayoutPanelMain.TabIndex = 0;
             // 
-            // buttonFines
+            // buttonRequests
             // 
-            this.buttonFines.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonFines.BackColor = System.Drawing.Color.BlueViolet;
-            this.buttonFines.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonFines.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonFines.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonFines.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.buttonFines.Location = new System.Drawing.Point(188, 226);
-            this.buttonFines.Name = "buttonFines";
-            this.buttonFines.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonFines.Size = new System.Drawing.Size(327, 44);
-            this.buttonFines.TabIndex = 3;
-            this.buttonFines.Text = "Данные штрафов";
-            this.buttonFines.UseVisualStyleBackColor = false;
-            this.buttonFines.Click += new System.EventHandler(this.buttonFines_Click);
-            // 
-            // buttonTransports
-            // 
-            this.buttonTransports.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonTransports.BackColor = System.Drawing.Color.BlueViolet;
-            this.buttonTransports.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonTransports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonTransports.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonTransports.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.buttonTransports.Location = new System.Drawing.Point(188, 155);
-            this.buttonTransports.Name = "buttonTransports";
-            this.buttonTransports.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonTransports.Size = new System.Drawing.Size(327, 44);
-            this.buttonTransports.TabIndex = 2;
-            this.buttonTransports.Text = "Данные автомобилей";
-            this.buttonTransports.UseVisualStyleBackColor = false;
-            this.buttonTransports.Click += new System.EventHandler(this.buttonTransports_Click);
+            buttonRequests.Anchor = AnchorStyles.None;
+            buttonRequests.BackColor = Color.BlueViolet;
+            buttonRequests.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonRequests.FlatStyle = FlatStyle.Flat;
+            buttonRequests.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonRequests.ForeColor = Color.AntiqueWhite;
+            buttonRequests.Location = new Point(219, 442);
+            buttonRequests.Margin = new Padding(4, 3, 4, 3);
+            buttonRequests.Name = "buttonRequests";
+            buttonRequests.Padding = new Padding(9, 5, 9, 5);
+            buttonRequests.Size = new Size(382, 51);
+            buttonRequests.TabIndex = 9;
+            buttonRequests.Text = "Просмотр заявок";
+            buttonRequests.UseVisualStyleBackColor = false;
+            buttonRequests.Click += buttonRequests_Click;
             // 
             // buttonDrivers
             // 
-            this.buttonDrivers.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonDrivers.BackColor = System.Drawing.Color.BlueViolet;
-            this.buttonDrivers.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonDrivers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDrivers.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonDrivers.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.buttonDrivers.Location = new System.Drawing.Point(188, 84);
-            this.buttonDrivers.Name = "buttonDrivers";
-            this.buttonDrivers.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonDrivers.Size = new System.Drawing.Size(327, 45);
-            this.buttonDrivers.TabIndex = 1;
-            this.buttonDrivers.Text = "Данные водителей";
-            this.buttonDrivers.UseVisualStyleBackColor = false;
-            this.buttonDrivers.Click += new System.EventHandler(this.buttonDrivers_Click);
+            buttonDrivers.Anchor = AnchorStyles.None;
+            buttonDrivers.BackColor = Color.BlueViolet;
+            buttonDrivers.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonDrivers.FlatStyle = FlatStyle.Flat;
+            buttonDrivers.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonDrivers.ForeColor = Color.AntiqueWhite;
+            buttonDrivers.Location = new Point(219, 82);
+            buttonDrivers.Margin = new Padding(4, 3, 4, 3);
+            buttonDrivers.Name = "buttonDrivers";
+            buttonDrivers.Padding = new Padding(9, 5, 9, 5);
+            buttonDrivers.Size = new Size(382, 52);
+            buttonDrivers.TabIndex = 1;
+            buttonDrivers.Text = "Данные водителей";
+            buttonDrivers.UseVisualStyleBackColor = false;
+            buttonDrivers.Click += buttonDrivers_Click;
             // 
             // buttonUsers
             // 
-            this.buttonUsers.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonUsers.BackColor = System.Drawing.Color.BlueViolet;
-            this.buttonUsers.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonUsers.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonUsers.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.buttonUsers.Location = new System.Drawing.Point(188, 13);
-            this.buttonUsers.Name = "buttonUsers";
-            this.buttonUsers.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonUsers.Size = new System.Drawing.Size(327, 44);
-            this.buttonUsers.TabIndex = 6;
-            this.buttonUsers.Text = "Данные пользователей";
-            this.buttonUsers.UseVisualStyleBackColor = false;
-            this.buttonUsers.Click += new System.EventHandler(this.buttonUsers_Click);
+            buttonUsers.Anchor = AnchorStyles.None;
+            buttonUsers.BackColor = Color.BlueViolet;
+            buttonUsers.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonUsers.FlatStyle = FlatStyle.Flat;
+            buttonUsers.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonUsers.ForeColor = Color.AntiqueWhite;
+            buttonUsers.Location = new Point(219, 10);
+            buttonUsers.Margin = new Padding(4, 3, 4, 3);
+            buttonUsers.Name = "buttonUsers";
+            buttonUsers.Padding = new Padding(9, 5, 9, 5);
+            buttonUsers.Size = new Size(382, 51);
+            buttonUsers.TabIndex = 6;
+            buttonUsers.Text = "Данные пользователей";
+            buttonUsers.UseVisualStyleBackColor = false;
+            buttonUsers.Click += buttonUsers_Click;
             // 
-            // buttonViolations
+            // buttonTransports
             // 
-            this.buttonViolations.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonViolations.BackColor = System.Drawing.Color.BlueViolet;
-            this.buttonViolations.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonViolations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonViolations.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonViolations.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.buttonViolations.Location = new System.Drawing.Point(188, 368);
-            this.buttonViolations.Name = "buttonViolations";
-            this.buttonViolations.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonViolations.Size = new System.Drawing.Size(327, 44);
-            this.buttonViolations.TabIndex = 5;
-            this.buttonViolations.Text = "Кодекс нарушений";
-            this.buttonViolations.UseVisualStyleBackColor = false;
-            this.buttonViolations.Click += new System.EventHandler(this.buttonViolations_Click);
+            buttonTransports.Anchor = AnchorStyles.None;
+            buttonTransports.BackColor = Color.BlueViolet;
+            buttonTransports.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonTransports.FlatStyle = FlatStyle.Flat;
+            buttonTransports.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonTransports.ForeColor = Color.AntiqueWhite;
+            buttonTransports.Location = new Point(219, 154);
+            buttonTransports.Margin = new Padding(4, 3, 4, 3);
+            buttonTransports.Name = "buttonTransports";
+            buttonTransports.Padding = new Padding(9, 5, 9, 5);
+            buttonTransports.Size = new Size(382, 51);
+            buttonTransports.TabIndex = 2;
+            buttonTransports.Text = "Данные автомобилей";
+            buttonTransports.UseVisualStyleBackColor = false;
+            buttonTransports.Click += buttonTransports_Click;
+            // 
+            // buttonFines
+            // 
+            buttonFines.Anchor = AnchorStyles.None;
+            buttonFines.BackColor = Color.BlueViolet;
+            buttonFines.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonFines.FlatStyle = FlatStyle.Flat;
+            buttonFines.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonFines.ForeColor = Color.AntiqueWhite;
+            buttonFines.Location = new Point(219, 226);
+            buttonFines.Margin = new Padding(4, 3, 4, 3);
+            buttonFines.Name = "buttonFines";
+            buttonFines.Padding = new Padding(9, 5, 9, 5);
+            buttonFines.Size = new Size(382, 51);
+            buttonFines.TabIndex = 3;
+            buttonFines.Text = "Данные штрафов";
+            buttonFines.UseVisualStyleBackColor = false;
+            buttonFines.Click += buttonFines_Click;
             // 
             // buttonPayments
             // 
-            this.buttonPayments.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonPayments.BackColor = System.Drawing.Color.BlueViolet;
-            this.buttonPayments.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonPayments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPayments.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonPayments.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.buttonPayments.Location = new System.Drawing.Point(188, 297);
-            this.buttonPayments.Name = "buttonPayments";
-            this.buttonPayments.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonPayments.Size = new System.Drawing.Size(327, 44);
-            this.buttonPayments.TabIndex = 7;
-            this.buttonPayments.Text = "Данные чеков";
-            this.buttonPayments.UseVisualStyleBackColor = false;
-            this.buttonPayments.Click += new System.EventHandler(this.buttonPayments_Click);
+            buttonPayments.Anchor = AnchorStyles.None;
+            buttonPayments.BackColor = Color.BlueViolet;
+            buttonPayments.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonPayments.FlatStyle = FlatStyle.Flat;
+            buttonPayments.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonPayments.ForeColor = Color.AntiqueWhite;
+            buttonPayments.Location = new Point(219, 298);
+            buttonPayments.Margin = new Padding(4, 3, 4, 3);
+            buttonPayments.Name = "buttonPayments";
+            buttonPayments.Padding = new Padding(9, 5, 9, 5);
+            buttonPayments.Size = new Size(382, 51);
+            buttonPayments.TabIndex = 7;
+            buttonPayments.Text = "Данные чеков";
+            buttonPayments.UseVisualStyleBackColor = false;
+            buttonPayments.Click += buttonPayments_Click;
+            // 
+            // buttonViolations
+            // 
+            buttonViolations.Anchor = AnchorStyles.None;
+            buttonViolations.BackColor = Color.BlueViolet;
+            buttonViolations.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonViolations.FlatStyle = FlatStyle.Flat;
+            buttonViolations.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonViolations.ForeColor = Color.AntiqueWhite;
+            buttonViolations.Location = new Point(219, 370);
+            buttonViolations.Margin = new Padding(4, 3, 4, 3);
+            buttonViolations.Name = "buttonViolations";
+            buttonViolations.Padding = new Padding(9, 5, 9, 5);
+            buttonViolations.Size = new Size(382, 51);
+            buttonViolations.TabIndex = 5;
+            buttonViolations.Text = "Кодекс нарушений";
+            buttonViolations.UseVisualStyleBackColor = false;
+            buttonViolations.Click += buttonViolations_Click;
             // 
             // buttonStatistics
             // 
-            this.buttonStatistics.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonStatistics.BackColor = System.Drawing.Color.BlueViolet;
-            this.buttonStatistics.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonStatistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonStatistics.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonStatistics.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.buttonStatistics.Location = new System.Drawing.Point(188, 441);
-            this.buttonStatistics.Name = "buttonStatistics";
-            this.buttonStatistics.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonStatistics.Size = new System.Drawing.Size(327, 44);
-            this.buttonStatistics.TabIndex = 8;
-            this.buttonStatistics.Text = "Просмотр отчётов";
-            this.buttonStatistics.UseVisualStyleBackColor = false;
+            buttonStatistics.Anchor = AnchorStyles.None;
+            buttonStatistics.BackColor = Color.BlueViolet;
+            buttonStatistics.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonStatistics.FlatStyle = FlatStyle.Flat;
+            buttonStatistics.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonStatistics.ForeColor = Color.AntiqueWhite;
+            buttonStatistics.Location = new Point(219, 514);
+            buttonStatistics.Margin = new Padding(4, 3, 4, 3);
+            buttonStatistics.Name = "buttonStatistics";
+            buttonStatistics.Padding = new Padding(9, 5, 9, 5);
+            buttonStatistics.Size = new Size(382, 51);
+            buttonStatistics.TabIndex = 8;
+            buttonStatistics.Text = "Просмотр отчётов";
+            buttonStatistics.UseVisualStyleBackColor = false;
             // 
             // AdminView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "AdminView";
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            this.tableLayoutPanelMain.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Margin = new Padding(5, 3, 5, 3);
+            Name = "AdminView";
+            splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            tableLayoutPanelMain.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
-        private Components.CommonButton buttonDrivers;
-        private Components.CommonButton buttonFines;
-        private Components.CommonButton buttonTransports;
-        private Components.CommonButton buttonUsers;
-        private Components.CommonButton buttonViolations;
-        private Components.CommonButton buttonPayments;
-        private Components.CommonButton buttonStatistics;
+        private CommonButton buttonDrivers;
+        private CommonButton buttonFines;
+        private CommonButton buttonTransports;
+        private CommonButton buttonUsers;
+        private CommonButton buttonViolations;
+        private CommonButton buttonPayments;
+        private CommonButton buttonStatistics;
+        private CommonButton buttonRequests;
     }
 }

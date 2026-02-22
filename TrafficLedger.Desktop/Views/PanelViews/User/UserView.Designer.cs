@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Views.PanelViews
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Views.PanelViews
 {
     partial class UserView
     {
@@ -149,9 +152,9 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
-        private Components.CommonButton buttonDriverLicense;
-        private Components.CommonButton buttonDriver;
-        private Components.CommonButton buttonLogout;
-        private Components.CommonButton buttonListUserPayments;
+        private CommonButton buttonDriverLicense;
+        private CommonButton buttonDriver;
+        private CommonButton buttonLogout;
+        private CommonButton buttonListUserPayments;
     }
 }

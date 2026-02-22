@@ -26,6 +26,7 @@ using TrafficLedger.Services;
 using TrafficLedger.Services.Contracts.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using TrafficLedger.Desktop.Views.PanelViews.Admin.Requests;
 
 namespace TrafficLedger.Desktop
 {
@@ -131,7 +132,7 @@ namespace TrafficLedger.Desktop
             // User
             services.AddScoped<UserView>();
             services.AddScoped<DriverCreateView>();
-            services.AddScoped<DriverLicenseView>();
+            services.AddScoped<DriverLicenseCreateView>();
 
             services.AddScoped<OwnershipView>();
             services.AddScoped<OwnershipCreateView>();
@@ -155,10 +156,13 @@ namespace TrafficLedger.Desktop
 
             // Admin
             services.AddScoped<AdminView>();
+            services.AddScoped<RequestView>();
             services.AddScoped<UserListView>();
             services.AddScoped<UserCreateView>();
 
             services.AddScoped<DriverListView>();
+
+            services.AddScoped<DriverLicenseListView>();
 
             services.AddScoped<ViolationView>();
             services.AddScoped<ViolationListView>();

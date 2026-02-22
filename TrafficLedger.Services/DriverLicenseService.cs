@@ -1,7 +1,8 @@
 ﻿using TrafficLedger.Common.Core.Extensions;
-using TrafficLedger.Common.Repositories.Contracts;
+using TrafficLedger.Common.Services.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Entities.Typing;
 using TrafficLedger.Repositories.Contracts.IReadRepositories;
 using TrafficLedger.Repositories.Contracts.IWriteRepositories;
@@ -16,6 +17,7 @@ namespace TrafficLedger.Services
         private readonly IDriverLicenseWriteRepository driverLicenseWriteRepository;
         private readonly IDriverReadRepository driverReadRepository;
         private readonly ITransportCategoryReadRepository transportCategoryReadRepository;
+        private readonly IUserReadRepository userReadRepository;
         private readonly ILicenseCategoryWriteRepository licenseCategoryWriteRepository;
         private readonly IAttachmentReadRepository attachmentReadRepository;
         private readonly IAttachmentWriteRepository attachmentWriteRepository;
@@ -25,6 +27,7 @@ namespace TrafficLedger.Services
             IDriverLicenseWriteRepository driverLicenseWriteRepository,
             IDriverReadRepository driverReadRepository,
             ITransportCategoryReadRepository transportCategoryReadRepository,
+            IUserReadRepository userReadRepository,
             ILicenseCategoryWriteRepository licenseCategoryWriteRepository,
             IAttachmentReadRepository attachmentReadRepository,
             IAttachmentWriteRepository attachmentWriteRepository,
@@ -34,6 +37,7 @@ namespace TrafficLedger.Services
             this.driverLicenseWriteRepository = driverLicenseWriteRepository;
             this.driverReadRepository = driverReadRepository;
             this.transportCategoryReadRepository = transportCategoryReadRepository;
+            this.userReadRepository = userReadRepository;
             this.licenseCategoryWriteRepository = licenseCategoryWriteRepository;
             this.attachmentReadRepository = attachmentReadRepository;
             this.attachmentWriteRepository = attachmentWriteRepository;
@@ -93,6 +97,8 @@ namespace TrafficLedger.Services
                 DateOfIssue = model.DateOfIssue,
                 IssuedBy = model.IssuedBy.Trim(),
                 Residence = model.Residence.Trim(),
+                Status = RequestStatus.Pending,
+                UserId = model.UserId,
                 DriverId = model.DriverId,
             };
 
@@ -157,6 +163,8 @@ namespace TrafficLedger.Services
             existingDriverLicense.DateOfIssue = model.DateOfIssue;
             existingDriverLicense.IssuedBy = model.IssuedBy.Trim();
             existingDriverLicense.Residence = model.Residence.Trim();
+            existingDriverLicense.Status = model.Status;
+            existingDriverLicense.UserId = model.UserId;
             existingDriverLicense.DriverId = model.DriverId;
 
             var existingLicenseCategories = existingDriverLicense.LicenseCategories;
@@ -225,6 +233,37 @@ namespace TrafficLedger.Services
             }
 
             driverLicenseWriteRepository.Delete(existingDriverLicense!);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+        }
+
+        async Task IRequestedService<DriverLicense, DriverLicenseCreateModel>.Approve(Guid id, Guid processedById, CancellationToken cancellationToken)
+        {
+            var existingDriverLicense = await driverLicenseReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водительское удостоверение с идентификатором {id}"));
+
+            await userReadRepository.GetById(processedById, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя одобряющего с идентификатором {processedById}"));
+
+            existingDriverLicense!.Status = RequestStatus.Approved;
+            existingDriverLicense.ProcessedById = processedById;
+
+            driverLicenseWriteRepository.Update(existingDriverLicense);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+        }
+
+        async Task IRequestedService<DriverLicense, DriverLicenseCreateModel>.Reject(Guid id, Guid processedById, string commentary, CancellationToken cancellationToken)
+        {
+            var existingDriverLicense = await driverLicenseReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водительское удостоверение с идентификатором {id}"));
+
+            await userReadRepository.GetById(processedById, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя одобряющего с идентификатором {processedById}"));
+
+            existingDriverLicense!.Status = RequestStatus.Rejected;
+            existingDriverLicense.ProcessedById = processedById;
+            existingDriverLicense.Commentary = commentary;
+
+            driverLicenseWriteRepository.Update(existingDriverLicense);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
 

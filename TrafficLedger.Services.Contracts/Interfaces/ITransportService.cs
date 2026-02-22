@@ -1,4 +1,4 @@
-﻿using TrafficLedger.Common.Repositories.Contracts;
+﻿using TrafficLedger.Common.Services.Contracts;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Models;
 
@@ -7,7 +7,7 @@ namespace TrafficLedger.Services.Contracts.Interfaces;
 /// <summary>
 /// Сервис по работе с <see cref="Transport"/>
 /// </summary>
-public interface ITransportService : IBaseService<Transport, TransportCreateModel>
+public interface ITransportService : IRequestedService<Transport, TransportCreateModel>
 {
     /// <summary>
     /// Получить все транспорты водителя с идентификатором

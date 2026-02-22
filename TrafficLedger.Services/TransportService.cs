@@ -1,7 +1,8 @@
 ﻿using TrafficLedger.Common.Core.Extensions;
-using TrafficLedger.Common.Repositories.Contracts;
+using TrafficLedger.Common.Services.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Entities.Typing;
 using TrafficLedger.Repositories.Contracts.IReadRepositories;
 using TrafficLedger.Repositories.Contracts.IWriteRepositories;
@@ -15,6 +16,7 @@ namespace TrafficLedger.Services
         private readonly ITransportReadRepository transportReadRepository;
         private readonly ITransportWriteRepository transportWriteRepository;
         private readonly ITransportCategoryReadRepository transportCategoryReadRepository;
+        private readonly IUserReadRepository userReadRepository;
         private readonly IOwnershipWriteRepository ownershipWriteRepository;
         private readonly IDriverReadRepository driverReadRepository;
         private readonly IAttachmentReadRepository attachmentReadRepository;
@@ -24,6 +26,7 @@ namespace TrafficLedger.Services
         public TransportService(ITransportReadRepository transportReadRepository,
             ITransportWriteRepository transportWriteRepository,
             ITransportCategoryReadRepository transportCategoryReadRepository,
+            IUserReadRepository userReadRepository,
             IOwnershipWriteRepository ownershipWriteRepository,
             IDriverReadRepository driverReadRepository,
             IAttachmentReadRepository attachmentReadRepository,
@@ -33,6 +36,7 @@ namespace TrafficLedger.Services
             this.transportReadRepository = transportReadRepository;
             this.transportWriteRepository = transportWriteRepository;
             this.transportCategoryReadRepository = transportCategoryReadRepository;
+            this.userReadRepository = userReadRepository;
             this.ownershipWriteRepository = ownershipWriteRepository;
             this.driverReadRepository = driverReadRepository;
             this.attachmentReadRepository = attachmentReadRepository;
@@ -267,6 +271,37 @@ namespace TrafficLedger.Services
             }
 
             transportWriteRepository.Delete(existingTransport);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+        }
+
+        async Task IRequestedService<Transport, TransportCreateModel>.Approve(Guid id, Guid processedById, CancellationToken cancellationToken)
+        {
+            var transport = await transportReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
+
+            await userReadRepository.GetById(processedById, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя одобряющего с идентификатором {processedById}"));
+
+            transport!.Status = RequestStatus.Approved;
+            transport.ProcessedById = processedById;
+
+            transportWriteRepository.Update(transport);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+        }
+
+        async Task IRequestedService<Transport, TransportCreateModel>.Reject(Guid id, Guid processedById, string commentary, CancellationToken cancellationToken)
+        {
+            var transport = await transportReadRepository.GetById(id, cancellationToken)
+                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
+
+            await userReadRepository.GetById(processedById, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя одобряющего с идентификатором {processedById}"));
+
+            transport!.Status = RequestStatus.Rejected;
+            transport.ProcessedById = processedById;
+            transport.Commentary = commentary;
+
+            transportWriteRepository.Update(transport);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
 

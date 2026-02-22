@@ -28,67 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.flowLayoutPanelButtons = new System.Windows.Forms.FlowLayoutPanel();
-            this.mainContentPanel = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel1.SuspendLayout();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            this.SuspendLayout();
+            splitContainer = new SplitContainer();
+            flowLayoutPanelButtons = new FlowLayoutPanel();
+            mainContentPanel = new Panel();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel1.SuspendLayout();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            SuspendLayout();
             // 
             // splitContainer
             // 
-            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer.IsSplitterFixed = true;
-            this.splitContainer.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer.Margin = new System.Windows.Forms.Padding(0);
-            this.splitContainer.Name = "splitContainer";
+            splitContainer.Dock = DockStyle.Fill;
+            splitContainer.FixedPanel = FixedPanel.Panel1;
+            splitContainer.IsSplitterFixed = true;
+            splitContainer.Location = new Point(0, 0);
+            splitContainer.Margin = new Padding(0);
+            splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
             // 
-            this.splitContainer.Panel1.Controls.Add(this.flowLayoutPanelButtons);
+            splitContainer.Panel1.Controls.Add(flowLayoutPanelButtons);
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.mainContentPanel);
-            this.splitContainer.Size = new System.Drawing.Size(784, 561);
-            this.splitContainer.SplitterDistance = 96;
-            this.splitContainer.TabIndex = 0;
+            splitContainer.Panel2.Controls.Add(mainContentPanel);
+            splitContainer.Size = new Size(805, 653);
+            splitContainer.SplitterDistance = 96;
+            splitContainer.TabIndex = 0;
             // 
             // flowLayoutPanelButtons
             // 
-            this.flowLayoutPanelButtons.AutoScroll = true;
-            this.flowLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelButtons.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanelButtons.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanelButtons.Name = "flowLayoutPanelButtons";
-            this.flowLayoutPanelButtons.Size = new System.Drawing.Size(96, 561);
-            this.flowLayoutPanelButtons.TabIndex = 0;
+            flowLayoutPanelButtons.AutoScroll = true;
+            flowLayoutPanelButtons.Dock = DockStyle.Fill;
+            flowLayoutPanelButtons.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanelButtons.Location = new Point(0, 0);
+            flowLayoutPanelButtons.Name = "flowLayoutPanelButtons";
+            flowLayoutPanelButtons.Size = new Size(96, 653);
+            flowLayoutPanelButtons.TabIndex = 0;
             // 
             // mainContentPanel
             // 
-            this.mainContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainContentPanel.Location = new System.Drawing.Point(0, 0);
-            this.mainContentPanel.Name = "mainContentPanel";
-            this.mainContentPanel.Size = new System.Drawing.Size(684, 561);
-            this.mainContentPanel.TabIndex = 0;
+            mainContentPanel.Dock = DockStyle.Fill;
+            mainContentPanel.Location = new Point(0, 0);
+            mainContentPanel.Name = "mainContentPanel";
+            mainContentPanel.Size = new Size(705, 653);
+            mainContentPanel.TabIndex = 0;
             // 
             // MainView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.splitContainer);
-            this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "MainView";
-            this.Text = "Оплата штрафов";
-            this.splitContainer.Panel1.ResumeLayout(false);
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(805, 653);
+            Controls.Add(splitContainer);
+            Margin = new Padding(5, 4, 5, 4);
+            MinimumSize = new Size(800, 534);
+            Name = "MainView";
+            Text = "Оплата штрафов";
+            splitContainer.Panel1.ResumeLayout(false);
+            splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 

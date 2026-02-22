@@ -1,4 +1,4 @@
-﻿namespace TrafficLedger.Common.Repositories.Contracts;
+﻿namespace TrafficLedger.Common.Services.Contracts;
 
 /// <summary>
 /// Общий интерфейс сервиса

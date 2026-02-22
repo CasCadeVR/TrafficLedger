@@ -6,6 +6,7 @@ using TrafficLedger.Desktop.Views.PanelViews.Admin;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Fines;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Payments;
+using TrafficLedger.Desktop.Views.PanelViews.Admin.Requests;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Violations;
 
@@ -87,6 +88,18 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             {
                 Title = buttonPayments.Text,
                 ViewType = typeof(PaymentFineListView),
+                Parent = CurrentNavigationItem,
+            };
+
+            navigationService.NavigateTo(navigationItem);
+        }
+
+        private void buttonRequests_Click(object sender, EventArgs e)
+        {
+            var navigationItem = new NavigationItem()
+            {
+                Title = buttonRequests.Text,
+                ViewType = typeof(RequestView),
                 Parent = CurrentNavigationItem,
             };
 

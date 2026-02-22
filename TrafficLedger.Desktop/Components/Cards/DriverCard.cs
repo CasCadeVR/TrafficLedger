@@ -5,7 +5,7 @@ using TrafficLedger.Entities;
 namespace TrafficLedger.Desktop.Components.Cards
 {
     /// <summary>
-    /// Карточка <see cref="User"/>
+    /// Карточка <see cref="DriverCard"/>
     /// </summary>
     public partial class DriverCard : BaseCard
     {
@@ -25,6 +25,11 @@ namespace TrafficLedger.Desktop.Components.Cards
         /// Нажата кнопка привязки транспорта
         /// </summary>
         public event Action ConnectTransportClicked;
+
+        /// <summary>
+        /// Нажата кнопка привязки водительского удостоверения
+        /// </summary>
+        public event Action ConnectDriverLicenseClicked;
 
         /// <summary>
         /// Инициализирует новый экземпляр <see cref="TransportCard"/>
@@ -58,6 +63,11 @@ namespace TrafficLedger.Desktop.Components.Cards
         private void buttonConnectTransport_Click(object sender, EventArgs e)
         {
             ConnectTransportClicked?.Invoke();
+        }
+
+        private void buttonConnectDriverLicense_Click(object sender, EventArgs e)
+        {
+            ConnectDriverLicenseClicked?.Invoke();
         }
     }
 }

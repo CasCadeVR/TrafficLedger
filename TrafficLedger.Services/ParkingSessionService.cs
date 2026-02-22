@@ -1,5 +1,5 @@
 ﻿using TrafficLedger.Common.Core.Extensions;
-using TrafficLedger.Common.Repositories.Contracts;
+using TrafficLedger.Common.Services.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
 using TrafficLedger.Repositories.Contracts.IReadRepositories;

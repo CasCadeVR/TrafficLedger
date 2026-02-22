@@ -1,5 +1,5 @@
 ﻿using TrafficLedger.Common.Core.Extensions;
-using TrafficLedger.Common.Repositories.Contracts;
+using TrafficLedger.Common.Services.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
@@ -68,40 +68,34 @@ namespace TrafficLedger.Services
         async Task<IReadOnlyCollection<PaymentParkingSessionDBModel>> IPaymentService.GetAllParkingSessions(CancellationToken cancellationToken)
            => await paymentReadRepository.GetAllParkingSessions(cancellationToken);
 
-        async Task IPaymentService.ApprovePayment(Guid paymentId, CancellationToken cancellationToken)
+        async Task IRequestedService<Payment, PaymentCreateModel>.Approve(Guid id, Guid processedById, CancellationToken cancellationToken)
         {
-            var payment = await paymentReadRepository.GetById(paymentId, cancellationToken)
-                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {paymentId}"));
+            var payment = await paymentReadRepository.GetById(id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {id}"));
+
+            await userReadRepository.GetById(processedById, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя одобряющего с идентификатором {processedById}"));
 
             payment!.Status = RequestStatus.Approved;
+            payment.ProcessedById = processedById;
 
             paymentWriteRepository.Update(payment);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
-        async Task IPaymentService.RejectPayment(Guid paymentId, CancellationToken cancellationToken)
+        async Task IRequestedService<Payment, PaymentCreateModel>.Reject(Guid id, Guid processedById, string commentary, CancellationToken cancellationToken)
         {
-            var payment = await paymentReadRepository.GetById(paymentId, cancellationToken)
-                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {paymentId}"));
+            var payment = await paymentReadRepository.GetById(id, cancellationToken)
+                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти чек с идентификатором {id}"));
 
-            var fine = await fineReadRepository.GetById(payment!.EntityId, cancellationToken);
-            var parkingSession = await fineReadRepository.GetById(payment!.EntityId, cancellationToken);
+            await userReadRepository.GetById(processedById, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя одобряющего с идентификатором {processedById}"));
 
-            if (fine != null)
-            {
-                fine!.Status = RequestStatus.Rejected;
-                fineWriteRepository.Update(fine);
-            } 
-            else if (parkingSession != null)
-            {
-                fine!.Status = RequestStatus.Rejected;
-                fineWriteRepository.Update(fine);
-            } 
-            else
-            {
-                throw new InvalidOperationException($"Штраф с id {payment.EntityId} не существует");
-            }
+            payment!.Status = RequestStatus.Rejected;
+            payment.ProcessedById = processedById;
+            payment.Commentary = commentary;
 
+            paymentWriteRepository.Update(payment);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
 

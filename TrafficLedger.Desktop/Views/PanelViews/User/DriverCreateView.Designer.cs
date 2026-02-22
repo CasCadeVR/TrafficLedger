@@ -1,4 +1,6 @@
-﻿using TrafficLedger.Desktop.Contracts.Views.PanelViews;
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+using TrafficLedger.Desktop.Contracts.Views.PanelViews;
 
 namespace TrafficLedger.Desktop.Views.PanelViews
 {
@@ -259,7 +261,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         private Components.Controls.DateTimePickers.DefaultDateTimePicker dateTimePickerBirthDate;
         private Components.Labels.PrimaryLabel labelUniqueId;
         private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxUniqueId;
-        private Components.CommonButton buttonSave;
+        private CommonButton buttonSave;
         private OpenFileDialog pictureOpenFileDialog;
         private Components.Controls.PictureBoxes.FunctionalPictureBox driverPhoto;
     }

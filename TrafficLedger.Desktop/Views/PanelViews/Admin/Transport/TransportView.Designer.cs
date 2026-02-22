@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
 {
     partial class TransportView
     {
@@ -109,7 +112,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
-        private Components.CommonButton buttonAddTransport;
-        private Components.CommonButton buttonListTransport;
+        private CommonButton buttonAddTransport;
+        private CommonButton buttonListTransport;
     }
 }

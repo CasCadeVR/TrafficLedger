@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships
 {
     partial class OwnershipView
     {
@@ -109,7 +112,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
-        private Components.CommonButton buttonAdd;
-        private Components.CommonButton buttonList;
+        private CommonButton buttonAdd;
+        private CommonButton buttonList;
     }
 }

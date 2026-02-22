@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
 {
     partial class TransportCreateView
     {
@@ -343,7 +346,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private Components.Labels.PrimaryLabel labelFullName;
         private Components.Labels.PrimaryLabel labelCode;
-        private Components.CommonButton buttonSave;
+        private CommonButton buttonSave;
         private Components.Controls.TextBoxes.DefaultComboBox comboBoxCategory;
         private Components.Labels.PrimaryLabel labelRegion;
         private Components.Controls.TextBoxes.DefaultTextBox textBoxBrand;

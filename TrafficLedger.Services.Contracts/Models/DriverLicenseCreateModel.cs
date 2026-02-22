@@ -1,12 +1,13 @@
 ﻿using TrafficLedger.Common.Services.Contracts.Extensions;
 using TrafficLedger.Entities;
+using TrafficLedger.Services.Contracts.Models.Generics;
 
 namespace TrafficLedger.Services.Contracts.Models;
 
 /// <summary>
 /// Модель запроса водительского удостверения
 /// </summary>
-public class DriverLicenseCreateModel
+public class DriverLicenseCreateModel : RequestedCreateModel
 {
     /// <summary>
     /// Номер удостоверения

@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Users
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Users
 {
     partial class UserCreateView
     {
@@ -161,7 +164,7 @@
         private Components.Labels.PrimaryLabel labelFullName;
         private Components.Labels.PrimaryLabel labelLogin;
         private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxLogin;
-        private Components.CommonButton buttonSave;
+        private CommonButton buttonSave;
         private Components.Controls.TextBoxes.DefaultComboBox comboBoxRole;
     }
 }

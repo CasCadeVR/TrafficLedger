@@ -1,4 +1,7 @@
 ﻿using TrafficLedger.Desktop.Components.Cards;
+using TrafficLedger.Desktop.Infrastructure.Models;
+using TrafficLedger.Desktop.Services;
+using TrafficLedger.Desktop.Views.Views;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
@@ -10,6 +13,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
     public partial class PaymentFineListView : PaymentListWrapper
     {
         private readonly IPaymentService paymentService;
+        private readonly AppUser currentUser;
 
         public PaymentFineListView(IPaymentService paymentService)
         {
@@ -18,6 +22,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+
+            currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         protected override async Task<IEnumerable<PaymentFineDBModel>> LoadItemsAsync(CancellationToken cancellationToken)
@@ -59,16 +65,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
 
         private void Reject(Payment item)
         {
-            var result = MessageBox.Show(
-              $"Вы действительно хотите отклонить оплату по чеку с датой {item.Date}?",
-              "Выход",
-              MessageBoxButtons.YesNo,
-              MessageBoxIcon.Question
-            );
-
-            if (result == DialogResult.Yes)
+            var rejectForm = new RejectForm();
+            if (rejectForm.ShowDialog() == DialogResult.OK)
             {
-                paymentService.RejectPayment(item.Id, CancellationToken.None);
+                paymentService.Reject(item.Id, currentUser.Id, rejectForm.Commentary, CancellationToken.None);
                 MessageBox.Show($"Чек {item.Date} успешно отклонён, штраф в силе", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 base.OnNavigation(CurrentNavigationItem);
             }
@@ -85,7 +85,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
 
             if (result == DialogResult.Yes)
             {
-                paymentService.ApprovePayment(item.Id, CancellationToken.None);
+                paymentService.Approve(item.Id, currentUser.Id, CancellationToken.None);
                 MessageBox.Show($"Чек {item.Date} успешно подтверждён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 base.OnNavigation(CurrentNavigationItem);
             }

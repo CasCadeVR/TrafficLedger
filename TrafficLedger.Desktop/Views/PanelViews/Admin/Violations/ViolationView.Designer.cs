@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
 {
     partial class ViolationView
     {
@@ -109,7 +112,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
-        private Components.CommonButton buttonAdd;
-        private Components.CommonButton buttonList;
+        private CommonButton buttonAdd;
+        private CommonButton buttonList;
     }
 }

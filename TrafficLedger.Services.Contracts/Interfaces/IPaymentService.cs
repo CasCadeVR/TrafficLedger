@@ -1,4 +1,4 @@
-﻿using TrafficLedger.Common.Repositories.Contracts;
+﻿using TrafficLedger.Common.Services.Contracts;
 using TrafficLedger.Entities;
 using TrafficLedger.Repositories.Contracts.Models.Payments;
 using TrafficLedger.Services.Contracts.Models;
@@ -8,7 +8,7 @@ namespace TrafficLedger.Services.Contracts.Interfaces;
 /// <summary>
 /// Сервис по работе с <see cref="Payment"/>
 /// </summary>
-public interface IPaymentService : IBaseService<Payment, PaymentCreateModel>
+public interface IPaymentService : IRequestedService<Payment, PaymentCreateModel>
 {
     /// <summary>
     /// Получает список <see cref="PaymentFineDBModel"/> по идентификатору пользователя
@@ -29,14 +29,4 @@ public interface IPaymentService : IBaseService<Payment, PaymentCreateModel>
     /// Получает список <see cref="PaymentParkingSessionDBModel"/>
     /// </summary>
     Task<IReadOnlyCollection<PaymentParkingSessionDBModel>> GetAllParkingSessions(CancellationToken cancellationToken);
-
-    /// <summary>
-    /// Одобряет оплату по чеку <see cref="Payment"/> по идентификатору чека
-    /// </summary>
-    Task ApprovePayment(Guid paymentId, CancellationToken cancellationToken);
-
-    /// <summary>
-    /// Отклоняет оплату по чеку <see cref="Payment"/> по идентификатору чека
-    /// </summary>
-    Task RejectPayment(Guid paymentId, CancellationToken cancellationToken);
 }

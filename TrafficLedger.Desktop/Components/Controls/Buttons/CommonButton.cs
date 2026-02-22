@@ -24,10 +24,10 @@ namespace TrafficLedger.Desktop.Components
             base.BackColor = Color.Green;
             base.ForeColor = ColorScheme.ButtonPrimary;
 
-            base.FlatStyle = FlatStyle.Flat;
-            base.FlatAppearance.BorderColor = ColorScheme.ButtonBorder;
-            base.FlatAppearance.BorderSize = 1;
-            base.Padding = new Padding(8, 4, 8, 4);
+            FlatStyle = FlatStyle.Flat;
+            FlatAppearance.BorderColor = ColorScheme.ButtonBorder;
+            FlatAppearance.BorderSize = 1;
+            Padding = new Padding(8, 4, 8, 4);
         }
 
         /// <inheritdoc cref="Control.OnHandleCreated(EventArgs)"/>

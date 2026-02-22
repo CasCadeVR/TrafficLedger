@@ -79,7 +79,7 @@ namespace TrafficLedger.Context.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AttachmentId")
+                    b.Property<Guid>("AttachmentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("BirthDate")
@@ -128,7 +128,7 @@ namespace TrafficLedger.Context.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AttachmentId")
+                    b.Property<Guid>("AttachmentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Commentary")
@@ -205,10 +205,6 @@ namespace TrafficLedger.Context.Migrations
                         .HasMaxLength(2047)
                         .HasColumnType("nvarchar(2047)");
 
-                    b.Property<string>("Commentary")
-                        .HasMaxLength(2047)
-                        .HasColumnType("nvarchar(2047)");
-
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
@@ -221,12 +217,6 @@ namespace TrafficLedger.Context.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset?>("ProcessedAt")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<Guid?>("ProcessedById")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -244,8 +234,6 @@ namespace TrafficLedger.Context.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProcessedById");
 
                     b.HasIndex("TransportId");
 
@@ -670,7 +658,8 @@ namespace TrafficLedger.Context.Migrations
                 {
                     b.HasOne("TrafficLedger.Entities.Attachment", "Attachment")
                         .WithMany()
-                        .HasForeignKey("AttachmentId");
+                        .HasForeignKey("AttachmentId")
+                        .IsRequired();
 
                     b.HasOne("TrafficLedger.Entities.User", "User")
                         .WithMany()
@@ -687,7 +676,8 @@ namespace TrafficLedger.Context.Migrations
                 {
                     b.HasOne("TrafficLedger.Entities.Attachment", "Attachment")
                         .WithMany()
-                        .HasForeignKey("AttachmentId");
+                        .HasForeignKey("AttachmentId")
+                        .IsRequired();
 
                     b.HasOne("TrafficLedger.Entities.Driver", "Driver")
                         .WithMany()
@@ -715,10 +705,6 @@ namespace TrafficLedger.Context.Migrations
 
             modelBuilder.Entity("TrafficLedger.Entities.Fine", b =>
                 {
-                    b.HasOne("TrafficLedger.Entities.User", "ProcessedBy")
-                        .WithMany()
-                        .HasForeignKey("ProcessedById");
-
                     b.HasOne("TrafficLedger.Entities.Transport", "Transport")
                         .WithMany("Fines")
                         .HasForeignKey("TransportId")
@@ -735,8 +721,6 @@ namespace TrafficLedger.Context.Migrations
                         .HasForeignKey("ViolationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("ProcessedBy");
 
                     b.Navigation("Transport");
 

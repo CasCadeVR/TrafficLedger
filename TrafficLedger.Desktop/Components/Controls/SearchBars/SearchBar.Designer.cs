@@ -1,4 +1,6 @@
-﻿namespace TrafficLedger.Desktop.Components.Controls.SearchBars
+﻿using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Components.Controls.SearchBars
 {
     partial class SearchBar
     {

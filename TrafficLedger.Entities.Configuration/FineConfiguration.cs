@@ -21,9 +21,6 @@ public class FineConfiguration : IEntityTypeConfiguration<Fine>
         builder.Property(x => x.Date).IsRequired();
         builder.Property(x => x.Status).IsRequired();
 
-        builder.Property(x => x.Commentary)
-            .HasMaxLength(RequestedDataBaseEntityValidationRules.CommentaryMaxLength);
-
         builder.Property(x => x.Address)
             .IsRequired()
             .HasMaxLength(FineValidationRules.AddressMaxLength);
@@ -42,10 +39,5 @@ public class FineConfiguration : IEntityTypeConfiguration<Fine>
             .WithMany()
             .HasForeignKey(x => x.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull);
-
-        builder.HasOne(x => x.ProcessedBy)
-           .WithMany()
-           .HasForeignKey(x => x.ProcessedById)
-           .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

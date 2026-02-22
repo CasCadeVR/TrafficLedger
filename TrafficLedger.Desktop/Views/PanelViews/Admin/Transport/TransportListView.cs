@@ -2,11 +2,15 @@
 using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Enums;
 using TrafficLedger.Desktop.Contracts.Interfaces;
+using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
+using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.Fines;
+using TrafficLedger.Desktop.Views.Views;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
@@ -15,6 +19,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
     {
         private readonly INavigationService navigationService;
         private readonly ITransportService transportService;
+        private readonly AppUser currentUser;
+        private bool RequestsOnly = false;
 
         public TransportListView(INavigationService navigationService, ITransportService transportService)
         {
@@ -24,6 +30,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+
+            this.currentUser = AuthenticationService.Instance.CurrentUser;
+        }
+
+        public void Initialize(bool requestsOnly)
+        {
+            RequestsOnly = requestsOnly;
         }
 
         protected override async Task<IEnumerable<Transport>> LoadItemsAsync(CancellationToken cancellationToken)
@@ -33,6 +46,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
 
         protected override IEnumerable<Transport> FilterItems(string searchQuery, IEnumerable<Transport> items)
         {
+            items = RequestsOnly ? items.Where(x => x.Status == RequestStatus.Pending) : items;
+
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
                 return items;
@@ -49,14 +64,43 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
 
         protected override Control CreateItemControl(Transport item)
         {
-            var card = new TransportCard(item, TransportCardRoleContext.RoleList);
+            if (RequestsOnly)
+            {
+                var card = new TransportRequestCard(item);
 
-            card.EditClicked += () => EditTransport(item);
-            card.DeletedClicked += () => DeleteTransport(item);
-            card.CreateFineClicked += () => CreateFine(item);
-            card.ListFineClicked += () => ListFine(item);
+                card.AboutClicked += () => AboutTransportRequest(item);
+                card.ApproveClicked += () => Approve(item);
+                card.RejectClicked += () => Reject(item);
 
-            return card;
+                return card;
+            }
+            else
+            {
+                var card = new TransportCard(item, TransportCardRoleContext.RoleList);
+
+                card.EditClicked += () => EditTransport(item);
+                card.DeletedClicked += () => DeleteTransport(item);
+                card.CreateFineClicked += () => CreateFine(item);
+                card.ListFineClicked += () => ListFine(item);
+
+                return card;
+            }
+        }
+
+        private void AboutTransportRequest(Transport item)
+        {
+            var createView = navigationService.ServiceProvider.GetRequiredService<TransportCreateView>();
+            createView.Initialize(item);
+
+            var navigationItem = new NavigationItem()
+            {
+                Title = "Просмотр заявки",
+                ViewType = null,
+                ViewInstance = createView,
+                Parent = CurrentNavigationItem,
+            };
+
+            navigationService.NavigateTo(navigationItem);
         }
 
         private void EditTransport(Transport item)
@@ -122,6 +166,34 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
             };
 
             navigationService.NavigateTo(navigationItem);
+        }
+
+        private void Reject(Transport item)
+        {
+            var rejectForm = new RejectForm();
+            if (rejectForm.ShowDialog() == DialogResult.OK)
+            {
+                transportService.Reject(item.Id, currentUser.Id, rejectForm.Commentary, CancellationToken.None);
+                MessageBox.Show($"Транспорт {item.TransportCode} успешно отклонён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                base.OnNavigation(CurrentNavigationItem);
+            }
+        }
+
+        private void Approve(Transport item)
+        {
+            var result = MessageBox.Show(
+              $"Вы действительно хотите подтвердить транспорт с номером {item.TransportCode}?",
+              "Выход",
+              MessageBoxButtons.YesNo,
+              MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                transportService.Approve(item.Id, currentUser.Id, CancellationToken.None);
+                MessageBox.Show($"Транспорт {item.TransportCode} успешно был подтверждён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                base.OnNavigation(CurrentNavigationItem);
+            }
         }
     }
 }

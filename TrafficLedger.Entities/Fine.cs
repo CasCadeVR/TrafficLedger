@@ -1,16 +1,22 @@
-﻿using TrafficLedger.Entities.Generics;
+﻿using TrafficLedger.Entities.Contracts;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Entities;
 
 /// <summary>
 /// Сущность штрафа
 /// </summary>
-public class Fine : RequestedDataBaseEntity
+public class Fine : DataBaseEntity
 {
     /// <summary>
     /// Дата получения штрафа
     /// </summary>
     public DateTimeOffset Date { get; set; }
+
+    /// <summary>
+    /// Статус обработки
+    /// </summary>
+    public RequestStatus Status { get; set; }
 
     /// <summary>
     /// Адрес, по которому произошло нарушение
@@ -41,6 +47,16 @@ public class Fine : RequestedDataBaseEntity
     /// Навигационное свойство <see cref="Transport"/>
     /// </summary>
     public Transport Transport { get; set; } = null!;
+
+    /// <summary>
+    /// Идентификатор отправителя запроса (User)
+    /// </summary>
+    public Guid UserId { get; set; }
+
+    /// <summary>
+    /// Навигационное свойтво <see cref="User"/>-отправителя
+    /// </summary>
+    public virtual User? User { get; set; }
 
     /// <summary>
     /// Навигационное свойство списка <see cref="Attachment"/>

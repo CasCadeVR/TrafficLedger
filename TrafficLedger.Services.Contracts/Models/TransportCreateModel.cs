@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TrafficLedger.Entities;
 using TrafficLedger.Entities.ValidationRules;
+using TrafficLedger.Services.Contracts.Models.Generics;
 using TrafficLedger.Services.Contracts.Models.Ownerships;
 
 namespace TrafficLedger.Services.Contracts.Models;
@@ -8,7 +9,7 @@ namespace TrafficLedger.Services.Contracts.Models;
 /// <summary>
 /// Модель запроса транспорта
 /// </summary>
-public class TransportCreateModel
+public class TransportCreateModel : RequestedCreateModel
 {
     /// <summary>
     /// Регистрационный номер

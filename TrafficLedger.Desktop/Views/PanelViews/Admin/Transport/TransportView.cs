@@ -1,5 +1,4 @@
-﻿using System;
-using TrafficLedger.Desktop.Contracts.Interfaces;
+﻿using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Contracts.Views.PanelViews;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Views.PanelViews.FineCreate;

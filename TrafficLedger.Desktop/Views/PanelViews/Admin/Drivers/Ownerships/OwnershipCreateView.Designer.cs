@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
 {
     partial class OwnershipCreateView
     {
@@ -161,7 +164,7 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private Components.Labels.PrimaryLabel labelTransportCode;
-        private Components.CommonButton buttonSave;
+        private CommonButton buttonSave;
         private Components.Controls.TextBoxes.DefaultTextBox textBoxTransportCode;
         private Components.Labels.PrimaryLabel labelDateTitle;
         private Components.Controls.DateTimePickers.DefaultDateTimePicker dateTimePickerDate;

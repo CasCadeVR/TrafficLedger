@@ -1,4 +1,6 @@
-﻿namespace TrafficLedger.Desktop.Components.Cards
+﻿using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Components.Cards
 {
     partial class PaymentFineCard
     {
@@ -28,392 +30,389 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.transportCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.buttonDelete = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonReject = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonApprove = new TrafficLedger.Desktop.Components.CommonButton();
-            this.labelAddressTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.labelFinePriceTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.finePrice = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelNameTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.violationName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelNumberTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.code = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelDateTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.fineDate = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelPaymentDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.paymentDate = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.transportCodeTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.labelStatusTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.status = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.address = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.description = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tableLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            transportCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelAddressTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            labelFinePriceTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            finePrice = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelNameTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            violationName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelNumberTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            code = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelDateTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            fineDate = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelPaymentDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            paymentDate = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            transportCodeTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            labelStatusTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            status = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            address = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            description = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            buttonDelete = new CommonButton();
+            buttonReject = new CommonButton();
+            buttonApprove = new CommonButton();
+            toolTip = new ToolTip(components);
+            tableLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.ColumnCount = 7;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.Controls.Add(this.transportCode, 5, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonDelete, 5, 7);
-            this.tableLayoutPanel1.Controls.Add(this.buttonReject, 5, 5);
-            this.tableLayoutPanel1.Controls.Add(this.buttonApprove, 5, 3);
-            this.tableLayoutPanel1.Controls.Add(this.labelAddressTitle, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.labelFinePriceTitle, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.finePrice, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.labelNameTitle, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.violationName, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.labelNumberTitle, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.code, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.labelDateTitle, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.fineDate, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.labelPaymentDate, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.paymentDate, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.transportCodeTitle, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.labelStatusTitle, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.status, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.address, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.labelDescriptionTitle, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.description, 1, 7);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.10974F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.10974F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.10974F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.10974F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11197F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11197F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11197F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11403F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(666, 390);
-            this.tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.ColumnCount = 7;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.28653F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.28653F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.28653F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851F));
+            tableLayoutPanel1.Controls.Add(transportCode, 5, 0);
+            tableLayoutPanel1.Controls.Add(labelAddressTitle, 0, 6);
+            tableLayoutPanel1.Controls.Add(labelFinePriceTitle, 0, 5);
+            tableLayoutPanel1.Controls.Add(finePrice, 1, 5);
+            tableLayoutPanel1.Controls.Add(labelNameTitle, 0, 4);
+            tableLayoutPanel1.Controls.Add(violationName, 1, 4);
+            tableLayoutPanel1.Controls.Add(labelNumberTitle, 0, 3);
+            tableLayoutPanel1.Controls.Add(code, 1, 3);
+            tableLayoutPanel1.Controls.Add(labelDateTitle, 0, 2);
+            tableLayoutPanel1.Controls.Add(fineDate, 1, 2);
+            tableLayoutPanel1.Controls.Add(labelPaymentDate, 0, 1);
+            tableLayoutPanel1.Controls.Add(paymentDate, 1, 1);
+            tableLayoutPanel1.Controls.Add(transportCodeTitle, 4, 0);
+            tableLayoutPanel1.Controls.Add(labelStatusTitle, 0, 0);
+            tableLayoutPanel1.Controls.Add(status, 1, 0);
+            tableLayoutPanel1.Controls.Add(address, 1, 6);
+            tableLayoutPanel1.Controls.Add(labelDescriptionTitle, 0, 7);
+            tableLayoutPanel1.Controls.Add(description, 1, 7);
+            tableLayoutPanel1.Controls.Add(buttonDelete, 5, 8);
+            tableLayoutPanel1.Controls.Add(buttonReject, 5, 7);
+            tableLayoutPanel1.Controls.Add(buttonApprove, 5, 6);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(4);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 9;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.10974F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.10974F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.10974F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.10974F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.11197F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.11197F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.11197F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.11403F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.11111F));
+            tableLayoutPanel1.Size = new Size(666, 344);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // transportCode
             // 
-            this.transportCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.transportCode.BackColor = System.Drawing.Color.GhostWhite;
-            this.transportCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.transportCode, 2);
-            this.transportCode.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.transportCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.transportCode.Location = new System.Drawing.Point(478, 13);
-            this.transportCode.Name = "transportCode";
-            this.transportCode.ReadOnly = true;
-            this.transportCode.Size = new System.Drawing.Size(185, 16);
-            this.transportCode.TabIndex = 26;
-            this.transportCode.Text = "Загрузка...";
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanel1.SetColumnSpan(this.buttonDelete, 2);
-            this.buttonDelete.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDelete.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonDelete.ForeColor = System.Drawing.Color.White;
-            this.buttonDelete.Location = new System.Drawing.Point(478, 304);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.tableLayoutPanel1.SetRowSpan(this.buttonDelete, 2);
-            this.buttonDelete.Size = new System.Drawing.Size(185, 77);
-            this.buttonDelete.TabIndex = 21;
-            this.buttonDelete.Text = "Удалить";
-            this.buttonDelete.UseVisualStyleBackColor = false;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
-            // 
-            // buttonReject
-            // 
-            this.buttonReject.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanel1.SetColumnSpan(this.buttonReject, 2);
-            this.buttonReject.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonReject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonReject.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonReject.ForeColor = System.Drawing.Color.White;
-            this.buttonReject.Location = new System.Drawing.Point(478, 218);
-            this.buttonReject.Name = "buttonReject";
-            this.buttonReject.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.tableLayoutPanel1.SetRowSpan(this.buttonReject, 2);
-            this.buttonReject.Size = new System.Drawing.Size(185, 78);
-            this.buttonReject.TabIndex = 24;
-            this.buttonReject.Text = "Отклонить";
-            this.buttonReject.UseVisualStyleBackColor = false;
-            this.buttonReject.Click += new System.EventHandler(this.buttonReject_Click);
-            // 
-            // buttonApprove
-            // 
-            this.buttonApprove.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanel1.SetColumnSpan(this.buttonApprove, 2);
-            this.buttonApprove.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonApprove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonApprove.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonApprove.ForeColor = System.Drawing.Color.White;
-            this.buttonApprove.Location = new System.Drawing.Point(478, 132);
-            this.buttonApprove.Name = "buttonApprove";
-            this.buttonApprove.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.tableLayoutPanel1.SetRowSpan(this.buttonApprove, 2);
-            this.buttonApprove.Size = new System.Drawing.Size(185, 76);
-            this.buttonApprove.TabIndex = 20;
-            this.buttonApprove.Text = "Одобрить";
-            this.buttonApprove.UseVisualStyleBackColor = false;
-            this.buttonApprove.Click += new System.EventHandler(this.buttonApprove_Click);
+            transportCode.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            transportCode.BackColor = Color.GhostWhite;
+            transportCode.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(transportCode, 2);
+            transportCode.Font = new Font("Consolas", 9.75F);
+            transportCode.ForeColor = Color.FromArgb(0, 0, 0);
+            transportCode.Location = new Point(478, 11);
+            transportCode.Name = "transportCode";
+            transportCode.ReadOnly = true;
+            transportCode.Size = new Size(185, 16);
+            transportCode.TabIndex = 26;
+            transportCode.Text = "Загрузка...";
             // 
             // labelAddressTitle
             // 
-            this.labelAddressTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelAddressTitle.AutoSize = true;
-            this.labelAddressTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelAddressTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelAddressTitle.Location = new System.Drawing.Point(41, 271);
-            this.labelAddressTitle.Name = "labelAddressTitle";
-            this.labelAddressTitle.Size = new System.Drawing.Size(51, 17);
-            this.labelAddressTitle.TabIndex = 12;
-            this.labelAddressTitle.Text = "Адрес: ";
+            labelAddressTitle.Anchor = AnchorStyles.Right;
+            labelAddressTitle.AutoSize = true;
+            labelAddressTitle.Font = new Font("Segoe UI", 9.75F);
+            labelAddressTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelAddressTitle.Location = new Point(41, 238);
+            labelAddressTitle.Name = "labelAddressTitle";
+            labelAddressTitle.Size = new Size(51, 17);
+            labelAddressTitle.TabIndex = 12;
+            labelAddressTitle.Text = "Адрес: ";
             // 
             // labelFinePriceTitle
             // 
-            this.labelFinePriceTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelFinePriceTitle.AutoSize = true;
-            this.labelFinePriceTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelFinePriceTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelFinePriceTitle.Location = new System.Drawing.Point(38, 219);
-            this.labelFinePriceTitle.Name = "labelFinePriceTitle";
-            this.labelFinePriceTitle.Size = new System.Drawing.Size(54, 34);
-            this.labelFinePriceTitle.TabIndex = 13;
-            this.labelFinePriceTitle.Text = "Штраф (руб.): ";
+            labelFinePriceTitle.Anchor = AnchorStyles.Right;
+            labelFinePriceTitle.AutoSize = true;
+            labelFinePriceTitle.Font = new Font("Segoe UI", 9.75F);
+            labelFinePriceTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelFinePriceTitle.Location = new Point(38, 192);
+            labelFinePriceTitle.Name = "labelFinePriceTitle";
+            labelFinePriceTitle.Size = new Size(54, 34);
+            labelFinePriceTitle.TabIndex = 13;
+            labelFinePriceTitle.Text = "Штраф (руб.): ";
             // 
             // finePrice
             // 
-            this.finePrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.finePrice.BackColor = System.Drawing.Color.GhostWhite;
-            this.finePrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.finePrice, 2);
-            this.finePrice.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.finePrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.finePrice.Location = new System.Drawing.Point(98, 225);
-            this.finePrice.Name = "finePrice";
-            this.finePrice.ReadOnly = true;
-            this.finePrice.Size = new System.Drawing.Size(100, 16);
-            this.finePrice.TabIndex = 17;
-            this.finePrice.Text = "Загрузка...";
+            finePrice.Anchor = AnchorStyles.Left;
+            finePrice.BackColor = Color.GhostWhite;
+            finePrice.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(finePrice, 2);
+            finePrice.Font = new Font("Consolas", 9.75F);
+            finePrice.ForeColor = Color.FromArgb(0, 0, 0);
+            finePrice.Location = new Point(98, 197);
+            finePrice.Name = "finePrice";
+            finePrice.ReadOnly = true;
+            finePrice.Size = new Size(100, 16);
+            finePrice.TabIndex = 17;
+            finePrice.Text = "Загрузка...";
             // 
             // labelNameTitle
             // 
-            this.labelNameTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelNameTitle.AutoSize = true;
-            this.labelNameTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelNameTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelNameTitle.Location = new System.Drawing.Point(9, 176);
-            this.labelNameTitle.Name = "labelNameTitle";
-            this.labelNameTitle.Size = new System.Drawing.Size(83, 34);
-            this.labelNameTitle.TabIndex = 11;
-            this.labelNameTitle.Text = "Наименование: ";
+            labelNameTitle.Anchor = AnchorStyles.Right;
+            labelNameTitle.AutoSize = true;
+            labelNameTitle.Font = new Font("Segoe UI", 9.75F);
+            labelNameTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelNameTitle.Location = new Point(9, 154);
+            labelNameTitle.Name = "labelNameTitle";
+            labelNameTitle.Size = new Size(83, 34);
+            labelNameTitle.TabIndex = 11;
+            labelNameTitle.Text = "Наименование: ";
             // 
             // violationName
             // 
-            this.violationName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.violationName.BackColor = System.Drawing.Color.GhostWhite;
-            this.violationName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.violationName, 4);
-            this.violationName.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.violationName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.violationName.Location = new System.Drawing.Point(98, 185);
-            this.violationName.Name = "violationName";
-            this.violationName.ReadOnly = true;
-            this.violationName.Size = new System.Drawing.Size(374, 16);
-            this.violationName.TabIndex = 15;
-            this.violationName.Text = "Загрузка...";
+            violationName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            violationName.BackColor = Color.GhostWhite;
+            violationName.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(violationName, 4);
+            violationName.Font = new Font("Consolas", 9.75F);
+            violationName.ForeColor = Color.FromArgb(0, 0, 0);
+            violationName.Location = new Point(98, 163);
+            violationName.Name = "violationName";
+            violationName.ReadOnly = true;
+            violationName.Size = new Size(374, 16);
+            violationName.TabIndex = 15;
+            violationName.Text = "Загрузка...";
             // 
             // labelNumberTitle
             // 
-            this.labelNumberTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelNumberTitle.AutoSize = true;
-            this.labelNumberTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelNumberTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelNumberTitle.Location = new System.Drawing.Point(36, 142);
-            this.labelNumberTitle.Name = "labelNumberTitle";
-            this.labelNumberTitle.Size = new System.Drawing.Size(56, 17);
-            this.labelNumberTitle.TabIndex = 10;
-            this.labelNumberTitle.Text = "Номер: ";
+            labelNumberTitle.Anchor = AnchorStyles.Right;
+            labelNumberTitle.AutoSize = true;
+            labelNumberTitle.Font = new Font("Segoe UI", 9.75F);
+            labelNumberTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelNumberTitle.Location = new Point(36, 124);
+            labelNumberTitle.Name = "labelNumberTitle";
+            labelNumberTitle.Size = new Size(56, 17);
+            labelNumberTitle.TabIndex = 10;
+            labelNumberTitle.Text = "Номер: ";
             // 
             // code
             // 
-            this.code.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.code.BackColor = System.Drawing.Color.GhostWhite;
-            this.code.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.code, 2);
-            this.code.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.code.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.code.Location = new System.Drawing.Point(98, 139);
-            this.code.Name = "code";
-            this.code.ReadOnly = true;
-            this.code.Size = new System.Drawing.Size(100, 16);
-            this.code.TabIndex = 14;
-            this.code.Text = "Загрузка...";
+            code.Anchor = AnchorStyles.Left;
+            code.BackColor = Color.GhostWhite;
+            code.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(code, 2);
+            code.Font = new Font("Consolas", 9.75F);
+            code.ForeColor = Color.FromArgb(0, 0, 0);
+            code.Location = new Point(98, 121);
+            code.Name = "code";
+            code.ReadOnly = true;
+            code.Size = new Size(100, 16);
+            code.TabIndex = 14;
+            code.Text = "Загрузка...";
             // 
             // labelDateTitle
             // 
-            this.labelDateTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelDateTitle.AutoSize = true;
-            this.labelDateTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelDateTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelDateTitle.Location = new System.Drawing.Point(14, 90);
-            this.labelDateTitle.Name = "labelDateTitle";
-            this.labelDateTitle.Size = new System.Drawing.Size(78, 34);
-            this.labelDateTitle.TabIndex = 22;
-            this.labelDateTitle.Text = "Дата получения: ";
+            labelDateTitle.Anchor = AnchorStyles.Right;
+            labelDateTitle.AutoSize = true;
+            labelDateTitle.Font = new Font("Segoe UI", 9.75F);
+            labelDateTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelDateTitle.Location = new Point(14, 78);
+            labelDateTitle.Name = "labelDateTitle";
+            labelDateTitle.Size = new Size(78, 34);
+            labelDateTitle.TabIndex = 22;
+            labelDateTitle.Text = "Дата получения: ";
             // 
             // fineDate
             // 
-            this.fineDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.fineDate.BackColor = System.Drawing.Color.GhostWhite;
-            this.fineDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.fineDate, 2);
-            this.fineDate.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.fineDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.fineDate.Location = new System.Drawing.Point(98, 99);
-            this.fineDate.Name = "fineDate";
-            this.fineDate.ReadOnly = true;
-            this.fineDate.Size = new System.Drawing.Size(184, 16);
-            this.fineDate.TabIndex = 23;
-            this.fineDate.Text = "Загрузка...";
+            fineDate.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            fineDate.BackColor = Color.GhostWhite;
+            fineDate.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(fineDate, 2);
+            fineDate.Font = new Font("Consolas", 9.75F);
+            fineDate.ForeColor = Color.FromArgb(0, 0, 0);
+            fineDate.Location = new Point(98, 87);
+            fineDate.Name = "fineDate";
+            fineDate.ReadOnly = true;
+            fineDate.Size = new Size(184, 16);
+            fineDate.TabIndex = 23;
+            fineDate.Text = "Загрузка...";
             // 
             // labelPaymentDate
             // 
-            this.labelPaymentDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelPaymentDate.AutoSize = true;
-            this.labelPaymentDate.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelPaymentDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelPaymentDate.Location = new System.Drawing.Point(6, 56);
-            this.labelPaymentDate.Name = "labelPaymentDate";
-            this.labelPaymentDate.Size = new System.Drawing.Size(86, 17);
-            this.labelPaymentDate.TabIndex = 27;
-            this.labelPaymentDate.Text = "Дата оплаты: ";
+            labelPaymentDate.Anchor = AnchorStyles.Right;
+            labelPaymentDate.AutoSize = true;
+            labelPaymentDate.Font = new Font("Segoe UI", 9.75F);
+            labelPaymentDate.ForeColor = Color.FromArgb(0, 0, 0);
+            labelPaymentDate.Location = new Point(6, 48);
+            labelPaymentDate.Name = "labelPaymentDate";
+            labelPaymentDate.Size = new Size(86, 17);
+            labelPaymentDate.TabIndex = 27;
+            labelPaymentDate.Text = "Дата оплаты: ";
             // 
             // paymentDate
             // 
-            this.paymentDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.paymentDate.BackColor = System.Drawing.Color.GhostWhite;
-            this.paymentDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.paymentDate, 2);
-            this.paymentDate.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.paymentDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.paymentDate.Location = new System.Drawing.Point(98, 56);
-            this.paymentDate.Name = "paymentDate";
-            this.paymentDate.ReadOnly = true;
-            this.paymentDate.Size = new System.Drawing.Size(184, 16);
-            this.paymentDate.TabIndex = 28;
-            this.paymentDate.Text = "Загрузка...";
+            paymentDate.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            paymentDate.BackColor = Color.GhostWhite;
+            paymentDate.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(paymentDate, 2);
+            paymentDate.Font = new Font("Consolas", 9.75F);
+            paymentDate.ForeColor = Color.FromArgb(0, 0, 0);
+            paymentDate.Location = new Point(98, 49);
+            paymentDate.Name = "paymentDate";
+            paymentDate.ReadOnly = true;
+            paymentDate.Size = new Size(184, 16);
+            paymentDate.TabIndex = 28;
+            paymentDate.Text = "Загрузка...";
             // 
             // transportCodeTitle
             // 
-            this.transportCodeTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.transportCodeTitle.AutoSize = true;
-            this.transportCodeTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.transportCodeTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.transportCodeTitle.Location = new System.Drawing.Point(389, 4);
-            this.transportCodeTitle.Name = "transportCodeTitle";
-            this.transportCodeTitle.Size = new System.Drawing.Size(83, 34);
-            this.transportCodeTitle.TabIndex = 25;
-            this.transportCodeTitle.Text = "Код транспорта: ";
+            transportCodeTitle.Anchor = AnchorStyles.Right;
+            transportCodeTitle.AutoSize = true;
+            transportCodeTitle.Font = new Font("Segoe UI", 9.75F);
+            transportCodeTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            transportCodeTitle.Location = new Point(389, 2);
+            transportCodeTitle.Name = "transportCodeTitle";
+            transportCodeTitle.Size = new Size(83, 34);
+            transportCodeTitle.TabIndex = 25;
+            transportCodeTitle.Text = "Код транспорта: ";
             // 
             // labelStatusTitle
             // 
-            this.labelStatusTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelStatusTitle.AutoSize = true;
-            this.labelStatusTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelStatusTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelStatusTitle.Location = new System.Drawing.Point(40, 13);
-            this.labelStatusTitle.Name = "labelStatusTitle";
-            this.labelStatusTitle.Size = new System.Drawing.Size(52, 17);
-            this.labelStatusTitle.TabIndex = 29;
-            this.labelStatusTitle.Text = "Статус: ";
+            labelStatusTitle.Anchor = AnchorStyles.Right;
+            labelStatusTitle.AutoSize = true;
+            labelStatusTitle.Font = new Font("Segoe UI", 9.75F);
+            labelStatusTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelStatusTitle.Location = new Point(40, 10);
+            labelStatusTitle.Name = "labelStatusTitle";
+            labelStatusTitle.Size = new Size(52, 17);
+            labelStatusTitle.TabIndex = 29;
+            labelStatusTitle.Text = "Статус: ";
             // 
             // status
             // 
-            this.status.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.status.BackColor = System.Drawing.Color.GhostWhite;
-            this.status.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.status, 2);
-            this.status.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.status.Location = new System.Drawing.Point(98, 10);
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
-            this.status.Size = new System.Drawing.Size(100, 16);
-            this.status.TabIndex = 30;
-            this.status.Text = "Загрузка...";
+            status.Anchor = AnchorStyles.Left;
+            status.BackColor = Color.GhostWhite;
+            status.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(status, 2);
+            status.Font = new Font("Consolas", 9.75F);
+            status.ForeColor = Color.FromArgb(0, 0, 0);
+            status.Location = new Point(98, 7);
+            status.Name = "status";
+            status.ReadOnly = true;
+            status.Size = new Size(100, 16);
+            status.TabIndex = 30;
+            status.Text = "Загрузка...";
             // 
             // address
             // 
-            this.address.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.address.BackColor = System.Drawing.Color.GhostWhite;
-            this.address.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.address, 3);
-            this.address.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.address.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.address.Location = new System.Drawing.Point(98, 271);
-            this.address.Name = "address";
-            this.address.ReadOnly = true;
-            this.address.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.address.Size = new System.Drawing.Size(279, 16);
-            this.address.TabIndex = 16;
-            this.address.Text = "Загрузка...";
+            address.Anchor = AnchorStyles.Left;
+            address.BackColor = Color.GhostWhite;
+            address.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(address, 3);
+            address.Font = new Font("Consolas", 9.75F);
+            address.ForeColor = Color.FromArgb(0, 0, 0);
+            address.Location = new Point(98, 239);
+            address.Name = "address";
+            address.ReadOnly = true;
+            address.ScrollBars = ScrollBars.Vertical;
+            address.Size = new Size(279, 16);
+            address.TabIndex = 16;
+            address.Text = "Загрузка...";
             // 
             // labelDescriptionTitle
             // 
-            this.labelDescriptionTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelDescriptionTitle.AutoSize = true;
-            this.labelDescriptionTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelDescriptionTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelDescriptionTitle.Location = new System.Drawing.Point(6, 314);
-            this.labelDescriptionTitle.Name = "labelDescriptionTitle";
-            this.labelDescriptionTitle.Size = new System.Drawing.Size(86, 17);
-            this.labelDescriptionTitle.TabIndex = 31;
-            this.labelDescriptionTitle.Text = "Примечание: ";
+            labelDescriptionTitle.Anchor = AnchorStyles.Right;
+            labelDescriptionTitle.AutoSize = true;
+            labelDescriptionTitle.Font = new Font("Segoe UI", 9.75F);
+            labelDescriptionTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelDescriptionTitle.Location = new Point(6, 276);
+            labelDescriptionTitle.Name = "labelDescriptionTitle";
+            labelDescriptionTitle.Size = new Size(86, 17);
+            labelDescriptionTitle.TabIndex = 31;
+            labelDescriptionTitle.Text = "Примечание: ";
             // 
             // description
             // 
-            this.description.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.description.BackColor = System.Drawing.Color.GhostWhite;
-            this.description.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.description, 3);
-            this.description.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.description.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.description.Location = new System.Drawing.Point(98, 314);
-            this.description.Name = "description";
-            this.description.ReadOnly = true;
-            this.description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.description.Size = new System.Drawing.Size(279, 16);
-            this.description.TabIndex = 32;
-            this.description.Text = "Загрузка...";
+            description.Anchor = AnchorStyles.Left;
+            description.BackColor = Color.GhostWhite;
+            description.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(description, 3);
+            description.Font = new Font("Consolas", 9.75F);
+            description.ForeColor = Color.FromArgb(0, 0, 0);
+            description.Location = new Point(98, 277);
+            description.Name = "description";
+            description.ReadOnly = true;
+            description.ScrollBars = ScrollBars.Vertical;
+            description.Size = new Size(279, 16);
+            description.TabIndex = 32;
+            description.Text = "Загрузка...";
             // 
-            // PaymentCard
+            // buttonDelete
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "PaymentCard";
-            this.Size = new System.Drawing.Size(666, 390);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.ResumeLayout(false);
+            buttonDelete.BackColor = Color.Green;
+            tableLayoutPanel1.SetColumnSpan(buttonDelete, 2);
+            buttonDelete.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonDelete.FlatStyle = FlatStyle.Flat;
+            buttonDelete.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonDelete.ForeColor = Color.White;
+            buttonDelete.Location = new Point(478, 307);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Padding = new Padding(8, 4, 8, 4);
+            buttonDelete.Size = new Size(185, 34);
+            buttonDelete.TabIndex = 21;
+            buttonDelete.Text = "Удалить";
+            buttonDelete.UseVisualStyleBackColor = false;
+            buttonDelete.Click += buttonDelete_Click;
+            // 
+            // buttonReject
+            // 
+            buttonReject.BackColor = Color.Green;
+            tableLayoutPanel1.SetColumnSpan(buttonReject, 2);
+            buttonReject.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonReject.FlatStyle = FlatStyle.Flat;
+            buttonReject.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonReject.ForeColor = Color.White;
+            buttonReject.Location = new Point(478, 269);
+            buttonReject.Name = "buttonReject";
+            buttonReject.Padding = new Padding(8, 4, 8, 4);
+            buttonReject.Size = new Size(185, 32);
+            buttonReject.TabIndex = 24;
+            buttonReject.Text = "Отклонить";
+            buttonReject.UseVisualStyleBackColor = false;
+            buttonReject.Click += buttonReject_Click;
+            // 
+            // buttonApprove
+            // 
+            buttonApprove.BackColor = Color.Green;
+            tableLayoutPanel1.SetColumnSpan(buttonApprove, 2);
+            buttonApprove.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonApprove.FlatStyle = FlatStyle.Flat;
+            buttonApprove.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonApprove.ForeColor = Color.White;
+            buttonApprove.Location = new Point(478, 231);
+            buttonApprove.Name = "buttonApprove";
+            buttonApprove.Padding = new Padding(8, 4, 8, 4);
+            buttonApprove.Size = new Size(185, 32);
+            buttonApprove.TabIndex = 20;
+            buttonApprove.Text = "Одобрить";
+            buttonApprove.UseVisualStyleBackColor = false;
+            buttonApprove.Click += buttonApprove_Click;
+            // 
+            // PaymentFineCard
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(5, 4, 5, 4);
+            Name = "PaymentFineCard";
+            Size = new Size(666, 344);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ResumeLayout(false);
 
         }
 

@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Views
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Views
 {
     partial class AuthorizeForm
     {
@@ -185,8 +188,8 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private Components.CommonButton buttonLogin;
-        private Components.CommonButton buttonRegister;
+        private CommonButton buttonLogin;
+        private CommonButton buttonRegister;
         private Components.Labels.Heading1Label labelTitle;
         private Components.Labels.PrimaryLabel labelLogin;
         private Components.Labels.PrimaryLabel labelPassword;

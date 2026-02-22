@@ -1,4 +1,7 @@
-﻿namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
+﻿using TrafficLedger.Desktop.Components;
+using TrafficLedger.Desktop.Components.Controls;
+
+namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
 {
     partial class ViolationCreateView
     {
@@ -226,7 +229,7 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private Components.Labels.PrimaryLabel labelCode;
-        private Components.CommonButton buttonSave;
+        private CommonButton buttonSave;
         private Components.Labels.PrimaryLabel labelName;
         private Components.Controls.TextBoxes.DefaultTextBox textBoxCode;
         private Components.Labels.PrimaryLabel labelDescription;
