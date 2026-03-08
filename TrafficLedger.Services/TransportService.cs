@@ -47,7 +47,7 @@ namespace TrafficLedger.Services
         async Task<IReadOnlyCollection<Transport>> ITransportService.GetAllByDriverId(Guid driverId, CancellationToken cancellationToken)
         {
             await driverReadRepository.GetById(driverId, cancellationToken)
-                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {driverId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Вам нужно сперва заполнить данные водителя"));
 
             var existingList = await transportReadRepository.GetAllByDriverId(driverId, cancellationToken);
 
@@ -97,6 +97,9 @@ namespace TrafficLedger.Services
 
         async Task<Transport> IBaseService<Transport, TransportCreateModel>.Create(TransportCreateModel model, CancellationToken cancellationToken)
         {
+            var user = await userReadRepository.GetById(model.UserId, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {model.UserId}"));
+
             await transportReadRepository.IsCodeExists(model.TransportCode.ToLower(), cancellationToken)
                 .AndThrowIfTrue(() => new InvalidOperationException($"Транспорт с кодом {model.TransportCode} уже существует"));
 
@@ -113,6 +116,8 @@ namespace TrafficLedger.Services
                 Model = model.Model.Trim(),
                 Region = model.Region.Trim(),
                 Year = model.Year,
+                Status = RequestStatus.Pending,
+                UserId = model.UserId,
                 TransportCategoryId = category!.Id,
             };
 
@@ -166,6 +171,8 @@ namespace TrafficLedger.Services
             existingTransport.Model = model.Model.Trim();
             existingTransport.Region = model.Region.Trim();
             existingTransport.Year = model.Year;
+            existingTransport.Status = model.Status;
+            existingTransport.UserId = model.UserId;
             existingTransport.TransportCategoryId = model.TransportCategoryId;
             existingTransport.TransportCategory = existingCategory!;
 
@@ -222,11 +229,12 @@ namespace TrafficLedger.Services
             {
                 if (existingAttachmentsDictionary.TryGetValue(attachment.FileName, out var foundAttachment))
                 {
-                    foundAttachment.EntityId = attachment.EntityId;
-                    foundAttachment.EntityType = attachment.EntityType;
+                    foundAttachment.EntityId = existingTransport.Id;
+                    foundAttachment.EntityType = EntityTypes.TransportType;
                     foundAttachment.FileName = attachment.FileName;
                     foundAttachment.Content = attachment.Content;
                     foundAttachment.ContentType = attachment.ContentType;
+
                     attachmentWriteRepository.Update(foundAttachment);
                 }
                 else
@@ -284,6 +292,7 @@ namespace TrafficLedger.Services
 
             transport!.Status = RequestStatus.Approved;
             transport.ProcessedById = processedById;
+            transport.ProcessedAt = DateTime.Now;
 
             transportWriteRepository.Update(transport);
             await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -300,6 +309,7 @@ namespace TrafficLedger.Services
             transport!.Status = RequestStatus.Rejected;
             transport.ProcessedById = processedById;
             transport.Commentary = commentary;
+            transport.ProcessedAt = DateTime.Now;
 
             transportWriteRepository.Update(transport);
             await unitOfWork.SaveChangesAsync(cancellationToken);

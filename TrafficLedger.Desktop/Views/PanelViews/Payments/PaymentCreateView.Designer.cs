@@ -31,322 +31,371 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.labelFineDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.textBoxAddress = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelAddressTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.textBoxTransportCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelTransportCodeTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.labelDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.textBoxDate = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.buttonSave = new TrafficLedger.Desktop.Components.CommonButton();
-            this.labelDescription = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.textBoxDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.textBoxCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.textBoxName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelFinePrice = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.textBoxFinePrice = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.textBoxFineDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            this.tableLayoutPanelMain.SuspendLayout();
-            this.SuspendLayout();
+            tableLayoutPanelMain = new TableLayoutPanel();
+            labelFineDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxAddress = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelAddressTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxTransportCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelTransportCodeTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            labelDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxDate = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            buttonSave = new CommonButton();
+            labelDescription = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelFinePrice = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxFinePrice = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            textBoxFineDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            statusLabel = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxStatus = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            tableLayoutPanelMain.SuspendLayout();
+            SuspendLayout();
             // 
             // splitContainer
             // 
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanelMain);
+            splitContainer.Panel2.Controls.Add(tableLayoutPanelMain);
             // 
             // tableLayoutPanelMain
             // 
-            this.tableLayoutPanelMain.ColumnCount = 2;
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.Controls.Add(this.labelFineDescriptionTitle, 0, 4);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxAddress, 1, 2);
-            this.tableLayoutPanelMain.Controls.Add(this.labelAddressTitle, 0, 2);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxTransportCode, 1, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.labelTransportCodeTitle, 0, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.labelDate, 0, 1);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxDate, 1, 1);
-            this.tableLayoutPanelMain.Controls.Add(this.buttonSave, 0, 11);
-            this.tableLayoutPanelMain.Controls.Add(this.labelDescription, 0, 7);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxDescription, 1, 7);
-            this.tableLayoutPanelMain.Controls.Add(this.labelCode, 0, 6);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxCode, 1, 6);
-            this.tableLayoutPanelMain.Controls.Add(this.labelName, 0, 5);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxName, 1, 5);
-            this.tableLayoutPanelMain.Controls.Add(this.labelFinePrice, 0, 3);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxFinePrice, 1, 3);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxFineDescription, 1, 4);
-            this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            this.tableLayoutPanelMain.RowCount = 12;
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.332583F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.332583F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.332583F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.332583F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.332583F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.332583F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.332583F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.335084F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.335084F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.335084F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333334F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333334F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(704, 500);
-            this.tableLayoutPanelMain.TabIndex = 0;
+            tableLayoutPanelMain.ColumnCount = 2;
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.Controls.Add(labelFineDescriptionTitle, 0, 4);
+            tableLayoutPanelMain.Controls.Add(textBoxAddress, 1, 2);
+            tableLayoutPanelMain.Controls.Add(labelAddressTitle, 0, 2);
+            tableLayoutPanelMain.Controls.Add(textBoxTransportCode, 1, 0);
+            tableLayoutPanelMain.Controls.Add(labelTransportCodeTitle, 0, 0);
+            tableLayoutPanelMain.Controls.Add(labelDate, 0, 1);
+            tableLayoutPanelMain.Controls.Add(textBoxDate, 1, 1);
+            tableLayoutPanelMain.Controls.Add(buttonSave, 0, 11);
+            tableLayoutPanelMain.Controls.Add(labelDescription, 0, 7);
+            tableLayoutPanelMain.Controls.Add(textBoxDescription, 1, 7);
+            tableLayoutPanelMain.Controls.Add(labelCode, 0, 6);
+            tableLayoutPanelMain.Controls.Add(textBoxCode, 1, 6);
+            tableLayoutPanelMain.Controls.Add(labelName, 0, 5);
+            tableLayoutPanelMain.Controls.Add(textBoxName, 1, 5);
+            tableLayoutPanelMain.Controls.Add(labelFinePrice, 0, 3);
+            tableLayoutPanelMain.Controls.Add(textBoxFinePrice, 1, 3);
+            tableLayoutPanelMain.Controls.Add(textBoxFineDescription, 1, 4);
+            tableLayoutPanelMain.Controls.Add(statusLabel, 0, 10);
+            tableLayoutPanelMain.Controls.Add(textBoxStatus, 1, 10);
+            tableLayoutPanelMain.Dock = DockStyle.Fill;
+            tableLayoutPanelMain.Location = new Point(0, 0);
+            tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
+            tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            tableLayoutPanelMain.RowCount = 12;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332583F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332583F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332583F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332583F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332583F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332583F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.332583F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.335084F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.335084F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.335084F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333334F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333334F));
+            tableLayoutPanelMain.Size = new Size(821, 576);
+            tableLayoutPanelMain.TabIndex = 0;
             // 
             // labelFineDescriptionTitle
             // 
-            this.labelFineDescriptionTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelFineDescriptionTitle.AutoSize = true;
-            this.labelFineDescriptionTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelFineDescriptionTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelFineDescriptionTitle.Location = new System.Drawing.Point(259, 176);
-            this.labelFineDescriptionTitle.Name = "labelFineDescriptionTitle";
-            this.labelFineDescriptionTitle.Size = new System.Drawing.Size(90, 17);
-            this.labelFineDescriptionTitle.TabIndex = 34;
-            this.labelFineDescriptionTitle.Text = "Примечание: ";
+            labelFineDescriptionTitle.Anchor = AnchorStyles.Right;
+            labelFineDescriptionTitle.AutoSize = true;
+            labelFineDescriptionTitle.Font = new Font("Segoe UI", 9.75F);
+            labelFineDescriptionTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelFineDescriptionTitle.Location = new Point(316, 203);
+            labelFineDescriptionTitle.Margin = new Padding(4, 0, 4, 0);
+            labelFineDescriptionTitle.Name = "labelFineDescriptionTitle";
+            labelFineDescriptionTitle.Size = new Size(90, 17);
+            labelFineDescriptionTitle.TabIndex = 34;
+            labelFineDescriptionTitle.Text = "Примечание: ";
             // 
             // textBoxAddress
             // 
-            this.textBoxAddress.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxAddress.BackColor = System.Drawing.Color.GhostWhite;
-            this.textBoxAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxAddress.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.textBoxAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxAddress.Location = new System.Drawing.Point(355, 94);
-            this.textBoxAddress.Name = "textBoxAddress";
-            this.textBoxAddress.ReadOnly = true;
-            this.textBoxAddress.Size = new System.Drawing.Size(246, 16);
-            this.textBoxAddress.TabIndex = 32;
-            this.textBoxAddress.Text = ". . .";
+            textBoxAddress.Anchor = AnchorStyles.Left;
+            textBoxAddress.BackColor = Color.GhostWhite;
+            textBoxAddress.BorderStyle = BorderStyle.None;
+            textBoxAddress.Font = new Font("Consolas", 9.75F);
+            textBoxAddress.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxAddress.Location = new Point(414, 109);
+            textBoxAddress.Margin = new Padding(4, 3, 4, 3);
+            textBoxAddress.Name = "textBoxAddress";
+            textBoxAddress.ReadOnly = true;
+            textBoxAddress.Size = new Size(287, 16);
+            textBoxAddress.TabIndex = 32;
+            textBoxAddress.Text = ". . .";
             // 
             // labelAddressTitle
             // 
-            this.labelAddressTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelAddressTitle.AutoSize = true;
-            this.labelAddressTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelAddressTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelAddressTitle.Location = new System.Drawing.Point(227, 94);
-            this.labelAddressTitle.Name = "labelAddressTitle";
-            this.labelAddressTitle.Size = new System.Drawing.Size(122, 17);
-            this.labelAddressTitle.TabIndex = 31;
-            this.labelAddressTitle.Text = "Адрес нарушения: ";
+            labelAddressTitle.Anchor = AnchorStyles.Right;
+            labelAddressTitle.AutoSize = true;
+            labelAddressTitle.Font = new Font("Segoe UI", 9.75F);
+            labelAddressTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelAddressTitle.Location = new Point(284, 109);
+            labelAddressTitle.Margin = new Padding(4, 0, 4, 0);
+            labelAddressTitle.Name = "labelAddressTitle";
+            labelAddressTitle.Size = new Size(122, 17);
+            labelAddressTitle.TabIndex = 31;
+            labelAddressTitle.Text = "Адрес нарушения: ";
             // 
             // textBoxTransportCode
             // 
-            this.textBoxTransportCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxTransportCode.BackColor = System.Drawing.Color.GhostWhite;
-            this.textBoxTransportCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxTransportCode.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.textBoxTransportCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxTransportCode.Location = new System.Drawing.Point(355, 12);
-            this.textBoxTransportCode.Name = "textBoxTransportCode";
-            this.textBoxTransportCode.ReadOnly = true;
-            this.textBoxTransportCode.Size = new System.Drawing.Size(246, 16);
-            this.textBoxTransportCode.TabIndex = 30;
-            this.textBoxTransportCode.Text = ". . .";
+            textBoxTransportCode.Anchor = AnchorStyles.Left;
+            textBoxTransportCode.BackColor = Color.GhostWhite;
+            textBoxTransportCode.BorderStyle = BorderStyle.None;
+            textBoxTransportCode.Font = new Font("Consolas", 9.75F);
+            textBoxTransportCode.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxTransportCode.Location = new Point(414, 15);
+            textBoxTransportCode.Margin = new Padding(4, 3, 4, 3);
+            textBoxTransportCode.Name = "textBoxTransportCode";
+            textBoxTransportCode.ReadOnly = true;
+            textBoxTransportCode.Size = new Size(287, 16);
+            textBoxTransportCode.TabIndex = 30;
+            textBoxTransportCode.Text = ". . .";
             // 
             // labelTransportCodeTitle
             // 
-            this.labelTransportCodeTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelTransportCodeTitle.AutoSize = true;
-            this.labelTransportCodeTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelTransportCodeTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelTransportCodeTitle.Location = new System.Drawing.Point(239, 12);
-            this.labelTransportCodeTitle.Name = "labelTransportCodeTitle";
-            this.labelTransportCodeTitle.Size = new System.Drawing.Size(110, 17);
-            this.labelTransportCodeTitle.TabIndex = 29;
-            this.labelTransportCodeTitle.Text = "Номер машины: ";
+            labelTransportCodeTitle.Anchor = AnchorStyles.Right;
+            labelTransportCodeTitle.AutoSize = true;
+            labelTransportCodeTitle.Font = new Font("Segoe UI", 9.75F);
+            labelTransportCodeTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelTransportCodeTitle.Location = new Point(296, 15);
+            labelTransportCodeTitle.Margin = new Padding(4, 0, 4, 0);
+            labelTransportCodeTitle.Name = "labelTransportCodeTitle";
+            labelTransportCodeTitle.Size = new Size(110, 17);
+            labelTransportCodeTitle.TabIndex = 29;
+            labelTransportCodeTitle.Text = "Номер машины: ";
             // 
             // labelDate
             // 
-            this.labelDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelDate.AutoSize = true;
-            this.labelDate.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelDate.Location = new System.Drawing.Point(235, 53);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(114, 17);
-            this.labelDate.TabIndex = 6;
-            this.labelDate.Text = "Дата нарушения: ";
+            labelDate.Anchor = AnchorStyles.Right;
+            labelDate.AutoSize = true;
+            labelDate.Font = new Font("Segoe UI", 9.75F);
+            labelDate.ForeColor = Color.FromArgb(0, 0, 0);
+            labelDate.Location = new Point(292, 62);
+            labelDate.Margin = new Padding(4, 0, 4, 0);
+            labelDate.Name = "labelDate";
+            labelDate.Size = new Size(114, 17);
+            labelDate.TabIndex = 6;
+            labelDate.Text = "Дата нарушения: ";
             // 
             // textBoxDate
             // 
-            this.textBoxDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxDate.BackColor = System.Drawing.Color.GhostWhite;
-            this.textBoxDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxDate.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.textBoxDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxDate.Location = new System.Drawing.Point(355, 53);
-            this.textBoxDate.Name = "textBoxDate";
-            this.textBoxDate.ReadOnly = true;
-            this.textBoxDate.Size = new System.Drawing.Size(246, 16);
-            this.textBoxDate.TabIndex = 27;
-            this.textBoxDate.Text = ". . .";
+            textBoxDate.Anchor = AnchorStyles.Left;
+            textBoxDate.BackColor = Color.GhostWhite;
+            textBoxDate.BorderStyle = BorderStyle.None;
+            textBoxDate.Font = new Font("Consolas", 9.75F);
+            textBoxDate.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxDate.Location = new Point(414, 62);
+            textBoxDate.Margin = new Padding(4, 3, 4, 3);
+            textBoxDate.Name = "textBoxDate";
+            textBoxDate.ReadOnly = true;
+            textBoxDate.Size = new Size(287, 16);
+            textBoxDate.TabIndex = 27;
+            textBoxDate.Text = ". . .";
             // 
             // buttonSave
             // 
-            this.buttonSave.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonSave.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanelMain.SetColumnSpan(this.buttonSave, 2);
-            this.buttonSave.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonSave.ForeColor = System.Drawing.Color.White;
-            this.buttonSave.Location = new System.Drawing.Point(179, 454);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonSave.Size = new System.Drawing.Size(346, 43);
-            this.buttonSave.TabIndex = 8;
-            this.buttonSave.Text = "Оплатить";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            buttonSave.Anchor = AnchorStyles.None;
+            buttonSave.BackColor = Color.Green;
+            tableLayoutPanelMain.SetColumnSpan(buttonSave, 2);
+            buttonSave.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonSave.FlatStyle = FlatStyle.Flat;
+            buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonSave.ForeColor = Color.White;
+            buttonSave.Location = new Point(208, 524);
+            buttonSave.Margin = new Padding(4, 3, 4, 3);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Padding = new Padding(9, 5, 9, 5);
+            buttonSave.Size = new Size(404, 49);
+            buttonSave.TabIndex = 8;
+            buttonSave.Text = "Оплатить";
+            buttonSave.UseVisualStyleBackColor = false;
+            buttonSave.Click += buttonSave_Click;
             // 
             // labelDescription
             // 
-            this.labelDescription.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelDescription.AutoSize = true;
-            this.labelDescription.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelDescription.Location = new System.Drawing.Point(276, 299);
-            this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(73, 17);
-            this.labelDescription.TabIndex = 15;
-            this.labelDescription.Text = "Описание: ";
+            labelDescription.Anchor = AnchorStyles.Right;
+            labelDescription.AutoSize = true;
+            labelDescription.Font = new Font("Segoe UI", 9.75F);
+            labelDescription.ForeColor = Color.FromArgb(0, 0, 0);
+            labelDescription.Location = new Point(333, 344);
+            labelDescription.Margin = new Padding(4, 0, 4, 0);
+            labelDescription.Name = "labelDescription";
+            labelDescription.Size = new Size(73, 17);
+            labelDescription.TabIndex = 15;
+            labelDescription.Text = "Описание: ";
             // 
             // textBoxDescription
             // 
-            this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDescription.BackColor = System.Drawing.Color.GhostWhite;
-            this.textBoxDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxDescription.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.textBoxDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxDescription.Location = new System.Drawing.Point(355, 290);
-            this.textBoxDescription.Multiline = true;
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.ReadOnly = true;
-            this.tableLayoutPanelMain.SetRowSpan(this.textBoxDescription, 3);
-            this.textBoxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxDescription.Size = new System.Drawing.Size(346, 117);
-            this.textBoxDescription.TabIndex = 26;
-            this.textBoxDescription.Text = ". . .";
+            textBoxDescription.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxDescription.BackColor = Color.GhostWhite;
+            textBoxDescription.BorderStyle = BorderStyle.None;
+            textBoxDescription.Font = new Font("Consolas", 9.75F);
+            textBoxDescription.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxDescription.Location = new Point(414, 332);
+            textBoxDescription.Margin = new Padding(4, 3, 4, 3);
+            textBoxDescription.Multiline = true;
+            textBoxDescription.Name = "textBoxDescription";
+            textBoxDescription.ReadOnly = true;
+            tableLayoutPanelMain.SetRowSpan(textBoxDescription, 3);
+            textBoxDescription.ScrollBars = ScrollBars.Vertical;
+            textBoxDescription.Size = new Size(403, 138);
+            textBoxDescription.TabIndex = 26;
+            textBoxDescription.Text = ". . .";
             // 
             // labelCode
             // 
-            this.labelCode.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelCode.AutoSize = true;
-            this.labelCode.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelCode.Location = new System.Drawing.Point(240, 258);
-            this.labelCode.Name = "labelCode";
-            this.labelCode.Size = new System.Drawing.Size(109, 17);
-            this.labelCode.TabIndex = 23;
-            this.labelCode.Text = "Код нарушения: ";
+            labelCode.Anchor = AnchorStyles.Right;
+            labelCode.AutoSize = true;
+            labelCode.Font = new Font("Segoe UI", 9.75F);
+            labelCode.ForeColor = Color.FromArgb(0, 0, 0);
+            labelCode.Location = new Point(297, 297);
+            labelCode.Margin = new Padding(4, 0, 4, 0);
+            labelCode.Name = "labelCode";
+            labelCode.Size = new Size(109, 17);
+            labelCode.TabIndex = 23;
+            labelCode.Text = "Код нарушения: ";
             // 
             // textBoxCode
             // 
-            this.textBoxCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxCode.BackColor = System.Drawing.Color.GhostWhite;
-            this.textBoxCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxCode.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.textBoxCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxCode.Location = new System.Drawing.Point(355, 258);
-            this.textBoxCode.Name = "textBoxCode";
-            this.textBoxCode.ReadOnly = true;
-            this.textBoxCode.Size = new System.Drawing.Size(246, 16);
-            this.textBoxCode.TabIndex = 24;
-            this.textBoxCode.Text = ". . .";
+            textBoxCode.Anchor = AnchorStyles.Left;
+            textBoxCode.BackColor = Color.GhostWhite;
+            textBoxCode.BorderStyle = BorderStyle.None;
+            textBoxCode.Font = new Font("Consolas", 9.75F);
+            textBoxCode.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxCode.Location = new Point(414, 297);
+            textBoxCode.Margin = new Padding(4, 3, 4, 3);
+            textBoxCode.Name = "textBoxCode";
+            textBoxCode.ReadOnly = true;
+            textBoxCode.Size = new Size(287, 16);
+            textBoxCode.TabIndex = 24;
+            textBoxCode.Text = ". . .";
             // 
             // labelName
             // 
-            this.labelName.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelName.Location = new System.Drawing.Point(265, 217);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(84, 17);
-            this.labelName.TabIndex = 13;
-            this.labelName.Text = "Нарушение: ";
+            labelName.Anchor = AnchorStyles.Right;
+            labelName.AutoSize = true;
+            labelName.Font = new Font("Segoe UI", 9.75F);
+            labelName.ForeColor = Color.FromArgb(0, 0, 0);
+            labelName.Location = new Point(322, 250);
+            labelName.Margin = new Padding(4, 0, 4, 0);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(84, 17);
+            labelName.TabIndex = 13;
+            labelName.Text = "Нарушение: ";
             // 
             // textBoxName
             // 
-            this.textBoxName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxName.BackColor = System.Drawing.Color.GhostWhite;
-            this.textBoxName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxName.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.textBoxName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxName.Location = new System.Drawing.Point(355, 217);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.ReadOnly = true;
-            this.textBoxName.Size = new System.Drawing.Size(246, 16);
-            this.textBoxName.TabIndex = 28;
-            this.textBoxName.Text = ". . .";
+            textBoxName.Anchor = AnchorStyles.Left;
+            textBoxName.BackColor = Color.GhostWhite;
+            textBoxName.BorderStyle = BorderStyle.None;
+            textBoxName.Font = new Font("Consolas", 9.75F);
+            textBoxName.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxName.Location = new Point(414, 250);
+            textBoxName.Margin = new Padding(4, 3, 4, 3);
+            textBoxName.Name = "textBoxName";
+            textBoxName.ReadOnly = true;
+            textBoxName.Size = new Size(287, 16);
+            textBoxName.TabIndex = 28;
+            textBoxName.Text = ". . .";
             // 
             // labelFinePrice
             // 
-            this.labelFinePrice.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelFinePrice.AutoSize = true;
-            this.labelFinePrice.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelFinePrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelFinePrice.Location = new System.Drawing.Point(244, 135);
-            this.labelFinePrice.Name = "labelFinePrice";
-            this.labelFinePrice.Size = new System.Drawing.Size(105, 17);
-            this.labelFinePrice.TabIndex = 19;
-            this.labelFinePrice.Text = "Сумма штрафа: ";
+            labelFinePrice.Anchor = AnchorStyles.Right;
+            labelFinePrice.AutoSize = true;
+            labelFinePrice.Font = new Font("Segoe UI", 9.75F);
+            labelFinePrice.ForeColor = Color.FromArgb(0, 0, 0);
+            labelFinePrice.Location = new Point(301, 156);
+            labelFinePrice.Margin = new Padding(4, 0, 4, 0);
+            labelFinePrice.Name = "labelFinePrice";
+            labelFinePrice.Size = new Size(105, 17);
+            labelFinePrice.TabIndex = 19;
+            labelFinePrice.Text = "Сумма штрафа: ";
             // 
             // textBoxFinePrice
             // 
-            this.textBoxFinePrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxFinePrice.BackColor = System.Drawing.Color.GhostWhite;
-            this.textBoxFinePrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxFinePrice.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.textBoxFinePrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxFinePrice.Location = new System.Drawing.Point(355, 135);
-            this.textBoxFinePrice.Name = "textBoxFinePrice";
-            this.textBoxFinePrice.ReadOnly = true;
-            this.textBoxFinePrice.Size = new System.Drawing.Size(246, 16);
-            this.textBoxFinePrice.TabIndex = 25;
-            this.textBoxFinePrice.Text = ". . .";
+            textBoxFinePrice.Anchor = AnchorStyles.Left;
+            textBoxFinePrice.BackColor = Color.GhostWhite;
+            textBoxFinePrice.BorderStyle = BorderStyle.None;
+            textBoxFinePrice.Font = new Font("Consolas", 9.75F);
+            textBoxFinePrice.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxFinePrice.Location = new Point(414, 156);
+            textBoxFinePrice.Margin = new Padding(4, 3, 4, 3);
+            textBoxFinePrice.Name = "textBoxFinePrice";
+            textBoxFinePrice.ReadOnly = true;
+            textBoxFinePrice.Size = new Size(287, 16);
+            textBoxFinePrice.TabIndex = 25;
+            textBoxFinePrice.Text = ". . .";
             // 
             // textBoxFineDescription
             // 
-            this.textBoxFineDescription.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxFineDescription.BackColor = System.Drawing.Color.GhostWhite;
-            this.textBoxFineDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxFineDescription.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.textBoxFineDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxFineDescription.Location = new System.Drawing.Point(355, 176);
-            this.textBoxFineDescription.Name = "textBoxFineDescription";
-            this.textBoxFineDescription.ReadOnly = true;
-            this.textBoxFineDescription.Size = new System.Drawing.Size(246, 16);
-            this.textBoxFineDescription.TabIndex = 33;
-            this.textBoxFineDescription.Text = ". . .";
+            textBoxFineDescription.Anchor = AnchorStyles.Left;
+            textBoxFineDescription.BackColor = Color.GhostWhite;
+            textBoxFineDescription.BorderStyle = BorderStyle.None;
+            textBoxFineDescription.Font = new Font("Consolas", 9.75F);
+            textBoxFineDescription.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxFineDescription.Location = new Point(414, 203);
+            textBoxFineDescription.Margin = new Padding(4, 3, 4, 3);
+            textBoxFineDescription.Name = "textBoxFineDescription";
+            textBoxFineDescription.ReadOnly = true;
+            textBoxFineDescription.Size = new Size(287, 16);
+            textBoxFineDescription.TabIndex = 33;
+            textBoxFineDescription.Text = ". . .";
+            // 
+            // statusLabel
+            // 
+            statusLabel.Anchor = AnchorStyles.Right;
+            statusLabel.AutoSize = true;
+            statusLabel.Font = new Font("Segoe UI", 9.75F);
+            statusLabel.ForeColor = Color.FromArgb(0, 0, 0);
+            statusLabel.Location = new Point(354, 488);
+            statusLabel.Margin = new Padding(4, 0, 4, 0);
+            statusLabel.Name = "statusLabel";
+            statusLabel.Size = new Size(52, 17);
+            statusLabel.TabIndex = 35;
+            statusLabel.Text = "Статус: ";
+            // 
+            // textBoxStatus
+            // 
+            textBoxStatus.Anchor = AnchorStyles.Left;
+            textBoxStatus.BackColor = Color.GhostWhite;
+            textBoxStatus.BorderStyle = BorderStyle.None;
+            textBoxStatus.Font = new Font("Consolas", 9.75F);
+            textBoxStatus.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxStatus.Location = new Point(414, 489);
+            textBoxStatus.Margin = new Padding(4, 3, 4, 3);
+            textBoxStatus.Name = "textBoxStatus";
+            textBoxStatus.ReadOnly = true;
+            textBoxStatus.Size = new Size(287, 16);
+            textBoxStatus.TabIndex = 36;
+            textBoxStatus.Text = ". . .";
             // 
             // PaymentCreateView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "PaymentCreateView";
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            this.tableLayoutPanelMain.ResumeLayout(false);
-            this.tableLayoutPanelMain.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Margin = new Padding(5, 3, 5, 3);
+            Name = "PaymentCreateView";
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
+            splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            tableLayoutPanelMain.ResumeLayout(false);
+            tableLayoutPanelMain.PerformLayout();
+            ResumeLayout(false);
 
         }
 
@@ -370,5 +419,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
         private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxAddress;
         private Components.Labels.PrimaryLabel labelAddressTitle;
         private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxFineDescription;
+        private Components.Labels.PrimaryLabel statusLabel;
+        private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxStatus;
     }
 }

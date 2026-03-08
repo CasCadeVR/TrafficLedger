@@ -1,8 +1,10 @@
-﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using System.Net.Mail;
+using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
+using TrafficLedger.Services.Contracts.Models;
 using TrafficLedger.Services.Contracts.Models.Fines;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Fines
@@ -54,6 +56,15 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                     Status = fine.Status,
                     ViolationId = fine.ViolationId,
                     TransportId = fine.TransportId,
+                    Attachments = fine.Attachments.Select(x =>
+                        new AttachmentCreateModel()
+                        {
+                            EntityId = x.Id,
+                            EntityType = x.EntityType,
+                            Content = x.Content,
+                            ContentType = x.ContentType,
+                            FileName = x.FileName
+                        }).ToList(),
                 };
             }
             else
@@ -67,6 +78,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                     Status = RequestStatus.Pending,
                     ViolationId = Guid.Empty,
                     TransportId = currentTransport.Id,
+                    Attachments = new List<AttachmentCreateModel>(),
                 };
             }
         }
@@ -92,6 +104,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                nameof(CurrentModel.ViolationId),
                false,
                DataSourceUpdateMode.OnPropertyChanged);
+
+            multiImageUploader.ImagesChanged += (sender, attachments) => CurrentModel.Attachments = attachments;
         }
 
         private void OnViolationSelected(object sender, EventArgs e)
@@ -127,6 +141,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             textBoxCode.Text = CurrentModel.Address;
             textBoxFineDescription.Text = CurrentModel.Description;
             dateTimePickerDate.Value = CurrentModel.Date.DateTime;
+
+            if (CurrentModel.Attachments != null && CurrentModel.Attachments.Count != 0)
+            {
+                multiImageUploader.SetImagesFromBytes(CurrentModel.Attachments.Select(x => x.Content ?? []));
+            }
         }
 
         protected override async Task OnSaveAsync()

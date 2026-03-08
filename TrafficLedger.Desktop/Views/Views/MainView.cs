@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TrafficLedger.Desktop.Components;
 using TrafficLedger.Desktop.Contracts;
 using TrafficLedger.Desktop.Contracts.Interfaces;

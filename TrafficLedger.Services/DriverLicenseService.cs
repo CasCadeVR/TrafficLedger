@@ -47,7 +47,7 @@ namespace TrafficLedger.Services
         async Task<DriverLicense> IDriverLicenseService.GetByDriverId(Guid driverId, CancellationToken cancellationToken)
         {
             var driver = await driverReadRepository.GetById(driverId, cancellationToken)
-                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {driverId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Вам нужно сперва заполнить данные водителя"));
 
             var result = await driverLicenseReadRepository.GetByDriverId(driver!.Id, cancellationToken);
 
@@ -83,11 +83,14 @@ namespace TrafficLedger.Services
 
         async Task<DriverLicense> IBaseService<DriverLicense, DriverLicenseCreateModel>.Create(DriverLicenseCreateModel model, CancellationToken cancellationToken)
         {
+            await userReadRepository.GetById(model.UserId, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {model.UserId}"));
+
             await driverLicenseReadRepository.IsLicenseNumberExists(model.LicenseNumber.ToLower(), cancellationToken)
                 .AndThrowIfTrue(() => new InvalidOperationException($"Водительское удостоверение с номером {model.LicenseNumber} уже существует"));
 
             await driverReadRepository.GetById(model.DriverId, cancellationToken)
-                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {model.DriverId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Вам нужно сперва заполнить данные водителя"));
 
             await ValidateMissingCategories(model, cancellationToken);
 
@@ -126,6 +129,7 @@ namespace TrafficLedger.Services
                     Content = model.Attachment.Content,
                 };
 
+                driverLicense.AttachmentId = attachment.Id;
                 attachmentWriteRepository.Add(attachment);
             }
 
@@ -148,8 +152,11 @@ namespace TrafficLedger.Services
                    .AndThrowIfTrue(() => new InvalidOperationException($"Водительское удостоверение с номером {model.LicenseNumber} уже существует"));
             }
 
+            await userReadRepository.GetById(model.UserId, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {model.UserId}"));
+
             await driverReadRepository.GetById(model.DriverId, cancellationToken)
-                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {model.DriverId}"));
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти водителя с идентификатором {model.DriverId}, Вам нужно сперва заполнить данные водителя"));
 
             var modelCategories = model.LicenseCategories.Select(x =>
                 new LicenseCategory()
@@ -163,7 +170,7 @@ namespace TrafficLedger.Services
             existingDriverLicense.DateOfIssue = model.DateOfIssue;
             existingDriverLicense.IssuedBy = model.IssuedBy.Trim();
             existingDriverLicense.Residence = model.Residence.Trim();
-            existingDriverLicense.Status = model.Status;
+            existingDriverLicense.Status = RequestStatus.Pending;
             existingDriverLicense.UserId = model.UserId;
             existingDriverLicense.DriverId = model.DriverId;
 
@@ -204,14 +211,30 @@ namespace TrafficLedger.Services
                 {
                     attachmentWriteRepository.Delete(previousAttachment);
                 }
+                else
+                {
+                    previousAttachment.EntityId = existingDriverLicense.Id;
+                    previousAttachment.EntityType = EntityTypes.DriverLicenseType;
+                    previousAttachment.FileName = model.Attachment!.FileName;
+                    previousAttachment.Content = model.Attachment!.Content;
+                    previousAttachment.ContentType = model.Attachment!.ContentType;
 
-                previousAttachment.EntityId = model.Attachment!.EntityId;
-                previousAttachment.EntityType = model.Attachment!.EntityType;
-                previousAttachment.FileName = model.Attachment!.FileName;
-                previousAttachment.Content = model.Attachment!.Content;
-                previousAttachment.ContentType = model.Attachment!.ContentType;
+                    attachmentWriteRepository.Update(previousAttachment);
+                }
+            }
+            else if (model.Attachment != null)
+            {
+                var attachment = new Attachment()
+                {
+                    EntityId = existingDriverLicense!.Id,
+                    EntityType = EntityTypes.DriverLicenseType,
+                    FileName = model.Attachment!.FileName,
+                    ContentType = model.Attachment.ContentType,
+                    Content = model.Attachment.Content,
+                };
 
-                attachmentWriteRepository.Update(previousAttachment);
+                existingDriverLicense.AttachmentId = attachment.Id;
+                attachmentWriteRepository.Add(attachment);
             }
 
             driverLicenseWriteRepository.Update(existingDriverLicense);
@@ -246,6 +269,7 @@ namespace TrafficLedger.Services
 
             existingDriverLicense!.Status = RequestStatus.Approved;
             existingDriverLicense.ProcessedById = processedById;
+            existingDriverLicense.ProcessedAt = DateTime.Now;
 
             driverLicenseWriteRepository.Update(existingDriverLicense);
             await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -261,6 +285,7 @@ namespace TrafficLedger.Services
 
             existingDriverLicense!.Status = RequestStatus.Rejected;
             existingDriverLicense.ProcessedById = processedById;
+            existingDriverLicense.ProcessedAt = DateTime.Now;
             existingDriverLicense.Commentary = commentary;
 
             driverLicenseWriteRepository.Update(existingDriverLicense);

@@ -2,6 +2,8 @@
 using TrafficLedger.Desktop.Infrastructure.Services;
 using TrafficLedger.Desktop.Components.Controls.ContextMenuStrips;
 using TrafficLedger.Desktop.Views.Views;
+using TrafficLedger.Services.Contracts.Models;
+using TrafficLedger.Desktop.Contracts;
 
 namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
 {
@@ -35,7 +37,7 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
         /// <summary>
         /// Событие по смене картинки
         /// </summary>
-        public event EventHandler? ImageChanged;
+        public event EventHandler<AttachmentCreateModel>? ImageChanged;
 
         /// <summary>
         /// Событие по нажатию кнопку удаления
@@ -68,12 +70,12 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
             {
                 Text = "×",
                 Size = new Size(24, 24),
-                Location = new Point(this.Width - 26, 2),
+                Location = new Point(this.Width - 26, 2)
             };
 
+            deleteButton.Font = FontScheme.Caption;
             deleteButton.BackColor = Color.Red;
             deleteButton.ForeColor = Color.White;
-            deleteButton.Font = new Font(deleteButton.Font.FontFamily, 5.0f);
             deleteButton.FlatAppearance.BorderSize = 0;
             deleteButton.Click += (s, e) => DeleteRequested?.Invoke(this);
 
@@ -131,15 +133,29 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
             finally
             {
                 result.Image.Dispose();
-                ImageChanged?.Invoke(this, e);
+                ImageChanged?.Invoke(this, new AttachmentCreateModel()
+                {
+                    FileName = ImageName,
+                    Content = imageBytes,
+                    ContentType = nameof(Image),
+                });
             }
+        }
+
+        /// <summary>
+        /// Сброс подписчиков на событие <see cref="FunctionalPictureBox.ImageChanged"/>
+        /// </summary>
+        public void ResetImageBindings()
+        {
+            ImageChanged = null;
         }
 
         /// <summary>
         /// Сбросить к placeholder-изображению
         /// </summary>
-        private void ResetToPlaceholder()
+        public void ResetToPlaceholder()
         {
+            ImageChanged?.Invoke(this, null!);
             this.Image = placeholderImage;
             imageBytes = null;
             imageFormat = null;
@@ -174,10 +190,6 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
                 imageBytes = null;
                 imageName = null;
                 imageFormat = null;
-            }
-            finally
-            {
-                ImageChanged?.Invoke(this, null!);
             }
         }
     }

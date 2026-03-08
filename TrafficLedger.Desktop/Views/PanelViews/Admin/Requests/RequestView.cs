@@ -22,7 +22,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Requests
         {
             var navigationItem = new NavigationItem()
             {
-                Title = "Список заявок удостоврений водителей",
+                Title = "Список заявок удостоверений водителей",
                 ViewType = typeof(DriverLicenseListView),
                 Parent = CurrentNavigationItem,
             };

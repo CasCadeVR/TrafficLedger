@@ -75,6 +75,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxCode.Text = currentFine.Violation.ViolationCode;
             textBoxFinePrice.Text = currentFine.Violation.MinFinePrice.ToString();
             textBoxDescription.Text = currentFine.Violation.Description;
+            textBoxStatus.Text = Enum.GetName(CurrentModel.Status);
         }
 
         protected override async Task OnSaveAsync()

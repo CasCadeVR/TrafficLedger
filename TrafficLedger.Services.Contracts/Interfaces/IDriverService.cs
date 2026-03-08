@@ -12,5 +12,5 @@ public interface IDriverService : IBaseService<Driver, DriverCreateModel>
     /// <summary>
     /// Получает <see cref="Driver"/> по идентификатору пользователя
     /// </summary>
-    Task<Driver> GetByUserId(Guid userId, CancellationToken cancellationToken);
+    Task<Driver?> GetByUserId(Guid userId, CancellationToken cancellationToken);
 }

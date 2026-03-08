@@ -58,11 +58,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                     },
                     Ownerships = new List<OwnershipTransportCreateModel>()
                 };
-
-                if (CurrentModel.Attachment != null)
-                {
-                    driverPhoto.SetImageFromBytes(CurrentModel.Attachment.Content);
-                }
             }
             else
             {
@@ -93,12 +88,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                 dt => new DateTimeOffset(dt, TimeSpan.Zero),
                 errorProvider);
 
-            driverPhoto.ImageChanged += (sender, e) =>
-            {
-                CurrentModel.Attachment!.Content = driverPhoto.ImageBytes;
-                CurrentModel.Attachment!.FileName = driverPhoto.ImageName;
-                CurrentModel.Attachment!.ContentType = "фото";
-            };
+            driverPhoto.ResetImageBindings();
+            driverPhoto.ImageChanged += (sender, attachment) => CurrentModel.Attachment = attachment;
         }
 
         protected override void FillControls()
@@ -111,9 +102,14 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             textBoxBirthPlace.Text = CurrentModel.BirthPlace;
             dateTimePickerBirthDate.Value = CurrentModel.BirthDate.DateTime;
             textBoxUniqueId.Text = uniqueId.ToString();
+
             if (CurrentModel.Attachment != null)
             {
                 driverPhoto.SetImageFromBytes(CurrentModel.Attachment.Content);
+            } 
+            else
+            {
+                driverPhoto.ResetToPlaceholder();
             }
         }
 

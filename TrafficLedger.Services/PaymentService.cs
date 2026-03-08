@@ -78,6 +78,7 @@ namespace TrafficLedger.Services
 
             payment!.Status = RequestStatus.Approved;
             payment.ProcessedById = processedById;
+            payment.ProcessedAt = DateTime.Now;
 
             paymentWriteRepository.Update(payment);
             await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -93,6 +94,7 @@ namespace TrafficLedger.Services
 
             payment!.Status = RequestStatus.Rejected;
             payment.ProcessedById = processedById;
+            payment.ProcessedAt = DateTime.Now;
             payment.Commentary = commentary;
 
             paymentWriteRepository.Update(payment);

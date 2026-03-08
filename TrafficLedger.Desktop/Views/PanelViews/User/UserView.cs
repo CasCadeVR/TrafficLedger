@@ -46,21 +46,28 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
         private async void buttonDriverLicense_Click(object sender, EventArgs e)
         {
-            var driver = await driverService.GetByUserId(currentUser.Id, CancellationToken.None);
-            var driverLicense = await driverLicenseService.GetByDriverId(driver.Id, CancellationToken.None);
-
-            var createView = navigationService.ServiceProvider.GetRequiredService<DriverLicenseCreateView>();
-            createView.Initialize(driver, driverLicense, isOwnDriver: true);
-
-            var navigationItem = new NavigationItem()
+            try
             {
-                Title = "Просмотр лизенции",
-                ViewType = null,
-                ViewInstance = createView,
-                Parent = CurrentNavigationItem,
-            };
+                var driver = await driverService.GetByUserId(currentUser.Id, CancellationToken.None);
+                var driverLicense = await driverLicenseService.GetByDriverId(driver != null ? driver.Id : Guid.Empty, CancellationToken.None);
 
-            navigationService.NavigateTo(navigationItem);
+                var createView = navigationService.ServiceProvider.GetRequiredService<DriverLicenseCreateView>();
+                createView.Initialize(driver!, driverLicense, isOwnDriver: true);
+
+                var navigationItem = new NavigationItem()
+                {
+                    Title = "Просмотр лизенции",
+                    ViewType = null,
+                    ViewInstance = createView,
+                    Parent = CurrentNavigationItem,
+                };
+
+                navigationService.NavigateTo(navigationItem);
+            } 
+            catch(InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)

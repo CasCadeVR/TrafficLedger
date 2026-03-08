@@ -17,5 +17,5 @@ public interface ITransportService : IRequestedService<Transport, TransportCreat
     /// <summary>
     /// Получить транспорт по его коду
     /// </summary>
-    Task<Transport> GetByTransportCode(string transportCode, CancellationToken cancellationToken);
+    Task<Transport?> GetByTransportCode(string transportCode, CancellationToken cancellationToken);
 }

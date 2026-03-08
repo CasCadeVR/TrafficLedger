@@ -3,7 +3,7 @@ using TrafficLedger.Desktop.Components;
 
 namespace TrafficLedger.Desktop.Components.Cards
 {
-    partial class DriverLicenseCard
+    partial class DriverLicenseRequestCard
     {
         /// <summary> 
         /// Required designer variable.
@@ -298,15 +298,10 @@ namespace TrafficLedger.Desktop.Components.Cards
         private Labels.PrimaryLabel labelBirthDateTitle;
         private Controls.TextBoxes.ReadOnlyTextBox fullName;
         private Controls.TextBoxes.ReadOnlyTextBox birthDate;
-        private CommonButton buttonEdit;
         private CommonButton buttonAbout;
-        private Labels.PrimaryLabel labelBirthPlaceTitle;
         private Labels.PrimaryLabel labelUniqueIdTitle;
-        private Controls.TextBoxes.ReadOnlyTextBox birthPlace;
         private Controls.TextBoxes.ReadOnlyTextBox uniqueId;
         private Labels.PrimaryLabel primaryLabel1;
-        private CommonButton buttonConnectTransport;
-        private CommonButton buttonConnectDriverLicense;
         private Controls.TextBoxes.ReadOnlyTextBox licenseNumberTextBox;
         private Labels.PrimaryLabel primaryLabel2;
         private Controls.TextBoxes.ReadOnlyTextBox residenseTextBox;

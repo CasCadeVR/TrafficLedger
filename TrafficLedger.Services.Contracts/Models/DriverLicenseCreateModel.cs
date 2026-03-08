@@ -26,11 +26,6 @@ public class DriverLicenseCreateModel : RequestedCreateModel
     public string IssuedBy { get; set; } = string.Empty;
 
     /// <summary>
-    /// Номер удостоверения
-    /// </summary>
-    public string Code { get; set; } = string.Empty;
-
-    /// <summary>
     /// Город
     /// </summary>
     public string Residence { get; set; } = string.Empty;

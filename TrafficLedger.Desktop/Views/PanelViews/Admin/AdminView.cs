@@ -1,5 +1,4 @@
-﻿using System;
-using TrafficLedger.Desktop.Contracts.Interfaces;
+﻿using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Contracts.Views.PanelViews;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Views.PanelViews.Admin;
@@ -7,8 +6,8 @@ using TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Fines;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Payments;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Requests;
-using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Violations;
+using TrafficLedger.Desktop.Views.PanelViews.FineCreate;
 
 namespace TrafficLedger.Desktop.Views.PanelViews
 {
@@ -51,7 +50,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             var navigationItem = new NavigationItem()
             {
                 Title = buttonTransports.Text,
-                ViewType = typeof(TransportView),
+                ViewType = typeof(TransportListView),
                 Parent = CurrentNavigationItem,
             };
 

@@ -41,7 +41,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
 
         protected override async Task<IEnumerable<Transport>> LoadItemsAsync(CancellationToken cancellationToken)
         {
-            return await transportService.GetAll(cancellationToken);
+            var allEntities = await transportService.GetAll(cancellationToken);
+            return allEntities.Where(x => x.Status == RequestStatus.Approved);
         }
 
         protected override IEnumerable<Transport> FilterItems(string searchQuery, IEnumerable<Transport> items)

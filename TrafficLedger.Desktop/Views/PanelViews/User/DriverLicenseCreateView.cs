@@ -1,6 +1,9 @@
 ﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
+using TrafficLedger.Desktop.Infrastructure.Models;
+using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
 
@@ -13,8 +16,9 @@ namespace TrafficLedger.Desktop.Views.PanelViews
     {
         private readonly IDriverLicenseService driverLicenseService;
         private readonly ITransportCategoryService transportCategoryService;
+        private readonly AppUser currentUser;
         private Driver currentDriver;
-        private DriverLicense currentDriverLicense;
+        private DriverLicense? currentDriverLicense;
         private bool isOwnDriver;
 
         /// <summary>
@@ -25,9 +29,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             InitializeComponent();
             this.driverLicenseService = driverLicenseService;
             this.transportCategoryService = transportCategoryService;
+            currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
-        public void Initialize(Driver currentDriver, DriverLicense currentDriverLicense, bool isOwnDriver)
+        public void Initialize(Driver currentDriver, DriverLicense? currentDriverLicense, bool isOwnDriver)
         {
             this.currentDriver = currentDriver;
             this.currentDriverLicense = currentDriverLicense;
@@ -38,15 +43,30 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         {
             if (currentDriverLicense != null)
             {
-                EntityId = currentDriverLicense.Id;
+                var license = await driverLicenseService.GetById(currentDriverLicense.Id, CancellationToken.None);
+
+                EntityId = license.Id;
                 CurrentModel = new DriverLicenseCreateModel
                 {
-                    LicenseNumber = currentDriverLicense.LicenseNumber,
-                    DateOfIssue = currentDriverLicense.DateOfIssue,
-                    IssuedBy = currentDriverLicense.IssuedBy,
-                    Residence = currentDriverLicense.Residence,
-                    DriverId = currentDriver.Id,
-                    LicenseCategories = currentDriverLicense.LicenseCategories.Select(x => new LicenseCategoryCreateModel()
+                    LicenseNumber = license.LicenseNumber,
+                    DateOfIssue = license.DateOfIssue,
+                    IssuedBy = license.IssuedBy,
+                    Residence = license.Residence,
+                    DriverId = license.DriverId,
+                    Status = license.Status,
+                    UserId = license.UserId,
+                    Commentary = license.Commentary,
+                    ProcessedAt = license.ProcessedAt,
+                    ProcessedById = license.ProcessedById,
+                    Attachment = license.Attachment == null ? null : new AttachmentCreateModel()
+                    {
+                        EntityId = license.Attachment!.EntityId,
+                        EntityType = license.Attachment.EntityType,
+                        Content = license.Attachment.Content,
+                        ContentType = license.Attachment.ContentType,
+                        FileName = license.Attachment.FileName,
+                    },
+                    LicenseCategories = license.LicenseCategories.Select(x => new LicenseCategoryCreateModel()
                     {
                         Date = x.Date,
                         DriverLicenseId = x.DriverLicenseId,
@@ -64,6 +84,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                     IssuedBy = string.Empty,
                     Residence = string.Empty,
                     DriverId = currentDriver.Id,
+                    UserId = currentUser.Id,
+                    Attachment = new AttachmentCreateModel(),
                     LicenseCategories = new List<LicenseCategoryCreateModel>()
                 };
             }
@@ -84,6 +106,9 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                 errorProvider);
 
             FillListBoxSelectedItems();
+
+            licensePhoto.ResetImageBindings();
+            licensePhoto.ImageChanged += (sender, attachment) => CurrentModel.Attachment = attachment;
         }
 
         private void FillListBoxSelectedItems()
@@ -132,6 +157,21 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             labelStatus.Visible = currentDriverLicense != null;
             textBoxStatus.Visible = currentDriverLicense != null;
             textBoxStatus.Text = CurrentModel.Status.ToString();
+
+            if (CurrentModel.Attachment != null)
+            {
+                licensePhoto.SetImageFromBytes(CurrentModel.Attachment.Content);
+            }
+            else
+            {
+                licensePhoto.ResetToPlaceholder();
+            }
+
+            if (CurrentModel.Status == RequestStatus.Rejected)
+            {
+                MessageBox.Show(CurrentModel.Commentary + ", Но вы ещё можете поменять данные и переслать запрос, тогда он попадёт в конец очереди",
+                    "Ваш запрос был отклонён. Причина: ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         protected override async Task OnSaveAsync()

@@ -12,5 +12,5 @@ public interface IDriverLicenseService : IRequestedService<DriverLicense, Driver
     /// <summary>
     /// Получает <see cref="DriverLicense"/> по идентификатору водителя
     /// </summary>
-    Task<DriverLicense> GetByDriverId(Guid driverId, CancellationToken cancellationToken);
+    Task<DriverLicense?> GetByDriverId(Guid driverId, CancellationToken cancellationToken);
 }

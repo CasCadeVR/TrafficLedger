@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Components\Cards\DriverLicenseCard.cs">
+    <Compile Update="Components\Cards\DriverLicenseRequestCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Components\Cards\TransportRequestCard.cs">

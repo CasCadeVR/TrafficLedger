@@ -3,7 +3,7 @@ using TrafficLedger.Desktop.Components.Controls;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
 {
-    partial class TransportView
+    partial class TransportUserView
     {
         /// <summary> 
         /// Required designer variable.

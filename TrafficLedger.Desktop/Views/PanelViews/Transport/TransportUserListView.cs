@@ -14,13 +14,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 {
     public partial class TransportUserListView : TransportUserListWrapper
     {
-        private readonly Lazy<INavigationService> navigationService;
+        private readonly INavigationService navigationService;
         private readonly ITransportService transportService;
         private readonly IDriverService driverService;
         private readonly AppUser currentUser;
 
         public TransportUserListView(
-            Lazy<INavigationService> navigationService,
+            INavigationService navigationService,
             ITransportService transportService,
             IDriverService driverService)
         {
@@ -72,7 +72,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
         private void ListFine(Transport item)
         {
-            var createView = navigationService.Value.ServiceProvider.GetRequiredService<FineTransportListView>();
+            var createView = navigationService.ServiceProvider.GetRequiredService<FineTransportListView>();
             createView.Initialize(item, ownTransport: true);
 
             var navigationItem = new NavigationItem()
@@ -83,7 +83,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                 Parent = CurrentNavigationItem,
             };
 
-            navigationService.Value.NavigateTo(navigationItem);
+            navigationService.NavigateTo(navigationItem);
         }
     }
 }

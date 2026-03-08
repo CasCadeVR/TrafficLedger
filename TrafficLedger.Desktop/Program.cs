@@ -151,7 +151,7 @@ namespace TrafficLedger.Desktop
             services.AddScoped<FineTransportListView>();
 
             services.AddScoped<TransportListView>();
-            services.AddScoped<TransportView>();
+            services.AddScoped<TransportUserView>();
             services.AddScoped<TransportCreateView>();
 
             // Admin

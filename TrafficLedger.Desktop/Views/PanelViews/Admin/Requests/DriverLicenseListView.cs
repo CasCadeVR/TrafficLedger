@@ -52,7 +52,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
 
         protected override Control CreateItemControl(DriverLicense item)
         {
-            var card = new DriverLicenseCard(item);
+            var card = new DriverLicenseRequestCard(item);
             card.AboutClicked += () => AboutDriverLicense(item);
             card.ApproveClicked += () => Approve(item);
             card.RejectClicked += () => Reject(item);
@@ -63,7 +63,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
         private void AboutDriverLicense(DriverLicense item)
         {
             var createView = navigationService.ServiceProvider.GetRequiredService<DriverLicenseCreateView>();
-            createView.Initialize(item.Driver, item, false);
+            createView.Initialize(item.Driver, item, isOwnDriver: false);
 
             var navigationItem = new NavigationItem()
             {

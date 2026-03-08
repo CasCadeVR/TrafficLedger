@@ -1,4 +1,5 @@
 ﻿using TrafficLedger.Desktop.Views.PanelViews;
+using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.FineCreate;
 using TrafficLedger.Entities;
 
@@ -26,7 +27,7 @@ namespace TrafficLedger.Desktop.Infrastructure.Navigation
                 {
                     Title = "Автомобили",
                     Icon = ImageResources.Car,
-                    ViewType = typeof(TransportUserListView)
+                    ViewType = typeof(TransportUserView)
                 },
 
                 new NavigationItem

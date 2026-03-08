@@ -114,12 +114,8 @@ namespace TrafficLedger.Services
                     Content = model.Attachment.Content,
                 };
 
+                driver.AttachmentId = attachment.Id;
                 attachmentWriteRepository.Add(attachment);
-                await unitOfWork.SaveChangesAsync(cancellationToken);
-                var response = await attachmentReadRepository.GetByEntityId(driver.Id, EntityTypes.DriverType, cancellationToken)
-                    .OrThrowIfNull(() => new InvalidOperationException($"Не сохранить фотографию для водителя с именем {model.FullName}"));
-                
-                driver.AttachmentId = response!.Id;
             }
 
             var modelOwnerships = model.Ownerships.Select(x =>
@@ -159,14 +155,28 @@ namespace TrafficLedger.Services
                 } 
                 else
                 {
-                    previousAttachment.EntityId = model.Attachment!.EntityId;
-                    previousAttachment.EntityType = model.Attachment!.EntityType;
+                    previousAttachment.EntityId = existingDriver!.Id;
+                    previousAttachment.EntityType = EntityTypes.DriverType;
                     previousAttachment.FileName = model.Attachment!.FileName;
                     previousAttachment.Content = model.Attachment!.Content;
                     previousAttachment.ContentType = model.Attachment!.ContentType;
 
                     attachmentWriteRepository.Update(previousAttachment);
                 }
+            }
+            else if (model.Attachment != null)
+            {
+                var attachment = new Attachment()
+                {
+                    EntityId = existingDriver!.Id,
+                    EntityType = EntityTypes.DriverType,
+                    FileName = model.Attachment!.FileName,
+                    ContentType = model.Attachment.ContentType,
+                    Content = model.Attachment.Content,
+                };
+
+                existingDriver.AttachmentId = attachment.Id;
+                attachmentWriteRepository.Add(attachment);
             }
 
             await ValidateMissingTransport(model, cancellationToken);

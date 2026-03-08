@@ -22,7 +22,7 @@ public class DriverLicenseReadRepository : IDriverLicenseReadRepository
         .NotDeletedAt()
         .Where(x => x.DriverId == driverId)
         .Include(x => x.Driver)
-        .Include(x => x.LicenseCategories)
+        .Include(x => x.LicenseCategories).ThenInclude(x => x.TransportCategory)
         .FirstOrDefaultAsync(cancellationToken);
 
     Task<bool> IDriverLicenseReadRepository.IsLicenseNumberExists(string licenseNumber, CancellationToken cancellationToken)
@@ -35,14 +35,14 @@ public class DriverLicenseReadRepository : IDriverLicenseReadRepository
         .NotDeletedAt()
         .ById(id)
         .Include(x => x.Driver)
-        .Include(x => x.LicenseCategories)
+        .Include(x => x.LicenseCategories).ThenInclude(x => x.TransportCategory)
         .FirstOrDefaultAsync(cancellationToken);
 
     Task<IReadOnlyCollection<DriverLicense>> IBaseReadRepository<DriverLicense>.GetAll(CancellationToken cancellationToken)
         => reader.Read<DriverLicense>()
         .NotDeletedAt()
         .Include(x => x.Driver)
-        .Include(x => x.LicenseCategories)
+        .Include(x => x.LicenseCategories).ThenInclude(x => x.TransportCategory)
         .OrderByDescending(x => x.DateOfIssue)
         .ToReadOnlyCollectionAsync(cancellationToken);
 }

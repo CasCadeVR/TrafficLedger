@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using TrafficLedger.Desktop.Contracts;
+﻿using TrafficLedger.Desktop.Contracts;
 
 namespace TrafficLedger.Desktop.Components.Controls.SearchBars
 {

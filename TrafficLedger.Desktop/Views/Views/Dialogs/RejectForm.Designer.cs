@@ -87,7 +87,7 @@
             // cancelButton
             // 
             cancelButton.BackColor = Color.Green;
-            cancelButton.DialogResult = DialogResult.OK;
+            cancelButton.DialogResult = DialogResult.Cancel;
             cancelButton.Dock = DockStyle.Fill;
             cancelButton.FlatAppearance.BorderColor = Color.DarkGray;
             cancelButton.FlatStyle = FlatStyle.Flat;

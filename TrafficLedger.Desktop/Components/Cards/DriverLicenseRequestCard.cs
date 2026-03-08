@@ -1,13 +1,12 @@
 ﻿using TrafficLedger.Desktop.Contracts.Views.Cards;
-using TrafficLedger.Desktop.Services;
 using TrafficLedger.Entities;
 
 namespace TrafficLedger.Desktop.Components.Cards
 {
     /// <summary>
-    /// Карточка <see cref="User"/>
+    /// Карточка <see cref="Driver"/>
     /// </summary>
-    public partial class DriverLicenseCard : BaseCard
+    public partial class DriverLicenseRequestCard : BaseCard
     {
         private readonly DriverLicense request;
 
@@ -27,14 +26,13 @@ namespace TrafficLedger.Desktop.Components.Cards
         public event Action AboutClicked;
 
         /// <summary>
-        /// Инициализирует новый экземпляр <see cref="DriverLicenseCard"/>
+        /// Инициализирует новый экземпляр <see cref="DriverLicenseRequestCard"/>
         /// </summary>
-        public DriverLicenseCard(DriverLicense request)
+        public DriverLicenseRequestCard(DriverLicense request)
         {
             InitializeComponent();
             this.request = request;
             FillFields();
-            buttonConnectTransport.Visible = AuthenticationService.Instance.HasAccessTo(Role.Admin);
         }
 
         private void FillFields()
