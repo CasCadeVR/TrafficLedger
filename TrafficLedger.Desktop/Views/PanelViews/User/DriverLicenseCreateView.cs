@@ -17,9 +17,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         private readonly IDriverLicenseService driverLicenseService;
         private readonly ITransportCategoryService transportCategoryService;
         private readonly AppUser currentUser;
+        private bool isInitializingCategories = false;
         private Driver currentDriver;
         private DriverLicense? currentDriverLicense;
         private bool isOwnDriver;
+
 
         /// <summary>
         /// Инициализирует новый экзмепляр <see cref="BaseCreateView"/>
@@ -93,6 +95,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
         protected override void SetupBindings()
         {
+
             textBoxLicenseNumber.AddBindings(x => x.Text, CurrentModel, x => x.LicenseNumber, errorProvider);
             textBoxIssuedBy.AddBindings(x => x.Text, CurrentModel, x => x.IssuedBy, errorProvider);
             textBoxResidence.AddBindings(x => x.Text, CurrentModel, x => x.Residence, errorProvider);
@@ -105,19 +108,33 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                 dt => new DateTimeOffset(dt, TimeSpan.Zero),
                 errorProvider);
 
-            FillListBoxSelectedItems();
-
             licensePhoto.ResetImageBindings();
             licensePhoto.ImageChanged += (sender, attachment) => CurrentModel.Attachment = attachment;
         }
 
         private void FillListBoxSelectedItems()
         {
-            listBoxCategories.SelectedItems.Clear();
+            isInitializingCategories = true;
 
-            foreach (var category in CurrentModel.LicenseCategories)
+            try
             {
-                listBoxCategories.SelectedItems.Add(category);
+                listBoxCategories.SelectedItems.Clear();
+
+                foreach (var category in CurrentModel.LicenseCategories)
+                {
+                    var existingItem = listBoxCategories.Items
+                        .Cast<TransportCategory>()
+                        .FirstOrDefault(x => x.Id == category.TransportCategoryId);
+
+                    if (existingItem != null)
+                    {
+                        listBoxCategories.SelectedItems.Add(existingItem);
+                    }
+                }
+            }
+            finally
+            {
+                isInitializingCategories = false;
             }
         }
 
@@ -142,12 +159,15 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         {
             var categories = await transportCategoryService.GetAll(CancellationToken.None);
 
+            listBoxCategories.DisplayMember = nameof(TransportCategory.CategoryName);
+            listBoxCategories.ValueMember = nameof(TransportCategory.Id);
+
             foreach (var category in categories)
             {
                 listBoxCategories.Items.Add(category);
             }
 
-            listBoxCategories.DisplayMember = nameof(TransportCategory.CategoryName);
+            FillListBoxSelectedItems();
 
             textBoxLicenseNumber.Text = CurrentModel.LicenseNumber;
             textBoxIssuedBy.Text = CurrentModel.IssuedBy;
@@ -202,6 +222,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
         private void listBoxCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isInitializingCategories)
+            {
+                return;
+            }
+
             OnSelectedItemChanged();
         }
     }

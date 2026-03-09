@@ -17,32 +17,79 @@ public class DriverLicenseReadRepository : IDriverLicenseReadRepository
         this.reader = reader;
     }
 
-    Task<DriverLicense?> IDriverLicenseReadRepository.GetByDriverId(Guid driverId, CancellationToken cancellationToken)
-        => reader.Read<DriverLicense>()
-        .NotDeletedAt()
-        .Where(x => x.DriverId == driverId)
-        .Include(x => x.Driver)
-        .Include(x => x.LicenseCategories).ThenInclude(x => x.TransportCategory)
-        .FirstOrDefaultAsync(cancellationToken);
+    async Task<DriverLicense?> IDriverLicenseReadRepository.GetByDriverId(Guid driverId, CancellationToken cancellationToken)
+    {
+        var license = await reader.Read<DriverLicense>()
+            .NotDeletedAt()
+            .Where(x => x.DriverId == driverId)
+            .Include(x => x.Driver)
+            .Include(x => x.LicenseCategories).ThenInclude(x => x.TransportCategory)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (license != null)
+        {
+            var activeCategories = await reader.Read<LicenseCategory>()
+                .NotDeletedAt()
+                .Where(o => o.DriverLicenseId == license!.Id)
+                .Include(o => o.TransportCategory)
+                .ToListAsync(cancellationToken);
+
+            license.LicenseCategories = activeCategories;
+        }
+
+        return license;
+    }
 
     Task<bool> IDriverLicenseReadRepository.IsLicenseNumberExists(string licenseNumber, CancellationToken cancellationToken)
          => reader.Read<DriverLicense>()
        .NotDeletedAt()
        .AnyAsync(x => x.LicenseNumber.ToLower() == licenseNumber.ToLower(), cancellationToken);
 
-    Task<DriverLicense?> IBaseReadRepository<DriverLicense>.GetById(Guid id, CancellationToken cancellationToken)
-         => reader.Read<DriverLicense>()
-        .NotDeletedAt()
-        .ById(id)
-        .Include(x => x.Driver)
-        .Include(x => x.LicenseCategories).ThenInclude(x => x.TransportCategory)
-        .FirstOrDefaultAsync(cancellationToken);
+    async Task<DriverLicense?> IBaseReadRepository<DriverLicense>.GetById(Guid id, CancellationToken cancellationToken)
+    {
+        var license = await reader.Read<DriverLicense>()
+            .NotDeletedAt()
+            .ById(id)
+            .Include(x => x.Driver)
+            .Include(x => x.LicenseCategories).ThenInclude(x => x.TransportCategory)
+            .FirstOrDefaultAsync(cancellationToken);
 
-    Task<IReadOnlyCollection<DriverLicense>> IBaseReadRepository<DriverLicense>.GetAll(CancellationToken cancellationToken)
-        => reader.Read<DriverLicense>()
+        if (license != null)
+        {
+            var activeCategories = await reader.Read<LicenseCategory>()
+                .NotDeletedAt()
+                .Where(o => o.DriverLicenseId == license!.Id)
+                .Include(o => o.TransportCategory)
+                .ToListAsync(cancellationToken);
+
+            license.LicenseCategories = activeCategories;
+        }
+
+        return license;
+    }
+
+    async Task<IReadOnlyCollection<DriverLicense>> IBaseReadRepository<DriverLicense>.GetAll(CancellationToken cancellationToken)
+    {
+        var licenses = await reader.Read<DriverLicense>()
         .NotDeletedAt()
         .Include(x => x.Driver)
-        .Include(x => x.LicenseCategories).ThenInclude(x => x.TransportCategory)
         .OrderByDescending(x => x.DateOfIssue)
         .ToReadOnlyCollectionAsync(cancellationToken);
+
+        foreach (var license in licenses)
+        {
+            if (license != null)
+            {
+                var activeCategories = await reader.Read<LicenseCategory>()
+                    .NotDeletedAt()
+                    .Where(o => o.DriverLicenseId == license!.Id)
+                    .Include(o => o.TransportCategory)
+                    .ToListAsync(cancellationToken);
+
+                license.LicenseCategories = activeCategories;
+            }
+        }
+
+        return licenses;
+    }
 }

@@ -90,8 +90,8 @@ namespace TrafficLedger.Desktop.Contracts.Views.PanelViews
             try
             {
                 await LoadModelAsync();
-                SetupBindings();
                 FillControls();
+                SetupBindings();
             }
             catch (Exception ex)
             {

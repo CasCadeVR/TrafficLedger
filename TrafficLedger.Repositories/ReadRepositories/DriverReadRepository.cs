@@ -55,7 +55,8 @@ public class DriverReadRepository : IDriverReadRepository
             if (driver != null)
             {
                 var activeOwnerships = await reader.Read<Ownership>()
-                    .Where(o => o.DriverId == driver.Id && o.DeletedAt == null)
+                    .NotDeletedAt()
+                    .Where(o => o.DriverId == driver.Id)
                     .Include(o => o.Transport)
                     .ToListAsync(cancellationToken);
 
@@ -77,7 +78,8 @@ public class DriverReadRepository : IDriverReadRepository
         if (driver != null)
         {
             var activeOwnerships = await reader.Read<Ownership>()
-                .Where(o => o.DriverId == driver.Id && o.DeletedAt == null)
+                .NotDeletedAt()
+                .Where(o => o.DriverId == driver.Id)
                 .Include(o => o.Transport)
                 .ToListAsync(cancellationToken);
 
@@ -100,7 +102,8 @@ public class DriverReadRepository : IDriverReadRepository
             if (driver != null)
             {
                 var activeOwnerships = await reader.Read<Ownership>()
-                    .Where(o => o.DriverId == driver.Id && o.DeletedAt == null)
+                    .NotDeletedAt()
+                    .Where(o => o.DriverId == driver.Id)
                     .Include(o => o.Transport)
                     .ToListAsync(cancellationToken);
 

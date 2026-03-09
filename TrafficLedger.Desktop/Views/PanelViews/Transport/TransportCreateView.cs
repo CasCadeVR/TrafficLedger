@@ -73,6 +73,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
                     Commentary = transport.Commentary,
                     ProcessedAt = transport.ProcessedAt,
                     ProcessedById = transport.ProcessedById,
+
                     Attachments = transport.Attachments.Select(x =>
                         new AttachmentCreateModel()
                         {
@@ -82,7 +83,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
                             ContentType = x.ContentType,
                             FileName = x.FileName
                         }).ToList(),
-                    Ownerships = new List<OwnershipDriverCreateModel>()
+
+                    Ownerships = transport.Ownerships.Select(x => 
+                        new OwnershipDriverCreateModel()
+                        {
+                            Date = x.Date,
+                            DriverId = x.DriverId,
+                        }).ToList(),
                 };
             }
             else
@@ -115,21 +122,12 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
 
         protected override void SetupBindings()
         {
-            comboBoxCategory.DataBindings.Clear();
-
             textBoxCode.AddBindings(x => x.Text, CurrentModel, x => x.TransportCode, errorProvider);
             textBoxRegion.AddBindings(x => x.Text, CurrentModel, x => x.Region, errorProvider);
             textBoxYear.AddBindings(x => x.Text, CurrentModel, x => x.Year, errorProvider);
             textBoxBrand.AddBindings(x => x.Text, CurrentModel, x => x.Brand, errorProvider);
             textBoxModel.AddBindings(x => x.Text, CurrentModel, x => x.Model, errorProvider);
             numericUpDownMileAge.AddBindings(x => x.Value, CurrentModel, x => x.MileAge, errorProvider);
-
-            comboBoxCategory.DataBindings.Add(
-                nameof(comboBoxCategory.SelectedValue),
-                CurrentModel,
-                nameof(CurrentModel.TransportCategoryId),
-                false,
-                DataSourceUpdateMode.OnPropertyChanged);
 
             if (isUserAdding)
             {
@@ -164,7 +162,15 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             comboBoxCategory.DisplayMember = nameof(TransportCategory.CategoryName);
             comboBoxCategory.ValueMember = nameof(TransportCategory.Id);
 
-            comboBoxCategory.SelectedValue = CurrentModel.TransportCategoryId;
+            comboBoxCategory.DataBindings.Clear();
+
+            comboBoxCategory.DataBindings.Add(
+               nameof(comboBoxCategory.SelectedValue),
+               CurrentModel,
+               nameof(CurrentModel.TransportCategoryId),
+               false,
+               DataSourceUpdateMode.OnPropertyChanged);
+
             textBoxCode.Text = CurrentModel.TransportCode;
             textBoxRegion.Text = CurrentModel.Region;
             textBoxYear.Text = CurrentModel.Year;
@@ -212,8 +218,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
 
             if (EntityId != Guid.Empty)
             {
-                var response = await transportService.Update(EntityId, CurrentModel, CancellationToken.None);
-                currentTransport = response;
+                await transportService.Update(EntityId, CurrentModel, CancellationToken.None);
                 MessageBox.Show("Данные транспорта обновлены.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } 
             else

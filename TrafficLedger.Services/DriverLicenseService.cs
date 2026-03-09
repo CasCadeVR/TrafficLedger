@@ -175,14 +175,13 @@ namespace TrafficLedger.Services
             existingDriverLicense.DriverId = model.DriverId;
 
             var existingLicenseCategories = existingDriverLicense.LicenseCategories;
-            var existingLicenseCategoriesDictionary = existingLicenseCategories.ToDictionary(x => x.DriverLicenseId);
+            var existingLicenseCategoriesDictionary = existingLicenseCategories.ToDictionary(x => x.TransportCategoryId);
 
             foreach (var licenseCategory in modelCategories)
             {
-                if (existingLicenseCategoriesDictionary.TryGetValue(licenseCategory.DriverLicenseId, out var foundLicenseCategory))
+                if (existingLicenseCategoriesDictionary.TryGetValue(licenseCategory.TransportCategoryId, out var foundLicenseCategory))
                 {
                     foundLicenseCategory.Date = licenseCategory.Date;
-                    foundLicenseCategory.DriverLicenseId = licenseCategory.DriverLicenseId;
                     licenseCategoryWriteRepository.Update(foundLicenseCategory);
                 }
                 else
@@ -192,8 +191,8 @@ namespace TrafficLedger.Services
                 }
             }
 
-            var licenseCategoriesIdsToDelete = existingLicenseCategories.Select(x => x.DriverLicenseId)
-                .Except(modelCategories.Select(x => x.DriverLicenseId)).ToList();
+            var licenseCategoriesIdsToDelete = existingLicenseCategories.Select(x => x.TransportCategoryId)
+                .Except(modelCategories.Select(x => x.TransportCategoryId)).ToList();
 
             foreach (var licenseCategoryId in licenseCategoriesIdsToDelete)
             {

@@ -160,7 +160,7 @@ namespace TrafficLedger.Services
             var existingTransport = await transportReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));
 
-            var existingCategory = await transportCategoryReadRepository.GetById(model.TransportCategoryId, cancellationToken)
+            await transportCategoryReadRepository.GetById(model.TransportCategoryId, cancellationToken)
               .OrThrowIfNull(() => new InvalidOperationException($"Категория транспорта с id {model.TransportCategoryId} не существует"));
 
             await ValidateMissingDrivers(model, cancellationToken);
@@ -174,7 +174,6 @@ namespace TrafficLedger.Services
             existingTransport.Status = model.Status;
             existingTransport.UserId = model.UserId;
             existingTransport.TransportCategoryId = model.TransportCategoryId;
-            existingTransport.TransportCategory = existingCategory!;
 
             var existingOwnerships = existingTransport.Ownerships;
             var existingOwnershipsDictionary = existingOwnerships.ToDictionary(x => x.TransportId);
@@ -223,36 +222,40 @@ namespace TrafficLedger.Services
                }).ToList();
 
             var existingAttachments = existingTransport.Attachments;
-            var existingAttachmentsDictionary = existingAttachments.ToDictionary(x => x.FileName);
 
-            foreach (var attachment in modelAttachments)
-            {
-                if (existingAttachmentsDictionary.TryGetValue(attachment.FileName, out var foundAttachment))
+            if (existingAttachments != null)
                 {
-                    foundAttachment.EntityId = existingTransport.Id;
-                    foundAttachment.EntityType = EntityTypes.TransportType;
-                    foundAttachment.FileName = attachment.FileName;
-                    foundAttachment.Content = attachment.Content;
-                    foundAttachment.ContentType = attachment.ContentType;
+                    var existingAttachmentsDictionary = existingAttachments.ToDictionary(x => x.FileName);
 
-                    attachmentWriteRepository.Update(foundAttachment);
+                foreach (var attachment in modelAttachments)
+                {
+                    if (existingAttachmentsDictionary.TryGetValue(attachment.FileName, out var foundAttachment))
+                    {
+                        foundAttachment.EntityId = existingTransport.Id;
+                        foundAttachment.EntityType = EntityTypes.TransportType;
+                        foundAttachment.FileName = attachment.FileName;
+                        foundAttachment.Content = attachment.Content;
+                        foundAttachment.ContentType = attachment.ContentType;
+
+                        attachmentWriteRepository.Update(foundAttachment);
+                    }
+                    else
+                    {
+                        attachmentWriteRepository.Add(attachment);
+                    }
                 }
-                else
+
+                var attachmentsFileNamesToDelete = existingAttachments.Select(x => x.FileName).Except(modelAttachments.Select(x => x.FileName)).ToList();
+
+                foreach (var attachmentFileName in attachmentsFileNamesToDelete)
                 {
-                    attachmentWriteRepository.Add(attachment);
+                    if (existingAttachmentsDictionary.TryGetValue(attachmentFileName, out var foundAttachment))
+                    {
+                        attachmentWriteRepository.Delete(foundAttachment);
+                    }
                 }
             }
 
-            var attachmentsFileNamesToDelete = existingAttachments.Select(x => x.FileName).Except(modelAttachments.Select(x => x.FileName)).ToList();
-
-            foreach (var attachmentFileName in attachmentsFileNamesToDelete)
-            {
-                if (existingAttachmentsDictionary.TryGetValue(attachmentFileName, out var foundAttachment))
-                {
-                    attachmentWriteRepository.Delete(foundAttachment);
-                }
-            }
-           
             transportWriteRepository.Update(existingTransport);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
