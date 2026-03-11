@@ -1,5 +1,6 @@
-﻿using System.Net.Mail;
-using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
+using TrafficLedger.Desktop.Infrastructure.Models;
+using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
@@ -17,8 +18,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         private readonly IFineService fineService;
         private readonly IViolationService violationService;
         private Transport currentTransport;
+        private AppUser currentUser;
         private Fine currentFine;
         private List<Violation> currentViolations;
+        private bool isInitializingAttachments;
 
         /// <summary>
         /// Инициализирует новый экзмепляр <see cref="FineCreateView"/>
@@ -30,6 +33,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
 
             comboBoxViolation.SelectedIndexChanged += OnViolationSelected;
             this.violationService = violationService;
+
+            currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         /// <summary>
@@ -56,6 +61,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                     Status = fine.Status,
                     ViolationId = fine.ViolationId,
                     TransportId = fine.TransportId,
+                    UserId = fine.UserId,
                     Attachments = fine.Attachments.Select(x =>
                         new AttachmentCreateModel()
                         {
@@ -77,6 +83,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                     Date = DateTimeOffset.UtcNow,
                     Status = RequestStatus.Pending,
                     ViolationId = Guid.Empty,
+                    UserId = currentUser.Id,
                     TransportId = currentTransport.Id,
                     Attachments = new List<AttachmentCreateModel>(),
                 };
@@ -105,7 +112,16 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                false,
                DataSourceUpdateMode.OnPropertyChanged);
 
-            multiImageUploader.ImagesChanged += (sender, attachments) => CurrentModel.Attachments = attachments;
+            multiImageUploader.ResetImageBindings();
+            multiImageUploader.ImagesChanged += (sender, attachments) =>
+            {
+                if (isInitializingAttachments)
+                {
+                    return;
+                }
+
+                CurrentModel.Attachments = attachments;
+            };
         }
 
         private void OnViolationSelected(object sender, EventArgs e)
@@ -142,10 +158,16 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             textBoxFineDescription.Text = CurrentModel.Description;
             dateTimePickerDate.Value = CurrentModel.Date.DateTime;
 
+            isInitializingAttachments = true;
+
+            multiImageUploader.Clear();
+
             if (CurrentModel.Attachments != null && CurrentModel.Attachments.Count != 0)
             {
-                multiImageUploader.SetImagesFromBytes(CurrentModel.Attachments.Select(x => x.Content ?? []));
+                multiImageUploader.SetImagesFromAttachments(CurrentModel.Attachments);
             }
+
+            isInitializingAttachments = false;
         }
 
         protected override async Task OnSaveAsync()

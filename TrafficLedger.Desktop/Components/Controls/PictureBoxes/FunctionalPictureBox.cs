@@ -14,15 +14,14 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
     {
         private readonly Image placeholderImage;
         private readonly string unrecognizedPhotoName = "Неизвестное фото";
-        private byte[]? imageBytes;
         private string? imageFormat;
-        private string? imageName;
         private CommonButton? deleteButton;
+        private AttachmentCreateModel attachment = new();
 
         /// <summary>
         /// Текущее изображение в виде массива байтов (null, если не загружено)
         /// </summary>
-        public byte[]? ImageBytes => imageBytes;
+        public byte[]? ImageBytes => attachment.Content;
 
         /// <summary>
         /// Формат изображения (расширение без точки), например "png"
@@ -32,7 +31,7 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
         /// <summary>
         /// Имя файла изображения
         /// </summary>
-        public string ImageName => imageName ?? unrecognizedPhotoName;
+        public string ImageName => attachment.FileName ?? unrecognizedPhotoName;
 
         /// <summary>
         /// Событие по смене картинки
@@ -94,7 +93,7 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
 
         private void PictureBoxContextMenuStrip_Opening(object? sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (imageBytes == null || imageBytes.Length == 0)
+            if (attachment.Content == null || attachment.Content.Length == 0)
             {
                 e.Cancel = true;
             }
@@ -118,16 +117,16 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
             {
                 Image = new Bitmap(result.Image);
                 imageFormat = result.Format;
-                imageName = result.FileName;
-                imageBytes = ByteImageConverter.ImageToByteArray(Image, imageFormat);
+                attachment.FileName = result.FileName;
+                attachment.Content = ByteImageConverter.ImageToByteArray(Image, imageFormat);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка при загрузке изображения:\n{ex.Message}", "Ошибка",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Image = null!;
-                imageBytes = null;
-                imageName = null;
+                attachment.Content = null;
+                attachment.FileName = string.Empty;
                 imageFormat = null;
             }
             finally
@@ -136,7 +135,7 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
                 ImageChanged?.Invoke(this, new AttachmentCreateModel()
                 {
                     FileName = ImageName,
-                    Content = imageBytes,
+                    Content = attachment.Content,
                     ContentType = nameof(Image),
                 });
             }
@@ -157,17 +156,17 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
         {
             ImageChanged?.Invoke(this, null!);
             this.Image = placeholderImage;
-            imageBytes = null;
+            attachment.Content = null!;
             imageFormat = null;
-            imageName = null;
+            attachment.FileName = null!;
         }
 
         /// <summary>
         /// Установить изображение из byte[]
         /// </summary>
-        public void SetImageFromBytes(byte[]? bytes)
+        public void SetImageFromAttachment(AttachmentCreateModel givenAttachment)
         {
-            if (bytes == null || bytes.Length == 0)
+            if (givenAttachment.Content == null || givenAttachment.Content.Length == 0)
             {
                 ResetToPlaceholder();
                 return;
@@ -175,10 +174,12 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
 
             try
             {
-                using var ms = new MemoryStream(bytes);
+                attachment = givenAttachment;
+                using var ms = new MemoryStream(givenAttachment.Content);
                 var image = Image.FromStream(ms);
                 this.Image = new Bitmap(image);
-                imageBytes = bytes;
+                attachment.Content = givenAttachment.Content;
+
             }
             catch (Exception ex)
             {
@@ -187,8 +188,8 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                 this.Image = null;
-                imageBytes = null;
-                imageName = null;
+                attachment.Content = null;
+                attachment.FileName = string.Empty;
                 imageFormat = null;
             }
         }

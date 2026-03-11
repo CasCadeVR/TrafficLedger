@@ -105,7 +105,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
             if (CurrentModel.Attachment != null)
             {
-                driverPhoto.SetImageFromBytes(CurrentModel.Attachment.Content);
+                driverPhoto.SetImageFromAttachment(CurrentModel.Attachment);
             } 
             else
             {

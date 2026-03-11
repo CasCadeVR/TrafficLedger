@@ -46,4 +46,9 @@ public class FineCreateModel
     /// Идентификатор <see cref="Transport"/>
     /// </summary>
     public Guid TransportId { get; set; }
+
+    /// <summary>
+    /// Идентификатор <see cref="User"/>
+    /// </summary>
+    public Guid UserId { get; set; }
 }

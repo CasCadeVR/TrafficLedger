@@ -12,8 +12,8 @@ public class ViolationCreateModel
     /// Код нарушения
     /// </summary>
     [Required(ErrorMessage = "Это поле обязательно")]
-    [StringLength(ViolationValidationRules.CodeMinLength,
-       MinimumLength = ViolationValidationRules.CodeMaxLength,
+    [StringLength(ViolationValidationRules.CodeMaxLength,
+       MinimumLength = ViolationValidationRules.CodeMinLength,
        ErrorMessage = "Код нарушения должен быть длиной от 3 до 255 символов")]
     public string ViolationCode { get; set; } = string.Empty;
 
@@ -21,8 +21,8 @@ public class ViolationCreateModel
     /// Название нарушения
     /// </summary>
     [Required(ErrorMessage = "Это поле обязательно")]
-    [StringLength(ViolationValidationRules.NameMinLength,
-       MinimumLength = ViolationValidationRules.NameMaxLength,
+    [StringLength(ViolationValidationRules.NameMaxLength,
+       MinimumLength = ViolationValidationRules.NameMinLength,
        ErrorMessage = "Название нарушения должно быть длиной от 3 до 255 символов")]
     public string Name { get; set; } = string.Empty;
 

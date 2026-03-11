@@ -93,6 +93,7 @@ namespace TrafficLedger.Services
                 Description = model.Description,
                 Status = RequestStatus.Pending,
                 TransportId = model.TransportId,
+                UserId = model.UserId,
                 ViolationId = model.ViolationId,
             };
 
@@ -133,17 +134,21 @@ namespace TrafficLedger.Services
             existingFine.Address = model.Address;
             existingFine.Description = model.Description;
             existingFine.TransportId = model.TransportId;
+            existingFine.UserId = model.UserId;
             existingFine.ViolationId = model.ViolationId;
 
             var modelAttachments = model.Attachments.Select(x =>
-               new Attachment()
-               {
-                   EntityId = existingFine!.Id,
-                   EntityType = EntityTypes.FineType,
-                   FileName = x.FileName,
-                   ContentType = x.ContentType,
-                   Content = x.Content,
-               }).ToList();
+              new Attachment()
+              {
+                  EntityId = existingFine!.Id,
+                  EntityType = EntityTypes.FineType,
+                  FileName = x.FileName,
+                  ContentType = x.ContentType,
+                  Content = x.Content,
+              }).ToList();
+
+            var foundAttachments = await attachmentReadRepository.GetAllByEntityId(existingFine!.Id, EntityTypes.FineType, cancellationToken);
+            existingFine.Attachments = foundAttachments.ToList();
 
             var existingAttachments = existingFine.Attachments;
             var existingAttachmentsDictionary = existingAttachments.ToDictionary(x => x.FileName);
@@ -152,11 +157,12 @@ namespace TrafficLedger.Services
             {
                 if (existingAttachmentsDictionary.TryGetValue(attachment.FileName, out var foundAttachment))
                 {
-                    foundAttachment.EntityId = attachment.EntityId;
-                    foundAttachment.EntityType = attachment.EntityType;
+                    foundAttachment.EntityId = existingFine.Id;
+                    foundAttachment.EntityType = EntityTypes.FineType;
                     foundAttachment.FileName = attachment.FileName;
                     foundAttachment.Content = attachment.Content;
                     foundAttachment.ContentType = attachment.ContentType;
+
                     attachmentWriteRepository.Update(foundAttachment);
                 }
                 else
@@ -165,7 +171,8 @@ namespace TrafficLedger.Services
                 }
             }
 
-            var attachmentsFileNamesToDelete = existingAttachments.Select(x => x.FileName).Except(modelAttachments.Select(x => x.FileName)).ToList();
+            var attachmentsFileNamesToDelete = existingAttachments.Select(x => x.FileName)
+                .Except(modelAttachments.Select(x => x.FileName)).ToList();
 
             foreach (var attachmentFileName in attachmentsFileNamesToDelete)
             {

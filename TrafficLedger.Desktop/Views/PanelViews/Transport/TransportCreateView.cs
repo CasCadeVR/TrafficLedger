@@ -23,6 +23,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
         private Driver currentDriver;
         private List<TransportCategory> currentCategories;
         private bool isUserAdding;
+        private bool isInitializingAttachments;
 
         /// <summary>
         /// Инициализирует новый экзмепляр <see cref="BaseCreateView"/>
@@ -143,7 +144,15 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             }
 
             multiImageUploader.ResetImageBindings();
-            multiImageUploader.ImagesChanged += (sender, attachments) => CurrentModel.Attachments = attachments;
+            multiImageUploader.ImagesChanged += (sender, attachments) =>
+            {
+                if (isInitializingAttachments)
+                {
+                    return;
+                }
+
+                CurrentModel.Attachments = attachments;
+            };
         }
 
         private void OnCategorySelected(object sender, EventArgs e)
@@ -163,7 +172,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             comboBoxCategory.ValueMember = nameof(TransportCategory.Id);
 
             comboBoxCategory.DataBindings.Clear();
-
             comboBoxCategory.DataBindings.Add(
                nameof(comboBoxCategory.SelectedValue),
                CurrentModel,
@@ -192,14 +200,16 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
                 ownershipDateTimePicker.Value = CurrentModel.Ownerships.First()!.Date.DateTime;
             }
 
+            isInitializingAttachments = true;
+
+            multiImageUploader.Clear();
+
             if (CurrentModel.Attachments != null && CurrentModel.Attachments.Count != 0)
             {
-                multiImageUploader.SetImagesFromBytes(CurrentModel.Attachments.Select(x => x.Content ?? []));
+                multiImageUploader.SetImagesFromAttachments(CurrentModel.Attachments);
             }
-            else
-            {
-                multiImageUploader.Clear();
-            }
+
+            isInitializingAttachments = false;
 
             if (CurrentModel.Status == RequestStatus.Rejected)
             {

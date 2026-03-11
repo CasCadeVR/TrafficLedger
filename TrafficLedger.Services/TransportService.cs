@@ -121,6 +121,11 @@ namespace TrafficLedger.Services
                 TransportCategoryId = category!.Id,
             };
 
+            if (user!.Role == Role.Admin)
+            {
+                transport.Status = RequestStatus.Approved;
+            }
+
             var modelOwnerships = model.Ownerships.Select(x =>
                 new Ownership()
                 {
@@ -221,38 +226,38 @@ namespace TrafficLedger.Services
                    Content = x.Content,
                }).ToList();
 
+            var foundAttachments = await attachmentReadRepository.GetAllByEntityId(existingTransport!.Id, EntityTypes.TransportType, cancellationToken);
+            existingTransport.Attachments = foundAttachments.ToList();
+
             var existingAttachments = existingTransport.Attachments;
+            var existingAttachmentsDictionary = existingAttachments.ToDictionary(x => x.FileName);
 
-            if (existingAttachments != null)
+            foreach (var attachment in modelAttachments)
+            {
+                if (existingAttachmentsDictionary.TryGetValue(attachment.FileName, out var foundAttachment))
                 {
-                    var existingAttachmentsDictionary = existingAttachments.ToDictionary(x => x.FileName);
+                    foundAttachment.EntityId = existingTransport.Id;
+                    foundAttachment.EntityType = EntityTypes.TransportType;
+                    foundAttachment.FileName = attachment.FileName;
+                    foundAttachment.Content = attachment.Content;
+                    foundAttachment.ContentType = attachment.ContentType;
 
-                foreach (var attachment in modelAttachments)
-                {
-                    if (existingAttachmentsDictionary.TryGetValue(attachment.FileName, out var foundAttachment))
-                    {
-                        foundAttachment.EntityId = existingTransport.Id;
-                        foundAttachment.EntityType = EntityTypes.TransportType;
-                        foundAttachment.FileName = attachment.FileName;
-                        foundAttachment.Content = attachment.Content;
-                        foundAttachment.ContentType = attachment.ContentType;
-
-                        attachmentWriteRepository.Update(foundAttachment);
-                    }
-                    else
-                    {
-                        attachmentWriteRepository.Add(attachment);
-                    }
+                    attachmentWriteRepository.Update(foundAttachment);
                 }
-
-                var attachmentsFileNamesToDelete = existingAttachments.Select(x => x.FileName).Except(modelAttachments.Select(x => x.FileName)).ToList();
-
-                foreach (var attachmentFileName in attachmentsFileNamesToDelete)
+                else
                 {
-                    if (existingAttachmentsDictionary.TryGetValue(attachmentFileName, out var foundAttachment))
-                    {
-                        attachmentWriteRepository.Delete(foundAttachment);
-                    }
+                    attachmentWriteRepository.Add(attachment);
+                }
+            }
+
+            var attachmentsFileNamesToDelete = existingAttachments.Select(x => x.FileName)
+                .Except(modelAttachments.Select(x => x.FileName)).ToList();
+
+            foreach (var attachmentFileName in attachmentsFileNamesToDelete)
+            {
+                if (existingAttachmentsDictionary.TryGetValue(attachmentFileName, out var foundAttachment))
+                {
+                    attachmentWriteRepository.Delete(foundAttachment);
                 }
             }
 

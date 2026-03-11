@@ -67,21 +67,24 @@ namespace TrafficLedger.Desktop.Components.ComplexControls
 
         private void OnPictureBoxDeleteRequested(FunctionalPictureBox box)
         {
+            attachments.RemoveAll(x => x.FileName == box.ImageName);
             Controls.Remove(box);
+            ImagesChanged?.Invoke(this, attachments);
             box.Dispose();
         }
 
         /// <summary>
         /// Загрузить изображения из массивов байтов
         /// </summary>
-        public void SetImagesFromBytes(IEnumerable<byte[]> images)
+        public void SetImagesFromAttachments(IEnumerable<AttachmentCreateModel> givenAttachments)
         {
-            foreach (var bytes in images)
+            foreach (var attachment in givenAttachments)
             {
                 var box = CreateNewPictureBox();
-                box.SetImageFromBytes(bytes);
+                box.SetImageFromAttachment(attachment);
                 Controls.Add(box);
                 Controls.SetChildIndex(box, Controls.GetChildIndex(addButton));
+                attachments.Add(attachment);
             }
         }
 
@@ -90,7 +93,14 @@ namespace TrafficLedger.Desktop.Components.ComplexControls
         /// </summary>
         public void Clear()
         {
-            SetImagesFromBytes([]);
+            var pictureBoxes = this.Controls.OfType<FunctionalPictureBox>().ToArray();
+
+            foreach (var box in pictureBoxes)
+            {
+                OnPictureBoxDeleteRequested(box);
+            }
+
+            attachments.Clear();
         }
 
         /// <summary>
@@ -104,6 +114,8 @@ namespace TrafficLedger.Desktop.Components.ComplexControls
             {
                 box.ResetImageBindings();
             }
+
+            ImagesChanged = null;
         }
     }
 }

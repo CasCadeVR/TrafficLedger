@@ -180,7 +180,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
             if (CurrentModel.Attachment != null)
             {
-                licensePhoto.SetImageFromBytes(CurrentModel.Attachment.Content);
+                licensePhoto.SetImageFromAttachment(CurrentModel.Attachment);
             }
             else
             {
