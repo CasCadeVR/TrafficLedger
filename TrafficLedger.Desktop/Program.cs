@@ -1,6 +1,8 @@
 using System.Configuration;
+using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using TrafficLedger.Context;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Desktop.Contracts.Interfaces;
@@ -11,12 +13,16 @@ using TrafficLedger.Desktop.Views.PanelViews.Admin;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Fines;
+using TrafficLedger.Desktop.Views.PanelViews.Admin.Parkings;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Payments;
+using TrafficLedger.Desktop.Views.PanelViews.Admin.Requests;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Users;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Violations;
 using TrafficLedger.Desktop.Views.PanelViews.FineCreate;
 using TrafficLedger.Desktop.Views.PanelViews.Fines;
+using TrafficLedger.Desktop.Views.PanelViews.Parkings;
+using TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions;
 using TrafficLedger.Desktop.Views.PanelViews.Payments;
 using TrafficLedger.Repositories.Contracts.IReadRepositories;
 using TrafficLedger.Repositories.Contracts.IWriteRepositories;
@@ -24,9 +30,6 @@ using TrafficLedger.Repositories.ReadRepositories;
 using TrafficLedger.Repositories.WriteRepositories;
 using TrafficLedger.Services;
 using TrafficLedger.Services.Contracts.Interfaces;
-using Microsoft.Extensions.Logging;
-using System.Diagnostics;
-using TrafficLedger.Desktop.Views.PanelViews.Admin.Requests;
 
 namespace TrafficLedger.Desktop
 {
@@ -142,7 +145,8 @@ namespace TrafficLedger.Desktop
             services.AddScoped<TransportUserListView>();
 
             // Payment
-            services.AddScoped<PaymentCreateView>();
+            services.AddScoped<PaymentParkingSessionCreateView>();
+            services.AddScoped<PaymentFineCreateView>();
             services.AddScoped<PaymentFineListView>();
             services.AddScoped<PaymentFineUserListView>();
 
@@ -153,6 +157,16 @@ namespace TrafficLedger.Desktop
             services.AddScoped<TransportListView>();
             services.AddScoped<TransportUserView>();
             services.AddScoped<TransportCreateView>();
+
+            // Parkings
+            services.AddScoped<ParkingSessionView>();
+            services.AddScoped<ParkingZoneView>();
+
+            services.AddScoped<ParkingZoneCreateView>();
+            services.AddScoped<ParkingZoneListView>();
+
+            services.AddScoped<ParkingSessionCreateView>();
+            services.AddScoped<ParkingSessionUserListView>();
 
             // Admin
             services.AddScoped<AdminView>();

@@ -108,9 +108,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
 
         private void Pay(Fine item)
         {
-            var userId = AuthenticationService.Instance.CurrentUser.Id;
-            var createView = navigationService.ServiceProvider.GetRequiredService<PaymentCreateView>();
-            createView.Initialize(item, userId, null!);
+            var createView = navigationService.ServiceProvider.GetRequiredService<PaymentFineCreateView>();
+            createView.Initialize(item, null!);
 
             var navigationItem = new NavigationItem()
             {

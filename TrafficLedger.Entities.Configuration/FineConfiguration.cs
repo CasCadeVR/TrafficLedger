@@ -19,6 +19,7 @@ public class FineConfiguration : IEntityTypeConfiguration<Fine>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Date).IsRequired();
+        builder.Property(x => x.Price).IsRequired();
         builder.Property(x => x.Status).IsRequired();
 
         builder.Property(x => x.Address)

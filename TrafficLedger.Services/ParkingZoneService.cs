@@ -39,7 +39,7 @@ namespace TrafficLedger.Services
 
         async Task<ParkingZone> IBaseService<ParkingZone, ParkingZoneCreateModel>.Create(ParkingZoneCreateModel model, CancellationToken cancellationToken)
         {
-            if (model.Address == null && model.GeometryWkt == null)
+            if (model.Address == null && model.CoordinatesLink == null)
             {
                 throw new InvalidOperationException($"Парковочное место должно содержать либо адрес, либо координаты WKT");
             }
@@ -53,7 +53,7 @@ namespace TrafficLedger.Services
             var entity = new ParkingZone
             {
                 Address = model.Address,
-                GeometryWkt = model.GeometryWkt,
+                CoordinatesLink = model.CoordinatesLink,
                 HourlyRate = model.HourlyRate,
                 IsActive = model.IsActive,
             };
@@ -69,7 +69,7 @@ namespace TrafficLedger.Services
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти парковочное место с идентификатором {id}"));
 
             existing!.Address = model.Address;
-            existing.GeometryWkt = model.GeometryWkt;
+            existing.CoordinatesLink = model.CoordinatesLink;
             existing.HourlyRate = model.HourlyRate;
             existing.IsActive = model.IsActive;
 

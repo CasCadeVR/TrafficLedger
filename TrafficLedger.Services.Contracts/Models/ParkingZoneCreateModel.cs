@@ -1,4 +1,6 @@
-﻿namespace TrafficLedger.Services.Contracts.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TrafficLedger.Services.Contracts.Models;
 
 /// <summary>
 /// Модель запроса зоны платной парковки
@@ -13,11 +15,12 @@ public class ParkingZoneCreateModel
     /// <summary>
     /// координаты для WKT
     /// </summary>
-    public string? GeometryWkt { get; set; }
+    public string? CoordinatesLink { get; set; }
 
     /// <summary>
     /// Цена парковки в час
     /// </summary>
+    [Required(ErrorMessage = "Это поле обязательно")]
     public decimal HourlyRate { get; set; }
 
     /// <summary>

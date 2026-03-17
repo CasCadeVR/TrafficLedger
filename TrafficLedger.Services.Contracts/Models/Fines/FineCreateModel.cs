@@ -28,9 +28,14 @@ public class FineCreateModel
     public string Description { get; set; } = string.Empty;
 
     /// <summary>
+    /// Сумма штрафа
+    /// </summary>
+    public decimal Price { get; set; }
+
+    /// <summary>
     /// Статус штрафа
     /// </summary>
-    public RequestStatus Status { get; set; }
+    public SessionStatus Status { get; set; }
 
     /// <summary>
     /// Фотки с места происшествия

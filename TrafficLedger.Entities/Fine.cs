@@ -1,5 +1,4 @@
 ﻿using TrafficLedger.Entities.Contracts;
-using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Entities;
 
@@ -16,7 +15,7 @@ public class Fine : DataBaseEntity
     /// <summary>
     /// Статус обработки
     /// </summary>
-    public RequestStatus Status { get; set; }
+    public SessionStatus Status { get; set; }
 
     /// <summary>
     /// Адрес, по которому произошло нарушение
@@ -27,6 +26,11 @@ public class Fine : DataBaseEntity
     /// Примечание
     /// </summary>
     public string Description { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Сумма штрафа
+    /// </summary>
+    public decimal Price { get; set; }
 
     /// <summary>
     /// Идентификатор <see cref="Violation"/>

@@ -91,6 +91,7 @@ namespace TrafficLedger.Services
                 Date = model.Date,
                 Address = model.Address,
                 Description = model.Description,
+                Price = model.Price,
                 Status = RequestStatus.Pending,
                 TransportId = model.TransportId,
                 UserId = model.UserId,
@@ -133,6 +134,7 @@ namespace TrafficLedger.Services
             existingFine.Status = model.Status;
             existingFine.Address = model.Address;
             existingFine.Description = model.Description;
+            existingFine.Price = model.Price;
             existingFine.TransportId = model.TransportId;
             existingFine.UserId = model.UserId;
             existingFine.ViolationId = model.ViolationId;

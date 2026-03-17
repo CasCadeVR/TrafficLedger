@@ -13,9 +13,9 @@ namespace TrafficLedger.Entities
         public string? Address { get; set; }
         
         /// <summary>
-        /// координаты для WKT
+        /// Ссылка на координаты
         /// </summary>
-        public string? GeometryWkt { get; set; }
+        public string? CoordinatesLink { get; set; }
 
         /// <summary>
         /// Цена парковки в час

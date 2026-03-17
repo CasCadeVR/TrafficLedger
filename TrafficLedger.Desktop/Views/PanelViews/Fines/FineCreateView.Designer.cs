@@ -35,24 +35,25 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             textBoxFineDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
             labelAddressTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             labelDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            buttonSave = new CommonButton();
             dateTimePickerDate = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
             labelDescription = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            textBoxDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             labelFinePrice = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            textBoxFinePrice = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             labelCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             labelName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             comboBoxViolation = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultComboBox();
             labelDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxAddress = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            buttonSave = new CommonButton();
+            textBoxDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             multiImageUploader = new TrafficLedger.Desktop.Components.ComplexControls.MultiImageUploader();
+            numericUpDownPrice = new TrafficLedger.Desktop.Components.Controls.NumericUpDowns.DefaultNumericUpDown();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
             splitContainer.SuspendLayout();
             tableLayoutPanelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownPrice).BeginInit();
             SuspendLayout();
             // 
             // splitContainer
@@ -72,17 +73,17 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             tableLayoutPanelMain.Controls.Add(labelDate, 0, 0);
             tableLayoutPanelMain.Controls.Add(dateTimePickerDate, 1, 0);
             tableLayoutPanelMain.Controls.Add(labelDescription, 0, 6);
-            tableLayoutPanelMain.Controls.Add(labelFinePrice, 0, 5);
-            tableLayoutPanelMain.Controls.Add(textBoxFinePrice, 1, 5);
-            tableLayoutPanelMain.Controls.Add(labelCode, 0, 4);
-            tableLayoutPanelMain.Controls.Add(textBoxCode, 1, 4);
-            tableLayoutPanelMain.Controls.Add(labelName, 0, 3);
-            tableLayoutPanelMain.Controls.Add(comboBoxViolation, 1, 3);
             tableLayoutPanelMain.Controls.Add(labelDescriptionTitle, 0, 2);
             tableLayoutPanelMain.Controls.Add(textBoxAddress, 1, 1);
             tableLayoutPanelMain.Controls.Add(buttonSave, 0, 11);
             tableLayoutPanelMain.Controls.Add(textBoxDescription, 1, 6);
             tableLayoutPanelMain.Controls.Add(multiImageUploader, 0, 8);
+            tableLayoutPanelMain.Controls.Add(labelFinePrice, 0, 3);
+            tableLayoutPanelMain.Controls.Add(numericUpDownPrice, 1, 3);
+            tableLayoutPanelMain.Controls.Add(labelCode, 0, 5);
+            tableLayoutPanelMain.Controls.Add(labelName, 0, 4);
+            tableLayoutPanelMain.Controls.Add(textBoxCode, 1, 5);
+            tableLayoutPanelMain.Controls.Add(comboBoxViolation, 1, 4);
             tableLayoutPanelMain.Dock = DockStyle.Fill;
             tableLayoutPanelMain.Location = new Point(0, 0);
             tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
@@ -142,25 +143,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             labelDate.TabIndex = 6;
             labelDate.Text = "Дата нарушения: ";
             // 
-            // buttonSave
-            // 
-            buttonSave.Anchor = AnchorStyles.None;
-            buttonSave.BackColor = Color.Green;
-            tableLayoutPanelMain.SetColumnSpan(buttonSave, 2);
-            buttonSave.FlatAppearance.BorderColor = Color.DarkGray;
-            buttonSave.FlatStyle = FlatStyle.Flat;
-            buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
-            buttonSave.ForeColor = Color.White;
-            buttonSave.Location = new Point(208, 524);
-            buttonSave.Margin = new Padding(4, 3, 4, 3);
-            buttonSave.Name = "buttonSave";
-            buttonSave.Padding = new Padding(9, 5, 9, 5);
-            buttonSave.Size = new Size(404, 49);
-            buttonSave.TabIndex = 8;
-            buttonSave.Text = "Сохранить";
-            buttonSave.UseVisualStyleBackColor = false;
-            buttonSave.Click += buttonSave_Click;
-            // 
             // dateTimePickerDate
             // 
             dateTimePickerDate.Anchor = AnchorStyles.Left;
@@ -187,51 +169,18 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             labelDescription.TabIndex = 15;
             labelDescription.Text = "Описание: ";
             // 
-            // textBoxDescription
-            // 
-            textBoxDescription.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxDescription.BackColor = Color.GhostWhite;
-            textBoxDescription.BorderStyle = BorderStyle.None;
-            textBoxDescription.Font = new Font("Consolas", 9.75F);
-            textBoxDescription.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxDescription.Location = new Point(414, 285);
-            textBoxDescription.Margin = new Padding(4, 3, 4, 3);
-            textBoxDescription.Multiline = true;
-            textBoxDescription.Name = "textBoxDescription";
-            textBoxDescription.ReadOnly = true;
-            tableLayoutPanelMain.SetRowSpan(textBoxDescription, 2);
-            textBoxDescription.ScrollBars = ScrollBars.Vertical;
-            textBoxDescription.Size = new Size(403, 89);
-            textBoxDescription.TabIndex = 26;
-            textBoxDescription.Text = ". . .";
-            // 
             // labelFinePrice
             // 
             labelFinePrice.Anchor = AnchorStyles.Right;
             labelFinePrice.AutoSize = true;
             labelFinePrice.Font = new Font("Segoe UI", 9.75F);
             labelFinePrice.ForeColor = Color.FromArgb(0, 0, 0);
-            labelFinePrice.Location = new Point(301, 250);
+            labelFinePrice.Location = new Point(301, 156);
             labelFinePrice.Margin = new Padding(4, 0, 4, 0);
             labelFinePrice.Name = "labelFinePrice";
             labelFinePrice.Size = new Size(105, 17);
             labelFinePrice.TabIndex = 19;
             labelFinePrice.Text = "Сумма штрафа: ";
-            // 
-            // textBoxFinePrice
-            // 
-            textBoxFinePrice.Anchor = AnchorStyles.Left;
-            textBoxFinePrice.BackColor = Color.GhostWhite;
-            textBoxFinePrice.BorderStyle = BorderStyle.None;
-            textBoxFinePrice.Font = new Font("Consolas", 9.75F);
-            textBoxFinePrice.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxFinePrice.Location = new Point(414, 250);
-            textBoxFinePrice.Margin = new Padding(4, 3, 4, 3);
-            textBoxFinePrice.Name = "textBoxFinePrice";
-            textBoxFinePrice.ReadOnly = true;
-            textBoxFinePrice.Size = new Size(287, 16);
-            textBoxFinePrice.TabIndex = 25;
-            textBoxFinePrice.Text = ". . .";
             // 
             // labelCode
             // 
@@ -239,7 +188,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             labelCode.AutoSize = true;
             labelCode.Font = new Font("Segoe UI", 9.75F);
             labelCode.ForeColor = Color.FromArgb(0, 0, 0);
-            labelCode.Location = new Point(297, 203);
+            labelCode.Location = new Point(297, 250);
             labelCode.Margin = new Padding(4, 0, 4, 0);
             labelCode.Name = "labelCode";
             labelCode.Size = new Size(109, 17);
@@ -253,7 +202,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             textBoxCode.BorderStyle = BorderStyle.None;
             textBoxCode.Font = new Font("Consolas", 9.75F);
             textBoxCode.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxCode.Location = new Point(414, 203);
+            textBoxCode.Location = new Point(414, 250);
             textBoxCode.Margin = new Padding(4, 3, 4, 3);
             textBoxCode.Name = "textBoxCode";
             textBoxCode.ReadOnly = true;
@@ -267,7 +216,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             labelName.AutoSize = true;
             labelName.Font = new Font("Segoe UI", 9.75F);
             labelName.ForeColor = Color.FromArgb(0, 0, 0);
-            labelName.Location = new Point(322, 156);
+            labelName.Location = new Point(322, 203);
             labelName.Margin = new Padding(4, 0, 4, 0);
             labelName.Name = "labelName";
             labelName.Size = new Size(84, 17);
@@ -282,7 +231,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             comboBoxViolation.Font = new Font("Segoe UI", 9.75F);
             comboBoxViolation.ForeColor = Color.FromArgb(0, 0, 0);
             comboBoxViolation.FormattingEnabled = true;
-            comboBoxViolation.Location = new Point(414, 152);
+            comboBoxViolation.Location = new Point(414, 199);
             comboBoxViolation.Margin = new Padding(4, 3, 4, 3);
             comboBoxViolation.Name = "comboBoxViolation";
             comboBoxViolation.Size = new Size(403, 25);
@@ -314,6 +263,43 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             textBoxAddress.Size = new Size(403, 25);
             textBoxAddress.TabIndex = 29;
             // 
+            // buttonSave
+            // 
+            buttonSave.Anchor = AnchorStyles.None;
+            buttonSave.BackColor = Color.Green;
+            tableLayoutPanelMain.SetColumnSpan(buttonSave, 2);
+            buttonSave.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonSave.FlatStyle = FlatStyle.Flat;
+            buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonSave.ForeColor = Color.White;
+            buttonSave.Location = new Point(208, 524);
+            buttonSave.Margin = new Padding(4, 3, 4, 3);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Padding = new Padding(9, 5, 9, 5);
+            buttonSave.Size = new Size(404, 49);
+            buttonSave.TabIndex = 8;
+            buttonSave.Text = "Сохранить";
+            buttonSave.UseVisualStyleBackColor = false;
+            buttonSave.Click += buttonSave_Click;
+            // 
+            // textBoxDescription
+            // 
+            textBoxDescription.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxDescription.BackColor = Color.GhostWhite;
+            textBoxDescription.BorderStyle = BorderStyle.None;
+            textBoxDescription.Font = new Font("Consolas", 9.75F);
+            textBoxDescription.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxDescription.Location = new Point(414, 285);
+            textBoxDescription.Margin = new Padding(4, 3, 4, 3);
+            textBoxDescription.Multiline = true;
+            textBoxDescription.Name = "textBoxDescription";
+            textBoxDescription.ReadOnly = true;
+            tableLayoutPanelMain.SetRowSpan(textBoxDescription, 2);
+            textBoxDescription.ScrollBars = ScrollBars.Vertical;
+            textBoxDescription.Size = new Size(403, 89);
+            textBoxDescription.TabIndex = 26;
+            textBoxDescription.Text = ". . .";
+            // 
             // multiImageUploader
             // 
             multiImageUploader.AutoScroll = true;
@@ -327,6 +313,21 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             multiImageUploader.Size = new Size(815, 138);
             multiImageUploader.TabIndex = 31;
             // 
+            // numericUpDownPrice
+            // 
+            numericUpDownPrice.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            numericUpDownPrice.BackColor = Color.White;
+            numericUpDownPrice.BorderStyle = BorderStyle.FixedSingle;
+            numericUpDownPrice.Font = new Font("Segoe UI", 9.75F);
+            numericUpDownPrice.ForeColor = Color.FromArgb(0, 0, 0);
+            numericUpDownPrice.Location = new Point(413, 152);
+            numericUpDownPrice.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
+            numericUpDownPrice.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
+            numericUpDownPrice.Name = "numericUpDownPrice";
+            numericUpDownPrice.Size = new Size(405, 25);
+            numericUpDownPrice.TabIndex = 32;
+            numericUpDownPrice.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            // 
             // FineCreateView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -339,6 +340,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             splitContainer.ResumeLayout(false);
             tableLayoutPanelMain.ResumeLayout(false);
             tableLayoutPanelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownPrice).EndInit();
             ResumeLayout(false);
 
         }
@@ -354,7 +356,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         private Components.Controls.DateTimePickers.DefaultDateTimePicker dateTimePickerDate;
         private Components.Controls.TextBoxes.DefaultComboBox comboBoxViolation;
         private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxDescription;
-        private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxFinePrice;
         private Components.Labels.PrimaryLabel labelCode;
         private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxCode;
         private Components.Labels.PrimaryLabel labelAddressTitle;
@@ -362,5 +363,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         private Components.Labels.PrimaryLabel labelDescriptionTitle;
         private Components.Controls.TextBoxes.DefaultTextBox textBoxAddress;
         private Components.ComplexControls.MultiImageUploader multiImageUploader;
+        private Components.Controls.NumericUpDowns.DefaultNumericUpDown numericUpDownPrice;
     }
 }

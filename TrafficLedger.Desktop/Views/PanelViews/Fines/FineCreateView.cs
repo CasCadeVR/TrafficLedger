@@ -59,6 +59,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                     Address = fine.Address,
                     Description = fine.Description,
                     Status = fine.Status,
+                    Price = fine.Price,
                     ViolationId = fine.ViolationId,
                     TransportId = fine.TransportId,
                     UserId = fine.UserId,
@@ -81,7 +82,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                     Address = string.Empty,
                     Description = string.Empty,
                     Date = DateTimeOffset.UtcNow,
-                    Status = RequestStatus.Pending,
+                    Price = 10,
+                    Status = SessionStatus.Active,
                     ViolationId = Guid.Empty,
                     UserId = currentUser.Id,
                     TransportId = currentTransport.Id,
@@ -128,8 +130,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         {
             var selectedViolation = comboBoxViolation.SelectedItem as Violation;
             textBoxCode.Text = selectedViolation?.ViolationCode ?? ". . .";
-            textBoxFinePrice.Text = selectedViolation?.MinFinePrice.ToString() ?? ". . .";
             textBoxDescription.Text = selectedViolation?.Description ?? ". . .";
+
+            numericUpDownPrice.Value = selectedViolation?.MinFinePrice ?? 10;
+            numericUpDownPrice.Minimum = selectedViolation?.MinFinePrice ?? 10;
+            numericUpDownPrice.Maximum = selectedViolation?.MaxFinePrice ?? 5000;
         }
 
         protected override async void FillControls()

@@ -12,4 +12,9 @@ public interface IParkingSessionReadRepository : IBaseReadRepository<ParkingSess
     /// Получает список <see cref="ParkingSession"/> по идентификатору транспорта
     /// </summary>
     Task<IReadOnlyCollection<ParkingSession>> GetAllByTransportId(Guid transportId, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Получает список <see cref="ParkingSession"/> по идентификатору пользователя
+    /// </summary>
+    Task<IReadOnlyCollection<ParkingSession>> GetAllByUserId(Guid userId, CancellationToken cancellationToken);
 }

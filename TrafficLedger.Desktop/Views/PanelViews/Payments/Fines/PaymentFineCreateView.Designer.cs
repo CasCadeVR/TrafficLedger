@@ -3,7 +3,7 @@ using TrafficLedger.Desktop.Components.Controls;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Payments
 {
-    partial class PaymentCreateView
+    partial class PaymentFineCreateView
     {
         /// <summary> 
         /// Required designer variable.

@@ -15,6 +15,7 @@ namespace TrafficLedger.Services
         private readonly IParkingSessionWriteRepository parkingSessionWriteRepository;
         private readonly ITransportReadRepository transportReadRepository;
         private readonly IUserReadRepository userReadRepository;
+        private readonly IDriverReadRepository driverReadRepository;
         private readonly IParkingZoneReadRepository parkingZoneReadRepository;
         private readonly IUnitOfWork unitOfWork;
 
@@ -22,6 +23,7 @@ namespace TrafficLedger.Services
             IParkingSessionWriteRepository parkingSessionWriteRepository,
             ITransportReadRepository transportReadRepository,
             IUserReadRepository userReadRepository,
+            IDriverReadRepository driverReadRepository,
             IParkingZoneReadRepository parkingZoneReadRepository,
             IUnitOfWork unitOfWork)
         {
@@ -29,6 +31,7 @@ namespace TrafficLedger.Services
             this.parkingSessionWriteRepository = parkingSessionWriteRepository;
             this.transportReadRepository = transportReadRepository;
             this.userReadRepository = userReadRepository;
+            this.driverReadRepository = driverReadRepository;
             this.parkingZoneReadRepository = parkingZoneReadRepository;
             this.unitOfWork = unitOfWork;
         }
@@ -39,6 +42,14 @@ namespace TrafficLedger.Services
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {transportId}"));
 
             return await parkingSessionReadRepository.GetAllByTransportId(transportId, cancellationToken);
+        }
+
+        async Task<IReadOnlyCollection<ParkingSession>> IParkingSessionService.GetAllByUserId(Guid userId, CancellationToken cancellationToken)
+        {
+            await userReadRepository.GetById(userId, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {userId}"));
+
+            return await parkingSessionReadRepository.GetAllByUserId(userId, cancellationToken);
         }
 
         async Task<ParkingSession> IBaseService<ParkingSession, ParkingSessionCreateModel>.GetById(Guid id, CancellationToken cancellationToken)
@@ -56,8 +67,16 @@ namespace TrafficLedger.Services
 
         async Task<ParkingSession> IBaseService<ParkingSession, ParkingSessionCreateModel>.Create(ParkingSessionCreateModel model, CancellationToken cancellationToken)
         {
-            await transportReadRepository.GetById(model.TransportId, cancellationToken)
-              .OrThrowIfNull(() => new InvalidOperationException($"Транспорт с id {model.TransportId} не существует"));
+            var existingDriver = await driverReadRepository.GetByUserId(model.UserId, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Вам нужно сперва заполнить данные водителя"));
+
+            var existingTransport = await transportReadRepository.GetByTransportCode(model.TransportCode, cancellationToken)
+              .OrThrowIfNull(() => new InvalidOperationException($"Транспорт с номером {model.TransportCode} не существует"));
+
+            if (!await transportReadRepository.IsDriverOwnsTransport(existingDriver!.Id, existingTransport!.Id, cancellationToken))
+            {
+                throw new InvalidOperationException($"Вы не владеете транспортом с номером {model.TransportCode}");
+            }
 
             await userReadRepository.GetById(model.UserId, cancellationToken)
                .OrThrowIfNull(() => new InvalidOperationException($"Пользователь с id {model.UserId} не существует"));
@@ -72,7 +91,7 @@ namespace TrafficLedger.Services
                 Status = model.Status,
                 CapturedTotalCost = model.EndTime != null ? parkingZone!.HourlyRate * model.EndTime.Value.Hour : default,
                 UserId = model.UserId,
-                TransportId = model.TransportId,
+                TransportId = existingTransport!.Id,
                 ParkingZoneId = model.ParkingZoneId,
             };
 
@@ -86,8 +105,16 @@ namespace TrafficLedger.Services
             var existing = await parkingSessionReadRepository.GetById(id, cancellationToken)
              .OrThrowIfNull(() => new InvalidOperationException($"Парковочная сессия с id {id} не существует"));
 
-            await transportReadRepository.GetById(model.TransportId, cancellationToken)
-             .OrThrowIfNull(() => new InvalidOperationException($"Транспорт с id {model.TransportId} не существует"));
+            var existingDriver = await driverReadRepository.GetByUserId(model.UserId, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException($"Вам нужно сперва заполнить данные водителя"));
+
+            var existingTransport = await transportReadRepository.GetByTransportCode(model.TransportCode, cancellationToken)
+              .OrThrowIfNull(() => new InvalidOperationException($"Транспорт с номером {model.TransportCode} не существует"));
+
+            if (!await transportReadRepository.IsDriverOwnsTransport(existingDriver!.Id, existingTransport!.Id, cancellationToken))
+            {
+                throw new InvalidOperationException($"Вы не владеете транспортом с номером {model.TransportCode}");
+            }
 
             await userReadRepository.GetById(model.UserId, cancellationToken)
                .OrThrowIfNull(() => new InvalidOperationException($"Пользователь с id {model.UserId} не существует"));
@@ -97,9 +124,8 @@ namespace TrafficLedger.Services
 
             existing!.StartTime = model.StartTime;
             existing!.EndTime = model.EndTime;
-            existing.TransportId = model.TransportId;
+            existing.TransportId = existingTransport.Id;
             existing.CapturedTotalCost = model.EndTime != null ? parkingZone!.HourlyRate * model.EndTime.Value.Hour : default;
-            existing.TransportId = model.TransportId;
             existing.ParkingZoneId = model.ParkingZoneId;
 
             parkingSessionWriteRepository.Update(existing);

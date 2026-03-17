@@ -218,6 +218,9 @@ namespace TrafficLedger.Context.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -367,14 +370,14 @@ namespace TrafficLedger.Context.Migrations
                         .HasMaxLength(2047)
                         .HasColumnType("nvarchar(2047)");
 
+                    b.Property<string>("CoordinatesLink")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<DateTimeOffset?>("DeletedAt")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("GeometryWkt")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("HourlyRate")
                         .HasColumnType("decimal(18,2)");

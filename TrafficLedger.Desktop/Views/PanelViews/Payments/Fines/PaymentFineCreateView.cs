@@ -1,4 +1,6 @@
-﻿using TrafficLedger.Desktop.Views.Wrappers;
+﻿using TrafficLedger.Desktop.Infrastructure.Models;
+using TrafficLedger.Desktop.Services;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
@@ -9,29 +11,30 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
     /// <summary>
     /// Форма создания редактирования для <see cref="PaymentCreateModel"/>
     /// </summary>
-    public partial class PaymentCreateView : PaymentCreateWrapper
+    public partial class PaymentFineCreateView : PaymentCreateWrapper
     {
         private readonly IPaymentService paymentService;
         private Payment currentPayment;
-        private Guid currentUserId;
+        private AppUser currentUser;
         private Fine currentFine;
 
         /// <summary>
         /// Инициализирует новый экзмепляр <see cref="FineCreateView"/>
         /// </summary>
-        public PaymentCreateView(IPaymentService paymentService)
+        public PaymentFineCreateView(IPaymentService paymentService)
         {
             InitializeComponent();
             this.paymentService = paymentService;
+
+            currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         /// <summary>
         /// Инициализирует необходимые параметры
         /// </summary>
-        public void Initialize(Fine currentFine, Guid currentUserId, Payment currentPayment)
+        public void Initialize(Fine currentFine, Payment currentPayment)
         {
             this.currentFine = currentFine;
-            this.currentUserId = currentUserId;
             this.currentPayment = currentPayment;
         }
 
@@ -58,7 +61,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
                     Date = DateTimeOffset.UtcNow,
                     Status = RequestStatus.Pending,
                     EntityId = currentFine.Id,
-                    UserId = currentUserId,
+                    UserId = currentUser.Id,
                 };
             }
         }

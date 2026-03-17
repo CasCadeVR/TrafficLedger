@@ -10,6 +10,7 @@
 	
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3800.47" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,16 +25,43 @@
     <Compile Update="Components\Cards\DriverLicenseRequestCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Components\Cards\ParkingSessionCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\Cards\ParkingZoneCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Components\Cards\TransportRequestCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Components\Controls\ContextMenuStrips\PictureBoxContextMenuStrip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="Views\PanelViews\Admin\Parkings\ParkingZoneCreateView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\PanelViews\Admin\Parkings\ParkingZoneView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Views\PanelViews\Admin\Requests\RequestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\PanelViews\Admin\Requests\DriverLicenseListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\PanelViews\Parkings\Sessions\ParkingSessionView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\PanelViews\Parkings\ParkingZoneListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\PanelViews\Parkings\Sessions\ParkingSessionUserListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\PanelViews\Parkings\Sessions\ParkingSessionCreateView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\PanelViews\Payments\ParkingSessions\PaymentParkingSessionCreateView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Wrappers\Admin\Drivers\DriverListWrapper.cs">
@@ -46,6 +74,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Wrappers\Admin\Fines\FineListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Parkings\ParkingZoneCreateWrapper.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Wrappers\Admin\Payments\PaymentListWrapper.cs">
@@ -78,7 +109,16 @@
     <Compile Update="Views\Wrappers\Fines\FineTransportListWrapper.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Views\Wrappers\Payments\PaymentCreateWrapper.cs">
+    <Compile Update="Views\Wrappers\Parkings\Sessions\ParkingSessionUserListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Parkings\Sessions\ParkingSessionCreateWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Parkings\ParkingZoneListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Payments\PaymentFineCreateWrapper.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Wrappers\Payments\PaymentUserListWrapper.cs">

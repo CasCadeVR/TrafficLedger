@@ -26,6 +26,15 @@ public class ParkingSessionReadRepository : IParkingSessionReadRepository
         .Include(x => x.User)
         .ToReadOnlyCollectionAsync(cancellationToken);
 
+    Task<IReadOnlyCollection<ParkingSession>> IParkingSessionReadRepository.GetAllByUserId(Guid userId, CancellationToken cancellationToken)
+        => reader.Read<ParkingSession>()
+        .NotDeletedAt()
+        .Where(x => x.UserId == userId)
+        .Include(x => x.Transport)
+        .Include(x => x.ParkingZone)
+        .Include(x => x.User)
+        .ToReadOnlyCollectionAsync(cancellationToken);
+
     Task<ParkingSession?> IBaseReadRepository<ParkingSession>.GetById(Guid id, CancellationToken cancellationToken)
          => reader.Read<ParkingSession>()
         .NotDeletedAt()

@@ -1,6 +1,7 @@
 ﻿using TrafficLedger.Desktop.Views.PanelViews;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.FineCreate;
+using TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions;
 using TrafficLedger.Entities;
 
 namespace TrafficLedger.Desktop.Infrastructure.Navigation
@@ -34,7 +35,7 @@ namespace TrafficLedger.Desktop.Infrastructure.Navigation
                 {
                     Title = "Парковки",
                     Icon = ImageResources.Parking,
-                    ViewType = typeof(TransportUserListView)
+                    ViewType = typeof(ParkingSessionView)
                 },
 
                 new NavigationItem

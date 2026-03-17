@@ -14,6 +14,11 @@ public interface ITransportReadRepository : IBaseReadRepository<Transport>
     Task<bool> IsCodeExists(string сode, CancellationToken cancellationToken);
 
     /// <summary>
+    /// Владеет ли водитель транспортом
+    /// </summary>
+    Task<bool> IsDriverOwnsTransport(Guid driverId, Guid transportId, CancellationToken cancellationToken);
+
+    /// <summary>
     /// Получает список <see cref="Transport"/> по идентификаторам
     /// </summary>
     Task<IReadOnlyCollection<Transport>> GetByIds(IReadOnlyCollection<Guid> ids, CancellationToken cancellationToken);

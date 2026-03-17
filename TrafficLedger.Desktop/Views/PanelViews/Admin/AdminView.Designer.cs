@@ -40,6 +40,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonPayments = new CommonButton();
             buttonViolations = new CommonButton();
             buttonStatistics = new CommonButton();
+            buttonParkings = new CommonButton();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
             splitContainer.SuspendLayout();
@@ -57,27 +58,29 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             // 
             tableLayoutPanelMain.ColumnCount = 1;
             tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelMain.Controls.Add(buttonRequests, 0, 6);
+            tableLayoutPanelMain.Controls.Add(buttonParkings, 0, 6);
             tableLayoutPanelMain.Controls.Add(buttonDrivers, 0, 1);
             tableLayoutPanelMain.Controls.Add(buttonUsers, 0, 0);
             tableLayoutPanelMain.Controls.Add(buttonTransports, 0, 2);
             tableLayoutPanelMain.Controls.Add(buttonFines, 0, 3);
             tableLayoutPanelMain.Controls.Add(buttonPayments, 0, 4);
             tableLayoutPanelMain.Controls.Add(buttonViolations, 0, 5);
-            tableLayoutPanelMain.Controls.Add(buttonStatistics, 0, 7);
+            tableLayoutPanelMain.Controls.Add(buttonStatistics, 0, 8);
+            tableLayoutPanelMain.Controls.Add(buttonRequests, 0, 7);
             tableLayoutPanelMain.Dock = DockStyle.Fill;
             tableLayoutPanelMain.Location = new Point(0, 0);
             tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
             tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            tableLayoutPanelMain.RowCount = 8;
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            tableLayoutPanelMain.RowCount = 9;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
             tableLayoutPanelMain.Size = new Size(821, 576);
             tableLayoutPanelMain.TabIndex = 0;
             // 
@@ -89,7 +92,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonRequests.FlatStyle = FlatStyle.Flat;
             buttonRequests.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonRequests.ForeColor = Color.AntiqueWhite;
-            buttonRequests.Location = new Point(219, 442);
+            buttonRequests.Location = new Point(219, 454);
             buttonRequests.Margin = new Padding(4, 3, 4, 3);
             buttonRequests.Name = "buttonRequests";
             buttonRequests.Padding = new Padding(9, 5, 9, 5);
@@ -107,7 +110,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonDrivers.FlatStyle = FlatStyle.Flat;
             buttonDrivers.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonDrivers.ForeColor = Color.AntiqueWhite;
-            buttonDrivers.Location = new Point(219, 82);
+            buttonDrivers.Location = new Point(219, 70);
             buttonDrivers.Margin = new Padding(4, 3, 4, 3);
             buttonDrivers.Name = "buttonDrivers";
             buttonDrivers.Padding = new Padding(9, 5, 9, 5);
@@ -125,7 +128,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonUsers.FlatStyle = FlatStyle.Flat;
             buttonUsers.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonUsers.ForeColor = Color.AntiqueWhite;
-            buttonUsers.Location = new Point(219, 10);
+            buttonUsers.Location = new Point(219, 6);
             buttonUsers.Margin = new Padding(4, 3, 4, 3);
             buttonUsers.Name = "buttonUsers";
             buttonUsers.Padding = new Padding(9, 5, 9, 5);
@@ -143,7 +146,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonTransports.FlatStyle = FlatStyle.Flat;
             buttonTransports.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonTransports.ForeColor = Color.AntiqueWhite;
-            buttonTransports.Location = new Point(219, 154);
+            buttonTransports.Location = new Point(219, 134);
             buttonTransports.Margin = new Padding(4, 3, 4, 3);
             buttonTransports.Name = "buttonTransports";
             buttonTransports.Padding = new Padding(9, 5, 9, 5);
@@ -161,7 +164,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonFines.FlatStyle = FlatStyle.Flat;
             buttonFines.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonFines.ForeColor = Color.AntiqueWhite;
-            buttonFines.Location = new Point(219, 226);
+            buttonFines.Location = new Point(219, 198);
             buttonFines.Margin = new Padding(4, 3, 4, 3);
             buttonFines.Name = "buttonFines";
             buttonFines.Padding = new Padding(9, 5, 9, 5);
@@ -179,7 +182,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonPayments.FlatStyle = FlatStyle.Flat;
             buttonPayments.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonPayments.ForeColor = Color.AntiqueWhite;
-            buttonPayments.Location = new Point(219, 298);
+            buttonPayments.Location = new Point(219, 262);
             buttonPayments.Margin = new Padding(4, 3, 4, 3);
             buttonPayments.Name = "buttonPayments";
             buttonPayments.Padding = new Padding(9, 5, 9, 5);
@@ -197,7 +200,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonViolations.FlatStyle = FlatStyle.Flat;
             buttonViolations.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonViolations.ForeColor = Color.AntiqueWhite;
-            buttonViolations.Location = new Point(219, 370);
+            buttonViolations.Location = new Point(219, 326);
             buttonViolations.Margin = new Padding(4, 3, 4, 3);
             buttonViolations.Name = "buttonViolations";
             buttonViolations.Padding = new Padding(9, 5, 9, 5);
@@ -215,7 +218,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonStatistics.FlatStyle = FlatStyle.Flat;
             buttonStatistics.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonStatistics.ForeColor = Color.AntiqueWhite;
-            buttonStatistics.Location = new Point(219, 514);
+            buttonStatistics.Location = new Point(219, 518);
             buttonStatistics.Margin = new Padding(4, 3, 4, 3);
             buttonStatistics.Name = "buttonStatistics";
             buttonStatistics.Padding = new Padding(9, 5, 9, 5);
@@ -223,6 +226,24 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonStatistics.TabIndex = 8;
             buttonStatistics.Text = "Просмотр отчётов";
             buttonStatistics.UseVisualStyleBackColor = false;
+            // 
+            // buttonParkings
+            // 
+            buttonParkings.Anchor = AnchorStyles.None;
+            buttonParkings.BackColor = Color.BlueViolet;
+            buttonParkings.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonParkings.FlatStyle = FlatStyle.Flat;
+            buttonParkings.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonParkings.ForeColor = Color.AntiqueWhite;
+            buttonParkings.Location = new Point(219, 390);
+            buttonParkings.Margin = new Padding(4, 3, 4, 3);
+            buttonParkings.Name = "buttonParkings";
+            buttonParkings.Padding = new Padding(9, 5, 9, 5);
+            buttonParkings.Size = new Size(382, 51);
+            buttonParkings.TabIndex = 10;
+            buttonParkings.Text = "Данные парковок";
+            buttonParkings.UseVisualStyleBackColor = false;
+            buttonParkings.Click += buttonParkings_Click;
             // 
             // AdminView
             // 
@@ -249,5 +270,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         private CommonButton buttonPayments;
         private CommonButton buttonStatistics;
         private CommonButton buttonRequests;
+        private CommonButton buttonParkings;
     }
 }

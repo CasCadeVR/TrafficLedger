@@ -86,7 +86,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
             {
                 await violationService.Update(EntityId, CurrentModel, CancellationToken.None);
                 MessageBox.Show("Данные нарушения обновлены.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } 
+            }
             else
             {
                 var request = await violationService.Create(CurrentModel, CancellationToken.None);
@@ -98,6 +98,17 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
         private async void buttonSave_Click(object sender, EventArgs e)
         {
             await HandleSaveAsync(textBoxCode, textBoxName, textBoxDescription);
+        }
+
+        private void radioEndPrice_CheckedChanged(object sender, EventArgs e)
+        {
+            labelFinePrice.Enabled = radioEndPrice.Checked;
+            labelMaxFinePrice.Enabled = !radioEndPrice.Checked;
+            labelMaxFinePrice.Enabled = !radioEndPrice.Checked;
+
+            numericUpDownFinePrice.Enabled = radioEndPrice.Checked;
+            numericUpDownMinFinePrice.Enabled = !radioEndPrice.Checked;
+            numericUpDownMaxFinePrice.Enabled = !radioEndPrice.Checked;
         }
     }
 }

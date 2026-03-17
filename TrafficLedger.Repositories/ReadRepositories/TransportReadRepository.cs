@@ -22,6 +22,11 @@ public class TransportReadRepository : ITransportReadRepository
        .NotDeletedAt()
        .AnyAsync(x => x.TransportCode.ToLower() == code.ToLower(), cancellationToken);
 
+    Task<bool> ITransportReadRepository.IsDriverOwnsTransport(Guid driverId, Guid transportId, CancellationToken cancellationToken)
+       => reader.Read<Transport>()
+        .NotDeletedAt()
+        .AnyAsync(t => t.Ownerships.Any(o => o.DriverId == driverId && o.DeletedAt == null), cancellationToken);
+
     async Task<IReadOnlyCollection<Transport>> ITransportReadRepository.GetByIds(IReadOnlyCollection<Guid> ids, CancellationToken cancellationToken)
     {
         var transports = await reader.Read<Transport>()
@@ -51,6 +56,7 @@ public class TransportReadRepository : ITransportReadRepository
     async Task<IReadOnlyCollection<Transport>> ITransportReadRepository.GetAllByDriverId(Guid driverId, CancellationToken cancellationToken)
     {
         var transports = await reader.Read<Transport>()
+            .NotDeletedAt()
             .Include(t => t.TransportCategory)
             .Include(t => t.Ownerships)
             .Where(t => t.Ownerships.Any(o => o.DriverId == driverId && o.DeletedAt == null))
