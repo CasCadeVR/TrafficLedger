@@ -15,7 +15,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
     public partial class PaymentParkingSessionCreateView : PaymentCreateWrapper
     {
         private readonly IPaymentService paymentService;
-        private readonly AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
         private Payment currentPayment;
         private ParkingSession currentParkingSession;
 
@@ -26,8 +26,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
         {
             InitializeComponent();
             this.paymentService = paymentService;
-
-            currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         /// <summary>
@@ -72,6 +70,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             }
         }
 
+        protected override void SetupBindings() { }
+
         protected override void FillControls()
         {
             textBoxTransportCode.Text = currentParkingSession.Transport.TransportCode;
@@ -86,7 +86,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             Uri.TryCreate(currentParkingSession.ParkingZone.CoordinatesLink, UriKind.Absolute, out var uri);
             webView.Source = uri;
 
-            textBoxStatus.Text = Enum.GetName(CurrentModel.Status);
+            statusLabel.Visible = currentPayment != null;
+            textBoxStatus.Visible = currentPayment != null;
+
+            if (currentPayment != null)
+            {
+                textBoxStatus.Text = Enum.GetName(currentPayment.Status);
+            }
         }
 
         protected override async Task OnSaveAsync()

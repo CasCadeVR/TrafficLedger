@@ -14,7 +14,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
     public partial class ParkingSessionCreateView : ParkingSessionCreateWrapper
     {
         private readonly IParkingSessionService parkingSessionService;
-        private readonly AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
         private ParkingZone currentParkingZone;
         private ParkingSession currentParkingSession;
 
@@ -25,8 +25,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
         {
             InitializeComponent();
             this.parkingSessionService = parkingSessionService;
-
-            this.currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         /// <summary>

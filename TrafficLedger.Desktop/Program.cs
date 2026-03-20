@@ -7,7 +7,6 @@ using TrafficLedger.Context;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Services;
-using TrafficLedger.Desktop.Views;
 using TrafficLedger.Desktop.Views.PanelViews;
 using TrafficLedger.Desktop.Views.PanelViews.Admin;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers;
@@ -50,14 +49,9 @@ namespace TrafficLedger.Desktop
 
             var serviceProvider = services.BuildServiceProvider();
 
-            var authorizeForm = serviceProvider.GetRequiredService<AuthorizeForm>();
+            var mainForm = serviceProvider.GetRequiredService<MainView>();
 
-            if (authorizeForm.ShowDialog() == DialogResult.OK)
-            {
-                var mainForm = serviceProvider.GetRequiredService<MainView>();
-
-                Application.Run(mainForm);
-            }
+            Application.Run(mainForm);
         }
 
         private static void ConfigureServices(IServiceCollection services)
@@ -127,7 +121,7 @@ namespace TrafficLedger.Desktop
             services.AddSingleton<AuthenticationService>();
 
             // Main
-            services.AddScoped<AuthorizeForm>();
+            services.AddScoped<AuthorizeView>();
             services.AddScoped<MainView>();
             services.AddScoped<INavigationService>(x => x.GetRequiredService<MainView>());
             services.AddScoped(x => new Lazy<INavigationService>(() => x.GetRequiredService<INavigationService>()));

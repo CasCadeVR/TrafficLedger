@@ -43,7 +43,7 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
         /// </summary>
         public event Action<FunctionalPictureBox>? DeleteRequested;
 
-        public FunctionalPictureBox()
+        public FunctionalPictureBox(bool asReadonly = false)
         {
             var pictureBoxContextMenuStrip = new PictureBoxContextMenuStrip();
             pictureBoxContextMenuStrip.OnItemClick += OnPictureBoxClick;
@@ -55,10 +55,14 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
             this.BorderStyle = BorderStyle.FixedSingle;
             this.Cursor = Cursors.Hand;
             this.ContextMenuStrip = pictureBoxContextMenuStrip;
-            this.DoubleClick += OnPictureBoxDoubleClick;
 
-            AddRemoveButton();
-            DeleteRequested += (_) => ResetToPlaceholder();
+            if (!asReadonly)
+            {
+                this.DoubleClick += OnPictureBoxDoubleClick;
+
+                AddRemoveButton();
+                DeleteRequested += (_) => ResetToPlaceholder();
+            }
         }
 
         private void AddRemoveButton()

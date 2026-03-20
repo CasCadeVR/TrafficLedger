@@ -14,7 +14,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         private readonly INavigationService navigationService;
         private readonly IDriverService driverService;
         private readonly IDriverLicenseService driverLicenseService;
-        private readonly AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
 
         public UserView(INavigationService navigationService, IDriverLicenseService driverLicenseService, IDriverService driverService)
         {
@@ -22,8 +22,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             this.navigationService = navigationService;
             this.driverService = driverService;
             this.driverLicenseService = driverLicenseService;
-
-            currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         private async void buttonDriver_Click(object sender, EventArgs e)
@@ -82,11 +80,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             if (result == DialogResult.Yes)
             {
                 AuthenticationService.Instance.Logout();
-
-                var loginForm = navigationService.ServiceProvider.GetRequiredService<AuthorizeForm>();
-
-                loginForm.ShowDialog();
-                this.Hide();
             }
         }
 

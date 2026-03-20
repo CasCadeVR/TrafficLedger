@@ -41,5 +41,5 @@ public class ViolationCreateModel
     /// <summary>
     /// Максимальная сумма штрафа за нарушение
     /// </summary>
-    public decimal? MaxFinePrice { get; set; }
+    public decimal MaxFinePrice { get; set; }
 }

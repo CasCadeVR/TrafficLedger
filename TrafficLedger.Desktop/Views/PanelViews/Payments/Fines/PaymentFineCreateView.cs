@@ -15,7 +15,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
     {
         private readonly IPaymentService paymentService;
         private Payment currentPayment;
-        private AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
         private Fine currentFine;
 
         /// <summary>
@@ -25,8 +25,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
         {
             InitializeComponent();
             this.paymentService = paymentService;
-
-            currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         /// <summary>
@@ -78,7 +76,36 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxCode.Text = currentFine.Violation.ViolationCode;
             textBoxFinePrice.Text = currentFine.Violation.MinFinePrice.ToString();
             textBoxDescription.Text = currentFine.Violation.Description;
-            textBoxStatus.Text = Enum.GetName(CurrentModel.Status);
+
+            statusLabel.Visible = currentPayment != null;
+            textBoxStatus.Visible = currentPayment != null;
+
+            if (currentPayment != null)
+            {
+                textBoxStatus.Text = Enum.GetName(currentPayment.Status);
+            }
+
+            multiImageUploader.Clear();
+
+            if (currentFine.Attachments != null && currentFine.Attachments.Count != 0)
+            {
+                multiImageUploader.SetImagesFromAttachments(currentFine.Attachments.Select(x =>
+                        new AttachmentCreateModel()
+                        {
+                            EntityId = x.Id,
+                            EntityType = x.EntityType,
+                            Content = x.Content,
+                            ContentType = x.ContentType,
+                            FileName = x.FileName
+                        }).ToList(), asReadonlyImages: true);
+            }
+
+            multiImageUploader.HideAddButton();
+
+            if (CurrentModel.Status == RequestStatus.Rejected)
+            {
+                MessageBox.Show(CurrentModel.Commentary, "Ваш запрос был отклонён. Причина: ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         protected override async Task OnSaveAsync()

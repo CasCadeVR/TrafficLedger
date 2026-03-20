@@ -15,7 +15,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
     {
         private readonly INavigationService navigationService;
         private readonly IDriverLicenseService driverLicenseService;
-        private readonly AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
 
         public DriverLicenseListView(INavigationService navigationService, IDriverLicenseService driverLicenseService)
         {
@@ -25,8 +25,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
-
-            currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         protected override async Task<IEnumerable<DriverLicense>> LoadItemsAsync(CancellationToken cancellationToken)

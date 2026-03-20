@@ -16,7 +16,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings
     {
         private readonly INavigationService navigationService;
         private readonly IParkingZoneService parkingZoneService;
-        private readonly AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
         private bool asAdmin;
 
         public ParkingZoneListView(INavigationService navigationService, IParkingZoneService parkingZoneService)
@@ -27,8 +27,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
-
-            this.currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         /// <summary>

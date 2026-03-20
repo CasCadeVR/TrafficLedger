@@ -11,6 +11,13 @@ namespace TrafficLedger.Desktop.Infrastructure.Navigation
     /// </summary>
     public static class NavigationRegistry
     {
+        public static NavigationItem AuthorizationView
+            = new NavigationItem
+            {
+                Title = "Авторизация",
+                ViewType = typeof(AuthorizeView)
+            };
+
         /// <summary>
         /// Получить пункты меню
         /// </summary>

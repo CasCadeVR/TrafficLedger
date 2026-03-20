@@ -15,7 +15,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
     public partial class DriverCreateView : DriverCreateWrapper
     {
         private readonly IDriverService driverService;
-        private readonly AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
         private Driver currentDriver;
         private int uniqueId;
 
@@ -26,12 +26,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         {
             InitializeComponent();
             this.driverService = driverService;
-            this.currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         public void Initialize(Driver driver)
         {
-            this.currentDriver = driver;
+            currentDriver = driver;
         }
 
         protected override async Task LoadModelAsync()

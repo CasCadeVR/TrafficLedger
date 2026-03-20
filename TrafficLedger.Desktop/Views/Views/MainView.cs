@@ -29,12 +29,24 @@ namespace TrafficLedger.Desktop
         {
             this.serviceProvider = serviceProvider;
             InitializeComponent();
+            splitContainer.Panel1Collapsed = true;
+
+            AuthenticationService.Instance.AuthStateChanged += BuildNavigationMenu;
+            NavigateCoreTo(NavigationRegistry.AuthorizationView);
             BuildNavigationMenu();
-            NavigateCoreTo(NavigationRegistry.GetMenuItems()[1]);
         }
 
         private void BuildNavigationMenu()
         {
+            splitContainer.Panel1Collapsed = !AuthenticationService.Instance.IsAuthorized;
+            flowLayoutPanelButtons.Controls.Clear();
+
+            if (!AuthenticationService.Instance.IsAuthorized)
+            {
+                NavigateCoreTo(NavigationRegistry.AuthorizationView);
+                return;
+            }
+
             int buttonSize = flowLayoutPanelButtons.Width-14;
             navigationItems = NavigationRegistry.GetMenuItems();
 
@@ -44,7 +56,7 @@ namespace TrafficLedger.Desktop
                     continue;
 
                 var menuButton = new MenuButton(item);
-                menuButton.Clicked += (navItem) => NavigateCoreTo(navItem);
+                menuButton.Clicked += NavigateCoreTo;
                 menuButton.Size = new Size(buttonSize, buttonSize);
                 menuButton.MaximumSize = new Size(buttonSize, buttonSize);
 

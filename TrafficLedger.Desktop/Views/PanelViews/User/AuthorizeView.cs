@@ -1,22 +1,20 @@
-﻿using System;
-using System.Threading;
-using System.Windows.Forms;
-using TrafficLedger.Desktop.Contracts;
+﻿using TrafficLedger.Desktop.Contracts.Interfaces;
+using TrafficLedger.Desktop.Contracts.Views.PanelViews;
+using TrafficLedger.Desktop.Infrastructure.Models;
+using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
-using TrafficLedger.Desktop.Infrastructure.Models;
 
-namespace TrafficLedger.Desktop.Views
+namespace TrafficLedger.Desktop.Views.PanelViews
 {
-    /// <summary>
-    /// Форма авторизации пользователя
-    /// </summary>
-    public partial class AuthorizeForm : BaseForm
+    public partial class AuthorizeView : BasePanelView
     {
+        private readonly Lazy<INavigationService> navigationService;
         private readonly IUserService userService;
         private bool isRegistration;
+        private int debugRoleState = 2; // Represents role
 
         private readonly string loginTitle = "Авторизация";
         private readonly string regisrtationTitle = "Регистрация";
@@ -29,24 +27,23 @@ namespace TrafficLedger.Desktop.Views
         private readonly string registrationSuccessText = "Вы успешно зарегестрировались!";
 
         /// <summary>
-        /// Инициализирует новый экземпляр <see cref="AuthorizeForm"/>
+        /// Инициализирует новый экземпляр <see cref="AuthorizeView"/>
         /// </summary>
-        public AuthorizeForm(IUserService userService)
+        public AuthorizeView(Lazy<INavigationService> navigationService, IUserService userService)
         {
             InitializeComponent();
+            this.navigationService = navigationService;
             this.userService = userService;
 
             isRegistration = false;
-            textBoxLogin.Text = "admin";
-            textBoxPassword.Text = "admin";
-            //buttonLogin_Click(null, null);
+            roleDebugButton_Click(this, null!);
         }
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             isRegistration = !isRegistration;
 
-            labelTitle.Text = isRegistration ? regisrtationTitle : loginTitle;
+            title.Text = isRegistration ? regisrtationTitle : loginTitle;
             buttonLogin.Text = isRegistration ? buttonRegisrtationTitle : buttonLoginTitle;
             buttonRegister.Text = isRegistration ? buttonBackText : buttonRegisterText;
         }
@@ -100,7 +97,35 @@ namespace TrafficLedger.Desktop.Views
                 }
 
                 MessageBox.Show(loginSuccessText);
-                DialogResult = DialogResult.OK;
+                navigationService.Value.NavigateTo(NavigationRegistry.GetMenuItems()[1]);
+            }
+        }
+
+        private void roleDebugButton_Click(object sender, EventArgs e)
+        {
+            switch(debugRoleState)
+            {
+                case 0:
+                    textBoxLogin.Text = "user";
+                    textBoxPassword.Text = "user";
+                    break;
+
+                case 1:
+                    textBoxLogin.Text = "police";
+                    textBoxPassword.Text = "police";
+                    break;
+
+                case 2:
+                    textBoxLogin.Text = "admin";
+                    textBoxPassword.Text = "admin";
+                    break;
+            }
+
+
+            debugRoleState++;
+            if (debugRoleState >= 3)
+            {
+                debugRoleState = 0;
             }
         }
     }

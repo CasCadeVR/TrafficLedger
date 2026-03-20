@@ -19,8 +19,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         private readonly INavigationService navigationService;
         private readonly ITransportService transportService;
         private readonly IParkingSessionService parkingSessionService;
-        private readonly AppUser currentUser;
-
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
         public ParkingSessionUserListView(
             INavigationService navigationService,
             ITransportService transportService,
@@ -30,7 +29,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             this.navigationService = navigationService;
             this.transportService = transportService;
             this.parkingSessionService = parkingSessionService;
-            currentUser = AuthenticationService.Instance.CurrentUser;
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;

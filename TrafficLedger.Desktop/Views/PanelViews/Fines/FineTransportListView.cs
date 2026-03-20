@@ -2,11 +2,9 @@
 using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
-using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.PanelViews.Payments;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
-using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Fines
@@ -42,7 +40,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         protected override async Task<IEnumerable<Fine>> LoadItemsAsync(CancellationToken cancellationToken)
         {
             var allFines = await fineService.GetAllByTransportId(currentTransport.Id, cancellationToken);
-            var activeFines = allFines.Where(x => x.Status == RequestStatus.Pending);
+            var activeFines = allFines.Where(x => x.Status == SessionStatus.Active);
             return activeFines;
         }
 

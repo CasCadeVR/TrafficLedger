@@ -13,7 +13,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
     public partial class PaymentFineListView : PaymentListWrapper
     {
         private readonly IPaymentService paymentService;
-        private readonly AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
 
         public PaymentFineListView(IPaymentService paymentService)
         {
@@ -22,8 +22,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
-
-            currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         protected override async Task<IEnumerable<PaymentFineDBModel>> LoadItemsAsync(CancellationToken cancellationToken)

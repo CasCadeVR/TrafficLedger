@@ -17,6 +17,16 @@ namespace TrafficLedger.Desktop.Services
         public static AuthenticationService Instance => _instance.Value;
 
         /// <summary>
+        /// Событие по смене состояния авторизации
+        /// </summary>
+        public event Action AuthStateChanged;
+
+        /// <summary>
+        /// Авторизован ли пользователь
+        /// </summary>
+        public bool IsAuthorized => CurrentUser != null;
+
+        /// <summary>
         /// Текущий пользователь
         /// </summary>
         public AppUser CurrentUser { get; private set; }
@@ -29,6 +39,7 @@ namespace TrafficLedger.Desktop.Services
         public void Login(AppUser user)
         {
             CurrentUser = user;
+            AuthStateChanged.Invoke();
         }
 
         /// <summary>
@@ -36,7 +47,8 @@ namespace TrafficLedger.Desktop.Services
         /// </summary>
         public void Logout()
         {
-            CurrentUser = null;
+            CurrentUser = null!;
+            AuthStateChanged.Invoke();
         }
 
         /// <summary>

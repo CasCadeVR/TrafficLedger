@@ -16,12 +16,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews
     {
         private readonly IDriverLicenseService driverLicenseService;
         private readonly ITransportCategoryService transportCategoryService;
-        private readonly AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
         private bool isInitializingCategories = false;
         private Driver currentDriver;
         private DriverLicense? currentDriverLicense;
         private bool isOwnDriver;
-
 
         /// <summary>
         /// Инициализирует новый экзмепляр <see cref="BaseCreateView"/>
@@ -31,7 +30,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             InitializeComponent();
             this.driverLicenseService = driverLicenseService;
             this.transportCategoryService = transportCategoryService;
-            currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         public void Initialize(Driver currentDriver, DriverLicense? currentDriverLicense, bool isOwnDriver)
@@ -192,6 +190,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                 MessageBox.Show(CurrentModel.Commentary + ", Но вы ещё можете поменять данные и переслать запрос, тогда он попадёт в конец очереди",
                     "Ваш запрос был отклонён. Причина: ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
+            buttonSave.Text = isOwnDriver ? "Отправить заявку" : "Сохранить";
         }
 
         protected override async Task OnSaveAsync()

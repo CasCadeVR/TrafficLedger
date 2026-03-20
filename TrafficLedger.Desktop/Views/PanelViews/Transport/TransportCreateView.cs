@@ -18,7 +18,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
     {
         private readonly ITransportCategoryService transportCategoryService;
         private readonly ITransportService transportService;
-        private readonly AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
         private Transport currentTransport;
         private Driver currentDriver;
         private List<TransportCategory> currentCategories;
@@ -33,7 +33,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             InitializeComponent();
             this.transportService = transportService;
             this.transportCategoryService = transportCategoryService;
-            currentUser = AuthenticationService.Instance.CurrentUser;
 
             comboBoxCategory.SelectedIndexChanged += OnCategorySelected;
         }

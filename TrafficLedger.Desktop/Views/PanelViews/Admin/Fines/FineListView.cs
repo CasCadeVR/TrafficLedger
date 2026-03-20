@@ -34,7 +34,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Fines
         {
             var filteredByStatus = checkBoxShowUnactive.Checked
                 ? items
-                : items.Where(f => f.Status == RequestStatus.Pending);
+                : items.Where(f => f.Status == SessionStatus.Active);
 
             if (string.IsNullOrWhiteSpace(searchQuery))
             {

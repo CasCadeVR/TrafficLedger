@@ -3,7 +3,6 @@ using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
-using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
 using TrafficLedger.Services.Contracts.Models.Fines;
@@ -18,7 +17,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         private readonly IFineService fineService;
         private readonly IViolationService violationService;
         private Transport currentTransport;
-        private AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
+
         private Fine currentFine;
         private List<Violation> currentViolations;
         private bool isInitializingAttachments;
@@ -33,8 +33,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
 
             comboBoxViolation.SelectedIndexChanged += OnViolationSelected;
             this.violationService = violationService;
-
-            currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         /// <summary>
@@ -132,9 +130,9 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             textBoxCode.Text = selectedViolation?.ViolationCode ?? ". . .";
             textBoxDescription.Text = selectedViolation?.Description ?? ". . .";
 
-            numericUpDownPrice.Value = selectedViolation?.MinFinePrice ?? 10;
             numericUpDownPrice.Minimum = selectedViolation?.MinFinePrice ?? 10;
-            numericUpDownPrice.Maximum = selectedViolation?.MaxFinePrice ?? 5000;
+            numericUpDownPrice.Maximum = selectedViolation?.MaxFinePrice ?? selectedViolation?.MinFinePrice ?? 10;
+            numericUpDownPrice.Value = selectedViolation?.MinFinePrice ?? 10;
         }
 
         protected override async void FillControls()

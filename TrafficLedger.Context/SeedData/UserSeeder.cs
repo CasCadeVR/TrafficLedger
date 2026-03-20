@@ -25,22 +25,7 @@ namespace TrafficLedger.Context.SeedData
                 return;
             }
 
-            // TODO: В production обязательно удалить его
-
-            var saltValue = SecurityHelper.GenerateSalt32();
-            var passwordHash = SecurityHelper.HashPassword32("admin", saltValue);
-            var admin = new User() 
-            {
-                Id = Guid.NewGuid(),
-                Login = "admin",
-                Role = Role.Admin,
-                PasswordSalt = saltValue,
-                PasswordHash = passwordHash,
-                CreatedAt = DateTimeOffset.UtcNow,
-                UpdatedAt = DateTimeOffset.UtcNow
-            };
-
-             await context.Set<User>().AddAsync(admin);
+            await context.Set<User>().AddRangeAsync(GetUsers());
         }
 
         /// <summary>
@@ -53,21 +38,52 @@ namespace TrafficLedger.Context.SeedData
                 return;
             }
 
-            var saltValue = SecurityHelper.GenerateSalt32();
-            var passwordHash = SecurityHelper.HashPassword32("admin", saltValue);
+            context.Set<User>().AddRange(GetUsers());
+        }
+
+        // TODO: В production обязательно удалить их
+        private static List<User> GetUsers()
+        {
+            var adminSaltValue = SecurityHelper.GenerateSalt32();
+            var adminPasswordHash = SecurityHelper.HashPassword32("admin", adminSaltValue);
             var admin = new User()
             {
                 Id = Guid.NewGuid(),
                 Login = "admin",
                 Role = Role.Admin,
-                PasswordSalt = saltValue,
-                PasswordHash = passwordHash,
+                PasswordSalt = adminSaltValue,
+                PasswordHash = adminPasswordHash,
                 CreatedAt = DateTimeOffset.UtcNow,
                 UpdatedAt = DateTimeOffset.UtcNow
             };
 
-            context.Set<User>().Add(admin);
-        }
+            var userSaltValue = SecurityHelper.GenerateSalt32();
+            var userPasswordHash = SecurityHelper.HashPassword32("user", userSaltValue);
+            var user = new User()
+            {
+                Id = Guid.NewGuid(),
+                Login = "user",
+                Role = Role.Default,
+                PasswordSalt = userSaltValue,
+                PasswordHash = userPasswordHash,
+                CreatedAt = DateTimeOffset.UtcNow,
+                UpdatedAt = DateTimeOffset.UtcNow
+            };
 
+            var policeSaltValue = SecurityHelper.GenerateSalt32();
+            var policePasswordHash = SecurityHelper.HashPassword32("police", policeSaltValue);
+            var police = new User()
+            {
+                Id = Guid.NewGuid(),
+                Login = "police",
+                Role = Role.TrafficPolice,
+                PasswordSalt = policeSaltValue,
+                PasswordHash = policePasswordHash,
+                CreatedAt = DateTimeOffset.UtcNow,
+                UpdatedAt = DateTimeOffset.UtcNow
+            };
+
+            return [admin, user, police];
+        }
     }
 }

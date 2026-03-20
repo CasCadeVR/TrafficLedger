@@ -92,7 +92,7 @@ namespace TrafficLedger.Services
                 Address = model.Address,
                 Description = model.Description,
                 Price = model.Price,
-                Status = RequestStatus.Pending,
+                Status = SessionStatus.Active,
                 TransportId = model.TransportId,
                 UserId = model.UserId,
                 ViolationId = model.ViolationId,

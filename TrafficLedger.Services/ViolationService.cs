@@ -48,7 +48,7 @@ namespace TrafficLedger.Services
                 Name = model.Name.Trim(),
                 Description = model.Description,
                 MinFinePrice = model.MinFinePrice,
-                MaxFinePrice = model.MaxFinePrice ?? model.MinFinePrice
+                MaxFinePrice = model.MaxFinePrice,
             };
 
             violationWriteRepository.Add(violation);
@@ -66,7 +66,7 @@ namespace TrafficLedger.Services
             violation.Name = model.Name.Trim();
             violation.Description = model.Description;
             violation.MinFinePrice = model.MinFinePrice;
-            violation.MaxFinePrice = model.MaxFinePrice ?? model.MinFinePrice;
+            violation.MaxFinePrice = model.MaxFinePrice;
 
             violationWriteRepository.Update(violation);
             await unitOfWork.SaveChangesAsync(cancellationToken);

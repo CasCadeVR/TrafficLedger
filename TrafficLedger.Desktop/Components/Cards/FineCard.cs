@@ -1,10 +1,6 @@
-﻿using System;
-using System.Net;
-using TrafficLedger.Desktop.Contracts.Enums;
-using TrafficLedger.Desktop.Contracts.Views.Cards;
+﻿using TrafficLedger.Desktop.Contracts.Views.Cards;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Entities;
-using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Desktop.Components.Cards
 {
@@ -48,9 +44,9 @@ namespace TrafficLedger.Desktop.Components.Cards
 
         private void FillFields(Fine request)
         {
-            status.Text = request.Status == RequestStatus.Pending
+            status.Text = request.Status == SessionStatus.Active
                 ? "В процессе"
-                : "Одобрен";
+                : "Окончен";
 
             date.Text = request.Date.DateTime.ToLongDateString();
             address.Text = request.Address;

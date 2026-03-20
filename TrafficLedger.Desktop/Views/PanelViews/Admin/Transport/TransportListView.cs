@@ -19,7 +19,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
     {
         private readonly INavigationService navigationService;
         private readonly ITransportService transportService;
-        private readonly AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
         private bool RequestsOnly = false;
 
         public TransportListView(INavigationService navigationService, ITransportService transportService)
@@ -30,8 +30,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
-
-            this.currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         public void Initialize(bool requestsOnly)

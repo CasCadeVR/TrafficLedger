@@ -64,6 +64,9 @@
     <Compile Update="Views\PanelViews\Payments\ParkingSessions\PaymentParkingSessionCreateView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Views\PanelViews\User\AuthorizeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Views\Wrappers\Admin\Drivers\DriverListWrapper.cs">
       <SubType>UserControl</SubType>
     </Compile>

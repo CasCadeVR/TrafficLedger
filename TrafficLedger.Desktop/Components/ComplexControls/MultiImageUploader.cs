@@ -35,14 +35,14 @@ namespace TrafficLedger.Desktop.Components.ComplexControls
 
         private void AddButton_Click(object? sender, EventArgs e)
         {
-            var pictureBox = CreateNewPictureBox();
+            var pictureBox = CreateNewPictureBox(asReadonly: false);
             Controls.Add(pictureBox);
             Controls.SetChildIndex(pictureBox, this.Controls.GetChildIndex(addButton));
         }
 
-        private FunctionalPictureBox CreateNewPictureBox()
+        private FunctionalPictureBox CreateNewPictureBox(bool asReadonly)
         {
-            var box = new FunctionalPictureBox
+            var box = new FunctionalPictureBox(asReadonly)
             {
                 Size = new Size(PictureBoxSize, PictureBoxSize),
                 Margin = new Padding(5)
@@ -76,11 +76,11 @@ namespace TrafficLedger.Desktop.Components.ComplexControls
         /// <summary>
         /// Загрузить изображения из массивов байтов
         /// </summary>
-        public void SetImagesFromAttachments(IEnumerable<AttachmentCreateModel> givenAttachments)
+        public void SetImagesFromAttachments(IEnumerable<AttachmentCreateModel> givenAttachments, bool asReadonlyImages = false)
         {
             foreach (var attachment in givenAttachments)
             {
-                var box = CreateNewPictureBox();
+                var box = CreateNewPictureBox(asReadonlyImages);
                 box.SetImageFromAttachment(attachment);
                 Controls.Add(box);
                 Controls.SetChildIndex(box, Controls.GetChildIndex(addButton));
@@ -101,6 +101,14 @@ namespace TrafficLedger.Desktop.Components.ComplexControls
             }
 
             attachments.Clear();
+        }
+
+        /// <summary>
+        /// Убрать кнопку добавления
+        /// </summary>
+        public void HideAddButton()
+        {
+            addButton.Visible = false;
         }
 
         /// <summary>

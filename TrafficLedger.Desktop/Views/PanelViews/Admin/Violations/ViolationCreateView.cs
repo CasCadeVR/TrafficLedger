@@ -44,6 +44,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
                     Name = violation.Name,
                     Description = violation.Description,
                     MinFinePrice = violation.MinFinePrice,
+                    MaxFinePrice = violation.MaxFinePrice,
                 };
             }
             else
@@ -55,6 +56,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
                     Name = string.Empty,
                     Description = string.Empty,
                     MinFinePrice = 0,
+                    MaxFinePrice = 0,
                 };
             }
         }
@@ -65,6 +67,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
             textBoxName.AddBindings(x => x.Text, CurrentModel, x => x.Name, errorProvider);
             textBoxDescription.AddBindings(x => x.Text, CurrentModel, x => x.Description, errorProvider);
             numericUpDownFinePrice.AddBindings(x => x.Value, CurrentModel, x => x.MinFinePrice, errorProvider);
+            numericUpDownMinFinePrice.AddBindings(x => x.Value, CurrentModel, x => x.MinFinePrice, errorProvider);
+            numericUpDownMaxFinePrice.AddBindings(x => x.Value, CurrentModel, x => x.MaxFinePrice, errorProvider);
         }
 
         protected override void FillControls()
@@ -77,7 +81,18 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
             textBoxCode.Text = CurrentModel.ViolationCode;
             textBoxName.Text = CurrentModel.Name;
             textBoxDescription.Text = CurrentModel.Description;
-            numericUpDownFinePrice.Value = CurrentModel.MinFinePrice;
+
+            radioEndPrice.Checked = CurrentModel.MinFinePrice == CurrentModel.MaxFinePrice;
+
+            if (radioEndPrice.Checked)
+            {
+                numericUpDownFinePrice.Value = CurrentModel.MinFinePrice;
+            }
+            else
+            {
+                numericUpDownMinFinePrice.Value = CurrentModel.MinFinePrice;
+                numericUpDownMaxFinePrice.Value = CurrentModel.MaxFinePrice;
+            }
         }
 
         protected override async Task OnSaveAsync()
@@ -103,7 +118,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
         private void radioEndPrice_CheckedChanged(object sender, EventArgs e)
         {
             labelFinePrice.Enabled = radioEndPrice.Checked;
-            labelMaxFinePrice.Enabled = !radioEndPrice.Checked;
+            labelMinFinePrice.Enabled = !radioEndPrice.Checked;
             labelMaxFinePrice.Enabled = !radioEndPrice.Checked;
 
             numericUpDownFinePrice.Enabled = radioEndPrice.Checked;

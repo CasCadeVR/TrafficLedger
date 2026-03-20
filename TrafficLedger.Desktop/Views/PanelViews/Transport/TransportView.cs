@@ -4,7 +4,6 @@ using TrafficLedger.Desktop.Contracts.Views.PanelViews;
 using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Services;
-using TrafficLedger.Services;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
@@ -13,15 +12,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
     {
         private readonly Lazy<INavigationService> navigationService;
         private readonly IDriverService driverService;
-        private readonly AppUser currentUser;
+        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
 
         public TransportUserView(Lazy<INavigationService> navigationService, IDriverService driverService)
         {
             InitializeComponent();
             this.navigationService = navigationService;
             this.driverService = driverService;
-
-            this.currentUser = AuthenticationService.Instance.CurrentUser;
         }
 
         private void buttonListTransport_Click(object sender, EventArgs e)
