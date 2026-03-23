@@ -3,6 +3,7 @@ using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
+using TrafficLedger.Entities.Typing;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
 
@@ -49,6 +50,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
                     Status = payment.Status,
                     EntityId = payment.EntityId,
                     UserId = payment.UserId,
+                    EntityType = EntityTypes.FineType,
                 };
             }
             else
@@ -60,6 +62,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
                     Status = RequestStatus.Pending,
                     EntityId = currentFine.Id,
                     UserId = currentUser.Id,
+                    EntityType = EntityTypes.FineType,
                 };
             }
         }
@@ -74,7 +77,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxAddress.Text = currentFine.Address;
             textBoxFineDescription.Text = currentFine.Description;
             textBoxCode.Text = currentFine.Violation.ViolationCode;
-            textBoxFinePrice.Text = currentFine.Violation.MinFinePrice.ToString();
+            textBoxFinePrice.Text = currentFine.Price.ToString();
             textBoxDescription.Text = currentFine.Violation.Description;
 
             statusLabel.Visible = currentPayment != null;
@@ -108,7 +111,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             }
         }
 
-        protected override async Task OnSaveAsync()
+        protected override async Task<bool> OnSaveAsync()
         {
             if (EntityId != Guid.Empty)
             {
@@ -124,6 +127,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
                 MessageBox.Show("Штраф успешно оплачен.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             NavigateToParent();
+            return true;
         }
 
         private async void buttonSave_Click(object sender, EventArgs e)

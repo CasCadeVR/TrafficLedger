@@ -1,4 +1,5 @@
-﻿using TrafficLedger.Common.Core.Extensions;
+﻿using System.Linq;
+using TrafficLedger.Common.Core.Extensions;
 using TrafficLedger.Common.Services.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
@@ -19,6 +20,7 @@ namespace TrafficLedger.Services
         private readonly IUserReadRepository userReadRepository;
         private readonly IOwnershipWriteRepository ownershipWriteRepository;
         private readonly IDriverReadRepository driverReadRepository;
+        private readonly IDriverLicenseReadRepository driverLicenseReadRepository;
         private readonly IAttachmentReadRepository attachmentReadRepository;
         private readonly IAttachmentWriteRepository attachmentWriteRepository;
         private readonly IUnitOfWork unitOfWork;
@@ -29,6 +31,7 @@ namespace TrafficLedger.Services
             IUserReadRepository userReadRepository,
             IOwnershipWriteRepository ownershipWriteRepository,
             IDriverReadRepository driverReadRepository,
+            IDriverLicenseReadRepository driverLicenseReadRepository,
             IAttachmentReadRepository attachmentReadRepository,
             IAttachmentWriteRepository attachmentWriteRepository,
             IUnitOfWork unitOfWork)
@@ -39,6 +42,7 @@ namespace TrafficLedger.Services
             this.userReadRepository = userReadRepository;
             this.ownershipWriteRepository = ownershipWriteRepository;
             this.driverReadRepository = driverReadRepository;
+            this.driverLicenseReadRepository = driverLicenseReadRepository;
             this.attachmentReadRepository = attachmentReadRepository;
             this.attachmentWriteRepository = attachmentWriteRepository;
             this.unitOfWork = unitOfWork;
@@ -100,11 +104,24 @@ namespace TrafficLedger.Services
             var user = await userReadRepository.GetById(model.UserId, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти пользователя с идентификатором {model.UserId}"));
 
+            var driver = await driverReadRepository.GetByUserId(user!.Id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException("Сперва заполните данные водителя"));
+
+            var noLicenseErrorMessage = "Сперва заполните данные водительского удостоверения, отправьте заявку и ожидайте подтверждения";
+
+            var license = await driverLicenseReadRepository.GetByDriverId(driver!.Id, cancellationToken)
+                .OrThrowIfNull(() => new InvalidOperationException(noLicenseErrorMessage));
+
             await transportReadRepository.IsCodeExists(model.TransportCode.ToLower(), cancellationToken)
                 .AndThrowIfTrue(() => new InvalidOperationException($"Транспорт с кодом {model.TransportCode} уже существует"));
 
             var category = await transportCategoryReadRepository.GetById(model.TransportCategoryId, cancellationToken)
                .OrThrowIfNull(() => new InvalidOperationException($"Категория транспорта с id {model.TransportCategoryId} не существует"));
+
+            if (!license!.LicenseCategories.Select(x => x.TransportCategory.CategoryName).Contains(category!.CategoryName) && license.Status == RequestStatus.Approved)
+            {
+                throw new InvalidOperationException(noLicenseErrorMessage);
+            }
 
             await ValidateMissingDrivers(model, cancellationToken);
 
@@ -176,7 +193,7 @@ namespace TrafficLedger.Services
             existingTransport.Model = model.Model.Trim();
             existingTransport.Region = model.Region.Trim();
             existingTransport.Year = model.Year;
-            existingTransport.Status = model.Status;
+            existingTransport.Status = RequestStatus.Pending;
             existingTransport.UserId = model.UserId;
             existingTransport.TransportCategoryId = model.TransportCategoryId;
 

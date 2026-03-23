@@ -84,7 +84,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
             dateTimePickerDate.Value = CurrentModel.Date.DateTime;
         }
 
-        protected override async Task OnSaveAsync()
+        protected override async Task<bool> OnSaveAsync()
         {
             var transport = await transportService.GetByTransportCode(CurrentModel.TransportCode, CancellationToken.None);
 
@@ -115,6 +115,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
             EntityId = response.Id;
             currentDriver = response;
             MessageBox.Show($"Теперь {currentDriver.FullName} владеет транспортом с кодом {CurrentModel.TransportCode} с датой {CurrentModel.Date}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
         }
 
         private async void buttonSave_Click(object sender, EventArgs e)

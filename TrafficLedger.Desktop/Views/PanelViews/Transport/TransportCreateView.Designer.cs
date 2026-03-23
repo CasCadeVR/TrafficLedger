@@ -151,12 +151,12 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelMileAge.AutoSize = true;
             labelMileAge.Font = new Font("Segoe UI", 9.75F);
             labelMileAge.ForeColor = Color.FromArgb(0, 0, 0);
-            labelMileAge.Location = new Point(346, 200);
+            labelMileAge.Location = new Point(305, 200);
             labelMileAge.Margin = new Padding(4, 0, 4, 0);
             labelMileAge.Name = "labelMileAge";
-            labelMileAge.Size = new Size(60, 17);
+            labelMileAge.Size = new Size(101, 17);
             labelMileAge.TabIndex = 19;
-            labelMileAge.Text = "Пробег: ";
+            labelMileAge.Text = "Пробег (в км.): ";
             // 
             // textBoxModel
             // 

@@ -40,12 +40,14 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
         protected override async Task<IEnumerable<Transport>> LoadItemsAsync(CancellationToken cancellationToken)
         {
             var allEntities = await transportService.GetAll(cancellationToken);
-            return allEntities.Where(x => x.Status == RequestStatus.Approved);
+            return allEntities;
         }
 
         protected override IEnumerable<Transport> FilterItems(string searchQuery, IEnumerable<Transport> items)
         {
-            items = RequestsOnly ? items.Where(x => x.Status == RequestStatus.Pending) : items;
+            items = RequestsOnly
+                ? items.Where(x => x.Status == RequestStatus.Pending)
+                : items.Where(x => x.Status == RequestStatus.Approved);
 
             if (string.IsNullOrWhiteSpace(searchQuery))
             {

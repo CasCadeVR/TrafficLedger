@@ -1,4 +1,5 @@
-﻿using TrafficLedger.Common.Core.Extensions;
+﻿using System.Reflection;
+using TrafficLedger.Common.Core.Extensions;
 using TrafficLedger.Common.Services.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
@@ -87,6 +88,15 @@ namespace TrafficLedger.Services
             payment.ProcessedById = processedById;
             payment.ProcessedAt = DateTimeOffset.Now;
 
+            if (payment.EntityType == EntityTypes.FineType)
+            {
+                var fine = await fineReadRepository.GetById(payment.EntityId, cancellationToken)
+                   .OrThrowIfNull(() => new InvalidOperationException($"Штраф с id {payment.EntityId} не существует"));
+
+                fine!.Status = SessionStatus.Completed;
+                fineWriteRepository.Update(fine);
+            }
+
             paymentWriteRepository.Update(payment);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
@@ -104,13 +114,30 @@ namespace TrafficLedger.Services
             payment.ProcessedAt = DateTimeOffset.Now;
             payment.Commentary = commentary;
 
+            if (payment.EntityType == EntityTypes.FineType)
+            {
+                var fine = await fineReadRepository.GetById(payment.EntityId, cancellationToken)
+                   .OrThrowIfNull(() => new InvalidOperationException($"Штраф с id {payment.EntityId} не существует"));
+
+                fine!.Status = SessionStatus.Active;
+                fineWriteRepository.Update(fine);
+            }
+            else if (payment.EntityType == EntityTypes.ParkingSessionType)
+            {
+                var session = await parkingSessionReadRepository.GetById(payment.EntityId, cancellationToken)
+                    .OrThrowIfNull(() => new InvalidOperationException($"Парковочная сессия с id {payment.EntityId} не существует"));
+
+                session!.Status = SessionStatus.Active;
+                parkingSessionWriteRepository.Update(session);
+            }
+
             paymentWriteRepository.Update(payment);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
         async Task<Payment> IBaseService<Payment, PaymentCreateModel>.Create(PaymentCreateModel model, CancellationToken cancellationToken)
         {
-             await userReadRepository.GetById(model.UserId, cancellationToken)
+            var user = await userReadRepository.GetById(model.UserId, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Пользователь с id {model.UserId} не существует"));
 
             var payment = new Payment();
@@ -125,7 +152,7 @@ namespace TrafficLedger.Services
                     Date = model.Date,
                     Status = model.Status,
                     EntityId = model.EntityId,
-                    UserId = model.UserId,
+                    UserId = user!.Id,
                     CapturedPrice = fine!.Price,
                     EntityType = EntityTypes.FineType,
                 };
@@ -138,7 +165,7 @@ namespace TrafficLedger.Services
                 var session = await parkingSessionReadRepository.GetById(model.EntityId, cancellationToken)
                     .OrThrowIfNull(() => new InvalidOperationException($"Парковочная сессия с id {model.EntityId} не существует"));
 
-                var passedHours = (int)(DateTimeOffset.Now - session!.StartTime).TotalHours;
+                var passedHours = (int)(DateTimeOffset.Now - session!.StartTime).TotalHours + 1;
                 var price = passedHours * session.ParkingZone.HourlyRate;
 
                 payment = new Payment
@@ -146,7 +173,7 @@ namespace TrafficLedger.Services
                     Date = model.Date,
                     Status = model.Status,
                     EntityId = model.EntityId,
-                    UserId = model.UserId,
+                    UserId = user!.Id,
                     CapturedPrice = price,
                     EntityType = EntityTypes.FineType,
                 };

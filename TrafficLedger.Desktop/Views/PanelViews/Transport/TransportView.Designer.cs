@@ -31,81 +31,85 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonAddTransport = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonListTransport = new TrafficLedger.Desktop.Components.CommonButton();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            this.tableLayoutPanelMain.SuspendLayout();
-            this.SuspendLayout();
+            tableLayoutPanelMain = new TableLayoutPanel();
+            buttonAddTransport = new CommonButton();
+            buttonListTransport = new CommonButton();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            tableLayoutPanelMain.SuspendLayout();
+            SuspendLayout();
             // 
             // splitContainer
             // 
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanelMain);
+            splitContainer.Panel2.Controls.Add(tableLayoutPanelMain);
             // 
             // tableLayoutPanelMain
             // 
-            this.tableLayoutPanelMain.ColumnCount = 1;
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelMain.Controls.Add(this.buttonAddTransport, 0, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.buttonListTransport, 0, 1);
-            this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            this.tableLayoutPanelMain.RowCount = 2;
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(704, 500);
-            this.tableLayoutPanelMain.TabIndex = 1;
+            tableLayoutPanelMain.ColumnCount = 1;
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelMain.Controls.Add(buttonAddTransport, 0, 0);
+            tableLayoutPanelMain.Controls.Add(buttonListTransport, 0, 1);
+            tableLayoutPanelMain.Dock = DockStyle.Fill;
+            tableLayoutPanelMain.Location = new Point(0, 0);
+            tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
+            tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            tableLayoutPanelMain.RowCount = 2;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.Size = new Size(821, 576);
+            tableLayoutPanelMain.TabIndex = 1;
             // 
             // buttonAddTransport
             // 
-            this.buttonAddTransport.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonAddTransport.BackColor = System.Drawing.Color.BlueViolet;
-            this.buttonAddTransport.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonAddTransport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAddTransport.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonAddTransport.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.buttonAddTransport.Location = new System.Drawing.Point(195, 202);
-            this.buttonAddTransport.Name = "buttonAddTransport";
-            this.buttonAddTransport.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonAddTransport.Size = new System.Drawing.Size(314, 45);
-            this.buttonAddTransport.TabIndex = 0;
-            this.buttonAddTransport.Text = "Добавить транспорт";
-            this.buttonAddTransport.UseVisualStyleBackColor = false;
-            this.buttonAddTransport.Click += new System.EventHandler(this.buttonAddTransport_Click);
+            buttonAddTransport.Anchor = AnchorStyles.Bottom;
+            buttonAddTransport.BackColor = Color.BlueViolet;
+            buttonAddTransport.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonAddTransport.FlatStyle = FlatStyle.Flat;
+            buttonAddTransport.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonAddTransport.ForeColor = Color.AntiqueWhite;
+            buttonAddTransport.Location = new Point(227, 233);
+            buttonAddTransport.Margin = new Padding(4, 3, 4, 3);
+            buttonAddTransport.Name = "buttonAddTransport";
+            buttonAddTransport.Padding = new Padding(9, 5, 9, 5);
+            buttonAddTransport.Size = new Size(366, 52);
+            buttonAddTransport.TabIndex = 0;
+            buttonAddTransport.Text = "Привязать транспорт";
+            buttonAddTransport.UseVisualStyleBackColor = false;
+            buttonAddTransport.Click += buttonAddTransport_Click;
             // 
             // buttonListTransport
             // 
-            this.buttonListTransport.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buttonListTransport.BackColor = System.Drawing.Color.BlueViolet;
-            this.buttonListTransport.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonListTransport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonListTransport.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonListTransport.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.buttonListTransport.Location = new System.Drawing.Point(194, 253);
-            this.buttonListTransport.Name = "buttonListTransport";
-            this.buttonListTransport.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonListTransport.Size = new System.Drawing.Size(315, 45);
-            this.buttonListTransport.TabIndex = 2;
-            this.buttonListTransport.Text = "Список транспортов";
-            this.buttonListTransport.UseVisualStyleBackColor = false;
-            this.buttonListTransport.Click += new System.EventHandler(this.buttonListTransport_Click);
+            buttonListTransport.Anchor = AnchorStyles.Top;
+            buttonListTransport.BackColor = Color.BlueViolet;
+            buttonListTransport.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonListTransport.FlatStyle = FlatStyle.Flat;
+            buttonListTransport.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonListTransport.ForeColor = Color.AntiqueWhite;
+            buttonListTransport.Location = new Point(226, 291);
+            buttonListTransport.Margin = new Padding(4, 3, 4, 3);
+            buttonListTransport.Name = "buttonListTransport";
+            buttonListTransport.Padding = new Padding(9, 5, 9, 5);
+            buttonListTransport.Size = new Size(368, 52);
+            buttonListTransport.TabIndex = 2;
+            buttonListTransport.Text = "Список транспортов";
+            buttonListTransport.UseVisualStyleBackColor = false;
+            buttonListTransport.Click += buttonListTransport_Click;
             // 
-            // TransportView
+            // TransportUserView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "TransportView";
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            this.tableLayoutPanelMain.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Margin = new Padding(5, 3, 5, 3);
+            Name = "TransportUserView";
+            splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            tableLayoutPanelMain.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 

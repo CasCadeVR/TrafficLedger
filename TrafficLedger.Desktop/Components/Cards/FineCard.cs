@@ -54,7 +54,7 @@ namespace TrafficLedger.Desktop.Components.Cards
             violationName.Text = request.Violation.Name;
             description.Text = request.Violation.Description;
             code.Text = request.Violation.ViolationCode;
-            finePrice.Text = request.Violation.MinFinePrice.ToString();
+            finePrice.Text = request.Price.ToString();
             transportCode.Text = request.Transport.TransportCode;
         }
 

@@ -112,7 +112,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             }
         }
 
-        protected override async Task OnSaveAsync()
+        protected override async Task<bool> OnSaveAsync()
         {
             if (EntityId != Guid.Empty)
             {
@@ -127,6 +127,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                 textBoxUniqueId.Text = uniqueId.ToString();
                 MessageBox.Show("Водитель успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            return true;
         }
 
         private async void buttonSave_Click(object sender, EventArgs e)

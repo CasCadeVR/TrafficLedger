@@ -93,7 +93,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             textBoxTransportCode.Text = CurrentModel.TransportCode;
         }
 
-        protected override async Task OnSaveAsync()
+        protected override async Task<bool> OnSaveAsync()
         {
             if (EntityId != Guid.Empty)
             {
@@ -106,6 +106,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
                 EntityId = request.Id;
                 MessageBox.Show("Парковочная сессия начата.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            return true;
         }
 
         private async void buttonSave_Click(object sender, EventArgs e)

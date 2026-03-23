@@ -3,6 +3,7 @@ using TrafficLedger.Common.Repositories;
 using TrafficLedger.Common.Repositories.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Repositories.Contracts.IReadRepositories;
 
 namespace TrafficLedger.Repositories.ReadRepositories;
@@ -25,6 +26,7 @@ public class TransportReadRepository : ITransportReadRepository
     Task<bool> ITransportReadRepository.IsDriverOwnsTransport(Guid driverId, Guid transportId, CancellationToken cancellationToken)
        => reader.Read<Transport>()
         .NotDeletedAt()
+        .Where(x => x.Status == RequestStatus.Approved)
         .AnyAsync(t => t.Ownerships.Any(o => o.DriverId == driverId && o.DeletedAt == null), cancellationToken);
 
     async Task<IReadOnlyCollection<Transport>> ITransportReadRepository.GetByIds(IReadOnlyCollection<Guid> ids, CancellationToken cancellationToken)

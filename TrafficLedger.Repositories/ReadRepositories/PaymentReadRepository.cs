@@ -51,6 +51,16 @@ public class PaymentReadRepository : IPaymentReadRepository
                 {
                     Id = payment.Id,
                     Date = payment.Date,
+                    Status = payment.Status,
+                    CapturedPrice = payment.CapturedPrice,
+                    Commentary = payment.Commentary,
+                    EntityId = payment.EntityId,
+                    EntityType = payment.EntityType,
+                    ProcessedAt = payment.ProcessedAt,
+                    CreatedAt = payment.CreatedAt,
+                    DeletedAt = payment.DeletedAt,
+                    ProcessedById = payment.ProcessedById,
+                    UpdatedAt = payment.UpdatedAt,
                     Fine = fine,
                 });
             }
@@ -90,6 +100,16 @@ public class PaymentReadRepository : IPaymentReadRepository
                 {
                     Id = payment.Id,
                     Date = payment.Date,
+                    Status = payment.Status,
+                    CapturedPrice = payment.CapturedPrice,
+                    Commentary = payment.Commentary,
+                    EntityId = payment.EntityId,
+                    EntityType = payment.EntityType,
+                    ProcessedAt = payment.ProcessedAt,
+                    CreatedAt = payment.CreatedAt,
+                    DeletedAt = payment.DeletedAt,
+                    ProcessedById = payment.ProcessedById,
+                    UpdatedAt = payment.UpdatedAt,
                     Fine = fine,
                 });
             }
@@ -131,6 +151,16 @@ public class PaymentReadRepository : IPaymentReadRepository
                 {
                     Id = payment.Id,
                     Date = payment.Date,
+                    Status = payment.Status,
+                    CapturedPrice = payment.CapturedPrice,
+                    Commentary = payment.Commentary,
+                    EntityId = payment.EntityId,
+                    EntityType = payment.EntityType,
+                    ProcessedAt = payment.ProcessedAt,
+                    CreatedAt = payment.CreatedAt,
+                    DeletedAt = payment.DeletedAt,
+                    ProcessedById = payment.ProcessedById,
+                    UpdatedAt = payment.UpdatedAt,
                     ParkingSession = parkingSession,
                 });
             }
@@ -171,6 +201,16 @@ public class PaymentReadRepository : IPaymentReadRepository
                 {
                     Id = payment.Id,
                     Date = payment.Date,
+                    Status = payment.Status,
+                    CapturedPrice = payment.CapturedPrice,
+                    Commentary = payment.Commentary,
+                    EntityId = payment.EntityId,
+                    EntityType = payment.EntityType,
+                    ProcessedAt = payment.ProcessedAt,
+                    CreatedAt = payment.CreatedAt,
+                    DeletedAt = payment.DeletedAt,
+                    ProcessedById = payment.ProcessedById,
+                    UpdatedAt = payment.UpdatedAt,
                     ParkingSession = parkingSession,
                 });
             }

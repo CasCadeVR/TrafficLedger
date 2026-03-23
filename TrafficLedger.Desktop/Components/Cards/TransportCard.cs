@@ -48,21 +48,19 @@ namespace TrafficLedger.Desktop.Components.Cards
             switch (context)
             {
                 case TransportCardRoleContext.OwnerList:
-                    buttonEdit.Visible = false;
                     buttonDelete.Visible = false;
                     buttonAddFine.Visible = false;
                     buttonListFines.Visible = true;
                     break;
 
                 case TransportCardRoleContext.DriverOwnershipList:
-                    buttonEdit.Visible = true;
                     buttonDelete.Visible = true;
                     buttonAddFine.Visible = false;
                     buttonListFines.Visible = false;
                     break;
 
                 case TransportCardRoleContext.RoleList:
-                    buttonEdit.Visible = AuthenticationService.Instance.HasAccessTo(Role.Admin);
+                    buttonEdit.Visible = currentUser.Role != Role.TrafficPolice;
                     buttonDelete.Visible = AuthenticationService.Instance.HasAccessTo(Role.Admin);
                     buttonAddFine.Visible = AuthenticationService.Instance.HasAccessTo(Role.TrafficPolice);
                     buttonListFines.Visible = true;
@@ -76,6 +74,7 @@ namespace TrafficLedger.Desktop.Components.Cards
             model.Text = request.Model;
             number.Text = request.TransportCode;
             category.Text = request.TransportCategory.CategoryName;
+            status.Text = Enum.GetName(request.Status);
             toolTip.SetToolTip(category, request.TransportCategory.Description);
         }
 

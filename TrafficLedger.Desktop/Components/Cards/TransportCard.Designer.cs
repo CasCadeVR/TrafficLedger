@@ -30,249 +30,280 @@ namespace TrafficLedger.Desktop.Components.Cards
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.labelNumberTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.labelBrandTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.labelModelTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.labelCategoryTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.number = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.brand = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.model = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.category = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.buttonListFines = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonEdit = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonAddFine = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonDelete = new TrafficLedger.Desktop.Components.CommonButton();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tableLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            labelNumberTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            labelBrandTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            labelModelTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            labelCategoryTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            number = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            brand = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            model = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            category = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            buttonListFines = new CommonButton();
+            primaryLabel1 = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            status = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            buttonEdit = new CommonButton();
+            buttonDelete = new CommonButton();
+            buttonAddFine = new CommonButton();
+            toolTip = new ToolTip(components);
+            tableLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.ColumnCount = 7;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.Controls.Add(this.labelNumberTitle, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.labelBrandTitle, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelModelTitle, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.labelCategoryTitle, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.number, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.brand, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.model, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.category, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.buttonListFines, 5, 3);
-            this.tableLayoutPanel1.Controls.Add(this.buttonEdit, 5, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonAddFine, 5, 2);
-            this.tableLayoutPanel1.Controls.Add(this.buttonDelete, 5, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(666, 196);
-            this.tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.ColumnCount = 7;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2865305F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2865305F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2865305F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851009F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851009F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851009F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851009F));
+            tableLayoutPanel1.Controls.Add(labelNumberTitle, 0, 0);
+            tableLayoutPanel1.Controls.Add(labelBrandTitle, 0, 1);
+            tableLayoutPanel1.Controls.Add(labelModelTitle, 0, 2);
+            tableLayoutPanel1.Controls.Add(labelCategoryTitle, 0, 3);
+            tableLayoutPanel1.Controls.Add(number, 1, 0);
+            tableLayoutPanel1.Controls.Add(brand, 1, 1);
+            tableLayoutPanel1.Controls.Add(model, 1, 2);
+            tableLayoutPanel1.Controls.Add(category, 1, 3);
+            tableLayoutPanel1.Controls.Add(buttonListFines, 5, 5);
+            tableLayoutPanel1.Controls.Add(primaryLabel1, 0, 4);
+            tableLayoutPanel1.Controls.Add(status, 1, 4);
+            tableLayoutPanel1.Controls.Add(buttonEdit, 5, 4);
+            tableLayoutPanel1.Controls.Add(buttonDelete, 5, 2);
+            tableLayoutPanel1.Controls.Add(buttonAddFine, 5, 3);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(4);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6655579F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6655579F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6655579F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6655579F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6688881F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6688881F));
+            tableLayoutPanel1.Size = new Size(666, 283);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // labelNumberTitle
             // 
-            this.labelNumberTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelNumberTitle.AutoSize = true;
-            this.labelNumberTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelNumberTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelNumberTitle.Location = new System.Drawing.Point(36, 16);
-            this.labelNumberTitle.Name = "labelNumberTitle";
-            this.labelNumberTitle.Size = new System.Drawing.Size(56, 17);
-            this.labelNumberTitle.TabIndex = 10;
-            this.labelNumberTitle.Text = "Номер: ";
+            labelNumberTitle.Anchor = AnchorStyles.Right;
+            labelNumberTitle.AutoSize = true;
+            labelNumberTitle.Font = new Font("Segoe UI", 9.75F);
+            labelNumberTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelNumberTitle.Location = new Point(36, 15);
+            labelNumberTitle.Name = "labelNumberTitle";
+            labelNumberTitle.Size = new Size(56, 17);
+            labelNumberTitle.TabIndex = 10;
+            labelNumberTitle.Text = "Номер: ";
             // 
             // labelBrandTitle
             // 
-            this.labelBrandTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelBrandTitle.AutoSize = true;
-            this.labelBrandTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelBrandTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelBrandTitle.Location = new System.Drawing.Point(37, 65);
-            this.labelBrandTitle.Name = "labelBrandTitle";
-            this.labelBrandTitle.Size = new System.Drawing.Size(55, 17);
-            this.labelBrandTitle.TabIndex = 11;
-            this.labelBrandTitle.Text = "Марка: ";
+            labelBrandTitle.Anchor = AnchorStyles.Right;
+            labelBrandTitle.AutoSize = true;
+            labelBrandTitle.Font = new Font("Segoe UI", 9.75F);
+            labelBrandTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelBrandTitle.Location = new Point(37, 62);
+            labelBrandTitle.Name = "labelBrandTitle";
+            labelBrandTitle.Size = new Size(55, 17);
+            labelBrandTitle.TabIndex = 11;
+            labelBrandTitle.Text = "Марка: ";
             // 
             // labelModelTitle
             // 
-            this.labelModelTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelModelTitle.AutoSize = true;
-            this.labelModelTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelModelTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelModelTitle.Location = new System.Drawing.Point(29, 114);
-            this.labelModelTitle.Name = "labelModelTitle";
-            this.labelModelTitle.Size = new System.Drawing.Size(63, 17);
-            this.labelModelTitle.TabIndex = 12;
-            this.labelModelTitle.Text = "Модель: ";
+            labelModelTitle.Anchor = AnchorStyles.Right;
+            labelModelTitle.AutoSize = true;
+            labelModelTitle.Font = new Font("Segoe UI", 9.75F);
+            labelModelTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelModelTitle.Location = new Point(29, 109);
+            labelModelTitle.Name = "labelModelTitle";
+            labelModelTitle.Size = new Size(63, 17);
+            labelModelTitle.TabIndex = 12;
+            labelModelTitle.Text = "Модель: ";
             // 
             // labelCategoryTitle
             // 
-            this.labelCategoryTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelCategoryTitle.AutoSize = true;
-            this.labelCategoryTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelCategoryTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelCategoryTitle.Location = new System.Drawing.Point(15, 163);
-            this.labelCategoryTitle.Name = "labelCategoryTitle";
-            this.labelCategoryTitle.Size = new System.Drawing.Size(77, 17);
-            this.labelCategoryTitle.TabIndex = 13;
-            this.labelCategoryTitle.Text = "Категория: ";
+            labelCategoryTitle.Anchor = AnchorStyles.Right;
+            labelCategoryTitle.AutoSize = true;
+            labelCategoryTitle.Font = new Font("Segoe UI", 9.75F);
+            labelCategoryTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelCategoryTitle.Location = new Point(15, 156);
+            labelCategoryTitle.Name = "labelCategoryTitle";
+            labelCategoryTitle.Size = new Size(77, 17);
+            labelCategoryTitle.TabIndex = 13;
+            labelCategoryTitle.Text = "Категория: ";
             // 
             // number
             // 
-            this.number.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.number.BackColor = System.Drawing.Color.GhostWhite;
-            this.number.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.number, 2);
-            this.number.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.number.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.number.Location = new System.Drawing.Point(98, 13);
-            this.number.Name = "number";
-            this.number.ReadOnly = true;
-            this.number.Size = new System.Drawing.Size(100, 16);
-            this.number.TabIndex = 14;
-            this.number.Text = "Загрузка...";
+            number.Anchor = AnchorStyles.Left;
+            number.BackColor = Color.GhostWhite;
+            number.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(number, 2);
+            number.Font = new Font("Consolas", 9.75F);
+            number.ForeColor = Color.FromArgb(0, 0, 0);
+            number.Location = new Point(98, 12);
+            number.Name = "number";
+            number.ReadOnly = true;
+            number.Size = new Size(100, 16);
+            number.TabIndex = 14;
+            number.Text = "Загрузка...";
             // 
             // brand
             // 
-            this.brand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.brand.BackColor = System.Drawing.Color.GhostWhite;
-            this.brand.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.brand, 2);
-            this.brand.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.brand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.brand.Location = new System.Drawing.Point(98, 65);
-            this.brand.Name = "brand";
-            this.brand.ReadOnly = true;
-            this.brand.Size = new System.Drawing.Size(184, 16);
-            this.brand.TabIndex = 15;
-            this.brand.Text = "Загрузка...";
+            brand.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            brand.BackColor = Color.GhostWhite;
+            brand.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(brand, 2);
+            brand.Font = new Font("Consolas", 9.75F);
+            brand.ForeColor = Color.FromArgb(0, 0, 0);
+            brand.Location = new Point(98, 62);
+            brand.Name = "brand";
+            brand.ReadOnly = true;
+            brand.Size = new Size(184, 16);
+            brand.TabIndex = 15;
+            brand.Text = "Загрузка...";
             // 
             // model
             // 
-            this.model.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.model.BackColor = System.Drawing.Color.GhostWhite;
-            this.model.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.model, 2);
-            this.model.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.model.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.model.Location = new System.Drawing.Point(98, 114);
-            this.model.Name = "model";
-            this.model.ReadOnly = true;
-            this.model.Size = new System.Drawing.Size(184, 16);
-            this.model.TabIndex = 16;
-            this.model.Text = "Загрузка...";
+            model.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            model.BackColor = Color.GhostWhite;
+            model.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(model, 2);
+            model.Font = new Font("Consolas", 9.75F);
+            model.ForeColor = Color.FromArgb(0, 0, 0);
+            model.Location = new Point(98, 109);
+            model.Name = "model";
+            model.ReadOnly = true;
+            model.Size = new Size(184, 16);
+            model.TabIndex = 16;
+            model.Text = "Загрузка...";
             // 
             // category
             // 
-            this.category.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.category.BackColor = System.Drawing.Color.GhostWhite;
-            this.category.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.category, 2);
-            this.category.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.category.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.category.Location = new System.Drawing.Point(98, 160);
-            this.category.Name = "category";
-            this.category.ReadOnly = true;
-            this.category.Size = new System.Drawing.Size(100, 16);
-            this.category.TabIndex = 17;
-            this.category.Text = "Загрузка...";
+            category.Anchor = AnchorStyles.Left;
+            category.BackColor = Color.GhostWhite;
+            category.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(category, 2);
+            category.Font = new Font("Consolas", 9.75F);
+            category.ForeColor = Color.FromArgb(0, 0, 0);
+            category.Location = new Point(98, 153);
+            category.Name = "category";
+            category.ReadOnly = true;
+            category.Size = new Size(100, 16);
+            category.TabIndex = 17;
+            category.Text = "Загрузка...";
             // 
             // buttonListFines
             // 
-            this.buttonListFines.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanel1.SetColumnSpan(this.buttonListFines, 2);
-            this.buttonListFines.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonListFines.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonListFines.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonListFines.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonListFines.ForeColor = System.Drawing.Color.White;
-            this.buttonListFines.Location = new System.Drawing.Point(478, 150);
-            this.buttonListFines.Name = "buttonListFines";
-            this.buttonListFines.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonListFines.Size = new System.Drawing.Size(185, 43);
-            this.buttonListFines.TabIndex = 19;
-            this.buttonListFines.Text = "Посмотреть штрафы";
-            this.buttonListFines.UseVisualStyleBackColor = false;
-            this.buttonListFines.Click += new System.EventHandler(this.buttonListFines_Click);
+            buttonListFines.BackColor = Color.Green;
+            tableLayoutPanel1.SetColumnSpan(buttonListFines, 2);
+            buttonListFines.Dock = DockStyle.Fill;
+            buttonListFines.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonListFines.FlatStyle = FlatStyle.Flat;
+            buttonListFines.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonListFines.ForeColor = Color.White;
+            buttonListFines.Location = new Point(478, 238);
+            buttonListFines.Name = "buttonListFines";
+            buttonListFines.Padding = new Padding(8, 4, 8, 4);
+            buttonListFines.Size = new Size(185, 42);
+            buttonListFines.TabIndex = 19;
+            buttonListFines.Text = "Посмотреть штрафы";
+            buttonListFines.UseVisualStyleBackColor = false;
+            buttonListFines.Click += buttonListFines_Click;
+            // 
+            // primaryLabel1
+            // 
+            primaryLabel1.Anchor = AnchorStyles.Right;
+            primaryLabel1.AutoSize = true;
+            primaryLabel1.Font = new Font("Segoe UI", 9.75F);
+            primaryLabel1.ForeColor = Color.FromArgb(0, 0, 0);
+            primaryLabel1.Location = new Point(36, 203);
+            primaryLabel1.Name = "primaryLabel1";
+            primaryLabel1.Size = new Size(56, 17);
+            primaryLabel1.TabIndex = 22;
+            primaryLabel1.Text = "Статус:  ";
+            // 
+            // status
+            // 
+            status.Anchor = AnchorStyles.Left;
+            status.BackColor = Color.GhostWhite;
+            status.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(status, 2);
+            status.Font = new Font("Consolas", 9.75F);
+            status.ForeColor = Color.FromArgb(0, 0, 0);
+            status.Location = new Point(98, 200);
+            status.Name = "status";
+            status.ReadOnly = true;
+            status.Size = new Size(100, 16);
+            status.TabIndex = 23;
+            status.Text = "Загрузка...";
             // 
             // buttonEdit
             // 
-            this.buttonEdit.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanel1.SetColumnSpan(this.buttonEdit, 2);
-            this.buttonEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonEdit.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEdit.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonEdit.ForeColor = System.Drawing.Color.White;
-            this.buttonEdit.Location = new System.Drawing.Point(478, 3);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonEdit.Size = new System.Drawing.Size(185, 43);
-            this.buttonEdit.TabIndex = 20;
-            this.buttonEdit.Text = "Редактировать";
-            this.buttonEdit.UseVisualStyleBackColor = false;
-            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
-            // 
-            // buttonAddFine
-            // 
-            this.buttonAddFine.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanel1.SetColumnSpan(this.buttonAddFine, 2);
-            this.buttonAddFine.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonAddFine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAddFine.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonAddFine.ForeColor = System.Drawing.Color.White;
-            this.buttonAddFine.Location = new System.Drawing.Point(478, 101);
-            this.buttonAddFine.Name = "buttonAddFine";
-            this.buttonAddFine.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonAddFine.Size = new System.Drawing.Size(185, 43);
-            this.buttonAddFine.TabIndex = 18;
-            this.buttonAddFine.Text = "Добавить штраф";
-            this.buttonAddFine.UseVisualStyleBackColor = false;
-            this.buttonAddFine.Click += new System.EventHandler(this.buttonAddFine_Click);
+            buttonEdit.BackColor = Color.Green;
+            tableLayoutPanel1.SetColumnSpan(buttonEdit, 2);
+            buttonEdit.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonEdit.FlatStyle = FlatStyle.Flat;
+            buttonEdit.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonEdit.ForeColor = Color.White;
+            buttonEdit.Location = new Point(478, 191);
+            buttonEdit.Name = "buttonEdit";
+            buttonEdit.Padding = new Padding(8, 4, 8, 4);
+            buttonEdit.Size = new Size(185, 41);
+            buttonEdit.TabIndex = 20;
+            buttonEdit.Text = "Редактировать";
+            buttonEdit.UseVisualStyleBackColor = false;
+            buttonEdit.Click += buttonEdit_Click;
             // 
             // buttonDelete
             // 
-            this.buttonDelete.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanel1.SetColumnSpan(this.buttonDelete, 2);
-            this.buttonDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonDelete.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDelete.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonDelete.ForeColor = System.Drawing.Color.White;
-            this.buttonDelete.Location = new System.Drawing.Point(478, 52);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonDelete.Size = new System.Drawing.Size(185, 43);
-            this.buttonDelete.TabIndex = 21;
-            this.buttonDelete.Text = "Удалить";
-            this.buttonDelete.UseVisualStyleBackColor = false;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            buttonDelete.BackColor = Color.Green;
+            tableLayoutPanel1.SetColumnSpan(buttonDelete, 2);
+            buttonDelete.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonDelete.FlatStyle = FlatStyle.Flat;
+            buttonDelete.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonDelete.ForeColor = Color.White;
+            buttonDelete.Location = new Point(478, 97);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Padding = new Padding(8, 4, 8, 4);
+            buttonDelete.Size = new Size(185, 41);
+            buttonDelete.TabIndex = 21;
+            buttonDelete.Text = "Удалить";
+            buttonDelete.UseVisualStyleBackColor = false;
+            buttonDelete.Click += buttonDelete_Click;
+            // 
+            // buttonAddFine
+            // 
+            buttonAddFine.BackColor = Color.Green;
+            tableLayoutPanel1.SetColumnSpan(buttonAddFine, 2);
+            buttonAddFine.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonAddFine.FlatStyle = FlatStyle.Flat;
+            buttonAddFine.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonAddFine.ForeColor = Color.White;
+            buttonAddFine.Location = new Point(478, 144);
+            buttonAddFine.Name = "buttonAddFine";
+            buttonAddFine.Padding = new Padding(8, 4, 8, 4);
+            buttonAddFine.Size = new Size(185, 41);
+            buttonAddFine.TabIndex = 18;
+            buttonAddFine.Text = "Добавить штраф";
+            buttonAddFine.UseVisualStyleBackColor = false;
+            buttonAddFine.Click += buttonAddFine_Click;
             // 
             // TransportCard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "TransportCard";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(5, 4, 5, 4);
+            Name = "TransportCard";
+            Size = new Size(666, 283);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ResumeLayout(false);
 
         }
 
@@ -292,5 +323,7 @@ namespace TrafficLedger.Desktop.Components.Cards
         private CommonButton buttonListFines;
         private CommonButton buttonEdit;
         private CommonButton buttonDelete;
+        private Labels.PrimaryLabel primaryLabel1;
+        private Controls.TextBoxes.ReadOnlyTextBox status;
     }
 }

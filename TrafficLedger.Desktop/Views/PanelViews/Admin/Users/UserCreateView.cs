@@ -57,13 +57,15 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Users
             textBoxLogin.Text = CurrentModel.Login;
         }
 
-        protected override async Task OnSaveAsync()
+        protected override async Task<bool> OnSaveAsync()
         {
             if (EntityId != Guid.Empty)
             {
                 await userService.Update(EntityId, CurrentModel, CancellationToken.None);
                 MessageBox.Show("Данные пользователя обновлены.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            return true;
         }
 
         private async void buttonSave_Click(object sender, EventArgs e)

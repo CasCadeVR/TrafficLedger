@@ -28,102 +28,165 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.splitContainerPanel = new System.Windows.Forms.SplitContainer();
-            this.readOnlyTextBox1 = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.searchBar = new TrafficLedger.Desktop.Components.Controls.SearchBars.SearchBar();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerPanel)).BeginInit();
-            this.splitContainerPanel.Panel1.SuspendLayout();
-            this.splitContainerPanel.Panel2.SuspendLayout();
-            this.splitContainerPanel.SuspendLayout();
-            this.SuspendLayout();
+            splitContainerPanel = new SplitContainer();
+            readOnlyTextBox1 = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            searchBar = new TrafficLedger.Desktop.Components.Controls.SearchBars.SearchBar();
+            tableLayoutPanelWithActive = new TableLayoutPanel();
+            checkBoxShowRejected = new TrafficLedger.Desktop.Components.Controls.CheckBoxes.DefaultCheckBox();
+            checkBoxShowApproved = new TrafficLedger.Desktop.Components.Controls.CheckBoxes.DefaultCheckBox();
+            flowLayoutPanel = new FlowLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainerPanel).BeginInit();
+            splitContainerPanel.Panel1.SuspendLayout();
+            splitContainerPanel.Panel2.SuspendLayout();
+            splitContainerPanel.SuspendLayout();
+            tableLayoutPanelWithActive.SuspendLayout();
+            SuspendLayout();
             // 
             // splitContainer
             // 
+            splitContainer.Margin = new Padding(5, 3, 5, 3);
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.splitContainerPanel);
-            this.splitContainer.Size = new System.Drawing.Size(600, 600);
-            // 
-            // flowLayoutPanel
-            // 
-            this.flowLayoutPanel.AutoScroll = true;
-            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(600, 460);
-            this.flowLayoutPanel.TabIndex = 0;
+            splitContainer.Panel2.Controls.Add(splitContainerPanel);
+            splitContainer.Size = new Size(700, 692);
+            splitContainer.SplitterDistance = 128;
+            splitContainer.SplitterWidth = 6;
             // 
             // splitContainerPanel
             // 
-            this.splitContainerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerPanel.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainerPanel.IsSplitterFixed = true;
-            this.splitContainerPanel.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerPanel.Name = "splitContainerPanel";
-            this.splitContainerPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            splitContainerPanel.Dock = DockStyle.Fill;
+            splitContainerPanel.FixedPanel = FixedPanel.Panel1;
+            splitContainerPanel.IsSplitterFixed = true;
+            splitContainerPanel.Location = new Point(0, 0);
+            splitContainerPanel.Margin = new Padding(4, 3, 4, 3);
+            splitContainerPanel.Name = "splitContainerPanel";
+            splitContainerPanel.Orientation = Orientation.Horizontal;
             // 
             // splitContainerPanel.Panel1
             // 
-            this.splitContainerPanel.Panel1.Controls.Add(this.readOnlyTextBox1);
-            this.splitContainerPanel.Panel1.Controls.Add(this.searchBar);
+            splitContainerPanel.Panel1.Controls.Add(readOnlyTextBox1);
+            splitContainerPanel.Panel1.Controls.Add(searchBar);
             // 
             // splitContainerPanel.Panel2
             // 
-            this.splitContainerPanel.Panel2.Controls.Add(this.flowLayoutPanel);
-            this.splitContainerPanel.Size = new System.Drawing.Size(600, 500);
-            this.splitContainerPanel.SplitterDistance = 36;
-            this.splitContainerPanel.TabIndex = 1;
+            splitContainerPanel.Panel2.Controls.Add(tableLayoutPanelWithActive);
+            splitContainerPanel.Size = new Size(700, 558);
+            splitContainerPanel.SplitterDistance = 42;
+            splitContainerPanel.SplitterWidth = 5;
+            splitContainerPanel.TabIndex = 1;
             // 
             // readOnlyTextBox1
             // 
-            this.readOnlyTextBox1.BackColor = System.Drawing.Color.GhostWhite;
-            this.readOnlyTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.readOnlyTextBox1.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.readOnlyTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.readOnlyTextBox1.Location = new System.Drawing.Point(456, 58);
-            this.readOnlyTextBox1.Name = "readOnlyTextBox1";
-            this.readOnlyTextBox1.ReadOnly = true;
-            this.readOnlyTextBox1.Size = new System.Drawing.Size(8, 16);
-            this.readOnlyTextBox1.TabIndex = 1;
+            readOnlyTextBox1.BackColor = Color.GhostWhite;
+            readOnlyTextBox1.BorderStyle = BorderStyle.None;
+            readOnlyTextBox1.Font = new Font("Consolas", 9.75F);
+            readOnlyTextBox1.ForeColor = Color.FromArgb(0, 0, 0);
+            readOnlyTextBox1.Location = new Point(532, 67);
+            readOnlyTextBox1.Margin = new Padding(4, 3, 4, 3);
+            readOnlyTextBox1.Name = "readOnlyTextBox1";
+            readOnlyTextBox1.ReadOnly = true;
+            readOnlyTextBox1.Size = new Size(9, 16);
+            readOnlyTextBox1.TabIndex = 1;
             // 
             // searchBar
             // 
-            this.searchBar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.searchBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchBar.Location = new System.Drawing.Point(0, 0);
-            this.searchBar.Margin = new System.Windows.Forms.Padding(0);
-            this.searchBar.Name = "searchBar";
-            this.searchBar.Size = new System.Drawing.Size(600, 36);
-            this.searchBar.TabIndex = 0;
+            searchBar.Cursor = Cursors.Hand;
+            searchBar.Dock = DockStyle.Fill;
+            searchBar.Location = new Point(0, 0);
+            searchBar.Margin = new Padding(0);
+            searchBar.Name = "searchBar";
+            searchBar.Size = new Size(700, 42);
+            searchBar.TabIndex = 0;
             // 
-            // TransportListView
+            // tableLayoutPanelWithActive
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "TransportListView";
-            this.Size = new System.Drawing.Size(600, 600);
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            this.splitContainerPanel.Panel1.ResumeLayout(false);
-            this.splitContainerPanel.Panel1.PerformLayout();
-            this.splitContainerPanel.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerPanel)).EndInit();
-            this.splitContainerPanel.ResumeLayout(false);
-            this.ResumeLayout(false);
+            tableLayoutPanelWithActive.ColumnCount = 1;
+            tableLayoutPanelWithActive.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelWithActive.Controls.Add(checkBoxShowRejected, 0, 1);
+            tableLayoutPanelWithActive.Controls.Add(checkBoxShowApproved, 0, 0);
+            tableLayoutPanelWithActive.Controls.Add(flowLayoutPanel, 0, 2);
+            tableLayoutPanelWithActive.Dock = DockStyle.Fill;
+            tableLayoutPanelWithActive.Location = new Point(0, 0);
+            tableLayoutPanelWithActive.Margin = new Padding(4, 3, 4, 3);
+            tableLayoutPanelWithActive.Name = "tableLayoutPanelWithActive";
+            tableLayoutPanelWithActive.RowCount = 3;
+            tableLayoutPanelWithActive.RowStyles.Add(new RowStyle(SizeType.Percent, 7.40740728F));
+            tableLayoutPanelWithActive.RowStyles.Add(new RowStyle(SizeType.Percent, 7.40740728F));
+            tableLayoutPanelWithActive.RowStyles.Add(new RowStyle(SizeType.Percent, 85.18519F));
+            tableLayoutPanelWithActive.Size = new Size(700, 511);
+            tableLayoutPanelWithActive.TabIndex = 3;
+            // 
+            // checkBoxShowRejected
+            // 
+            checkBoxShowRejected.BackColor = Color.White;
+            checkBoxShowRejected.Dock = DockStyle.Fill;
+            checkBoxShowRejected.Font = new Font("Segoe UI", 9.75F);
+            checkBoxShowRejected.ForeColor = Color.FromArgb(0, 0, 0);
+            checkBoxShowRejected.Location = new Point(4, 40);
+            checkBoxShowRejected.Margin = new Padding(4, 3, 4, 3);
+            checkBoxShowRejected.Name = "checkBoxShowRejected";
+            checkBoxShowRejected.Size = new Size(692, 31);
+            checkBoxShowRejected.TabIndex = 2;
+            checkBoxShowRejected.Text = "Показать отклонённые удостоверения";
+            checkBoxShowRejected.UseVisualStyleBackColor = false;
+            checkBoxShowRejected.CheckedChanged += checkBoxShowRejected_CheckedChanged;
+            // 
+            // checkBoxShowApproved
+            // 
+            checkBoxShowApproved.BackColor = Color.White;
+            checkBoxShowApproved.Dock = DockStyle.Fill;
+            checkBoxShowApproved.Font = new Font("Segoe UI", 9.75F);
+            checkBoxShowApproved.ForeColor = Color.FromArgb(0, 0, 0);
+            checkBoxShowApproved.Location = new Point(4, 3);
+            checkBoxShowApproved.Margin = new Padding(4, 3, 4, 3);
+            checkBoxShowApproved.Name = "checkBoxShowApproved";
+            checkBoxShowApproved.Size = new Size(692, 31);
+            checkBoxShowApproved.TabIndex = 1;
+            checkBoxShowApproved.Text = "Показать одобренные удостоверения";
+            checkBoxShowApproved.UseVisualStyleBackColor = false;
+            checkBoxShowApproved.CheckedChanged += checkBoxShowApproved_CheckedChanged;
+            // 
+            // flowLayoutPanel
+            // 
+            flowLayoutPanel.AutoScroll = true;
+            flowLayoutPanel.Dock = DockStyle.Fill;
+            flowLayoutPanel.Location = new Point(4, 77);
+            flowLayoutPanel.Margin = new Padding(4, 3, 4, 3);
+            flowLayoutPanel.Name = "flowLayoutPanel";
+            flowLayoutPanel.Size = new Size(692, 431);
+            flowLayoutPanel.TabIndex = 0;
+            // 
+            // DriverLicenseListView
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Margin = new Padding(5, 3, 5, 3);
+            Name = "DriverLicenseListView";
+            Size = new Size(700, 692);
+            splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            splitContainerPanel.Panel1.ResumeLayout(false);
+            splitContainerPanel.Panel1.PerformLayout();
+            splitContainerPanel.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainerPanel).EndInit();
+            splitContainerPanel.ResumeLayout(false);
+            tableLayoutPanelWithActive.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         private System.Windows.Forms.SplitContainer splitContainerPanel;
         private Components.Controls.TextBoxes.ReadOnlyTextBox readOnlyTextBox1;
         private Components.Controls.SearchBars.SearchBar searchBar;
+        private TableLayoutPanel tableLayoutPanelWithActive;
+        private FlowLayoutPanel flowLayoutPanel;
+        private Components.Controls.CheckBoxes.DefaultCheckBox checkBoxShowApproved;
+        private Components.Controls.CheckBoxes.DefaultCheckBox checkBoxShowRejected;
     }
 }

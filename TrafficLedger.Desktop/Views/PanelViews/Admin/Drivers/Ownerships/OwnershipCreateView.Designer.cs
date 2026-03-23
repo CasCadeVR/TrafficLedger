@@ -144,6 +144,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
             this.dateTimePickerDate.Size = new System.Drawing.Size(246, 25);
             this.dateTimePickerDate.TabIndex = 20;
             this.dateTimePickerDate.Tag = "";
+            this.dateTimePickerDate.Format = DateTimePickerFormat.Custom;
+            this.dateTimePickerDate.CustomFormat = "dd/MM/yyyy HH:mm";
             // 
             // OwnershipCreateView
             // 

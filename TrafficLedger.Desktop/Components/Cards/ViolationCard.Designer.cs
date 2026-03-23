@@ -30,213 +30,213 @@ namespace TrafficLedger.Desktop.Components.Cards
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.labelNumberTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.labelNameTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.code = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.violationName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.buttonDelete = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonEdit = new TrafficLedger.Desktop.Components.CommonButton();
-            this.labelDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.description = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelFinePriceTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.finePrice = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tableLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            labelNumberTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            labelNameTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            code = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            violationName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            description = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelFinePriceTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            finePrice = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            buttonDelete = new CommonButton();
+            buttonEdit = new CommonButton();
+            toolTip = new ToolTip(components);
+            tableLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.ColumnCount = 7;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2851F));
-            this.tableLayoutPanel1.Controls.Add(this.labelNumberTitle, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.labelNameTitle, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.code, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.violationName, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelDescriptionTitle, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.description, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.labelFinePriceTitle, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.finePrice, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.buttonDelete, 5, 5);
-            this.tableLayoutPanel1.Controls.Add(this.buttonEdit, 5, 4);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66889F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66889F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(666, 280);
-            this.tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.ColumnCount = 7;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.28653F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.28653F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.28653F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2851F));
+            tableLayoutPanel1.Controls.Add(labelNumberTitle, 0, 0);
+            tableLayoutPanel1.Controls.Add(labelNameTitle, 0, 1);
+            tableLayoutPanel1.Controls.Add(code, 1, 0);
+            tableLayoutPanel1.Controls.Add(violationName, 1, 1);
+            tableLayoutPanel1.Controls.Add(labelDescriptionTitle, 0, 3);
+            tableLayoutPanel1.Controls.Add(description, 1, 3);
+            tableLayoutPanel1.Controls.Add(labelFinePriceTitle, 0, 2);
+            tableLayoutPanel1.Controls.Add(finePrice, 1, 2);
+            tableLayoutPanel1.Controls.Add(buttonDelete, 5, 5);
+            tableLayoutPanel1.Controls.Add(buttonEdit, 5, 4);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(4);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.66556F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.66556F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.66556F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.66556F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.66889F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.66889F));
+            tableLayoutPanel1.Size = new Size(666, 247);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // labelNumberTitle
             // 
-            this.labelNumberTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelNumberTitle.AutoSize = true;
-            this.labelNumberTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelNumberTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelNumberTitle.Location = new System.Drawing.Point(36, 14);
-            this.labelNumberTitle.Name = "labelNumberTitle";
-            this.labelNumberTitle.Size = new System.Drawing.Size(56, 17);
-            this.labelNumberTitle.TabIndex = 10;
-            this.labelNumberTitle.Text = "Номер: ";
+            labelNumberTitle.Anchor = AnchorStyles.Right;
+            labelNumberTitle.AutoSize = true;
+            labelNumberTitle.Font = new Font("Segoe UI", 9.75F);
+            labelNumberTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelNumberTitle.Location = new Point(36, 12);
+            labelNumberTitle.Name = "labelNumberTitle";
+            labelNumberTitle.Size = new Size(56, 17);
+            labelNumberTitle.TabIndex = 10;
+            labelNumberTitle.Text = "Номер: ";
             // 
             // labelNameTitle
             // 
-            this.labelNameTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelNameTitle.AutoSize = true;
-            this.labelNameTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelNameTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelNameTitle.Location = new System.Drawing.Point(9, 52);
-            this.labelNameTitle.Name = "labelNameTitle";
-            this.labelNameTitle.Size = new System.Drawing.Size(83, 34);
-            this.labelNameTitle.TabIndex = 11;
-            this.labelNameTitle.Text = "Наименование: ";
+            labelNameTitle.Anchor = AnchorStyles.Right;
+            labelNameTitle.AutoSize = true;
+            labelNameTitle.Font = new Font("Segoe UI", 9.75F);
+            labelNameTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelNameTitle.Location = new Point(9, 44);
+            labelNameTitle.Name = "labelNameTitle";
+            labelNameTitle.Size = new Size(83, 34);
+            labelNameTitle.TabIndex = 11;
+            labelNameTitle.Text = "Наименование: ";
             // 
             // code
             // 
-            this.code.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.code.BackColor = System.Drawing.Color.GhostWhite;
-            this.code.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.code, 2);
-            this.code.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.code.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.code.Location = new System.Drawing.Point(98, 11);
-            this.code.Name = "code";
-            this.code.ReadOnly = true;
-            this.code.Size = new System.Drawing.Size(100, 16);
-            this.code.TabIndex = 14;
-            this.code.Text = "Загрузка...";
+            code.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            code.BackColor = Color.GhostWhite;
+            code.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(code, 2);
+            code.Font = new Font("Consolas", 9.75F);
+            code.ForeColor = Color.FromArgb(0, 0, 0);
+            code.Location = new Point(98, 12);
+            code.Name = "code";
+            code.ReadOnly = true;
+            code.Size = new Size(184, 16);
+            code.TabIndex = 14;
+            code.Text = "Загрузка...";
             // 
             // violationName
             // 
-            this.violationName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.violationName.BackColor = System.Drawing.Color.GhostWhite;
-            this.violationName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.violationName, 4);
-            this.violationName.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.violationName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.violationName.Location = new System.Drawing.Point(98, 61);
-            this.violationName.Name = "violationName";
-            this.violationName.ReadOnly = true;
-            this.violationName.Size = new System.Drawing.Size(374, 16);
-            this.violationName.TabIndex = 15;
-            this.violationName.Text = "Загрузка...";
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanel1.SetColumnSpan(this.buttonDelete, 2);
-            this.buttonDelete.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDelete.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonDelete.ForeColor = System.Drawing.Color.White;
-            this.buttonDelete.Location = new System.Drawing.Point(478, 233);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonDelete.Size = new System.Drawing.Size(185, 44);
-            this.buttonDelete.TabIndex = 21;
-            this.buttonDelete.Text = "Удалить";
-            this.buttonDelete.UseVisualStyleBackColor = false;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
-            // 
-            // buttonEdit
-            // 
-            this.buttonEdit.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanel1.SetColumnSpan(this.buttonEdit, 2);
-            this.buttonEdit.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEdit.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonEdit.ForeColor = System.Drawing.Color.White;
-            this.buttonEdit.Location = new System.Drawing.Point(478, 187);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonEdit.Size = new System.Drawing.Size(185, 40);
-            this.buttonEdit.TabIndex = 20;
-            this.buttonEdit.Text = "Редактировать";
-            this.buttonEdit.UseVisualStyleBackColor = false;
-            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            violationName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            violationName.BackColor = Color.GhostWhite;
+            violationName.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(violationName, 4);
+            violationName.Font = new Font("Consolas", 9.75F);
+            violationName.ForeColor = Color.FromArgb(0, 0, 0);
+            violationName.Location = new Point(98, 53);
+            violationName.Name = "violationName";
+            violationName.ReadOnly = true;
+            violationName.Size = new Size(374, 16);
+            violationName.TabIndex = 15;
+            violationName.Text = "Загрузка...";
             // 
             // labelDescriptionTitle
             // 
-            this.labelDescriptionTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelDescriptionTitle.AutoSize = true;
-            this.labelDescriptionTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelDescriptionTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelDescriptionTitle.Location = new System.Drawing.Point(19, 152);
-            this.labelDescriptionTitle.Name = "labelDescriptionTitle";
-            this.labelDescriptionTitle.Size = new System.Drawing.Size(73, 17);
-            this.labelDescriptionTitle.TabIndex = 12;
-            this.labelDescriptionTitle.Text = "Описание: ";
+            labelDescriptionTitle.Anchor = AnchorStyles.Right;
+            labelDescriptionTitle.AutoSize = true;
+            labelDescriptionTitle.Font = new Font("Segoe UI", 9.75F);
+            labelDescriptionTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelDescriptionTitle.Location = new Point(19, 135);
+            labelDescriptionTitle.Name = "labelDescriptionTitle";
+            labelDescriptionTitle.Size = new Size(73, 17);
+            labelDescriptionTitle.TabIndex = 12;
+            labelDescriptionTitle.Text = "Описание: ";
             // 
             // description
             // 
-            this.description.BackColor = System.Drawing.Color.GhostWhite;
-            this.description.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.description, 3);
-            this.description.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.description.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.description.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.description.Location = new System.Drawing.Point(98, 141);
-            this.description.Multiline = true;
-            this.description.Name = "description";
-            this.description.ReadOnly = true;
-            this.tableLayoutPanel1.SetRowSpan(this.description, 3);
-            this.description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.description.Size = new System.Drawing.Size(279, 136);
-            this.description.TabIndex = 16;
-            this.description.Text = "Загрузка...";
+            description.BackColor = Color.GhostWhite;
+            description.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(description, 3);
+            description.Dock = DockStyle.Fill;
+            description.Font = new Font("Consolas", 9.75F);
+            description.ForeColor = Color.FromArgb(0, 0, 0);
+            description.Location = new Point(98, 126);
+            description.Multiline = true;
+            description.Name = "description";
+            description.ReadOnly = true;
+            tableLayoutPanel1.SetRowSpan(description, 3);
+            description.ScrollBars = ScrollBars.Vertical;
+            description.Size = new Size(279, 118);
+            description.TabIndex = 16;
+            description.Text = "Загрузка...";
             // 
             // labelFinePriceTitle
             // 
-            this.labelFinePriceTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelFinePriceTitle.AutoSize = true;
-            this.labelFinePriceTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelFinePriceTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelFinePriceTitle.Location = new System.Drawing.Point(38, 98);
-            this.labelFinePriceTitle.Name = "labelFinePriceTitle";
-            this.labelFinePriceTitle.Size = new System.Drawing.Size(54, 34);
-            this.labelFinePriceTitle.TabIndex = 13;
-            this.labelFinePriceTitle.Text = "Штраф (руб.): ";
+            labelFinePriceTitle.Anchor = AnchorStyles.Right;
+            labelFinePriceTitle.AutoSize = true;
+            labelFinePriceTitle.Font = new Font("Segoe UI", 9.75F);
+            labelFinePriceTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelFinePriceTitle.Location = new Point(38, 85);
+            labelFinePriceTitle.Name = "labelFinePriceTitle";
+            labelFinePriceTitle.Size = new Size(54, 34);
+            labelFinePriceTitle.TabIndex = 13;
+            labelFinePriceTitle.Text = "Штраф (руб.): ";
             // 
             // finePrice
             // 
-            this.finePrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.finePrice.BackColor = System.Drawing.Color.GhostWhite;
-            this.finePrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.finePrice, 2);
-            this.finePrice.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.finePrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.finePrice.Location = new System.Drawing.Point(98, 103);
-            this.finePrice.Name = "finePrice";
-            this.finePrice.ReadOnly = true;
-            this.finePrice.Size = new System.Drawing.Size(100, 16);
-            this.finePrice.TabIndex = 17;
-            this.finePrice.Text = "Загрузка...";
+            finePrice.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            finePrice.BackColor = Color.GhostWhite;
+            finePrice.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(finePrice, 2);
+            finePrice.Font = new Font("Consolas", 9.75F);
+            finePrice.ForeColor = Color.FromArgb(0, 0, 0);
+            finePrice.Location = new Point(98, 94);
+            finePrice.Name = "finePrice";
+            finePrice.ReadOnly = true;
+            finePrice.Size = new Size(184, 16);
+            finePrice.TabIndex = 17;
+            finePrice.Text = "Загрузка...";
+            // 
+            // buttonDelete
+            // 
+            buttonDelete.BackColor = Color.Green;
+            tableLayoutPanel1.SetColumnSpan(buttonDelete, 2);
+            buttonDelete.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonDelete.FlatStyle = FlatStyle.Flat;
+            buttonDelete.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonDelete.ForeColor = Color.White;
+            buttonDelete.Location = new Point(478, 208);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Padding = new Padding(8, 4, 8, 4);
+            buttonDelete.Size = new Size(185, 36);
+            buttonDelete.TabIndex = 21;
+            buttonDelete.Text = "Удалить";
+            buttonDelete.UseVisualStyleBackColor = false;
+            buttonDelete.Click += buttonDelete_Click;
+            // 
+            // buttonEdit
+            // 
+            buttonEdit.BackColor = Color.Green;
+            tableLayoutPanel1.SetColumnSpan(buttonEdit, 2);
+            buttonEdit.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonEdit.FlatStyle = FlatStyle.Flat;
+            buttonEdit.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonEdit.ForeColor = Color.White;
+            buttonEdit.Location = new Point(478, 167);
+            buttonEdit.Name = "buttonEdit";
+            buttonEdit.Padding = new Padding(8, 4, 8, 4);
+            buttonEdit.Size = new Size(185, 35);
+            buttonEdit.TabIndex = 20;
+            buttonEdit.Text = "Редактировать";
+            buttonEdit.UseVisualStyleBackColor = false;
+            buttonEdit.Click += buttonEdit_Click;
             // 
             // ViolationCard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "ViolationCard";
-            this.Size = new System.Drawing.Size(666, 280);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(5, 4, 5, 4);
+            Name = "ViolationCard";
+            Size = new Size(666, 247);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ResumeLayout(false);
 
         }
 

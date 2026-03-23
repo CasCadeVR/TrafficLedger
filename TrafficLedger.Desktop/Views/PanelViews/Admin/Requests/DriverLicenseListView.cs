@@ -7,6 +7,7 @@ using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.Views;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
@@ -34,14 +35,22 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
 
         protected override IEnumerable<DriverLicense> FilterItems(string searchQuery, IEnumerable<DriverLicense> items)
         {
+            var filteredByApproved = checkBoxShowApproved.Checked
+               ? items
+               : items.Where(f => f.Status != RequestStatus.Approved);
+
+            var filteredByReject = checkBoxShowRejected.Checked
+               ? filteredByApproved
+               : filteredByApproved.Where(f => f.Status != RequestStatus.Rejected);
+
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
-                return items;
+                return filteredByReject;
             }
 
             var lowerQuery = searchQuery.ToLowerInvariant();
 
-            return items.Where(t =>
+            return filteredByReject.Where(t =>
                 t.LicenseNumber?.ToLowerInvariant().Contains(lowerQuery) == true ||
                 t.LicenseCategories?.Select(x => x.TransportCategory.CategoryName).Contains(lowerQuery) == true ||
                 t.Driver.FullName?.ToLowerInvariant().Contains(lowerQuery) == true
@@ -100,6 +109,16 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
                 MessageBox.Show($"Удостоверение {item.LicenseNumber} успешно подтверждён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 base.OnNavigation(CurrentNavigationItem);
             }
+        }
+
+        private void checkBoxShowApproved_CheckedChanged(object sender, EventArgs e)
+        {
+            PerformSearch();
+        }
+
+        private void checkBoxShowRejected_CheckedChanged(object sender, EventArgs e)
+        {
+            PerformSearch();
         }
     }
 }

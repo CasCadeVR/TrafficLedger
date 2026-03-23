@@ -97,7 +97,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Parkings
             webView.Source = uri;
         }
 
-        protected override async Task OnSaveAsync()
+        protected override async Task<bool> OnSaveAsync()
         {
             if (EntityId != Guid.Empty)
             {
@@ -110,6 +110,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Parkings
                 EntityId = request.Id;
                 MessageBox.Show("Парковочное место успешно создано.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            return true;
         }
 
         private async void buttonSave_Click(object sender, EventArgs e)

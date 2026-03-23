@@ -40,7 +40,7 @@ namespace TrafficLedger.Desktop.Contracts.Views.PanelViews
         /// <summary>
         /// Метод при сохранении модели
         /// </summary>
-        protected virtual Task OnSaveAsync() { throw new NotImplementedException(); }
+        protected virtual Task<bool> OnSaveAsync() { throw new NotImplementedException(); }
 
         /// <summary>
         /// Обработчик ошибок
@@ -74,8 +74,12 @@ namespace TrafficLedger.Desktop.Contracts.Views.PanelViews
 
             try
             {
-                await OnSaveAsync();
-                OnNavigation(CurrentNavigationItem);
+                var result = await OnSaveAsync();
+
+                if (result == true)
+                {
+                    OnNavigation(CurrentNavigationItem);
+                }
             }
             catch (Exception ex)
             {

@@ -266,6 +266,8 @@
             dateTimePickerDateOfIssue.Size = new Size(286, 25);
             dateTimePickerDateOfIssue.TabIndex = 5;
             dateTimePickerDateOfIssue.Tag = "";
+            dateTimePickerDateOfIssue.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDateOfIssue.CustomFormat = "dd/MM/yyyy HH:mm";
             // 
             // labelFullName
             // 

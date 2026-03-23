@@ -37,6 +37,10 @@ namespace TrafficLedger.Desktop.Components.Cards
             description.Text = request.Description;
             code.Text = request.ViolationCode;
             finePrice.Text = request.MinFinePrice.ToString();
+            if (request.MaxFinePrice != request.MinFinePrice)
+            {
+                finePrice.Text += $" - {request.MaxFinePrice.ToString()}";
+            }
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)

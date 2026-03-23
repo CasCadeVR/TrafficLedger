@@ -31,7 +31,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
 
         protected override IEnumerable<PaymentFineDBModel> FilterItems(string searchQuery, IEnumerable<PaymentFineDBModel> items)
         {
-            var filteredByStatus = checkBoxShowUnactive.Checked
+            var filteredByStatus = checkBoxShowApproved.Checked
                ? items
                : items.Where(f => f.Status != RequestStatus.Approved);
 
@@ -61,18 +61,18 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
             return card;
         }
 
-        private void Reject(Payment item)
+        private async void Reject(Payment item)
         {
             var rejectForm = new RejectForm();
             if (rejectForm.ShowDialog() == DialogResult.OK)
             {
-                paymentService.Reject(item.Id, currentUser.Id, rejectForm.Commentary, CancellationToken.None);
+                await paymentService.Reject(item.Id, currentUser.Id, rejectForm.Commentary, CancellationToken.None);
                 MessageBox.Show($"Чек {item.Date} успешно отклонён, штраф в силе", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 base.OnNavigation(CurrentNavigationItem);
             }
         }
 
-        private void Approve(Payment item)
+        private async void Approve(Payment item)
         {
             var result = MessageBox.Show(
               $"Вы действительно хотите подтвердить оплату по чеку с датой {item.Date}?",
@@ -83,13 +83,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
 
             if (result == DialogResult.Yes)
             {
-                paymentService.Approve(item.Id, currentUser.Id, CancellationToken.None);
+                await paymentService.Approve(item.Id, currentUser.Id, CancellationToken.None);
                 MessageBox.Show($"Чек {item.Date} успешно подтверждён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 base.OnNavigation(CurrentNavigationItem);
             }
         }
 
-        private void Delete(Payment item)
+        private async void Delete(Payment item)
         {
             var result = MessageBox.Show(
                $"Вы действительно хотите удалить чек с датой {item.Date}?. Это удалит чек безвозвратно, а не завершает его",
@@ -100,13 +100,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
 
             if (result == DialogResult.Yes)
             {
-                paymentService.Delete(item.Id, CancellationToken.None);
+                await paymentService.Delete(item.Id, CancellationToken.None);
                 MessageBox.Show($"Чек {item.Date} успешно удалён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 base.OnNavigation(CurrentNavigationItem);
             }
         }
 
-        private void checkBoxShowUnactive_CheckedChanged(object sender, System.EventArgs e)
+        private void checkBoxShowApproved_CheckedChanged(object sender, System.EventArgs e)
         {
             PerformSearch();
         }

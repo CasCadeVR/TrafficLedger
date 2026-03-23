@@ -60,6 +60,7 @@
             // flowLayoutPanelButtons
             // 
             flowLayoutPanelButtons.AutoScroll = true;
+            flowLayoutPanelButtons.BackColor = Color.FromArgb(224, 224, 224);
             flowLayoutPanelButtons.Dock = DockStyle.Fill;
             flowLayoutPanelButtons.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanelButtons.Location = new Point(0, 0);

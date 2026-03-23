@@ -5,6 +5,7 @@ using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Services;
+using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.Fines;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
@@ -64,6 +65,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         {
             var card = new TransportCard(item, TransportCardRoleContext.OwnerList);
 
+            card.EditClicked += () => EditTransport(item);
             card.ListFineClicked += () => ListFine(item);
 
             return card;
@@ -77,6 +79,24 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             var navigationItem = new NavigationItem()
             {
                 Title = $"Штрафы транспорта с номером {item.TransportCode}",
+                ViewType = null,
+                ViewInstance = createView,
+                Parent = CurrentNavigationItem,
+            };
+
+            navigationService.NavigateTo(navigationItem);
+        }
+
+        private async void EditTransport(Transport item)
+        {
+            var driver = await driverService.GetByUserId(currentUser.Id, CancellationToken.None);
+
+            var createView = navigationService.ServiceProvider.GetRequiredService<TransportCreateView>();
+            createView.Initialize(item, isUserAdding: currentUser.Role != Role.Admin, currentDriver: driver!);
+
+            var navigationItem = new NavigationItem()
+            {
+                Title = "Редактирование транспорта",
                 ViewType = null,
                 ViewInstance = createView,
                 Parent = CurrentNavigationItem,

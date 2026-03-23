@@ -47,7 +47,7 @@ namespace TrafficLedger.Desktop
                 return;
             }
 
-            int buttonSize = flowLayoutPanelButtons.Width-14;
+            int buttonSize = flowLayoutPanelButtons.Width-2;
             navigationItems = NavigationRegistry.GetMenuItems();
 
             foreach (var item in navigationItems)

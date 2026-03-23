@@ -78,7 +78,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxAddress.Text = currentParkingSession.ParkingZone.Address;
             textBoxDate.Text = currentParkingSession.StartTime.DateTime.ToLongDateString();
 
-            var passedHours = (int)(CurrentModel.Date - currentParkingSession.StartTime).TotalHours;
+            var passedHours = (int)(CurrentModel.Date - currentParkingSession.StartTime).TotalHours + 1;
             var price = passedHours * currentParkingSession.ParkingZone.HourlyRate;
 
             textBoxSessionPrice.Text = price.ToString();
@@ -95,7 +95,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             }
         }
 
-        protected override async Task OnSaveAsync()
+        protected override async Task<bool> OnSaveAsync()
         {
             if (EntityId != Guid.Empty)
             {
@@ -111,6 +111,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
                 MessageBox.Show("Парковка успешно оплачена.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             NavigateToParent();
+            return true;
         }
 
         private async void buttonSave_Click(object sender, EventArgs e)

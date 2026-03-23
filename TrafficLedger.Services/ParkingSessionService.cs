@@ -75,7 +75,7 @@ namespace TrafficLedger.Services
 
             if (!await transportReadRepository.IsDriverOwnsTransport(existingDriver!.Id, existingTransport!.Id, cancellationToken))
             {
-                throw new InvalidOperationException($"Вы не владеете транспортом с номером {model.TransportCode}");
+                throw new InvalidOperationException($"Вы не владеете транспортом с номером {model.TransportCode}, либо ваш запрос ещё не подтверждён");
             }
 
             await userReadRepository.GetById(model.UserId, cancellationToken)

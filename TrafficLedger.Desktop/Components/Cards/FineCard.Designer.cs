@@ -34,25 +34,25 @@ namespace TrafficLedger.Desktop.Components.Cards
             tableLayoutPanel1 = new TableLayoutPanel();
             transportCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             transportCodeTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            labelStatusTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            status = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             buttonPay = new CommonButton();
             buttonDelete = new CommonButton();
             buttonEdit = new CommonButton();
-            labelDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             description = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            labelFinePriceTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            finePrice = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            labelNameTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            violationName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            labelNumberTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            code = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            status = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelStatusTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             labelDateTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             date = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             primaryLabel1 = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            address = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             primaryLabel2 = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             fineDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            address = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelNumberTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            code = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelNameTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            violationName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelFinePriceTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            finePrice = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             toolTip = new ToolTip(components);
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -134,33 +134,6 @@ namespace TrafficLedger.Desktop.Components.Cards
             transportCodeTitle.TabIndex = 25;
             transportCodeTitle.Text = "Код транспорта: ";
             // 
-            // labelStatusTitle
-            // 
-            labelStatusTitle.Anchor = AnchorStyles.Right;
-            labelStatusTitle.AutoSize = true;
-            labelStatusTitle.Font = new Font("Segoe UI", 9.75F);
-            labelStatusTitle.ForeColor = Color.FromArgb(0, 0, 0);
-            labelStatusTitle.Location = new Point(420, 45);
-            labelStatusTitle.Name = "labelStatusTitle";
-            labelStatusTitle.Size = new Size(52, 17);
-            labelStatusTitle.TabIndex = 27;
-            labelStatusTitle.Text = "Статус: ";
-            // 
-            // status
-            // 
-            status.Anchor = AnchorStyles.Left;
-            status.BackColor = Color.GhostWhite;
-            status.BorderStyle = BorderStyle.None;
-            tableLayoutPanel1.SetColumnSpan(status, 2);
-            status.Font = new Font("Consolas", 9.75F);
-            status.ForeColor = Color.FromArgb(0, 0, 0);
-            status.Location = new Point(478, 46);
-            status.Name = "status";
-            status.ReadOnly = true;
-            status.Size = new Size(100, 16);
-            status.TabIndex = 28;
-            status.Text = "Загрузка...";
-            // 
             // buttonPay
             // 
             buttonPay.BackColor = Color.Green;
@@ -215,18 +188,6 @@ namespace TrafficLedger.Desktop.Components.Cards
             buttonEdit.UseVisualStyleBackColor = false;
             buttonEdit.Click += buttonEdit_Click;
             // 
-            // labelDescriptionTitle
-            // 
-            labelDescriptionTitle.Anchor = AnchorStyles.Right;
-            labelDescriptionTitle.AutoSize = true;
-            labelDescriptionTitle.Font = new Font("Segoe UI", 9.75F);
-            labelDescriptionTitle.ForeColor = Color.FromArgb(0, 0, 0);
-            labelDescriptionTitle.Location = new Point(19, 225);
-            labelDescriptionTitle.Name = "labelDescriptionTitle";
-            labelDescriptionTitle.Size = new Size(73, 17);
-            labelDescriptionTitle.TabIndex = 12;
-            labelDescriptionTitle.Text = "Описание: ";
-            // 
             // description
             // 
             description.BackColor = Color.GhostWhite;
@@ -245,86 +206,32 @@ namespace TrafficLedger.Desktop.Components.Cards
             description.TabIndex = 16;
             description.Text = "Загрузка...";
             // 
-            // labelFinePriceTitle
+            // status
             // 
-            labelFinePriceTitle.Anchor = AnchorStyles.Right;
-            labelFinePriceTitle.AutoSize = true;
-            labelFinePriceTitle.Font = new Font("Segoe UI", 9.75F);
-            labelFinePriceTitle.ForeColor = Color.FromArgb(0, 0, 0);
-            labelFinePriceTitle.Location = new Point(38, 181);
-            labelFinePriceTitle.Name = "labelFinePriceTitle";
-            labelFinePriceTitle.Size = new Size(54, 34);
-            labelFinePriceTitle.TabIndex = 13;
-            labelFinePriceTitle.Text = "Штраф (руб.): ";
+            status.Anchor = AnchorStyles.Left;
+            status.BackColor = Color.GhostWhite;
+            status.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(status, 2);
+            status.Font = new Font("Consolas", 9.75F);
+            status.ForeColor = Color.FromArgb(0, 0, 0);
+            status.Location = new Point(478, 42);
+            status.Name = "status";
+            status.ReadOnly = true;
+            status.Size = new Size(100, 16);
+            status.TabIndex = 28;
+            status.Text = "Загрузка...";
             // 
-            // finePrice
+            // labelStatusTitle
             // 
-            finePrice.Anchor = AnchorStyles.Left;
-            finePrice.BackColor = Color.GhostWhite;
-            finePrice.BorderStyle = BorderStyle.None;
-            tableLayoutPanel1.SetColumnSpan(finePrice, 2);
-            finePrice.Font = new Font("Consolas", 9.75F);
-            finePrice.ForeColor = Color.FromArgb(0, 0, 0);
-            finePrice.Location = new Point(98, 190);
-            finePrice.Name = "finePrice";
-            finePrice.ReadOnly = true;
-            finePrice.Size = new Size(100, 16);
-            finePrice.TabIndex = 17;
-            finePrice.Text = "Загрузка...";
-            // 
-            // labelNameTitle
-            // 
-            labelNameTitle.Anchor = AnchorStyles.Right;
-            labelNameTitle.AutoSize = true;
-            labelNameTitle.Font = new Font("Segoe UI", 9.75F);
-            labelNameTitle.ForeColor = Color.FromArgb(0, 0, 0);
-            labelNameTitle.Location = new Point(9, 145);
-            labelNameTitle.Name = "labelNameTitle";
-            labelNameTitle.Size = new Size(83, 34);
-            labelNameTitle.TabIndex = 11;
-            labelNameTitle.Text = "Наименование: ";
-            // 
-            // violationName
-            // 
-            violationName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            violationName.BackColor = Color.GhostWhite;
-            violationName.BorderStyle = BorderStyle.None;
-            tableLayoutPanel1.SetColumnSpan(violationName, 4);
-            violationName.Font = new Font("Consolas", 9.75F);
-            violationName.ForeColor = Color.FromArgb(0, 0, 0);
-            violationName.Location = new Point(98, 154);
-            violationName.Name = "violationName";
-            violationName.ReadOnly = true;
-            violationName.Size = new Size(374, 16);
-            violationName.TabIndex = 15;
-            violationName.Text = "Загрузка...";
-            // 
-            // labelNumberTitle
-            // 
-            labelNumberTitle.Anchor = AnchorStyles.Right;
-            labelNumberTitle.AutoSize = true;
-            labelNumberTitle.Font = new Font("Segoe UI", 9.75F);
-            labelNumberTitle.ForeColor = Color.FromArgb(0, 0, 0);
-            labelNumberTitle.Location = new Point(36, 117);
-            labelNumberTitle.Name = "labelNumberTitle";
-            labelNumberTitle.Size = new Size(56, 17);
-            labelNumberTitle.TabIndex = 10;
-            labelNumberTitle.Text = "Номер: ";
-            // 
-            // code
-            // 
-            code.Anchor = AnchorStyles.Left;
-            code.BackColor = Color.GhostWhite;
-            code.BorderStyle = BorderStyle.None;
-            tableLayoutPanel1.SetColumnSpan(code, 2);
-            code.Font = new Font("Consolas", 9.75F);
-            code.ForeColor = Color.FromArgb(0, 0, 0);
-            code.Location = new Point(98, 118);
-            code.Name = "code";
-            code.ReadOnly = true;
-            code.Size = new Size(100, 16);
-            code.TabIndex = 14;
-            code.Text = "Загрузка...";
+            labelStatusTitle.Anchor = AnchorStyles.Right;
+            labelStatusTitle.AutoSize = true;
+            labelStatusTitle.Font = new Font("Segoe UI", 9.75F);
+            labelStatusTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelStatusTitle.Location = new Point(420, 45);
+            labelStatusTitle.Name = "labelStatusTitle";
+            labelStatusTitle.Size = new Size(52, 17);
+            labelStatusTitle.TabIndex = 27;
+            labelStatusTitle.Text = "Статус: ";
             // 
             // labelDateTitle
             // 
@@ -365,6 +272,21 @@ namespace TrafficLedger.Desktop.Components.Cards
             primaryLabel1.TabIndex = 29;
             primaryLabel1.Text = "Адрес: ";
             // 
+            // address
+            // 
+            address.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            address.BackColor = Color.GhostWhite;
+            address.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(address, 3);
+            address.Font = new Font("Consolas", 9.75F);
+            address.ForeColor = Color.FromArgb(0, 0, 0);
+            address.Location = new Point(98, 46);
+            address.Name = "address";
+            address.ReadOnly = true;
+            address.Size = new Size(279, 16);
+            address.TabIndex = 32;
+            address.Text = "Загрузка...";
+            // 
             // primaryLabel2
             // 
             primaryLabel2.Anchor = AnchorStyles.Right;
@@ -392,20 +314,98 @@ namespace TrafficLedger.Desktop.Components.Cards
             fineDescription.TabIndex = 31;
             fineDescription.Text = "Загрузка...";
             // 
-            // address
+            // labelNumberTitle
             // 
-            address.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            address.BackColor = Color.GhostWhite;
-            address.BorderStyle = BorderStyle.None;
-            tableLayoutPanel1.SetColumnSpan(address, 3);
-            address.Font = new Font("Consolas", 9.75F);
-            address.ForeColor = Color.FromArgb(0, 0, 0);
-            address.Location = new Point(98, 46);
-            address.Name = "address";
-            address.ReadOnly = true;
-            address.Size = new Size(279, 16);
-            address.TabIndex = 32;
-            address.Text = "Загрузка...";
+            labelNumberTitle.Anchor = AnchorStyles.Right;
+            labelNumberTitle.AutoSize = true;
+            labelNumberTitle.Font = new Font("Segoe UI", 9.75F);
+            labelNumberTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelNumberTitle.Location = new Point(36, 117);
+            labelNumberTitle.Name = "labelNumberTitle";
+            labelNumberTitle.Size = new Size(56, 17);
+            labelNumberTitle.TabIndex = 10;
+            labelNumberTitle.Text = "Номер: ";
+            // 
+            // code
+            // 
+            code.Anchor = AnchorStyles.Left;
+            code.BackColor = Color.GhostWhite;
+            code.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(code, 2);
+            code.Font = new Font("Consolas", 9.75F);
+            code.ForeColor = Color.FromArgb(0, 0, 0);
+            code.Location = new Point(98, 114);
+            code.Name = "code";
+            code.ReadOnly = true;
+            code.Size = new Size(100, 16);
+            code.TabIndex = 14;
+            code.Text = "Загрузка...";
+            // 
+            // labelNameTitle
+            // 
+            labelNameTitle.Anchor = AnchorStyles.Right;
+            labelNameTitle.AutoSize = true;
+            labelNameTitle.Font = new Font("Segoe UI", 9.75F);
+            labelNameTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelNameTitle.Location = new Point(9, 145);
+            labelNameTitle.Name = "labelNameTitle";
+            labelNameTitle.Size = new Size(83, 34);
+            labelNameTitle.TabIndex = 11;
+            labelNameTitle.Text = "Наименование: ";
+            // 
+            // violationName
+            // 
+            violationName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            violationName.BackColor = Color.GhostWhite;
+            violationName.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(violationName, 4);
+            violationName.Font = new Font("Consolas", 9.75F);
+            violationName.ForeColor = Color.FromArgb(0, 0, 0);
+            violationName.Location = new Point(98, 154);
+            violationName.Name = "violationName";
+            violationName.ReadOnly = true;
+            violationName.Size = new Size(374, 16);
+            violationName.TabIndex = 15;
+            violationName.Text = "Загрузка...";
+            // 
+            // labelFinePriceTitle
+            // 
+            labelFinePriceTitle.Anchor = AnchorStyles.Right;
+            labelFinePriceTitle.AutoSize = true;
+            labelFinePriceTitle.Font = new Font("Segoe UI", 9.75F);
+            labelFinePriceTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelFinePriceTitle.Location = new Point(38, 181);
+            labelFinePriceTitle.Name = "labelFinePriceTitle";
+            labelFinePriceTitle.Size = new Size(54, 34);
+            labelFinePriceTitle.TabIndex = 13;
+            labelFinePriceTitle.Text = "Штраф (руб.): ";
+            // 
+            // finePrice
+            // 
+            finePrice.Anchor = AnchorStyles.Left;
+            finePrice.BackColor = Color.GhostWhite;
+            finePrice.BorderStyle = BorderStyle.None;
+            tableLayoutPanel1.SetColumnSpan(finePrice, 2);
+            finePrice.Font = new Font("Consolas", 9.75F);
+            finePrice.ForeColor = Color.FromArgb(0, 0, 0);
+            finePrice.Location = new Point(98, 186);
+            finePrice.Name = "finePrice";
+            finePrice.ReadOnly = true;
+            finePrice.Size = new Size(100, 16);
+            finePrice.TabIndex = 17;
+            finePrice.Text = "Загрузка...";
+            // 
+            // labelDescriptionTitle
+            // 
+            labelDescriptionTitle.Anchor = AnchorStyles.Right;
+            labelDescriptionTitle.AutoSize = true;
+            labelDescriptionTitle.Font = new Font("Segoe UI", 9.75F);
+            labelDescriptionTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelDescriptionTitle.Location = new Point(19, 225);
+            labelDescriptionTitle.Name = "labelDescriptionTitle";
+            labelDescriptionTitle.Size = new Size(73, 17);
+            labelDescriptionTitle.TabIndex = 12;
+            labelDescriptionTitle.Text = "Описание: ";
             // 
             // FineCard
             // 

@@ -29,9 +29,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         public FineCreateView(IFineService fineService, IViolationService violationService)
         {
             InitializeComponent();
-            this.fineService = fineService;
 
-            comboBoxViolation.SelectedIndexChanged += OnViolationSelected;
+            this.fineService = fineService;
             this.violationService = violationService;
         }
 
@@ -42,6 +41,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         {
             this.currentTransport = currentTransport;
             this.currentFine = currentFine;
+
+            comboBoxViolation.SelectedValueChanged += OnViolationSelected;
         }
 
         protected override async Task LoadModelAsync()
@@ -79,7 +80,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                 {
                     Address = string.Empty,
                     Description = string.Empty,
-                    Date = DateTimeOffset.UtcNow,
+                    Date = DateTimeOffset.Now,
                     Price = 10,
                     Status = SessionStatus.Active,
                     ViolationId = Guid.Empty,
@@ -90,13 +91,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             }
         }
 
-        protected override void SetupBindings()
+        protected override async void SetupBindings()
         {
-            comboBoxViolation.DataBindings.Clear();
-
             textBoxAddress.AddBindings(x => x.Text, CurrentModel, x => x.Address, errorProvider);
             textBoxFineDescription.AddBindings(x => x.Text, CurrentModel, x => x.Description, errorProvider);
-
+            
             dateTimePickerDate.AddBindingWithConversion(
                 x => x.Value,
                 CurrentModel,
@@ -104,13 +103,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                 dto => dto.DateTime,
                 dt => new DateTimeOffset(dt, TimeSpan.Zero),
                 errorProvider);
-
-            comboBoxViolation.DataBindings.Add(
-               nameof(comboBoxViolation.SelectedValue),
-               CurrentModel,
-               nameof(CurrentModel.ViolationId),
-               false,
-               DataSourceUpdateMode.OnPropertyChanged);
 
             multiImageUploader.ResetImageBindings();
             multiImageUploader.ImagesChanged += (sender, attachments) =>
@@ -126,13 +118,24 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
 
         private void OnViolationSelected(object sender, EventArgs e)
         {
+            numericUpDownPrice.DataBindings.Clear();
+
             var selectedViolation = comboBoxViolation.SelectedItem as Violation;
             textBoxCode.Text = selectedViolation?.ViolationCode ?? ". . .";
             textBoxDescription.Text = selectedViolation?.Description ?? ". . .";
 
             numericUpDownPrice.Minimum = selectedViolation?.MinFinePrice ?? 10;
             numericUpDownPrice.Maximum = selectedViolation?.MaxFinePrice ?? selectedViolation?.MinFinePrice ?? 10;
-            numericUpDownPrice.Value = selectedViolation?.MinFinePrice ?? 10;
+            numericUpDownPrice.Value = numericUpDownPrice.Minimum;
+
+            if (currentFine == null)
+            {
+                CurrentModel.Price = numericUpDownPrice.Minimum;
+            }
+
+            numericUpDownPrice.AddBindings(x => x.Value, CurrentModel, x => x.Price, errorProvider);
+
+            numericUpDownPrice.Value = CurrentModel.Price;
         }
 
         protected override async void FillControls()
@@ -147,20 +150,28 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                 return;
             }
 
-            comboBoxViolation.DataSource = currentViolations;
+            comboBoxViolation.DataSource = violations;
             comboBoxViolation.DisplayMember = nameof(Violation.Name);
             comboBoxViolation.ValueMember = nameof(Violation.Id);
 
+            comboBoxViolation.DataBindings.Clear();
+            comboBoxViolation.DataBindings.Add(
+               nameof(comboBoxViolation.SelectedValue),
+               CurrentModel,
+               nameof(CurrentModel.ViolationId),
+               false,
+               DataSourceUpdateMode.OnPropertyChanged);
+
             if (currentFine == null)
             {
+                comboBoxViolation.SelectedIndex = 0;
                 return;
             }
 
-            comboBoxViolation.SelectedValue = currentFine.ViolationId;
             textBoxCode.Text = CurrentModel.Address;
             textBoxFineDescription.Text = CurrentModel.Description;
             dateTimePickerDate.Value = CurrentModel.Date.DateTime;
-
+            
             isInitializingAttachments = true;
 
             multiImageUploader.Clear();
@@ -173,7 +184,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             isInitializingAttachments = false;
         }
 
-        protected override async Task OnSaveAsync()
+        protected override async Task<bool> OnSaveAsync()
         {
             if (EntityId != Guid.Empty)
             {
@@ -187,6 +198,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                 EntityId = request.Id;
                 MessageBox.Show("Штраф успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            return true;
         }
 
         private async void buttonSave_Click(object sender, EventArgs e)

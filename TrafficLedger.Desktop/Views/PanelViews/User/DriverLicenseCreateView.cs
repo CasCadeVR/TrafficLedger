@@ -194,12 +194,12 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonSave.Text = isOwnDriver ? "Отправить заявку" : "Сохранить";
         }
 
-        protected override async Task OnSaveAsync()
+        protected override async Task<bool> OnSaveAsync()
         {
             if (MessageBox.Show("Вы уверены что хотите отправить запрос? Ещё раз проверьте все данные. Запрос будет расмотрен в ближайшие сроки",
                 "Вы уверены?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
             {
-                return;
+                return false;
             }
 
             if (EntityId != Guid.Empty)
@@ -213,11 +213,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                 EntityId = currentDriverLicense.Id;
                 MessageBox.Show("Водительское удостоверение успешно создано.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            return true;
         }
 
         private async void buttonSave_Click(object sender, EventArgs e)
         {
-            await HandleSaveAsync(textBoxLicenseNumber, textBoxIssuedBy, dateTimePickerDateOfIssue);
+            await HandleSaveAsync(textBoxLicenseNumber, textBoxResidence, textBoxIssuedBy, dateTimePickerDateOfIssue);
         }
 
         private void listBoxCategories_SelectedIndexChanged(object sender, EventArgs e)

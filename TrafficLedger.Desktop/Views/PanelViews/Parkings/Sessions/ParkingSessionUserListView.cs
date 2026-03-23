@@ -4,12 +4,11 @@ using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Services;
-using TrafficLedger.Desktop.Views.PanelViews.Fines;
 using TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions;
 using TrafficLedger.Desktop.Views.PanelViews.Payments;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
-using TrafficLedger.Services;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews
@@ -41,6 +40,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
         protected override IEnumerable<ParkingSession> FilterItems(string searchQuery, IEnumerable<ParkingSession> items)
         {
+            items = checkBoxShowCompleted.Checked
+                 ? items
+                 : items.Where(f => f.Status != SessionStatus.Completed);
+
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
                 return items;
@@ -50,7 +53,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
             return items.Where(t =>
                 t.CapturedTotalCost?.ToString().ToLowerInvariant().Contains(lowerQuery) == true ||
-                Enum.GetName(t.Status)!.ToLowerInvariant().Contains(lowerQuery) == true ||
+                t.ParkingZone.Address?.ToString().ToLowerInvariant().Contains(lowerQuery) == true ||
                 t.Transport.TransportCode?.ToLowerInvariant().Contains(lowerQuery) == true
             );
         }
@@ -95,6 +98,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             };
 
             navigationService.NavigateTo(navigationItem);
+        }
+
+        private void checkBoxShowCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+            PerformSearch();
         }
     }
 }

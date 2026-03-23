@@ -90,7 +90,17 @@ namespace TrafficLedger.Services
                 .AndThrowIfTrue(() => new InvalidOperationException($"Водительское удостоверение с номером {model.LicenseNumber} уже существует"));
 
             await driverReadRepository.GetById(model.DriverId, cancellationToken)
-                .OrThrowIfNull(() => new InvalidOperationException($"Вам нужно сперва заполнить данные водителя"));
+                .OrThrowIfNull(() => new InvalidOperationException("Вам нужно сперва заполнить данные водителя"));
+
+            if (model.Attachment == null)
+            {
+                throw new InvalidOperationException($"Фото обязательно");
+            }
+
+            if (model.LicenseCategories.Count == 0)
+            {
+                throw new InvalidOperationException($"Выберите категории согласно вашей лизенции");
+            }
 
             await ValidateMissingCategories(model, cancellationToken);
 

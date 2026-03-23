@@ -40,13 +40,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings
         protected override async Task<IEnumerable<ParkingZone>> LoadItemsAsync(CancellationToken cancellationToken)
         {
             var allEntities = await parkingZoneService.GetAll(cancellationToken);
-
-            if (currentUser.Role != Role.Admin)
-            {
-                allEntities = allEntities.Where(x => x.IsActive).ToList();
-            }
-
-            return allEntities;
+            return allEntities.Where(x => x.IsActive);
         }
 
         protected override IEnumerable<ParkingZone> FilterItems(string searchQuery, IEnumerable<ParkingZone> items)

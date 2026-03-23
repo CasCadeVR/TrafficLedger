@@ -45,9 +45,20 @@ namespace TrafficLedger.Desktop.Components.Cards
 
         private void FillFields(PaymentFineDBModel request)
         {
-            status.Text = request.Status == RequestStatus.Pending
-                ? "В процессе"
-                : "Оплачен";
+            switch(request.Status)
+            {
+                case RequestStatus.Pending:
+                    status.Text = "В процессе";
+                    break;
+
+                case RequestStatus.Approved:
+                    status.Text = "Одобрен";
+                    break;
+
+                case RequestStatus.Rejected:
+                    status.Text = "Отклонён";
+                    break;
+            }
 
             paymentDate.Text = request.Date.DateTime.ToLongDateString();
             fineDate.Text = request.Fine.Date.DateTime.ToLongDateString();

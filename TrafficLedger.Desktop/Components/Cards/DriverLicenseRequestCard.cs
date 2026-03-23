@@ -42,6 +42,16 @@ namespace TrafficLedger.Desktop.Components.Cards
             licenseNumberTextBox.Text = request.LicenseNumber;
             residenseTextBox.Text = request.Residence;
             categoryNames.Text = String.Join(", ", request.LicenseCategories.Select(x => x.TransportCategory.CategoryName));
+
+            if (request.Status == Entities.Enums.RequestStatus.Rejected)
+            {
+                buttonReject.Visible = false;
+            }
+
+            if (request.Status == Entities.Enums.RequestStatus.Approved)
+            {
+                buttonApprove.Visible = false;
+            }
         }
 
         private void buttonAbout_Click(object sender, EventArgs e)

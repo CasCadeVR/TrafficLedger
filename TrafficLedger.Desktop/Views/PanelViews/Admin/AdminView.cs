@@ -1,4 +1,5 @@
-﻿using TrafficLedger.Desktop.Contracts.Interfaces;
+﻿using Microsoft.Extensions.DependencyInjection;
+using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Contracts.Views.PanelViews;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Views.PanelViews.Admin;
@@ -48,10 +49,14 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
         private void buttonTransports_Click(object sender, EventArgs e)
         {
+            var listView = navigationService.ServiceProvider.GetRequiredService<TransportListView>();
+            listView.Initialize(requestsOnly: false);
+
             var navigationItem = new NavigationItem()
             {
-                Title = buttonTransports.Text,
-                ViewType = typeof(TransportListView),
+                Title = buttonTransports.Text, 
+                ViewType = null!,
+                ViewInstance = listView,
                 Parent = CurrentNavigationItem,
             };
 

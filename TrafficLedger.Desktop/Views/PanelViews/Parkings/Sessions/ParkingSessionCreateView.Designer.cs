@@ -32,6 +32,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
         private void InitializeComponent()
         {
             tableLayoutPanelMain = new TableLayoutPanel();
+            webView = new Microsoft.Web.WebView2.WinForms.WebView2();
             labelCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             buttonSave = new CommonButton();
             textBoxTransportCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
@@ -39,14 +40,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             primaryLabel2 = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             numericUpDownHourlyRate = new TrafficLedger.Desktop.Components.Controls.NumericUpDowns.ReadOnlyNumericUpDown();
             textBoxAddress = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            webView = new Microsoft.Web.WebView2.WinForms.WebView2();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
             splitContainer.SuspendLayout();
             tableLayoutPanelMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownHourlyRate).BeginInit();
             ((System.ComponentModel.ISupportInitialize)webView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownHourlyRate).BeginInit();
             SuspendLayout();
             // 
             // splitContainer
@@ -87,6 +87,21 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 23F));
             tableLayoutPanelMain.Size = new Size(821, 576);
             tableLayoutPanelMain.TabIndex = 0;
+            // 
+            // webView
+            // 
+            webView.AllowExternalDrop = true;
+            tableLayoutPanelMain.SetColumnSpan(webView, 2);
+            webView.CreationProperties = null;
+            webView.DefaultBackgroundColor = Color.White;
+            webView.Dock = DockStyle.Fill;
+            webView.Location = new Point(3, 174);
+            webView.Name = "webView";
+            tableLayoutPanelMain.SetRowSpan(webView, 6);
+            webView.Size = new Size(815, 336);
+            webView.Source = new Uri("https://www.google.com/maps", UriKind.Absolute);
+            webView.TabIndex = 26;
+            webView.ZoomFactor = 1D;
             // 
             // labelCode
             // 
@@ -164,9 +179,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             numericUpDownHourlyRate.Anchor = AnchorStyles.Left;
             numericUpDownHourlyRate.BackColor = Color.GhostWhite;
             numericUpDownHourlyRate.BorderStyle = BorderStyle.None;
+            numericUpDownHourlyRate.Enabled = false;
             numericUpDownHourlyRate.Font = new Font("Consolas", 9.75F);
             numericUpDownHourlyRate.ForeColor = Color.FromArgb(0, 0, 0);
-            numericUpDownHourlyRate.Location = new Point(413, 131);
+            numericUpDownHourlyRate.Location = new Point(413, 133);
             numericUpDownHourlyRate.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
             numericUpDownHourlyRate.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDownHourlyRate.Name = "numericUpDownHourlyRate";
@@ -188,21 +204,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             textBoxAddress.Size = new Size(405, 16);
             textBoxAddress.TabIndex = 25;
             // 
-            // webView
-            // 
-            webView.AllowExternalDrop = true;
-            tableLayoutPanelMain.SetColumnSpan(webView, 2);
-            webView.CreationProperties = null;
-            webView.DefaultBackgroundColor = Color.White;
-            webView.Dock = DockStyle.Fill;
-            webView.Location = new Point(3, 174);
-            webView.Name = "webView";
-            tableLayoutPanelMain.SetRowSpan(webView, 6);
-            webView.Size = new Size(815, 336);
-            webView.Source = new Uri("https://www.google.com/maps", UriKind.Absolute);
-            webView.TabIndex = 26;
-            webView.ZoomFactor = 1D;
-            // 
             // ParkingSessionCreateView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -215,8 +216,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             splitContainer.ResumeLayout(false);
             tableLayoutPanelMain.ResumeLayout(false);
             tableLayoutPanelMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownHourlyRate).EndInit();
             ((System.ComponentModel.ISupportInitialize)webView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownHourlyRate).EndInit();
             ResumeLayout(false);
 
         }

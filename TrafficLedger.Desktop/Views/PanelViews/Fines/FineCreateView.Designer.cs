@@ -155,6 +155,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             dateTimePickerDate.Size = new Size(286, 25);
             dateTimePickerDate.TabIndex = 21;
             dateTimePickerDate.Tag = "";
+            dateTimePickerDate.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDate.CustomFormat = "dd/MM/yyyy HH:mm";
             // 
             // labelDescription
             // 

@@ -1,5 +1,7 @@
-﻿using TrafficLedger.Common.Services.Contracts.Extensions;
+﻿using System.ComponentModel.DataAnnotations;
+using TrafficLedger.Common.Services.Contracts.Extensions;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.ValidationRules;
 using TrafficLedger.Services.Contracts.Models.Generics;
 
 namespace TrafficLedger.Services.Contracts.Models;
@@ -12,6 +14,9 @@ public class DriverLicenseCreateModel : RequestedCreateModel
     /// <summary>
     /// Номер удостоверения
     /// </summary>
+    [Required(ErrorMessage = "Это поле обязательно")]
+    [StringLength(DriverLicenseValidationRules.LicenseNumberLength,
+        ErrorMessage = "Номер удостоверения должен быть 12 символов")]
     public string LicenseNumber { get; set; } = string.Empty;
 
     /// <summary>
@@ -23,11 +28,19 @@ public class DriverLicenseCreateModel : RequestedCreateModel
     /// <summary>
     /// Кем выдан
     /// </summary>
+    [Required(ErrorMessage = "Это поле обязательно")]
+    [StringLength(DriverLicenseValidationRules.IssuedByMaxLength,
+        MinimumLength = DriverLicenseValidationRules.IssuedByMinLength,
+        ErrorMessage = "Кем выдан должен быть от 3 до 255 символов")]
     public string IssuedBy { get; set; } = string.Empty;
 
     /// <summary>
     /// Город
     /// </summary>
+    [Required(ErrorMessage = "Это поле обязательно")]
+    [StringLength(DriverLicenseValidationRules.ResidenceMaxLength,
+        MinimumLength = DriverLicenseValidationRules.ResidenceMinLength,
+        ErrorMessage = "Город должен быть от 3 до 255 символов")]
     public string Residence { get; set; } = string.Empty;
 
     /// <summary>

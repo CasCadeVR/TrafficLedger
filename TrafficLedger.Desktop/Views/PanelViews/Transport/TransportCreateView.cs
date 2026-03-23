@@ -163,7 +163,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
         protected override async void FillControls()
         {
             var categories = await transportCategoryService.GetAll(CancellationToken.None);
-
             currentCategories = categories.ToList();
 
             comboBoxCategory.DataSource = currentCategories;
@@ -196,6 +195,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             }
             else
             {
+                comboBoxCategory.SelectedIndex = 0;
                 ownershipDateTimePicker.Value = CurrentModel.Ownerships.First()!.Date.DateTime;
             }
 
@@ -217,12 +217,12 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             }
         }
 
-        protected override async Task OnSaveAsync()
+        protected override async Task<bool> OnSaveAsync()
         {
             if (MessageBox.Show("Вы уверены что хотите отправить запрос? Ещё раз проверьте все данные. Запрос будет расмотрен в ближайшие сроки",
                 "Вы уверены?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
             {
-                return;
+                return false;
             }
 
             if (EntityId != Guid.Empty)
@@ -236,6 +236,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
                 EntityId = transport.Id;
                 MessageBox.Show("Транспорт успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            return true;
         }
 
         private async void buttonSave_Click(object sender, EventArgs e)
