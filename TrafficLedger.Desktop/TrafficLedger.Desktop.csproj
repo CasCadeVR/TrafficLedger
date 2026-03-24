@@ -9,6 +9,7 @@
   </PropertyGroup>
 	
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="8.5.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3800.47" />
   </ItemGroup>
@@ -47,6 +48,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\PanelViews\Admin\Requests\DriverLicenseListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\PanelViews\Admin\Stats\StatsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\PanelViews\Parkings\Sessions\ParkingSessionView.cs">

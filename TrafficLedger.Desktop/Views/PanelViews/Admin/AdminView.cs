@@ -54,7 +54,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
             var navigationItem = new NavigationItem()
             {
-                Title = buttonTransports.Text, 
+                Title = buttonTransports.Text,
                 ViewType = null!,
                 ViewInstance = listView,
                 Parent = CurrentNavigationItem,
@@ -117,6 +117,18 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             {
                 Title = buttonParkings.Text,
                 ViewType = typeof(ParkingZoneView),
+                Parent = CurrentNavigationItem,
+            };
+
+            navigationService.NavigateTo(navigationItem);
+        }
+
+        private void buttonStatistics_Click(object sender, EventArgs e)
+        {
+            var navigationItem = new NavigationItem()
+            {
+                Title = buttonStatistics.Text,
+                ViewType = typeof(StatsView),
                 Parent = CurrentNavigationItem,
             };
 

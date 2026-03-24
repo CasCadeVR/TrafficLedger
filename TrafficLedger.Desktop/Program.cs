@@ -164,6 +164,7 @@ namespace TrafficLedger.Desktop
 
             // Admin
             services.AddScoped<AdminView>();
+            services.AddScoped<StatsView>();
             services.AddScoped<RequestView>();
             services.AddScoped<UserListView>();
             services.AddScoped<UserCreateView>();

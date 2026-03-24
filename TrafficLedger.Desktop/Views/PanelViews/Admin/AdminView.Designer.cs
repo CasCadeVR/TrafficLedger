@@ -32,7 +32,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         private void InitializeComponent()
         {
             tableLayoutPanelMain = new TableLayoutPanel();
-            buttonRequests = new CommonButton();
+            buttonParkings = new CommonButton();
             buttonDrivers = new CommonButton();
             buttonUsers = new CommonButton();
             buttonTransports = new CommonButton();
@@ -40,7 +40,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonPayments = new CommonButton();
             buttonViolations = new CommonButton();
             buttonStatistics = new CommonButton();
-            buttonParkings = new CommonButton();
+            buttonRequests = new CommonButton();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
             splitContainer.SuspendLayout();
@@ -84,23 +84,23 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             tableLayoutPanelMain.Size = new Size(821, 576);
             tableLayoutPanelMain.TabIndex = 0;
             // 
-            // buttonRequests
+            // buttonParkings
             // 
-            buttonRequests.Anchor = AnchorStyles.None;
-            buttonRequests.BackColor = Color.BlueViolet;
-            buttonRequests.FlatAppearance.BorderColor = Color.DarkGray;
-            buttonRequests.FlatStyle = FlatStyle.Flat;
-            buttonRequests.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
-            buttonRequests.ForeColor = Color.AntiqueWhite;
-            buttonRequests.Location = new Point(219, 454);
-            buttonRequests.Margin = new Padding(4, 3, 4, 3);
-            buttonRequests.Name = "buttonRequests";
-            buttonRequests.Padding = new Padding(9, 5, 9, 5);
-            buttonRequests.Size = new Size(382, 51);
-            buttonRequests.TabIndex = 9;
-            buttonRequests.Text = "Просмотр заявок";
-            buttonRequests.UseVisualStyleBackColor = false;
-            buttonRequests.Click += buttonRequests_Click;
+            buttonParkings.Anchor = AnchorStyles.None;
+            buttonParkings.BackColor = Color.BlueViolet;
+            buttonParkings.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonParkings.FlatStyle = FlatStyle.Flat;
+            buttonParkings.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonParkings.ForeColor = Color.AntiqueWhite;
+            buttonParkings.Location = new Point(219, 390);
+            buttonParkings.Margin = new Padding(4, 3, 4, 3);
+            buttonParkings.Name = "buttonParkings";
+            buttonParkings.Padding = new Padding(9, 5, 9, 5);
+            buttonParkings.Size = new Size(382, 51);
+            buttonParkings.TabIndex = 10;
+            buttonParkings.Text = "Данные парковок";
+            buttonParkings.UseVisualStyleBackColor = false;
+            buttonParkings.Click += buttonParkings_Click;
             // 
             // buttonDrivers
             // 
@@ -224,26 +224,27 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonStatistics.Padding = new Padding(9, 5, 9, 5);
             buttonStatistics.Size = new Size(382, 51);
             buttonStatistics.TabIndex = 8;
-            buttonStatistics.Text = "Просмотр отчётов";
+            buttonStatistics.Text = "Просмотр статистики";
             buttonStatistics.UseVisualStyleBackColor = false;
+            buttonStatistics.Click += buttonStatistics_Click;
             // 
-            // buttonParkings
+            // buttonRequests
             // 
-            buttonParkings.Anchor = AnchorStyles.None;
-            buttonParkings.BackColor = Color.BlueViolet;
-            buttonParkings.FlatAppearance.BorderColor = Color.DarkGray;
-            buttonParkings.FlatStyle = FlatStyle.Flat;
-            buttonParkings.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
-            buttonParkings.ForeColor = Color.AntiqueWhite;
-            buttonParkings.Location = new Point(219, 390);
-            buttonParkings.Margin = new Padding(4, 3, 4, 3);
-            buttonParkings.Name = "buttonParkings";
-            buttonParkings.Padding = new Padding(9, 5, 9, 5);
-            buttonParkings.Size = new Size(382, 51);
-            buttonParkings.TabIndex = 10;
-            buttonParkings.Text = "Данные парковок";
-            buttonParkings.UseVisualStyleBackColor = false;
-            buttonParkings.Click += buttonParkings_Click;
+            buttonRequests.Anchor = AnchorStyles.None;
+            buttonRequests.BackColor = Color.BlueViolet;
+            buttonRequests.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonRequests.FlatStyle = FlatStyle.Flat;
+            buttonRequests.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonRequests.ForeColor = Color.AntiqueWhite;
+            buttonRequests.Location = new Point(219, 454);
+            buttonRequests.Margin = new Padding(4, 3, 4, 3);
+            buttonRequests.Name = "buttonRequests";
+            buttonRequests.Padding = new Padding(9, 5, 9, 5);
+            buttonRequests.Size = new Size(382, 51);
+            buttonRequests.TabIndex = 9;
+            buttonRequests.Text = "Просмотр заявок";
+            buttonRequests.UseVisualStyleBackColor = false;
+            buttonRequests.Click += buttonRequests_Click;
             // 
             // AdminView
             // 
