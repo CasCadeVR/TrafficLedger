@@ -43,7 +43,26 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
         /// </summary>
         public event Action<FunctionalPictureBox>? DeleteRequested;
 
-        public FunctionalPictureBox(bool asReadonly = false)
+        public FunctionalPictureBox()
+        {
+            var pictureBoxContextMenuStrip = new PictureBoxContextMenuStrip();
+            pictureBoxContextMenuStrip.OnItemClick += OnPictureBoxClick;
+            pictureBoxContextMenuStrip.Opening += PictureBoxContextMenuStrip_Opening;
+
+            placeholderImage = ImageResources.PlaceHolder;
+            this.Image = placeholderImage;
+            this.SizeMode = PictureBoxSizeMode.Zoom;
+            this.BorderStyle = BorderStyle.FixedSingle;
+            this.Cursor = Cursors.Hand;
+            this.ContextMenuStrip = pictureBoxContextMenuStrip;
+
+            this.Click += OnPictureBoxClick;
+
+            AddRemoveButton();
+            DeleteRequested += (_) => ResetToPlaceholder();
+        }
+
+        public FunctionalPictureBox(bool asReadonly)
         {
             var pictureBoxContextMenuStrip = new PictureBoxContextMenuStrip();
             pictureBoxContextMenuStrip.OnItemClick += OnPictureBoxClick;
@@ -58,7 +77,7 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
 
             if (!asReadonly)
             {
-                this.DoubleClick += OnPictureBoxDoubleClick;
+                this.Click += OnPictureBoxClick;
 
                 AddRemoveButton();
                 DeleteRequested += (_) => ResetToPlaceholder();
@@ -72,18 +91,16 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
             deleteButton = new CommonButton
             {
                 Text = "×",
-                Size = new Size(24, 24),
-                Location = new Point(this.Width - 26, 2)
+                Size = new Size(32, 32),
+                Location = new Point(Width - 34, 2),
+                Font = FontScheme.Caption,
             };
 
-            deleteButton.Font = FontScheme.Caption;
-            deleteButton.BackColor = Color.Red;
-            deleteButton.ForeColor = Color.White;
             deleteButton.FlatAppearance.BorderSize = 0;
             deleteButton.Click += (s, e) => DeleteRequested?.Invoke(this);
 
-            this.Controls.Add(deleteButton);
-            this.Controls.SetChildIndex(deleteButton, 0);
+            Controls.Add(deleteButton);
+            Controls.SetChildIndex(deleteButton, 0);
         }
 
         protected override void OnSizeChanged(EventArgs e)
@@ -91,7 +108,7 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
             base.OnSizeChanged(e);
             if (deleteButton != null)
             {
-                deleteButton.Location = new Point(this.Width - 26, 2);
+                deleteButton.Location = new Point(this.Width - 34, 2);
             }
         }
 
@@ -109,7 +126,7 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
             attachmentView.Show();
         }
 
-        private void OnPictureBoxDoubleClick(object? sender, EventArgs e)
+        private void OnPictureBoxClick(object? sender, EventArgs e)
         {
             var result = AttachmentFileService.LoadImageWithFormat();
             if (result == null) {

@@ -86,7 +86,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
                     ViolationId = Guid.Empty,
                     UserId = currentUser.Id,
                     TransportId = currentTransport.Id,
-                    Attachments = new List<AttachmentCreateModel>(),
+                    Attachments = [],
                 };
             }
         }

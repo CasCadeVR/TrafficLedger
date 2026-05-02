@@ -13,7 +13,7 @@ public class DriverCreateModel
     /// <summary>
     /// ФИО водителя
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "ФИО обязательно")]
     public string FullName { get; set; } = string.Empty;
 
     /// <summary>

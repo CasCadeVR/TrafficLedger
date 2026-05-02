@@ -55,10 +55,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 4;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.00062F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.00063F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.00063F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.99813F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.0009327F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.0003128F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.0003128F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.9984436F));
             tableLayoutPanel1.Controls.Add(labelLogin, 1, 1);
             tableLayoutPanel1.Controls.Add(textBoxLogin, 2, 1);
             tableLayoutPanel1.Controls.Add(labelPassword, 1, 2);
@@ -70,13 +70,14 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Margin = new Padding(4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 6;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.28571F));
+            tableLayoutPanel1.RowCount = 7;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.Size = new Size(821, 576);
             tableLayoutPanel1.TabIndex = 1;
             // 
@@ -86,7 +87,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             labelLogin.AutoSize = true;
             labelLogin.Font = new Font("Segoe UI", 9.75F);
             labelLogin.ForeColor = Color.FromArgb(0, 0, 0);
-            labelLogin.Location = new Point(360, 135);
+            labelLogin.Location = new Point(360, 183);
             labelLogin.Name = "labelLogin";
             labelLogin.Size = new Size(47, 17);
             labelLogin.TabIndex = 7;
@@ -99,7 +100,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
             textBoxLogin.Font = new Font("Segoe UI", 9.75F);
             textBoxLogin.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxLogin.Location = new Point(413, 131);
+            textBoxLogin.Location = new Point(413, 179);
             textBoxLogin.Name = "textBoxLogin";
             textBoxLogin.Size = new Size(199, 25);
             textBoxLogin.TabIndex = 9;
@@ -138,10 +139,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonLogin.FlatStyle = FlatStyle.Flat;
             buttonLogin.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonLogin.ForeColor = Color.AntiqueWhite;
-            buttonLogin.Location = new Point(211, 306);
+            buttonLogin.Location = new Point(208, 269);
             buttonLogin.Name = "buttonLogin";
             buttonLogin.Padding = new Padding(8, 4, 8, 4);
-            buttonLogin.Size = new Size(398, 60);
+            buttonLogin.Size = new Size(404, 38);
             buttonLogin.TabIndex = 4;
             buttonLogin.Text = "Войти";
             buttonLogin.UseVisualStyleBackColor = false;
@@ -149,17 +150,17 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             // 
             // buttonRegister
             // 
-            buttonRegister.Anchor = AnchorStyles.Top;
+            buttonRegister.Anchor = AnchorStyles.None;
             buttonRegister.BackColor = Color.BlueViolet;
             tableLayoutPanel1.SetColumnSpan(buttonRegister, 2);
             buttonRegister.FlatAppearance.BorderColor = Color.DarkGray;
             buttonRegister.FlatStyle = FlatStyle.Flat;
             buttonRegister.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonRegister.ForeColor = Color.AntiqueWhite;
-            buttonRegister.Location = new Point(228, 387);
+            buttonRegister.Location = new Point(208, 317);
             buttonRegister.Name = "buttonRegister";
             buttonRegister.Padding = new Padding(8, 4, 8, 4);
-            buttonRegister.Size = new Size(363, 38);
+            buttonRegister.Size = new Size(404, 38);
             buttonRegister.TabIndex = 5;
             buttonRegister.Text = "Нет аккаунта? Зарегестируйтесь";
             buttonRegister.UseVisualStyleBackColor = false;
@@ -167,17 +168,17 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             // 
             // roleDebugButton
             // 
-            roleDebugButton.Anchor = AnchorStyles.Top;
+            roleDebugButton.Anchor = AnchorStyles.None;
             roleDebugButton.BackColor = Color.Red;
             tableLayoutPanel1.SetColumnSpan(roleDebugButton, 2);
             roleDebugButton.FlatAppearance.BorderColor = Color.DarkGray;
             roleDebugButton.FlatStyle = FlatStyle.Flat;
             roleDebugButton.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             roleDebugButton.ForeColor = Color.AntiqueWhite;
-            roleDebugButton.Location = new Point(266, 483);
+            roleDebugButton.Location = new Point(208, 365);
             roleDebugButton.Name = "roleDebugButton";
             roleDebugButton.Padding = new Padding(8, 4, 8, 4);
-            roleDebugButton.Size = new Size(287, 35);
+            roleDebugButton.Size = new Size(404, 38);
             roleDebugButton.TabIndex = 11;
             roleDebugButton.Text = "DEBUG: Сменить роль";
             roleDebugButton.UseVisualStyleBackColor = false;

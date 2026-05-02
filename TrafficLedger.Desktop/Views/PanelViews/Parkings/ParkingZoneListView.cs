@@ -27,6 +27,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+            SearchHintMessage = "Введите адрес или цену парковки";
         }
 
         /// <summary>

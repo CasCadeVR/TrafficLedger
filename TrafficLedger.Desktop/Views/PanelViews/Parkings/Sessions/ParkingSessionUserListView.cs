@@ -16,21 +16,21 @@ namespace TrafficLedger.Desktop.Views.PanelViews
     public partial class ParkingSessionUserListView : ParkingSessionUserListWrapper
     {
         private readonly INavigationService navigationService;
-        private readonly ITransportService transportService;
         private readonly IParkingSessionService parkingSessionService;
+
         private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
+
         public ParkingSessionUserListView(
             INavigationService navigationService,
-            ITransportService transportService,
             IParkingSessionService parkingSessionService)
         {
             InitializeComponent();
             this.navigationService = navigationService;
-            this.transportService = transportService;
             this.parkingSessionService = parkingSessionService;
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+            SearchHintMessage = "Введите сумму, адрес или номер транспорта";
         }
 
         protected override async Task<IEnumerable<ParkingSession>> LoadItemsAsync(CancellationToken cancellationToken)

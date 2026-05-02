@@ -49,9 +49,9 @@
             tableLayoutPanel.Location = new Point(0, 0);
             tableLayoutPanel.Name = "tableLayoutPanel";
             tableLayoutPanel.RowCount = 3;
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50.0000076F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
             tableLayoutPanel.Size = new Size(380, 168);
             tableLayoutPanel.TabIndex = 0;
             // 
@@ -61,7 +61,7 @@
             labelCommentary.AutoSize = true;
             labelCommentary.Font = new Font("Segoe UI", 9.75F);
             labelCommentary.ForeColor = Color.FromArgb(0, 0, 0);
-            labelCommentary.Location = new Point(16, 19);
+            labelCommentary.Location = new Point(16, 21);
             labelCommentary.Name = "labelCommentary";
             labelCommentary.Size = new Size(171, 17);
             labelCommentary.TabIndex = 9;
@@ -75,10 +75,10 @@
             rejectButton.FlatStyle = FlatStyle.Flat;
             rejectButton.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             rejectButton.ForeColor = Color.White;
-            rejectButton.Location = new Point(3, 115);
+            rejectButton.Location = new Point(3, 122);
             rejectButton.Name = "rejectButton";
             rejectButton.Padding = new Padding(8, 4, 8, 4);
-            rejectButton.Size = new Size(184, 50);
+            rejectButton.Size = new Size(184, 43);
             rejectButton.TabIndex = 0;
             rejectButton.Text = "Отклонить заявку";
             rejectButton.UseVisualStyleBackColor = false;
@@ -93,10 +93,10 @@
             cancelButton.FlatStyle = FlatStyle.Flat;
             cancelButton.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             cancelButton.ForeColor = Color.White;
-            cancelButton.Location = new Point(193, 115);
+            cancelButton.Location = new Point(193, 122);
             cancelButton.Name = "cancelButton";
             cancelButton.Padding = new Padding(8, 4, 8, 4);
-            cancelButton.Size = new Size(184, 50);
+            cancelButton.Size = new Size(184, 43);
             cancelButton.TabIndex = 1;
             cancelButton.Text = "Отмена";
             cancelButton.UseVisualStyleBackColor = false;
@@ -112,7 +112,7 @@
             commentaryTextBox.Multiline = true;
             commentaryTextBox.Name = "commentaryTextBox";
             tableLayoutPanel.SetRowSpan(commentaryTextBox, 2);
-            commentaryTextBox.Size = new Size(184, 106);
+            commentaryTextBox.Size = new Size(184, 113);
             commentaryTextBox.TabIndex = 2;
             // 
             // RejectForm
@@ -121,6 +121,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(380, 168);
             Controls.Add(tableLayoutPanel);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximumSize = new Size(396, 207);
             MinimumSize = new Size(396, 207);
             Name = "RejectForm";

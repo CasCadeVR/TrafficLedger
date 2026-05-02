@@ -71,11 +71,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Parkings
             buttonAdd.FlatStyle = FlatStyle.Flat;
             buttonAdd.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonAdd.ForeColor = Color.AntiqueWhite;
-            buttonAdd.Location = new Point(227, 233);
+            buttonAdd.Location = new Point(227, 243);
             buttonAdd.Margin = new Padding(4, 3, 4, 3);
             buttonAdd.Name = "buttonAdd";
             buttonAdd.Padding = new Padding(9, 5, 9, 5);
-            buttonAdd.Size = new Size(366, 52);
+            buttonAdd.Size = new Size(366, 42);
             buttonAdd.TabIndex = 0;
             buttonAdd.Text = "Добавить новое парковочное место";
             buttonAdd.UseVisualStyleBackColor = false;
@@ -93,7 +93,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Parkings
             buttonList.Margin = new Padding(4, 3, 4, 3);
             buttonList.Name = "buttonList";
             buttonList.Padding = new Padding(9, 5, 9, 5);
-            buttonList.Size = new Size(368, 52);
+            buttonList.Size = new Size(368, 42);
             buttonList.TabIndex = 2;
             buttonList.Text = "Список парковочных мест";
             buttonList.UseVisualStyleBackColor = false;

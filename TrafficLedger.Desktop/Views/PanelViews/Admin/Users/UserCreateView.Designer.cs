@@ -31,130 +31,135 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Users
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonSave = new TrafficLedger.Desktop.Components.CommonButton();
-            this.labelLogin = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.textBoxLogin = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            this.labelFullName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.comboBoxRole = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            this.tableLayoutPanelMain.SuspendLayout();
-            this.SuspendLayout();
+            tableLayoutPanelMain = new TableLayoutPanel();
+            buttonSave = new CommonButton();
+            labelLogin = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxLogin = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelFullName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            comboBoxRole = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultComboBox();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            tableLayoutPanelMain.SuspendLayout();
+            SuspendLayout();
             // 
             // splitContainer
             // 
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanelMain);
+            splitContainer.Panel2.Controls.Add(tableLayoutPanelMain);
             // 
             // tableLayoutPanelMain
             // 
-            this.tableLayoutPanelMain.ColumnCount = 2;
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.Controls.Add(this.buttonSave, 0, 6);
-            this.tableLayoutPanelMain.Controls.Add(this.labelLogin, 0, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxLogin, 1, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.labelFullName, 0, 1);
-            this.tableLayoutPanelMain.Controls.Add(this.comboBoxRole, 1, 1);
-            this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            this.tableLayoutPanelMain.RowCount = 7;
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(704, 500);
-            this.tableLayoutPanelMain.TabIndex = 0;
+            tableLayoutPanelMain.ColumnCount = 2;
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.Controls.Add(labelLogin, 0, 1);
+            tableLayoutPanelMain.Controls.Add(labelFullName, 0, 2);
+            tableLayoutPanelMain.Controls.Add(textBoxLogin, 1, 1);
+            tableLayoutPanelMain.Controls.Add(comboBoxRole, 1, 2);
+            tableLayoutPanelMain.Controls.Add(buttonSave, 0, 3);
+            tableLayoutPanelMain.Dock = DockStyle.Fill;
+            tableLayoutPanelMain.Location = new Point(0, 0);
+            tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
+            tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            tableLayoutPanelMain.RowCount = 5;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.Size = new Size(821, 576);
+            tableLayoutPanelMain.TabIndex = 0;
             // 
             // buttonSave
             // 
-            this.buttonSave.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonSave.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanelMain.SetColumnSpan(this.buttonSave, 2);
-            this.buttonSave.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonSave.ForeColor = System.Drawing.Color.White;
-            this.buttonSave.Location = new System.Drawing.Point(179, 437);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonSave.Size = new System.Drawing.Size(346, 52);
-            this.buttonSave.TabIndex = 8;
-            this.buttonSave.Text = "Сохранить";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            buttonSave.Anchor = AnchorStyles.None;
+            buttonSave.BackColor = Color.Green;
+            tableLayoutPanelMain.SetColumnSpan(buttonSave, 2);
+            buttonSave.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonSave.FlatStyle = FlatStyle.Flat;
+            buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonSave.ForeColor = Color.White;
+            buttonSave.Location = new Point(208, 315);
+            buttonSave.Margin = new Padding(4, 3, 4, 3);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Padding = new Padding(9, 5, 9, 5);
+            buttonSave.Size = new Size(404, 42);
+            buttonSave.TabIndex = 8;
+            buttonSave.Text = "Сохранить";
+            buttonSave.UseVisualStyleBackColor = false;
+            buttonSave.Click += buttonSave_Click;
             // 
             // labelLogin
             // 
-            this.labelLogin.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelLogin.AutoSize = true;
-            this.labelLogin.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelLogin.Location = new System.Drawing.Point(298, 27);
-            this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(51, 17);
-            this.labelLogin.TabIndex = 6;
-            this.labelLogin.Text = "Логин: ";
+            labelLogin.Anchor = AnchorStyles.Right;
+            labelLogin.AutoSize = true;
+            labelLogin.Font = new Font("Segoe UI", 9.75F);
+            labelLogin.ForeColor = Color.FromArgb(0, 0, 0);
+            labelLogin.Location = new Point(355, 231);
+            labelLogin.Margin = new Padding(4, 0, 4, 0);
+            labelLogin.Name = "labelLogin";
+            labelLogin.Size = new Size(51, 17);
+            labelLogin.TabIndex = 6;
+            labelLogin.Text = "Логин: ";
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxLogin.BackColor = System.Drawing.Color.GhostWhite;
-            this.textBoxLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxLogin.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.textBoxLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxLogin.Location = new System.Drawing.Point(355, 26);
-            this.textBoxLogin.Name = "textBoxLogin";
-            this.textBoxLogin.ReadOnly = true;
-            this.textBoxLogin.Size = new System.Drawing.Size(246, 18);
-            this.textBoxLogin.TabIndex = 7;
+            textBoxLogin.Anchor = AnchorStyles.Left;
+            textBoxLogin.BackColor = Color.GhostWhite;
+            textBoxLogin.BorderStyle = BorderStyle.None;
+            textBoxLogin.Font = new Font("Segoe UI", 9.75F);
+            textBoxLogin.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxLogin.Location = new Point(414, 231);
+            textBoxLogin.Margin = new Padding(4, 3, 4, 3);
+            textBoxLogin.Name = "textBoxLogin";
+            textBoxLogin.ReadOnly = true;
+            textBoxLogin.Size = new Size(287, 18);
+            textBoxLogin.TabIndex = 7;
             // 
             // labelFullName
             // 
-            this.labelFullName.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelFullName.AutoSize = true;
-            this.labelFullName.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelFullName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelFullName.Location = new System.Drawing.Point(305, 98);
-            this.labelFullName.Name = "labelFullName";
-            this.labelFullName.Size = new System.Drawing.Size(44, 17);
-            this.labelFullName.TabIndex = 0;
-            this.labelFullName.Text = "Роль: ";
+            labelFullName.Anchor = AnchorStyles.Right;
+            labelFullName.AutoSize = true;
+            labelFullName.Font = new Font("Segoe UI", 9.75F);
+            labelFullName.ForeColor = Color.FromArgb(0, 0, 0);
+            labelFullName.Location = new Point(362, 279);
+            labelFullName.Margin = new Padding(4, 0, 4, 0);
+            labelFullName.Name = "labelFullName";
+            labelFullName.Size = new Size(44, 17);
+            labelFullName.TabIndex = 0;
+            labelFullName.Text = "Роль: ";
             // 
             // comboBoxRole
             // 
-            this.comboBoxRole.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.comboBoxRole.BackColor = System.Drawing.Color.White;
-            this.comboBoxRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxRole.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.comboBoxRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.comboBoxRole.FormattingEnabled = true;
-            this.comboBoxRole.Location = new System.Drawing.Point(355, 96);
-            this.comboBoxRole.Name = "comboBoxRole";
-            this.comboBoxRole.Size = new System.Drawing.Size(246, 25);
-            this.comboBoxRole.TabIndex = 9;
+            comboBoxRole.Anchor = AnchorStyles.Left;
+            comboBoxRole.BackColor = Color.White;
+            comboBoxRole.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxRole.Font = new Font("Segoe UI", 9.75F);
+            comboBoxRole.ForeColor = Color.FromArgb(0, 0, 0);
+            comboBoxRole.FormattingEnabled = true;
+            comboBoxRole.Location = new Point(414, 275);
+            comboBoxRole.Margin = new Padding(4, 3, 4, 3);
+            comboBoxRole.Name = "comboBoxRole";
+            comboBoxRole.Size = new Size(286, 25);
+            comboBoxRole.TabIndex = 9;
             // 
             // UserCreateView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "UserCreateView";
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            this.tableLayoutPanelMain.ResumeLayout(false);
-            this.tableLayoutPanelMain.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Margin = new Padding(5, 3, 5, 3);
+            Name = "UserCreateView";
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
+            splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            tableLayoutPanelMain.ResumeLayout(false);
+            tableLayoutPanelMain.PerformLayout();
+            ResumeLayout(false);
 
         }
 

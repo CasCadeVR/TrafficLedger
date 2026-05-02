@@ -3,7 +3,7 @@ using TrafficLedger.Context.Tests;
 using TrafficLedger.Entities;
 using Xunit;
 
-namespace TrafficLedger.Storage.Tests
+namespace TrafficLedger.Database.Tests
 {
     /// <summary>
     /// Тесты на подключение к базе данных
@@ -14,13 +14,13 @@ namespace TrafficLedger.Storage.Tests
         /// Проверяет, что подключение к базе данных успешно
         /// </summary>
         [Fact]
-        public void ConnectionShouldBeEstablished()
+        public async Task ConnectionShouldBeEstablished()
         {
             // Arrange & Act
-            Action act = async () => await Context.Database.CanConnectAsync();
+            var act = await Context.Database.CanConnectAsync();
 
             // Assert
-            act.Should().NotThrow();
+            act.Should().BeTrue();
         }
 
         /// <summary>

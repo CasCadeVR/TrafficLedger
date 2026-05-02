@@ -31,81 +31,85 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonAdd = new TrafficLedger.Desktop.Components.CommonButton();
-            this.buttonList = new TrafficLedger.Desktop.Components.CommonButton();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            this.tableLayoutPanelMain.SuspendLayout();
-            this.SuspendLayout();
+            tableLayoutPanelMain = new TableLayoutPanel();
+            buttonAdd = new CommonButton();
+            buttonList = new CommonButton();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            tableLayoutPanelMain.SuspendLayout();
+            SuspendLayout();
             // 
             // splitContainer
             // 
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanelMain);
+            splitContainer.Panel2.Controls.Add(tableLayoutPanelMain);
             // 
             // tableLayoutPanelMain
             // 
-            this.tableLayoutPanelMain.ColumnCount = 1;
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelMain.Controls.Add(this.buttonAdd, 0, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.buttonList, 0, 1);
-            this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            this.tableLayoutPanelMain.RowCount = 2;
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(704, 500);
-            this.tableLayoutPanelMain.TabIndex = 1;
+            tableLayoutPanelMain.ColumnCount = 1;
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelMain.Controls.Add(buttonAdd, 0, 0);
+            tableLayoutPanelMain.Controls.Add(buttonList, 0, 1);
+            tableLayoutPanelMain.Dock = DockStyle.Fill;
+            tableLayoutPanelMain.Location = new Point(0, 0);
+            tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
+            tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            tableLayoutPanelMain.RowCount = 2;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.Size = new Size(821, 576);
+            tableLayoutPanelMain.TabIndex = 1;
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonAdd.BackColor = System.Drawing.Color.BlueViolet;
-            this.buttonAdd.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAdd.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonAdd.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.buttonAdd.Location = new System.Drawing.Point(195, 202);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonAdd.Size = new System.Drawing.Size(314, 45);
-            this.buttonAdd.TabIndex = 0;
-            this.buttonAdd.Text = "Связать с транспортом";
-            this.buttonAdd.UseVisualStyleBackColor = false;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            buttonAdd.Anchor = AnchorStyles.Bottom;
+            buttonAdd.BackColor = Color.BlueViolet;
+            buttonAdd.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonAdd.FlatStyle = FlatStyle.Flat;
+            buttonAdd.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonAdd.ForeColor = Color.AntiqueWhite;
+            buttonAdd.Location = new Point(227, 243);
+            buttonAdd.Margin = new Padding(4, 3, 4, 3);
+            buttonAdd.Name = "buttonAdd";
+            buttonAdd.Padding = new Padding(9, 5, 9, 5);
+            buttonAdd.Size = new Size(366, 42);
+            buttonAdd.TabIndex = 0;
+            buttonAdd.Text = "Связать с транспортом";
+            buttonAdd.UseVisualStyleBackColor = false;
+            buttonAdd.Click += buttonAdd_Click;
             // 
             // buttonList
             // 
-            this.buttonList.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buttonList.BackColor = System.Drawing.Color.BlueViolet;
-            this.buttonList.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonList.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonList.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.buttonList.Location = new System.Drawing.Point(194, 253);
-            this.buttonList.Name = "buttonList";
-            this.buttonList.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonList.Size = new System.Drawing.Size(315, 45);
-            this.buttonList.TabIndex = 2;
-            this.buttonList.Text = "Список владений транспортов";
-            this.buttonList.UseVisualStyleBackColor = false;
-            this.buttonList.Click += new System.EventHandler(this.buttonList_Click);
+            buttonList.Anchor = AnchorStyles.Top;
+            buttonList.BackColor = Color.BlueViolet;
+            buttonList.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonList.FlatStyle = FlatStyle.Flat;
+            buttonList.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonList.ForeColor = Color.AntiqueWhite;
+            buttonList.Location = new Point(226, 291);
+            buttonList.Margin = new Padding(4, 3, 4, 3);
+            buttonList.Name = "buttonList";
+            buttonList.Padding = new Padding(9, 5, 9, 5);
+            buttonList.Size = new Size(368, 42);
+            buttonList.TabIndex = 2;
+            buttonList.Text = "Список владений транспортов";
+            buttonList.UseVisualStyleBackColor = false;
+            buttonList.Click += buttonList_Click;
             // 
             // OwnershipView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "OwnershipView";
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            this.tableLayoutPanelMain.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Margin = new Padding(5, 3, 5, 3);
+            Name = "OwnershipView";
+            splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            tableLayoutPanelMain.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 

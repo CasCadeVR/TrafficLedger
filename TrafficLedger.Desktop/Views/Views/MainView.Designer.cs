@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             splitContainer = new SplitContainer();
             flowLayoutPanelButtons = new FlowLayoutPanel();
             mainContentPanel = new Panel();
@@ -53,8 +54,8 @@
             // splitContainer.Panel2
             // 
             splitContainer.Panel2.Controls.Add(mainContentPanel);
-            splitContainer.Size = new Size(805, 653);
-            splitContainer.SplitterDistance = 96;
+            splitContainer.Size = new Size(1184, 861);
+            splitContainer.SplitterDistance = 112;
             splitContainer.TabIndex = 0;
             // 
             // flowLayoutPanelButtons
@@ -65,27 +66,29 @@
             flowLayoutPanelButtons.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanelButtons.Location = new Point(0, 0);
             flowLayoutPanelButtons.Name = "flowLayoutPanelButtons";
-            flowLayoutPanelButtons.Size = new Size(96, 653);
+            flowLayoutPanelButtons.Size = new Size(112, 861);
             flowLayoutPanelButtons.TabIndex = 0;
+            flowLayoutPanelButtons.WrapContents = false;
             // 
             // mainContentPanel
             // 
             mainContentPanel.Dock = DockStyle.Fill;
             mainContentPanel.Location = new Point(0, 0);
             mainContentPanel.Name = "mainContentPanel";
-            mainContentPanel.Size = new Size(705, 653);
+            mainContentPanel.Size = new Size(1068, 861);
             mainContentPanel.TabIndex = 0;
             // 
             // MainView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(805, 653);
+            ClientSize = new Size(1184, 861);
             Controls.Add(splitContainer);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 4, 5, 4);
-            MinimumSize = new Size(800, 534);
+            MinimumSize = new Size(800, 900);
             Name = "MainView";
-            Text = "Оплата штрафов";
+            Text = "TrafficLedger";
             splitContainer.Panel1.ResumeLayout(false);
             splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();

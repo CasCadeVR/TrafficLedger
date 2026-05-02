@@ -1,4 +1,6 @@
-﻿namespace TrafficLedger.Desktop.Views.Views
+﻿using TrafficLedger.Desktop.Contracts;
+
+namespace TrafficLedger.Desktop.Views.Views
 {
     /// <summary>
     /// Форма написания причина отказа
@@ -13,6 +15,7 @@
         public RejectForm()
         {
             InitializeComponent();
+            BackColor = ColorScheme.FormBackground;
         }
 
         private void rejectButton_Click(object sender, EventArgs e)

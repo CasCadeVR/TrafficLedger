@@ -26,6 +26,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+            SearchHintMessage = "Введите номер, категории ВУ или имя водителя";
         }
 
         protected override async Task<IEnumerable<DriverLicense>> LoadItemsAsync(CancellationToken cancellationToken)

@@ -151,7 +151,7 @@ namespace TrafficLedger.Desktop.Components.Cards
             primaryLabel1.Name = "primaryLabel1";
             primaryLabel1.Size = new Size(63, 34);
             primaryLabel1.TabIndex = 18;
-            primaryLabel1.Text = "Номер лицензии";
+            primaryLabel1.Text = "Номер ВУ";
             // 
             // buttonAbout
             // 

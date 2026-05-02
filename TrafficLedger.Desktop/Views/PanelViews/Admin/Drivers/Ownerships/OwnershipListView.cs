@@ -25,6 +25,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers.Ownerships
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+            SearchHintMessage = "Введите номер транспорта, марку или его модель";
         }
 
         /// <summary>

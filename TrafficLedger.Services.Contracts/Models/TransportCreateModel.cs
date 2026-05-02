@@ -14,7 +14,7 @@ public class TransportCreateModel : RequestedCreateModel
     /// <summary>
     /// Регистрационный номер
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Регистрационный номер обязателен")]
     [StringLength(TransportValidationRules.TransportCodeLength, 
         MinimumLength = TransportValidationRules.TransportCodeLength, 
         ErrorMessage = "Регистрационный номер должен быть длиной 9 символов")]
@@ -31,7 +31,7 @@ public class TransportCreateModel : RequestedCreateModel
     /// <summary>
     /// Марка
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Марка обязательна")]
     [StringLength(TransportValidationRules.BrandMaxLength,
         MinimumLength = TransportValidationRules.BrandMinLength,
         ErrorMessage = "Марка должна быть от 3 до 255 символов")]

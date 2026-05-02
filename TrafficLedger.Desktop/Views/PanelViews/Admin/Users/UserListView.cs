@@ -1,19 +1,15 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using TrafficLedger.Desktop.Components.Cards;
 using TrafficLedger.Desktop.Contracts.Interfaces;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Users;
+using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin
 {
-    public partial class UserListView : BaseListView<User>
+    public partial class UserListView : UserListWrapper
     {
         private readonly INavigationService navigationService;
         private readonly IUserService userService;
@@ -27,6 +23,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+            SearchHintMessage = "Введите логин пользователя";
         }
 
         protected override async Task<IEnumerable<User>> LoadItemsAsync(CancellationToken cancellationToken)

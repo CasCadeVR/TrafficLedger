@@ -26,6 +26,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         /// </summary>
         protected string NoItemsMessage { get; set; } = "Список пуст";
 
+        /// <summary>
+        /// Сообщение подсказки, что вводить в поле поиска
+        /// </summary>
+        protected string SearchHintMessage { get; set; } = "Поиск";
+
         private List<TItem> allItems = [];
 
         /// <summary>
@@ -58,6 +63,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         private void RenderItems(IEnumerable<TItem> items)
         {
             ItemsContainer?.Controls.Clear();
+            SearchBar.SetSearchPlaceholder(SearchHintMessage);
 
             if (!items.Any())
             {

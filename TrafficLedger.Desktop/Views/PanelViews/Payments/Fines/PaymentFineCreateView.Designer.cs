@@ -39,7 +39,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             labelTransportCodeTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             labelDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxDate = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            buttonSave = new CommonButton();
             labelDescription = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             labelCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
@@ -49,6 +48,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             labelFinePrice = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxFinePrice = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             textBoxFineDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            buttonSave = new CommonButton();
             statusLabel = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxStatus = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             multiImageUploader = new TrafficLedger.Desktop.Components.ComplexControls.MultiImageUploader();
@@ -65,53 +65,55 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             // splitContainer.Panel2
             // 
             splitContainer.Panel2.Controls.Add(tableLayoutPanelMain);
+            splitContainer.Size = new Size(821, 716);
             // 
             // tableLayoutPanelMain
             // 
             tableLayoutPanelMain.ColumnCount = 2;
             tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanelMain.Controls.Add(labelFineDescriptionTitle, 0, 4);
-            tableLayoutPanelMain.Controls.Add(textBoxAddress, 1, 2);
-            tableLayoutPanelMain.Controls.Add(labelAddressTitle, 0, 2);
-            tableLayoutPanelMain.Controls.Add(textBoxTransportCode, 1, 0);
-            tableLayoutPanelMain.Controls.Add(labelTransportCodeTitle, 0, 0);
-            tableLayoutPanelMain.Controls.Add(labelDate, 0, 1);
+            tableLayoutPanelMain.Controls.Add(multiImageUploader, 0, 9);
+            tableLayoutPanelMain.Controls.Add(labelTransportCodeTitle, 0, 1);
             tableLayoutPanelMain.Controls.Add(textBoxDate, 1, 1);
-            tableLayoutPanelMain.Controls.Add(labelDescription, 0, 7);
-            tableLayoutPanelMain.Controls.Add(textBoxDescription, 1, 7);
-            tableLayoutPanelMain.Controls.Add(labelCode, 0, 6);
-            tableLayoutPanelMain.Controls.Add(textBoxCode, 1, 6);
-            tableLayoutPanelMain.Controls.Add(labelName, 0, 5);
-            tableLayoutPanelMain.Controls.Add(textBoxName, 1, 5);
-            tableLayoutPanelMain.Controls.Add(labelFinePrice, 0, 3);
-            tableLayoutPanelMain.Controls.Add(textBoxFinePrice, 1, 3);
-            tableLayoutPanelMain.Controls.Add(textBoxFineDescription, 1, 4);
-            tableLayoutPanelMain.Controls.Add(buttonSave, 0, 14);
-            tableLayoutPanelMain.Controls.Add(statusLabel, 0, 13);
-            tableLayoutPanelMain.Controls.Add(textBoxStatus, 1, 13);
-            tableLayoutPanelMain.Controls.Add(multiImageUploader, 0, 8);
+            tableLayoutPanelMain.Controls.Add(labelDate, 0, 2);
+            tableLayoutPanelMain.Controls.Add(textBoxTransportCode, 1, 2);
+            tableLayoutPanelMain.Controls.Add(labelAddressTitle, 0, 3);
+            tableLayoutPanelMain.Controls.Add(textBoxAddress, 1, 3);
+            tableLayoutPanelMain.Controls.Add(labelFinePrice, 0, 4);
+            tableLayoutPanelMain.Controls.Add(textBoxFinePrice, 1, 4);
+            tableLayoutPanelMain.Controls.Add(labelFineDescriptionTitle, 0, 5);
+            tableLayoutPanelMain.Controls.Add(textBoxFineDescription, 1, 5);
+            tableLayoutPanelMain.Controls.Add(labelName, 0, 6);
+            tableLayoutPanelMain.Controls.Add(textBoxName, 1, 6);
+            tableLayoutPanelMain.Controls.Add(labelCode, 0, 7);
+            tableLayoutPanelMain.Controls.Add(textBoxCode, 1, 7);
+            tableLayoutPanelMain.Controls.Add(labelDescription, 0, 8);
+            tableLayoutPanelMain.Controls.Add(textBoxDescription, 1, 8);
+            tableLayoutPanelMain.Controls.Add(statusLabel, 0, 11);
+            tableLayoutPanelMain.Controls.Add(textBoxStatus, 1, 11);
+            tableLayoutPanelMain.Controls.Add(buttonSave, 0, 12);
             tableLayoutPanelMain.Dock = DockStyle.Fill;
             tableLayoutPanelMain.Location = new Point(0, 0);
             tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
             tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            tableLayoutPanelMain.RowCount = 15;
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66659975F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66659975F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66659975F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66659975F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66659975F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66659975F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66659975F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.6686F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.6686F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.6686F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66719961F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66719961F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66453266F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66453266F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66453266F));
-            tableLayoutPanelMain.Size = new Size(821, 576);
+            tableLayoutPanelMain.RowCount = 14;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelMain.Size = new Size(821, 600);
             tableLayoutPanelMain.TabIndex = 0;
             // 
             // labelFineDescriptionTitle
@@ -120,7 +122,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             labelFineDescriptionTitle.AutoSize = true;
             labelFineDescriptionTitle.Font = new Font("Segoe UI", 9.75F);
             labelFineDescriptionTitle.ForeColor = Color.FromArgb(0, 0, 0);
-            labelFineDescriptionTitle.Location = new Point(316, 162);
+            labelFineDescriptionTitle.Location = new Point(316, 219);
             labelFineDescriptionTitle.Margin = new Padding(4, 0, 4, 0);
             labelFineDescriptionTitle.Name = "labelFineDescriptionTitle";
             labelFineDescriptionTitle.Size = new Size(90, 17);
@@ -134,7 +136,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxAddress.BorderStyle = BorderStyle.None;
             textBoxAddress.Font = new Font("Consolas", 9.75F);
             textBoxAddress.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxAddress.Location = new Point(414, 87);
+            textBoxAddress.Location = new Point(414, 124);
             textBoxAddress.Margin = new Padding(4, 3, 4, 3);
             textBoxAddress.Name = "textBoxAddress";
             textBoxAddress.ReadOnly = true;
@@ -148,7 +150,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             labelAddressTitle.AutoSize = true;
             labelAddressTitle.Font = new Font("Segoe UI", 9.75F);
             labelAddressTitle.ForeColor = Color.FromArgb(0, 0, 0);
-            labelAddressTitle.Location = new Point(284, 86);
+            labelAddressTitle.Location = new Point(284, 123);
             labelAddressTitle.Margin = new Padding(4, 0, 4, 0);
             labelAddressTitle.Name = "labelAddressTitle";
             labelAddressTitle.Size = new Size(122, 17);
@@ -162,7 +164,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxTransportCode.BorderStyle = BorderStyle.None;
             textBoxTransportCode.Font = new Font("Consolas", 9.75F);
             textBoxTransportCode.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxTransportCode.Location = new Point(414, 11);
+            textBoxTransportCode.Location = new Point(414, 76);
             textBoxTransportCode.Margin = new Padding(4, 3, 4, 3);
             textBoxTransportCode.Name = "textBoxTransportCode";
             textBoxTransportCode.ReadOnly = true;
@@ -176,7 +178,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             labelTransportCodeTitle.AutoSize = true;
             labelTransportCodeTitle.Font = new Font("Segoe UI", 9.75F);
             labelTransportCodeTitle.ForeColor = Color.FromArgb(0, 0, 0);
-            labelTransportCodeTitle.Location = new Point(296, 10);
+            labelTransportCodeTitle.Location = new Point(296, 27);
             labelTransportCodeTitle.Margin = new Padding(4, 0, 4, 0);
             labelTransportCodeTitle.Name = "labelTransportCodeTitle";
             labelTransportCodeTitle.Size = new Size(110, 17);
@@ -189,7 +191,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             labelDate.AutoSize = true;
             labelDate.Font = new Font("Segoe UI", 9.75F);
             labelDate.ForeColor = Color.FromArgb(0, 0, 0);
-            labelDate.Location = new Point(292, 48);
+            labelDate.Location = new Point(292, 75);
             labelDate.Margin = new Padding(4, 0, 4, 0);
             labelDate.Name = "labelDate";
             labelDate.Size = new Size(114, 17);
@@ -203,7 +205,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxDate.BorderStyle = BorderStyle.None;
             textBoxDate.Font = new Font("Consolas", 9.75F);
             textBoxDate.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxDate.Location = new Point(414, 49);
+            textBoxDate.Location = new Point(414, 28);
             textBoxDate.Margin = new Padding(4, 3, 4, 3);
             textBoxDate.Name = "textBoxDate";
             textBoxDate.ReadOnly = true;
@@ -211,32 +213,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxDate.TabIndex = 27;
             textBoxDate.Text = ". . .";
             // 
-            // buttonSave
-            // 
-            buttonSave.Anchor = AnchorStyles.None;
-            buttonSave.BackColor = Color.Green;
-            tableLayoutPanelMain.SetColumnSpan(buttonSave, 2);
-            buttonSave.FlatAppearance.BorderColor = Color.DarkGray;
-            buttonSave.FlatStyle = FlatStyle.Flat;
-            buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
-            buttonSave.ForeColor = Color.White;
-            buttonSave.Location = new Point(208, 535);
-            buttonSave.Margin = new Padding(4, 3, 4, 3);
-            buttonSave.Name = "buttonSave";
-            buttonSave.Padding = new Padding(9, 5, 9, 5);
-            buttonSave.Size = new Size(404, 38);
-            buttonSave.TabIndex = 8;
-            buttonSave.Text = "Оплатить";
-            buttonSave.UseVisualStyleBackColor = false;
-            buttonSave.Click += buttonSave_Click;
-            // 
             // labelDescription
             // 
             labelDescription.Anchor = AnchorStyles.Right;
             labelDescription.AutoSize = true;
             labelDescription.Font = new Font("Segoe UI", 9.75F);
             labelDescription.ForeColor = Color.FromArgb(0, 0, 0);
-            labelDescription.Location = new Point(333, 276);
+            labelDescription.Location = new Point(333, 363);
             labelDescription.Margin = new Padding(4, 0, 4, 0);
             labelDescription.Name = "labelDescription";
             labelDescription.Size = new Size(73, 17);
@@ -250,13 +233,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxDescription.BorderStyle = BorderStyle.None;
             textBoxDescription.Font = new Font("Consolas", 9.75F);
             textBoxDescription.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxDescription.Location = new Point(414, 269);
+            textBoxDescription.Location = new Point(414, 351);
             textBoxDescription.Margin = new Padding(4, 3, 4, 3);
             textBoxDescription.Multiline = true;
             textBoxDescription.Name = "textBoxDescription";
             textBoxDescription.ReadOnly = true;
             textBoxDescription.ScrollBars = ScrollBars.Vertical;
-            textBoxDescription.Size = new Size(403, 32);
+            textBoxDescription.Size = new Size(403, 42);
             textBoxDescription.TabIndex = 26;
             textBoxDescription.Text = ". . .";
             // 
@@ -266,7 +249,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             labelCode.AutoSize = true;
             labelCode.Font = new Font("Segoe UI", 9.75F);
             labelCode.ForeColor = Color.FromArgb(0, 0, 0);
-            labelCode.Location = new Point(297, 238);
+            labelCode.Location = new Point(297, 315);
             labelCode.Margin = new Padding(4, 0, 4, 0);
             labelCode.Name = "labelCode";
             labelCode.Size = new Size(109, 17);
@@ -280,7 +263,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxCode.BorderStyle = BorderStyle.None;
             textBoxCode.Font = new Font("Consolas", 9.75F);
             textBoxCode.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxCode.Location = new Point(414, 239);
+            textBoxCode.Location = new Point(414, 316);
             textBoxCode.Margin = new Padding(4, 3, 4, 3);
             textBoxCode.Name = "textBoxCode";
             textBoxCode.ReadOnly = true;
@@ -294,7 +277,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             labelName.AutoSize = true;
             labelName.Font = new Font("Segoe UI", 9.75F);
             labelName.ForeColor = Color.FromArgb(0, 0, 0);
-            labelName.Location = new Point(322, 200);
+            labelName.Location = new Point(322, 267);
             labelName.Margin = new Padding(4, 0, 4, 0);
             labelName.Name = "labelName";
             labelName.Size = new Size(84, 17);
@@ -308,7 +291,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxName.BorderStyle = BorderStyle.None;
             textBoxName.Font = new Font("Consolas", 9.75F);
             textBoxName.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxName.Location = new Point(414, 201);
+            textBoxName.Location = new Point(414, 268);
             textBoxName.Margin = new Padding(4, 3, 4, 3);
             textBoxName.Name = "textBoxName";
             textBoxName.ReadOnly = true;
@@ -322,7 +305,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             labelFinePrice.AutoSize = true;
             labelFinePrice.Font = new Font("Segoe UI", 9.75F);
             labelFinePrice.ForeColor = Color.FromArgb(0, 0, 0);
-            labelFinePrice.Location = new Point(301, 124);
+            labelFinePrice.Location = new Point(301, 171);
             labelFinePrice.Margin = new Padding(4, 0, 4, 0);
             labelFinePrice.Name = "labelFinePrice";
             labelFinePrice.Size = new Size(105, 17);
@@ -336,7 +319,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxFinePrice.BorderStyle = BorderStyle.None;
             textBoxFinePrice.Font = new Font("Consolas", 9.75F);
             textBoxFinePrice.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxFinePrice.Location = new Point(414, 125);
+            textBoxFinePrice.Location = new Point(414, 172);
             textBoxFinePrice.Margin = new Padding(4, 3, 4, 3);
             textBoxFinePrice.Name = "textBoxFinePrice";
             textBoxFinePrice.ReadOnly = true;
@@ -351,7 +334,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxFineDescription.BorderStyle = BorderStyle.None;
             textBoxFineDescription.Font = new Font("Consolas", 9.75F);
             textBoxFineDescription.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxFineDescription.Location = new Point(414, 163);
+            textBoxFineDescription.Location = new Point(414, 220);
             textBoxFineDescription.Margin = new Padding(4, 3, 4, 3);
             textBoxFineDescription.Name = "textBoxFineDescription";
             textBoxFineDescription.ReadOnly = true;
@@ -359,13 +342,32 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxFineDescription.TabIndex = 33;
             textBoxFineDescription.Text = ". . .";
             // 
+            // buttonSave
+            // 
+            buttonSave.Anchor = AnchorStyles.None;
+            buttonSave.BackColor = Color.Green;
+            tableLayoutPanelMain.SetColumnSpan(buttonSave, 2);
+            buttonSave.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonSave.FlatStyle = FlatStyle.Flat;
+            buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonSave.ForeColor = Color.White;
+            buttonSave.Location = new Point(208, 545);
+            buttonSave.Margin = new Padding(4, 3, 4, 3);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Padding = new Padding(9, 5, 9, 5);
+            buttonSave.Size = new Size(404, 38);
+            buttonSave.TabIndex = 8;
+            buttonSave.Text = "Оплатить";
+            buttonSave.UseVisualStyleBackColor = false;
+            buttonSave.Click += buttonSave_Click;
+            // 
             // statusLabel
             // 
             statusLabel.Anchor = AnchorStyles.Right;
             statusLabel.AutoSize = true;
             statusLabel.Font = new Font("Segoe UI", 9.75F);
             statusLabel.ForeColor = Color.FromArgb(0, 0, 0);
-            statusLabel.Location = new Point(354, 504);
+            statusLabel.Location = new Point(354, 507);
             statusLabel.Margin = new Padding(4, 0, 4, 0);
             statusLabel.Name = "statusLabel";
             statusLabel.Size = new Size(52, 17);
@@ -379,7 +381,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             textBoxStatus.BorderStyle = BorderStyle.None;
             textBoxStatus.Font = new Font("Consolas", 9.75F);
             textBoxStatus.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxStatus.Location = new Point(414, 505);
+            textBoxStatus.Location = new Point(414, 508);
             textBoxStatus.Margin = new Padding(4, 3, 4, 3);
             textBoxStatus.Name = "textBoxStatus";
             textBoxStatus.ReadOnly = true;
@@ -393,11 +395,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             multiImageUploader.BackColor = SystemColors.Control;
             tableLayoutPanelMain.SetColumnSpan(multiImageUploader, 2);
             multiImageUploader.Dock = DockStyle.Fill;
-            multiImageUploader.Location = new Point(3, 307);
+            multiImageUploader.Location = new Point(3, 399);
             multiImageUploader.Name = "multiImageUploader";
             multiImageUploader.Padding = new Padding(5);
-            tableLayoutPanelMain.SetRowSpan(multiImageUploader, 5);
-            multiImageUploader.Size = new Size(815, 184);
+            tableLayoutPanelMain.SetRowSpan(multiImageUploader, 2);
+            multiImageUploader.Size = new Size(815, 90);
             multiImageUploader.TabIndex = 37;
             // 
             // PaymentFineCreateView
@@ -406,6 +408,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
             AutoScaleMode = AutoScaleMode.Font;
             Margin = new Padding(5, 3, 5, 3);
             Name = "PaymentFineCreateView";
+            Size = new Size(821, 716);
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();

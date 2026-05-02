@@ -21,7 +21,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
-            NoItemsMessage = "Кодекс нарушений пустой";
+            NoItemsMessage = "Кодекс нарушений пуст";
+            SearchHintMessage = "Введите сумму, название или код нарушения";
         }
 
         protected override async Task<IEnumerable<Violation>> LoadItemsAsync(CancellationToken cancellationToken)

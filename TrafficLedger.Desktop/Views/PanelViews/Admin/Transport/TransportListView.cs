@@ -30,6 +30,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.FineCreate
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+            SearchHintMessage = "Введите номер, марку или модель транспорта";
         }
 
         public void Initialize(bool requestsOnly)

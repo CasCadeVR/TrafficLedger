@@ -71,11 +71,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             buttonParkingZones.FlatStyle = FlatStyle.Flat;
             buttonParkingZones.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonParkingZones.ForeColor = Color.AntiqueWhite;
-            buttonParkingZones.Location = new Point(227, 233);
+            buttonParkingZones.Location = new Point(227, 243);
             buttonParkingZones.Margin = new Padding(4, 3, 4, 3);
             buttonParkingZones.Name = "buttonParkingZones";
             buttonParkingZones.Padding = new Padding(9, 5, 9, 5);
-            buttonParkingZones.Size = new Size(366, 52);
+            buttonParkingZones.Size = new Size(366, 42);
             buttonParkingZones.TabIndex = 0;
             buttonParkingZones.Text = "Начать парковочную сессию";
             buttonParkingZones.UseVisualStyleBackColor = false;
@@ -93,18 +93,18 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             buttonListUserSessions.Margin = new Padding(4, 3, 4, 3);
             buttonListUserSessions.Name = "buttonListUserSessions";
             buttonListUserSessions.Padding = new Padding(9, 5, 9, 5);
-            buttonListUserSessions.Size = new Size(368, 52);
+            buttonListUserSessions.Size = new Size(368, 42);
             buttonListUserSessions.TabIndex = 2;
             buttonListUserSessions.Text = "Текущие сессии";
             buttonListUserSessions.UseVisualStyleBackColor = false;
             buttonListUserSessions.Click += buttonListUserSessions_Click;
             // 
-            // ParkingView
+            // ParkingSessionView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Margin = new Padding(5, 3, 5, 3);
-            Name = "ParkingView";
+            Name = "ParkingSessionView";
             splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
             splitContainer.ResumeLayout(false);

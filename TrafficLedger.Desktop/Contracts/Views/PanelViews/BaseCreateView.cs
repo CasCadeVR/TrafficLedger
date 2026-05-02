@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace TrafficLedger.Desktop.Contracts.Views.PanelViews
 {
@@ -55,14 +56,22 @@ namespace TrafficLedger.Desktop.Contracts.Views.PanelViews
         /// </summary>
         protected async Task HandleSaveAsync(params Control[] validationControls)
         {
+            var validateResults = new List<ValidationResult>();
+
             bool isValid = Validator.TryValidateObject(CurrentModel,
                 new ValidationContext(CurrentModel),
-                new List<ValidationResult>(), 
+                validateResults, 
                 validateAllProperties: true);
 
             if (!isValid)
             {
-                HandleError("Исправьте ошибки ввода перед сохранением.");
+                var errors = string.Empty;
+                foreach (var error in validateResults)
+                {
+                    errors += error.ErrorMessage + ", ";
+                }
+
+                HandleError($"Исправьте ошибки ввода перед сохранением: {errors}");
                 return;
             }
 

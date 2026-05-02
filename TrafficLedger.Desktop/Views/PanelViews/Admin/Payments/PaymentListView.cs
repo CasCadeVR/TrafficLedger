@@ -22,6 +22,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+            SearchHintMessage = "Введите код нарушения, номер транспорта, сумму или дату чека";
         }
 
         protected override async Task<IEnumerable<PaymentFineDBModel>> LoadItemsAsync(CancellationToken cancellationToken)

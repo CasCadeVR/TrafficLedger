@@ -14,7 +14,7 @@ public class DriverLicenseCreateModel : RequestedCreateModel
     /// <summary>
     /// Номер удостоверения
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Номер удостоверения обязателен")]
     [StringLength(DriverLicenseValidationRules.LicenseNumberLength,
         ErrorMessage = "Номер удостоверения должен быть 12 символов")]
     public string LicenseNumber { get; set; } = string.Empty;
@@ -28,7 +28,7 @@ public class DriverLicenseCreateModel : RequestedCreateModel
     /// <summary>
     /// Кем выдан
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Кем выдан обязателен")]
     [StringLength(DriverLicenseValidationRules.IssuedByMaxLength,
         MinimumLength = DriverLicenseValidationRules.IssuedByMinLength,
         ErrorMessage = "Кем выдан должен быть от 3 до 255 символов")]
@@ -37,7 +37,7 @@ public class DriverLicenseCreateModel : RequestedCreateModel
     /// <summary>
     /// Город
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Город обязателен")]
     [StringLength(DriverLicenseValidationRules.ResidenceMaxLength,
         MinimumLength = DriverLicenseValidationRules.ResidenceMinLength,
         ErrorMessage = "Город должен быть от 3 до 255 символов")]

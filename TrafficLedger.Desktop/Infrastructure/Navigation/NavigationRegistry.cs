@@ -47,7 +47,7 @@ namespace TrafficLedger.Desktop.Infrastructure.Navigation
 
                 new NavigationItem
                 {
-                    Title = "Оформление штрафа",
+                    Title = "Оформление\nштрафа",
                     Icon = ImageResources.Police,
                     RequiredRole = Role.TrafficPolice,
                     ViewType = typeof(TransportListView)

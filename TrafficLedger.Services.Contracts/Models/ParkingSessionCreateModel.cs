@@ -27,7 +27,7 @@ public class ParkingSessionCreateModel
     /// <summary>
     /// Номер транспорта
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Регистрационный номер обязателен")]
         [StringLength(TransportValidationRules.TransportCodeLength,
         MinimumLength = TransportValidationRules.TransportCodeLength,
         ErrorMessage = "Регистрационный номер должен быть длиной 9 символов")]

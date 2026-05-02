@@ -19,6 +19,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+            SearchHintMessage = "Введите статью нарушения, номер транспорта, цену или дату чека";
         }
 
         public void Initialize(Guid userId, bool ownPayment)

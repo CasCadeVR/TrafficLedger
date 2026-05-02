@@ -202,7 +202,7 @@ namespace TrafficLedger.Services
                 attachmentWriteRepository.Delete(existingAttachment);
             }
 
-            fineWriteRepository.Delete(fine);
+            fineWriteRepository.Delete(fine!);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }

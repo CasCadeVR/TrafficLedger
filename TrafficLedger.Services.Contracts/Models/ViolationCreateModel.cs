@@ -11,7 +11,7 @@ public class ViolationCreateModel
     /// <summary>
     /// Код нарушения
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Код нарушения обязателен")]
     [StringLength(ViolationValidationRules.CodeMaxLength,
        MinimumLength = ViolationValidationRules.CodeMinLength,
        ErrorMessage = "Код нарушения должен быть длиной от 3 до 255 символов")]
@@ -20,7 +20,7 @@ public class ViolationCreateModel
     /// <summary>
     /// Название нарушения
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Название нарушения обязательно")]
     [StringLength(ViolationValidationRules.NameMaxLength,
        MinimumLength = ViolationValidationRules.NameMinLength,
        ErrorMessage = "Название нарушения должно быть длиной от 3 до 255 символов")]
@@ -29,13 +29,13 @@ public class ViolationCreateModel
     /// <summary>
     /// Описание нарушения
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Описание нарушения обязательно")]
     public string Description { get; set; } = string.Empty;
 
     /// <summary>
     /// Минимальная сумма штрафа за нарушение
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Минимальная сумма штрафа обязательно")]
     public decimal MinFinePrice { get; set; }
 
     /// <summary>
