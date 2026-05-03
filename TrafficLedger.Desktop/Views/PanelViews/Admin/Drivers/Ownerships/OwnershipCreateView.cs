@@ -114,7 +114,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
             var response = await driverService.Update(currentDriver.Id, newRequest, CancellationToken.None);
             EntityId = response.Id;
             currentDriver = response;
-            MessageBox.Show($"Теперь {currentDriver.FullName} владеет транспортом с кодом {CurrentModel.TransportCode} с датой {CurrentModel.Date}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Теперь {currentDriver.FullName} владеет транспортом с кодом {CurrentModel.TransportCode} с датой {CurrentModel.Date}", 
+                "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
         }
 

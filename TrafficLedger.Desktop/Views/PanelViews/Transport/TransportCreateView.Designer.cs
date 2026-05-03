@@ -68,7 +68,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             // splitContainer.Panel2
             // 
             splitContainer.Panel2.Controls.Add(tableLayoutPanelMain);
-            splitContainer.Size = new Size(821, 796);
+            splitContainer.Size = new Size(821, 816);
             // 
             // tableLayoutPanelMain
             // 
@@ -95,8 +95,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             tableLayoutPanelMain.Controls.Add(labelOwnershipDate, 0, 9);
             tableLayoutPanelMain.Controls.Add(ownershipDateTimePicker, 1, 9);
             tableLayoutPanelMain.Controls.Add(labelStatus, 0, 10);
-            tableLayoutPanelMain.Controls.Add(textBoxStatus, 0, 15);
             tableLayoutPanelMain.Controls.Add(buttonSave, 0, 14);
+            tableLayoutPanelMain.Controls.Add(textBoxStatus, 1, 10);
             tableLayoutPanelMain.Dock = DockStyle.Fill;
             tableLayoutPanelMain.Location = new Point(0, 0);
             tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
@@ -119,7 +119,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
             tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanelMain.Size = new Size(821, 680);
+            tableLayoutPanelMain.Size = new Size(821, 700);
             tableLayoutPanelMain.TabIndex = 0;
             // 
             // multiImageUploader
@@ -128,7 +128,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             multiImageUploader.BackColor = SystemColors.Control;
             tableLayoutPanelMain.SetColumnSpan(multiImageUploader, 2);
             multiImageUploader.Dock = DockStyle.Fill;
-            multiImageUploader.Location = new Point(3, 487);
+            multiImageUploader.Location = new Point(3, 497);
             multiImageUploader.Name = "multiImageUploader";
             multiImageUploader.Padding = new Padding(5);
             tableLayoutPanelMain.SetRowSpan(multiImageUploader, 3);
@@ -141,7 +141,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelCode.AutoSize = true;
             labelCode.Font = new Font("Segoe UI", 9.75F);
             labelCode.ForeColor = Color.FromArgb(0, 0, 0);
-            labelCode.Location = new Point(244, 19);
+            labelCode.Location = new Point(244, 29);
             labelCode.Margin = new Padding(4, 0, 4, 0);
             labelCode.Name = "labelCode";
             labelCode.Size = new Size(162, 17);
@@ -155,7 +155,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             textBoxCode.BorderStyle = BorderStyle.FixedSingle;
             textBoxCode.Font = new Font("Segoe UI", 9.75F);
             textBoxCode.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxCode.Location = new Point(414, 15);
+            textBoxCode.Location = new Point(414, 25);
             textBoxCode.Margin = new Padding(4, 3, 4, 3);
             textBoxCode.Name = "textBoxCode";
             textBoxCode.Size = new Size(287, 25);
@@ -167,7 +167,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelRegion.AutoSize = true;
             labelRegion.Font = new Font("Segoe UI", 9.75F);
             labelRegion.ForeColor = Color.FromArgb(0, 0, 0);
-            labelRegion.Location = new Point(265, 67);
+            labelRegion.Location = new Point(265, 77);
             labelRegion.Margin = new Padding(4, 0, 4, 0);
             labelRegion.Name = "labelRegion";
             labelRegion.Size = new Size(141, 17);
@@ -181,7 +181,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             textBoxRegion.BorderStyle = BorderStyle.FixedSingle;
             textBoxRegion.Font = new Font("Segoe UI", 9.75F);
             textBoxRegion.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxRegion.Location = new Point(414, 63);
+            textBoxRegion.Location = new Point(414, 73);
             textBoxRegion.Margin = new Padding(4, 3, 4, 3);
             textBoxRegion.Name = "textBoxRegion";
             textBoxRegion.Size = new Size(287, 25);
@@ -193,7 +193,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelYear.AutoSize = true;
             labelYear.Font = new Font("Segoe UI", 9.75F);
             labelYear.ForeColor = Color.FromArgb(0, 0, 0);
-            labelYear.Location = new Point(285, 115);
+            labelYear.Location = new Point(285, 125);
             labelYear.Margin = new Padding(4, 0, 4, 0);
             labelYear.Name = "labelYear";
             labelYear.Size = new Size(121, 17);
@@ -207,7 +207,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             textBoxYear.BorderStyle = BorderStyle.FixedSingle;
             textBoxYear.Font = new Font("Segoe UI", 9.75F);
             textBoxYear.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxYear.Location = new Point(414, 111);
+            textBoxYear.Location = new Point(414, 121);
             textBoxYear.Margin = new Padding(4, 3, 4, 3);
             textBoxYear.Name = "textBoxYear";
             textBoxYear.Size = new Size(287, 25);
@@ -219,7 +219,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelBrand.AutoSize = true;
             labelBrand.Font = new Font("Segoe UI", 9.75F);
             labelBrand.ForeColor = Color.FromArgb(0, 0, 0);
-            labelBrand.Location = new Point(351, 163);
+            labelBrand.Location = new Point(351, 173);
             labelBrand.Margin = new Padding(4, 0, 4, 0);
             labelBrand.Name = "labelBrand";
             labelBrand.Size = new Size(55, 17);
@@ -233,7 +233,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             textBoxBrand.BorderStyle = BorderStyle.FixedSingle;
             textBoxBrand.Font = new Font("Segoe UI", 9.75F);
             textBoxBrand.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxBrand.Location = new Point(414, 159);
+            textBoxBrand.Location = new Point(414, 169);
             textBoxBrand.Margin = new Padding(4, 3, 4, 3);
             textBoxBrand.Name = "textBoxBrand";
             textBoxBrand.Size = new Size(287, 25);
@@ -245,7 +245,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelModel.AutoSize = true;
             labelModel.Font = new Font("Segoe UI", 9.75F);
             labelModel.ForeColor = Color.FromArgb(0, 0, 0);
-            labelModel.Location = new Point(343, 211);
+            labelModel.Location = new Point(343, 221);
             labelModel.Margin = new Padding(4, 0, 4, 0);
             labelModel.Name = "labelModel";
             labelModel.Size = new Size(63, 17);
@@ -259,7 +259,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             textBoxModel.BorderStyle = BorderStyle.FixedSingle;
             textBoxModel.Font = new Font("Segoe UI", 9.75F);
             textBoxModel.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxModel.Location = new Point(414, 207);
+            textBoxModel.Location = new Point(414, 217);
             textBoxModel.Margin = new Padding(4, 3, 4, 3);
             textBoxModel.Name = "textBoxModel";
             textBoxModel.Size = new Size(287, 25);
@@ -271,7 +271,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelMileAge.AutoSize = true;
             labelMileAge.Font = new Font("Segoe UI", 9.75F);
             labelMileAge.ForeColor = Color.FromArgb(0, 0, 0);
-            labelMileAge.Location = new Point(305, 259);
+            labelMileAge.Location = new Point(305, 269);
             labelMileAge.Margin = new Padding(4, 0, 4, 0);
             labelMileAge.Name = "labelMileAge";
             labelMileAge.Size = new Size(101, 17);
@@ -285,7 +285,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             numericUpDownMileAge.BorderStyle = BorderStyle.FixedSingle;
             numericUpDownMileAge.Font = new Font("Segoe UI", 9.75F);
             numericUpDownMileAge.ForeColor = Color.FromArgb(0, 0, 0);
-            numericUpDownMileAge.Location = new Point(414, 255);
+            numericUpDownMileAge.Location = new Point(414, 265);
             numericUpDownMileAge.Margin = new Padding(4, 3, 4, 3);
             numericUpDownMileAge.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             numericUpDownMileAge.Name = "numericUpDownMileAge";
@@ -298,7 +298,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelFullName.AutoSize = true;
             labelFullName.Font = new Font("Segoe UI", 9.75F);
             labelFullName.ForeColor = Color.FromArgb(0, 0, 0);
-            labelFullName.Location = new Point(329, 307);
+            labelFullName.Location = new Point(329, 317);
             labelFullName.Margin = new Padding(4, 0, 4, 0);
             labelFullName.Name = "labelFullName";
             labelFullName.Size = new Size(77, 17);
@@ -313,7 +313,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             comboBoxCategory.Font = new Font("Segoe UI", 9.75F);
             comboBoxCategory.ForeColor = Color.FromArgb(0, 0, 0);
             comboBoxCategory.FormattingEnabled = true;
-            comboBoxCategory.Location = new Point(414, 303);
+            comboBoxCategory.Location = new Point(414, 313);
             comboBoxCategory.Margin = new Padding(4, 3, 4, 3);
             comboBoxCategory.Name = "comboBoxCategory";
             comboBoxCategory.Size = new Size(286, 25);
@@ -325,7 +325,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelCategoryDescription.AutoSize = true;
             labelCategoryDescription.Font = new Font("Segoe UI", 9.75F);
             labelCategoryDescription.ForeColor = Color.FromArgb(0, 0, 0);
-            labelCategoryDescription.Location = new Point(269, 355);
+            labelCategoryDescription.Location = new Point(269, 365);
             labelCategoryDescription.Margin = new Padding(4, 0, 4, 0);
             labelCategoryDescription.Name = "labelCategoryDescription";
             labelCategoryDescription.Size = new Size(137, 17);
@@ -339,7 +339,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             textBoxCategoryDescription.BorderStyle = BorderStyle.None;
             textBoxCategoryDescription.Font = new Font("Consolas", 9.75F);
             textBoxCategoryDescription.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxCategoryDescription.Location = new Point(414, 343);
+            textBoxCategoryDescription.Location = new Point(414, 353);
             textBoxCategoryDescription.Margin = new Padding(4, 3, 4, 3);
             textBoxCategoryDescription.Multiline = true;
             textBoxCategoryDescription.Name = "textBoxCategoryDescription";
@@ -354,7 +354,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelOwnershipDate.AutoSize = true;
             labelOwnershipDate.Font = new Font("Segoe UI", 9.75F);
             labelOwnershipDate.ForeColor = Color.FromArgb(0, 0, 0);
-            labelOwnershipDate.Location = new Point(155, 403);
+            labelOwnershipDate.Location = new Point(155, 413);
             labelOwnershipDate.Margin = new Padding(4, 0, 4, 0);
             labelOwnershipDate.Name = "labelOwnershipDate";
             labelOwnershipDate.Size = new Size(251, 17);
@@ -367,7 +367,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             ownershipDateTimePicker.BackColor = Color.White;
             ownershipDateTimePicker.Font = new Font("Segoe UI", 9.75F);
             ownershipDateTimePicker.ForeColor = Color.FromArgb(0, 0, 0);
-            ownershipDateTimePicker.Location = new Point(413, 399);
+            ownershipDateTimePicker.Location = new Point(413, 409);
             ownershipDateTimePicker.Name = "ownershipDateTimePicker";
             ownershipDateTimePicker.Size = new Size(288, 25);
             ownershipDateTimePicker.TabIndex = 27;
@@ -378,7 +378,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelStatus.AutoSize = true;
             labelStatus.Font = new Font("Segoe UI", 9.75F);
             labelStatus.ForeColor = Color.FromArgb(0, 0, 0);
-            labelStatus.Location = new Point(310, 451);
+            labelStatus.Location = new Point(310, 461);
             labelStatus.Margin = new Padding(4, 0, 4, 0);
             labelStatus.Name = "labelStatus";
             labelStatus.Size = new Size(96, 17);
@@ -392,7 +392,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             textBoxStatus.BorderStyle = BorderStyle.None;
             textBoxStatus.Font = new Font("Consolas", 9.75F);
             textBoxStatus.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxStatus.Location = new Point(3, 679);
+            textBoxStatus.Location = new Point(413, 462);
             textBoxStatus.Name = "textBoxStatus";
             textBoxStatus.ReadOnly = true;
             textBoxStatus.Size = new Size(288, 16);
@@ -407,7 +407,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             buttonSave.FlatStyle = FlatStyle.Flat;
             buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonSave.ForeColor = Color.White;
-            buttonSave.Location = new Point(208, 633);
+            buttonSave.Location = new Point(208, 643);
             buttonSave.Margin = new Padding(4, 3, 4, 3);
             buttonSave.Name = "buttonSave";
             buttonSave.Padding = new Padding(9, 5, 9, 5);
@@ -423,7 +423,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             AutoScaleMode = AutoScaleMode.Font;
             Margin = new Padding(5, 3, 5, 3);
             Name = "TransportCreateView";
-            Size = new Size(821, 796);
+            Size = new Size(821, 816);
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();

@@ -4,6 +4,7 @@ using TrafficLedger.Desktop.Contracts.Views.PanelViews;
 using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Services;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
@@ -39,7 +40,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
                 var driver = await driverService.GetByUserId(currentUser.Id, CancellationToken.None);
 
                 var createView = navigationService.Value.ServiceProvider.GetRequiredService<TransportCreateView>();
-                createView.Initialize(null!, isUserAdding: currentUser.Role != Entities.Role.Admin, currentDriver: driver!);
+                createView.Initialize(null!, isUserAdding: currentUser.Role != Role.Admin, currentDriver: driver!);
 
                 var navigationItem = new NavigationItem()
                 {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TrafficLedger.Common.Services;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Context.SeedData
 {

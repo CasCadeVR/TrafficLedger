@@ -33,13 +33,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
         {
             tableLayoutPanelMain = new TableLayoutPanel();
             webView = new Microsoft.Web.WebView2.WinForms.WebView2();
-            labelCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             buttonSave = new CommonButton();
-            textBoxTransportCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
-            primaryLabel1 = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             primaryLabel2 = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             numericUpDownHourlyRate = new TrafficLedger.Desktop.Components.Controls.NumericUpDowns.ReadOnlyNumericUpDown();
+            primaryLabel1 = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxAddress = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            comboBoxTransport = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultComboBox();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
@@ -68,7 +68,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             tableLayoutPanelMain.Controls.Add(primaryLabel1, 0, 2);
             tableLayoutPanelMain.Controls.Add(textBoxAddress, 1, 2);
             tableLayoutPanelMain.Controls.Add(labelCode, 0, 1);
-            tableLayoutPanelMain.Controls.Add(textBoxTransportCode, 1, 1);
+            tableLayoutPanelMain.Controls.Add(comboBoxTransport, 1, 1);
             tableLayoutPanelMain.Dock = DockStyle.Fill;
             tableLayoutPanelMain.Location = new Point(0, 0);
             tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
@@ -104,19 +104,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             webView.TabIndex = 26;
             webView.ZoomFactor = 1D;
             // 
-            // labelCode
-            // 
-            labelCode.Anchor = AnchorStyles.Right;
-            labelCode.AutoSize = true;
-            labelCode.Font = new Font("Segoe UI", 9.75F);
-            labelCode.ForeColor = Color.FromArgb(0, 0, 0);
-            labelCode.Location = new Point(296, 63);
-            labelCode.Margin = new Padding(4, 0, 4, 0);
-            labelCode.Name = "labelCode";
-            labelCode.Size = new Size(110, 17);
-            labelCode.TabIndex = 6;
-            labelCode.Text = "Код транспорта: ";
-            // 
             // buttonSave
             // 
             buttonSave.Anchor = AnchorStyles.None;
@@ -135,32 +122,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             buttonSave.Text = "Сохранить";
             buttonSave.UseVisualStyleBackColor = false;
             buttonSave.Click += buttonSave_Click;
-            // 
-            // textBoxTransportCode
-            // 
-            textBoxTransportCode.Anchor = AnchorStyles.Left;
-            textBoxTransportCode.BackColor = Color.White;
-            textBoxTransportCode.BorderStyle = BorderStyle.FixedSingle;
-            textBoxTransportCode.Font = new Font("Segoe UI", 9.75F);
-            textBoxTransportCode.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxTransportCode.Location = new Point(414, 59);
-            textBoxTransportCode.Margin = new Padding(4, 3, 4, 3);
-            textBoxTransportCode.Name = "textBoxTransportCode";
-            textBoxTransportCode.Size = new Size(287, 25);
-            textBoxTransportCode.TabIndex = 10;
-            // 
-            // primaryLabel1
-            // 
-            primaryLabel1.Anchor = AnchorStyles.Right;
-            primaryLabel1.AutoSize = true;
-            primaryLabel1.Font = new Font("Segoe UI", 9.75F);
-            primaryLabel1.ForeColor = Color.FromArgb(0, 0, 0);
-            primaryLabel1.Location = new Point(355, 111);
-            primaryLabel1.Margin = new Padding(4, 0, 4, 0);
-            primaryLabel1.Name = "primaryLabel1";
-            primaryLabel1.Size = new Size(51, 17);
-            primaryLabel1.TabIndex = 21;
-            primaryLabel1.Text = "Адрес: ";
             // 
             // primaryLabel2
             // 
@@ -192,6 +153,19 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             numericUpDownHourlyRate.TabIndex = 24;
             numericUpDownHourlyRate.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
+            // primaryLabel1
+            // 
+            primaryLabel1.Anchor = AnchorStyles.Right;
+            primaryLabel1.AutoSize = true;
+            primaryLabel1.Font = new Font("Segoe UI", 9.75F);
+            primaryLabel1.ForeColor = Color.FromArgb(0, 0, 0);
+            primaryLabel1.Location = new Point(355, 111);
+            primaryLabel1.Margin = new Padding(4, 0, 4, 0);
+            primaryLabel1.Name = "primaryLabel1";
+            primaryLabel1.Size = new Size(51, 17);
+            primaryLabel1.TabIndex = 21;
+            primaryLabel1.Text = "Адрес: ";
+            // 
             // textBoxAddress
             // 
             textBoxAddress.Anchor = AnchorStyles.Left | AnchorStyles.Right;
@@ -204,6 +178,32 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             textBoxAddress.ReadOnly = true;
             textBoxAddress.Size = new Size(405, 16);
             textBoxAddress.TabIndex = 25;
+            // 
+            // labelCode
+            // 
+            labelCode.Anchor = AnchorStyles.Right;
+            labelCode.AutoSize = true;
+            labelCode.Font = new Font("Segoe UI", 9.75F);
+            labelCode.ForeColor = Color.FromArgb(0, 0, 0);
+            labelCode.Location = new Point(296, 63);
+            labelCode.Margin = new Padding(4, 0, 4, 0);
+            labelCode.Name = "labelCode";
+            labelCode.Size = new Size(110, 17);
+            labelCode.TabIndex = 6;
+            labelCode.Text = "Код транспорта: ";
+            // 
+            // comboBoxTransport
+            // 
+            comboBoxTransport.Anchor = AnchorStyles.Left;
+            comboBoxTransport.BackColor = Color.White;
+            comboBoxTransport.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxTransport.Font = new Font("Segoe UI", 9.75F);
+            comboBoxTransport.ForeColor = Color.FromArgb(0, 0, 0);
+            comboBoxTransport.FormattingEnabled = true;
+            comboBoxTransport.Location = new Point(413, 60);
+            comboBoxTransport.Name = "comboBoxTransport";
+            comboBoxTransport.Size = new Size(288, 25);
+            comboBoxTransport.TabIndex = 27;
             // 
             // ParkingSessionCreateView
             // 
@@ -228,11 +228,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private Components.Labels.PrimaryLabel labelCode;
         private CommonButton buttonSave;
-        private Components.Controls.TextBoxes.DefaultTextBox textBoxTransportCode;
         private Components.Labels.PrimaryLabel primaryLabel1;
         private Components.Labels.PrimaryLabel primaryLabel2;
         private Components.Controls.NumericUpDowns.ReadOnlyNumericUpDown numericUpDownHourlyRate;
         private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxAddress;
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
+        private Components.Controls.TextBoxes.DefaultComboBox comboBoxTransport;
     }
 }

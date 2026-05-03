@@ -3,6 +3,7 @@ using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
 using TrafficLedger.Services.Contracts.Models.Fines;
@@ -121,11 +122,20 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             numericUpDownPrice.DataBindings.Clear();
 
             var selectedViolation = comboBoxViolation.SelectedItem as Violation;
-            textBoxCode.Text = selectedViolation?.ViolationCode ?? ". . .";
-            textBoxDescription.Text = selectedViolation?.Description ?? ". . .";
 
-            numericUpDownPrice.Minimum = selectedViolation?.MinFinePrice ?? 10;
-            numericUpDownPrice.Maximum = selectedViolation?.MaxFinePrice ?? selectedViolation?.MinFinePrice ?? 10;
+
+            if (selectedViolation == null)
+            {
+                return;
+            }
+
+            textBoxCode.Text = selectedViolation.ViolationCode ?? ". . .";
+            textBoxDescription.Text = selectedViolation.Description ?? ". . .";
+
+            numericUpDownPrice.Minimum = selectedViolation.MinFinePrice;
+            numericUpDownPrice.Maximum = (selectedViolation.MaxFinePrice == 0.00m
+                ? selectedViolation.MinFinePrice
+                : selectedViolation.MaxFinePrice);
             numericUpDownPrice.Value = numericUpDownPrice.Minimum;
 
             if (currentFine == null)
@@ -134,7 +144,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             }
 
             numericUpDownPrice.AddBindings(x => x.Value, CurrentModel, x => x.Price, errorProvider);
-
             numericUpDownPrice.Value = CurrentModel.Price;
         }
 

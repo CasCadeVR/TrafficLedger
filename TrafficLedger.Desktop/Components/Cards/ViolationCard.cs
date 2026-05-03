@@ -2,6 +2,7 @@
 using TrafficLedger.Desktop.Contracts.Views.Cards;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Desktop.Components.Cards
 {

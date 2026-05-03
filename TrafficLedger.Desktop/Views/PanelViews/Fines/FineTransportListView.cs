@@ -5,6 +5,7 @@ using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Views.PanelViews.Payments;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Fines
@@ -24,7 +25,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
-            NoItemsMessage = $"На транспорт с номером {currentTransport.TransportCode} не зарегистрировано ни одного штрафа";
             SearchHintMessage = "Введите дату, название нарушения или код нарушения";
         }
 
@@ -35,6 +35,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         {
             this.currentTransport = currentTransport;
             this.ownTransport = ownTransport;
+
+            NoItemsMessage = $"На транспорт с номером {currentTransport.TransportCode} не зарегистрировано ни одного штрафа";
         }
 
         protected override async Task<IEnumerable<Fine>> LoadItemsAsync(CancellationToken cancellationToken)

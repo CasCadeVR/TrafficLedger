@@ -16,16 +16,18 @@ namespace TrafficLedger.Desktop.Views.PanelViews
     public partial class ParkingSessionUserListView : ParkingSessionUserListWrapper
     {
         private readonly INavigationService navigationService;
+        private readonly IDriverService driverService;
         private readonly IParkingSessionService parkingSessionService;
 
         private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
 
-        public ParkingSessionUserListView(
-            INavigationService navigationService,
+        public ParkingSessionUserListView(INavigationService navigationService,
+            IDriverService driverService,
             IParkingSessionService parkingSessionService)
         {
             InitializeComponent();
             this.navigationService = navigationService;
+            this.driverService = driverService;
             this.parkingSessionService = parkingSessionService;
 
             ItemsContainer = flowLayoutPanel;
@@ -68,10 +70,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             return card;
         }
 
-        private void About(ParkingSession item)
+        private async Task About(ParkingSession item)
         {
+            var driver = await driverService.GetByUserId(currentUser.Id, CancellationToken.None);
             var createView = navigationService.ServiceProvider.GetRequiredService<ParkingSessionCreateView>();
-            createView.Initialize(item.ParkingZone, item);
+            createView.Initialize(driver, item.ParkingZone, item);
 
             var navigationItem = new NavigationItem()
             {

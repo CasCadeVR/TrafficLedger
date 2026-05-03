@@ -1,5 +1,5 @@
 ﻿using System;
-using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Desktop.Infrastructure.Models
 {

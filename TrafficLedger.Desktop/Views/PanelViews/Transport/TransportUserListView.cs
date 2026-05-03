@@ -9,6 +9,7 @@ using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.Fines;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews

@@ -1,5 +1,7 @@
-﻿using TrafficLedger.Desktop.Contracts.Views.Cards;
+﻿using TrafficLedger.Common.Core.Extensions;
+using TrafficLedger.Desktop.Contracts.Views.Cards;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Desktop.Components.Cards
 {
@@ -32,7 +34,7 @@ namespace TrafficLedger.Desktop.Components.Cards
             FillFields(request);
 
             buttonDelete.Visible = asAdmin;
-            buttonPay.Visible = !asAdmin;
+            buttonPay.Visible = request.Status == SessionStatus.Active;
         }
 
         private void FillFields(ParkingSession request)
@@ -40,7 +42,7 @@ namespace TrafficLedger.Desktop.Components.Cards
             startDate.Text = request.StartTime.DateTime.ToLongDateString() + ", " + request.StartTime.DateTime.ToShortTimeString();
             transportCode.Text = request.Transport.TransportCode;
             address.Text = request.ParkingZone.Address;
-            status.Text = Enum.GetName(request.Status);
+            status.Text = request.Status.GetDescription();
 
             var isEnded = request.EndTime != null && request.EndTime.HasValue;
 

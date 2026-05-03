@@ -1,4 +1,5 @@
-﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Common.Core.Extensions;
+using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.Wrappers;
@@ -174,7 +175,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
             labelStatus.Visible = currentDriverLicense != null;
             textBoxStatus.Visible = currentDriverLicense != null;
-            textBoxStatus.Text = CurrentModel.Status.ToString();
+            textBoxStatus.Text = CurrentModel.Status.GetDescription();
 
             if (CurrentModel.Attachment != null)
             {

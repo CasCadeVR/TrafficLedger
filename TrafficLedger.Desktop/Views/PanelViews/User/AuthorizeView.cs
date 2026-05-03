@@ -3,7 +3,7 @@ using TrafficLedger.Desktop.Contracts.Views.PanelViews;
 using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Services;
-using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
 
@@ -65,11 +65,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                 }
                 catch (Exception exception)
                 {
-                    MessageBox.Show(exception.Message);
+                    MessageBox.Show(exception.Message, "Ошибка", MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
                     return;
                 }
 
-                MessageBox.Show(registrationSuccessText);
+                MessageBox.Show(registrationSuccessText, "Успех", MessageBoxButtons.OK, icon: MessageBoxIcon.Information);
             }
             else
             {
@@ -92,11 +92,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews
                 }
                 catch (Exception exception)
                 {
-                    MessageBox.Show(exception.Message);
+                    MessageBox.Show(exception.Message, "Ошибка", MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
                     return;
                 }
 
-                MessageBox.Show(loginSuccessText);
+                MessageBox.Show(loginSuccessText, "Успех", MessageBoxButtons.OK, icon: MessageBoxIcon.Information);
                 navigationService.Value.NavigateTo(NavigationRegistry.GetMenuItems()[1]);
             }
         }

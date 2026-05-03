@@ -70,12 +70,12 @@ namespace TrafficLedger.Services
             var existingDriver = await driverReadRepository.GetByUserId(model.UserId, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Вам нужно сперва заполнить данные водителя"));
 
-            var existingTransport = await transportReadRepository.GetByTransportCode(model.TransportCode, cancellationToken)
-              .OrThrowIfNull(() => new InvalidOperationException($"Транспорт с номером {model.TransportCode} не существует"));
+            var existingTransport = await transportReadRepository.GetById(model.TransportId, cancellationToken)
+              .OrThrowIfNull(() => new InvalidOperationException($"Транспорт с id {model.TransportId} не существует"));
 
             if (!await transportReadRepository.IsDriverOwnsTransport(existingDriver!.Id, existingTransport!.Id, cancellationToken))
             {
-                throw new InvalidOperationException($"Вы не владеете транспортом с номером {model.TransportCode}, либо ваш запрос ещё не подтверждён");
+                throw new InvalidOperationException("Вы не владеете этим транспортом, либо ваш запрос ещё не подтверждён");
             }
 
             await userReadRepository.GetById(model.UserId, cancellationToken)
@@ -108,12 +108,12 @@ namespace TrafficLedger.Services
             var existingDriver = await driverReadRepository.GetByUserId(model.UserId, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Вам нужно сперва заполнить данные водителя"));
 
-            var existingTransport = await transportReadRepository.GetByTransportCode(model.TransportCode, cancellationToken)
-              .OrThrowIfNull(() => new InvalidOperationException($"Транспорт с номером {model.TransportCode} не существует"));
+            var existingTransport = await transportReadRepository.GetById(model.TransportId, cancellationToken)
+              .OrThrowIfNull(() => new InvalidOperationException($"Транспорт с id {model.TransportId} не существует"));
 
             if (!await transportReadRepository.IsDriverOwnsTransport(existingDriver!.Id, existingTransport!.Id, cancellationToken))
             {
-                throw new InvalidOperationException($"Вы не владеете транспортом с номером {model.TransportCode}");
+                throw new InvalidOperationException($"Вы не владеете этим транспортом");
             }
 
             await userReadRepository.GetById(model.UserId, cancellationToken)

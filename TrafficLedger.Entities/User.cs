@@ -1,4 +1,5 @@
 ﻿using TrafficLedger.Entities.Contracts;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Entities;
 

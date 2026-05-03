@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
-using System.Windows.Forms;
 
 namespace TrafficLedger.Desktop.Infrastructure.Extensions
 {
@@ -32,7 +28,7 @@ namespace TrafficLedger.Desktop.Infrastructure.Extensions
 
             if (errorProvider != null)
             {
-                target.Validating += (_, cancelEventArgs) =>
+                target.Validated += (_, cancelEventArgs) =>
                 {
                     var context = new ValidationContext(source);
                     var result = new List<ValidationResult>();
@@ -77,7 +73,7 @@ namespace TrafficLedger.Desktop.Infrastructure.Extensions
 
             if (errorProvider != null)
             {
-                control.Validating += (_, cancelEventArgs) =>
+                control.Validated += (_, cancelEventArgs) =>
                 {
                     var context = new ValidationContext(source);
                     var result = new List<ValidationResult>();

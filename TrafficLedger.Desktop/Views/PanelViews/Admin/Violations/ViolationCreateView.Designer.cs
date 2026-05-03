@@ -108,7 +108,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
             // 
             textBoxDescription.BackColor = Color.White;
             textBoxDescription.BorderStyle = BorderStyle.FixedSingle;
-            textBoxDescription.Dock = DockStyle.Fill;
             textBoxDescription.Font = new Font("Segoe UI", 9.75F);
             textBoxDescription.ForeColor = Color.FromArgb(0, 0, 0);
             textBoxDescription.Location = new Point(414, 387);
@@ -116,7 +115,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Violations
             textBoxDescription.Multiline = true;
             textBoxDescription.Name = "textBoxDescription";
             tableLayoutPanelMain.SetRowSpan(textBoxDescription, 2);
-            textBoxDescription.Size = new Size(403, 90);
+            textBoxDescription.Size = new Size(287, 90);
             textBoxDescription.TabIndex = 16;
             // 
             // buttonSave

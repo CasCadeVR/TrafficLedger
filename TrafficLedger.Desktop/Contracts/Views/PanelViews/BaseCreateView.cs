@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TrafficLedger.Desktop.Infrastructure.Navigation;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace TrafficLedger.Desktop.Contracts.Views.PanelViews
 {
@@ -70,8 +69,7 @@ namespace TrafficLedger.Desktop.Contracts.Views.PanelViews
                 {
                     errors += error.ErrorMessage + ", ";
                 }
-
-                HandleError($"Исправьте ошибки ввода перед сохранением: {errors}");
+                HandleError($"Исправьте ошибки ввода перед сохранением: {errors[..^2]}");
                 return;
             }
 

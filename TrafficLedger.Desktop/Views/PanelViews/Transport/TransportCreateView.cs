@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using TrafficLedger.Common.Core.Extensions;
 using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Services;
@@ -21,7 +22,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
         private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
         private Transport currentTransport;
         private Driver currentDriver;
-        private List<TransportCategory> currentCategories;
         private bool isUserAdding;
         private bool isInitializingAttachments;
 
@@ -163,7 +163,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
         protected override async void FillControls()
         {
             var categories = await transportCategoryService.GetAll(CancellationToken.None);
-            currentCategories = categories.ToList();
+            var currentCategories = categories.ToList();
 
             comboBoxCategory.DataSource = currentCategories;
             comboBoxCategory.DisplayMember = nameof(TransportCategory.CategoryName);
@@ -186,7 +186,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
 
             labelStatus.Visible = currentTransport != null;
             textBoxStatus.Visible = currentTransport != null;
-            textBoxStatus.Text = CurrentModel.Status.ToString();
+            textBoxStatus.Text = CurrentModel.Status.GetDescription();
 
             if (!isUserAdding)
             {

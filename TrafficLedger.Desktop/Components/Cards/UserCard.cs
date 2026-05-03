@@ -1,4 +1,5 @@
 ﻿using System;
+using TrafficLedger.Common.Core.Extensions;
 using TrafficLedger.Desktop.Contracts.Views.Cards;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Entities;
@@ -37,7 +38,7 @@ namespace TrafficLedger.Desktop.Components.Cards
         private void FillFields()
         {
             login.Text = request.Login;
-            role.Text = request.Role.ToString();
+            role.Text = request.Role.GetDescription();
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)

@@ -2,7 +2,7 @@
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.FineCreate;
 using TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions;
-using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Desktop.Infrastructure.Navigation
 {

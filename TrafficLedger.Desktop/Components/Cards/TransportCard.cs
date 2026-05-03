@@ -1,8 +1,10 @@
 ﻿using System;
+using TrafficLedger.Common.Core.Extensions;
 using TrafficLedger.Desktop.Contracts.Enums;
 using TrafficLedger.Desktop.Contracts.Views.Cards;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Desktop.Components.Cards
 {
@@ -74,7 +76,7 @@ namespace TrafficLedger.Desktop.Components.Cards
             model.Text = request.Model;
             number.Text = request.TransportCode;
             category.Text = request.TransportCategory.CategoryName;
-            status.Text = Enum.GetName(request.Status);
+            status.Text = request.Status.GetDescription();
             toolTip.SetToolTip(category, request.TransportCategory.Description);
         }
 
