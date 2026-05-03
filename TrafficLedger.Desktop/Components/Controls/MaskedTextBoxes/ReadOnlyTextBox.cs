@@ -1,16 +1,16 @@
 ﻿using TrafficLedger.Desktop.Contracts;
 
-namespace TrafficLedger.Desktop.Components.Controls.TextBoxes
+namespace TrafficLedger.Desktop.Components.Controls.MaskedTextBoxes
 {
     /// <summary>
-    /// Textbox только для чтения от <see cref="BaseTextBox">
+    /// Textbox только для чтения от <see cref="BaseMaskedTextBox">
     /// </summary>
-    public class ReadOnlyTextBox : BaseTextBox
+    public class ReadOnlyMaskedTextBox : BaseMaskedTextBox
     {
         /// <summary>
-        /// Инициализирует новый экземпляр <see cref="ReadOnlyTextBox"/>
+        /// Инициализирует новый экземпляр <see cref="ReadOnlyMaskedTextBox"/>
         /// </summary>
-        public ReadOnlyTextBox()
+        public ReadOnlyMaskedTextBox()
         {
             ReadOnly = true;
         }

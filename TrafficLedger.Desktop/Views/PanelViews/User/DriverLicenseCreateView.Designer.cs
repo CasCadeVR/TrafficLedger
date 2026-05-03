@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DriverLicenseCreateView));
             tableLayoutPanelMain = new TableLayoutPanel();
-            buttonSave = new TrafficLedger.Desktop.Components.CommonButton();
             labelStatus = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxStatus = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             listBoxCategories = new ListBox();
@@ -42,8 +41,9 @@
             labelBirthDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             dateTimePickerDateOfIssue = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
             labelFullName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            textBoxLicenseNumber = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
             licensePhoto = new TrafficLedger.Desktop.Components.Controls.PictureBoxes.FunctionalPictureBox();
+            buttonSave = new TrafficLedger.Desktop.Components.CommonButton();
+            textBoxLicenseNumber = new TrafficLedger.Desktop.Components.Controls.MaskedTextBoxes.DefaultMaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
@@ -76,9 +76,9 @@
             tableLayoutPanelMain.Controls.Add(labelBirthDate, 0, 4);
             tableLayoutPanelMain.Controls.Add(dateTimePickerDateOfIssue, 1, 4);
             tableLayoutPanelMain.Controls.Add(labelFullName, 0, 3);
-            tableLayoutPanelMain.Controls.Add(textBoxLicenseNumber, 1, 3);
             tableLayoutPanelMain.Controls.Add(licensePhoto, 0, 0);
             tableLayoutPanelMain.Controls.Add(buttonSave, 0, 10);
+            tableLayoutPanelMain.Controls.Add(textBoxLicenseNumber, 1, 3);
             tableLayoutPanelMain.Dock = DockStyle.Fill;
             tableLayoutPanelMain.Location = new Point(0, 0);
             tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
@@ -99,25 +99,6 @@
             tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanelMain.Size = new Size(821, 577);
             tableLayoutPanelMain.TabIndex = 0;
-            // 
-            // buttonSave
-            // 
-            buttonSave.Anchor = AnchorStyles.None;
-            buttonSave.BackColor = Color.Green;
-            tableLayoutPanelMain.SetColumnSpan(buttonSave, 2);
-            buttonSave.FlatAppearance.BorderColor = Color.DarkGray;
-            buttonSave.FlatStyle = FlatStyle.Flat;
-            buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
-            buttonSave.ForeColor = Color.White;
-            buttonSave.Location = new Point(208, 483);
-            buttonSave.Margin = new Padding(4, 3, 4, 3);
-            buttonSave.Name = "buttonSave";
-            buttonSave.Padding = new Padding(9, 5, 9, 5);
-            buttonSave.Size = new Size(404, 42);
-            buttonSave.TabIndex = 8;
-            buttonSave.Text = "Отправить заявку";
-            buttonSave.UseVisualStyleBackColor = false;
-            buttonSave.Click += buttonSave_Click;
             // 
             // labelStatus
             // 
@@ -265,19 +246,6 @@
             labelFullName.TabIndex = 0;
             labelFullName.Text = "Номер удостоверения: ";
             // 
-            // textBoxLicenseNumber
-            // 
-            textBoxLicenseNumber.Anchor = AnchorStyles.Left;
-            textBoxLicenseNumber.BackColor = Color.White;
-            textBoxLicenseNumber.BorderStyle = BorderStyle.FixedSingle;
-            textBoxLicenseNumber.Font = new Font("Segoe UI", 9.75F);
-            textBoxLicenseNumber.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxLicenseNumber.Location = new Point(414, 155);
-            textBoxLicenseNumber.Margin = new Padding(4, 3, 4, 3);
-            textBoxLicenseNumber.Name = "textBoxLicenseNumber";
-            textBoxLicenseNumber.Size = new Size(287, 25);
-            textBoxLicenseNumber.TabIndex = 1;
-            // 
             // licensePhoto
             // 
             licensePhoto.Anchor = AnchorStyles.Bottom;
@@ -291,6 +259,38 @@
             licensePhoto.SizeMode = PictureBoxSizeMode.StretchImage;
             licensePhoto.TabIndex = 16;
             licensePhoto.TabStop = false;
+            // 
+            // buttonSave
+            // 
+            buttonSave.Anchor = AnchorStyles.None;
+            buttonSave.BackColor = Color.Green;
+            tableLayoutPanelMain.SetColumnSpan(buttonSave, 2);
+            buttonSave.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonSave.FlatStyle = FlatStyle.Flat;
+            buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonSave.ForeColor = Color.White;
+            buttonSave.Location = new Point(208, 483);
+            buttonSave.Margin = new Padding(4, 3, 4, 3);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Padding = new Padding(9, 5, 9, 5);
+            buttonSave.Size = new Size(404, 42);
+            buttonSave.TabIndex = 8;
+            buttonSave.Text = "Отправить заявку";
+            buttonSave.UseVisualStyleBackColor = false;
+            buttonSave.Click += buttonSave_Click;
+            // 
+            // textBoxLicenseNumber
+            // 
+            textBoxLicenseNumber.Anchor = AnchorStyles.Left;
+            textBoxLicenseNumber.BackColor = Color.White;
+            textBoxLicenseNumber.BorderStyle = BorderStyle.FixedSingle;
+            textBoxLicenseNumber.Font = new Font("Segoe UI", 9.75F);
+            textBoxLicenseNumber.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxLicenseNumber.Location = new Point(413, 155);
+            textBoxLicenseNumber.Mask = "00 00 000000";
+            textBoxLicenseNumber.Name = "textBoxLicenseNumber";
+            textBoxLicenseNumber.Size = new Size(288, 25);
+            textBoxLicenseNumber.TabIndex = 17;
             // 
             // DriverLicenseCreateView
             // 
@@ -315,7 +315,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private Components.Labels.PrimaryLabel labelFullName;
         private Components.Labels.PrimaryLabel labelBirthDate;
-        private Components.Controls.TextBoxes.DefaultTextBox textBoxLicenseNumber;
         private Components.Labels.PrimaryLabel labelBirthPlace;
         private Components.Controls.TextBoxes.DefaultTextBox textBoxIssuedBy;
         private Components.Controls.DateTimePickers.DefaultDateTimePicker dateTimePickerDateOfIssue;
@@ -327,5 +326,6 @@
         private Components.Labels.PrimaryLabel labelStatus;
         private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxStatus;
         private Components.Controls.PictureBoxes.FunctionalPictureBox licensePhoto;
+        private Components.Controls.MaskedTextBoxes.DefaultMaskedTextBox textBoxLicenseNumber;
     }
 }

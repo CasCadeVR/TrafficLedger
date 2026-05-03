@@ -18,6 +18,7 @@ namespace TrafficLedger.Context.SeedData
 
                 new TransportCategory
                 {
+                    Id = Guid.Parse("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
                     CategoryName = "B",
                     Description = "автомобили (за исключением транспортных средств категории \"A\"), разрешенная максимальная масса которых не превышает 3500 килограммов и число сидячих мест которых, помимо сиденья водителя, не превышает восьми; автомобили категории \"B\", сцепленные с прицепом, разрешенная максимальная масса которого не превышает 750 килограммов; автомобили категории \"B\", сцепленные с прицепом, разрешенная максимальная масса которого превышает 750 килограммов, но не превышает массы автомобиля без нагрузки, при условии, что общая разрешенная максимальная масса такого состава транспортных средств не превышает 3500 килограммов;",
                 },
@@ -117,7 +118,6 @@ namespace TrafficLedger.Context.SeedData
 
             foreach (var category in Categories)
             {
-                category.Id = Guid.NewGuid();
                 category.CreatedAt = DateTimeOffset.UtcNow;
                 category.UpdatedAt = DateTimeOffset.UtcNow;
                 await context.Set<TransportCategory>().AddAsync(category);
@@ -136,7 +136,6 @@ namespace TrafficLedger.Context.SeedData
 
             foreach (var category in Categories)
             {
-                category.Id = Guid.NewGuid();
                 category.CreatedAt = DateTimeOffset.UtcNow;
                 category.UpdatedAt = DateTimeOffset.UtcNow;
                 context.Set<TransportCategory>().Add(category);

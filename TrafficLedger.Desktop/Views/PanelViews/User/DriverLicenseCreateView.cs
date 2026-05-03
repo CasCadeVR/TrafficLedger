@@ -94,7 +94,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
         protected override void SetupBindings()
         {
-
             textBoxLicenseNumber.AddBindings(x => x.Text, CurrentModel, x => x.LicenseNumber, errorProvider);
             textBoxIssuedBy.AddBindings(x => x.Text, CurrentModel, x => x.IssuedBy, errorProvider);
             textBoxResidence.AddBindings(x => x.Text, CurrentModel, x => x.Residence, errorProvider);

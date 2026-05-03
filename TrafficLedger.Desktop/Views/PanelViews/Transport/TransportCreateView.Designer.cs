@@ -34,11 +34,9 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             tableLayoutPanelMain = new TableLayoutPanel();
             multiImageUploader = new TrafficLedger.Desktop.Components.ComplexControls.MultiImageUploader();
             labelCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            textBoxCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
             labelRegion = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxRegion = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
             labelYear = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            textBoxYear = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
             labelBrand = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxBrand = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
             labelModel = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
@@ -52,8 +50,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelOwnershipDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             ownershipDateTimePicker = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
             labelStatus = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            textBoxStatus = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             buttonSave = new CommonButton();
+            textBoxStatus = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            textBoxCode = new TrafficLedger.Desktop.Components.Controls.MaskedTextBoxes.DefaultMaskedTextBox();
+            textBoxYear = new TrafficLedger.Desktop.Components.Controls.MaskedTextBoxes.DefaultMaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
@@ -77,11 +77,9 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelMain.Controls.Add(multiImageUploader, 0, 11);
             tableLayoutPanelMain.Controls.Add(labelCode, 0, 1);
-            tableLayoutPanelMain.Controls.Add(textBoxCode, 1, 1);
             tableLayoutPanelMain.Controls.Add(labelRegion, 0, 2);
             tableLayoutPanelMain.Controls.Add(textBoxRegion, 1, 2);
             tableLayoutPanelMain.Controls.Add(labelYear, 0, 3);
-            tableLayoutPanelMain.Controls.Add(textBoxYear, 1, 3);
             tableLayoutPanelMain.Controls.Add(labelBrand, 0, 4);
             tableLayoutPanelMain.Controls.Add(textBoxBrand, 1, 4);
             tableLayoutPanelMain.Controls.Add(labelModel, 0, 5);
@@ -97,6 +95,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             tableLayoutPanelMain.Controls.Add(labelStatus, 0, 10);
             tableLayoutPanelMain.Controls.Add(buttonSave, 0, 14);
             tableLayoutPanelMain.Controls.Add(textBoxStatus, 1, 10);
+            tableLayoutPanelMain.Controls.Add(textBoxCode, 1, 1);
+            tableLayoutPanelMain.Controls.Add(textBoxYear, 1, 3);
             tableLayoutPanelMain.Dock = DockStyle.Fill;
             tableLayoutPanelMain.Location = new Point(0, 0);
             tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
@@ -148,19 +148,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelCode.TabIndex = 6;
             labelCode.Text = "Регистрационный номер: ";
             // 
-            // textBoxCode
-            // 
-            textBoxCode.Anchor = AnchorStyles.Left;
-            textBoxCode.BackColor = Color.White;
-            textBoxCode.BorderStyle = BorderStyle.FixedSingle;
-            textBoxCode.Font = new Font("Segoe UI", 9.75F);
-            textBoxCode.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxCode.Location = new Point(414, 25);
-            textBoxCode.Margin = new Padding(4, 3, 4, 3);
-            textBoxCode.Name = "textBoxCode";
-            textBoxCode.Size = new Size(287, 25);
-            textBoxCode.TabIndex = 10;
-            // 
             // labelRegion
             // 
             labelRegion.Anchor = AnchorStyles.Right;
@@ -199,19 +186,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelYear.Size = new Size(121, 17);
             labelYear.TabIndex = 15;
             labelYear.Text = "Год изготовления: ";
-            // 
-            // textBoxYear
-            // 
-            textBoxYear.Anchor = AnchorStyles.Left;
-            textBoxYear.BackColor = Color.White;
-            textBoxYear.BorderStyle = BorderStyle.FixedSingle;
-            textBoxYear.Font = new Font("Segoe UI", 9.75F);
-            textBoxYear.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxYear.Location = new Point(414, 121);
-            textBoxYear.Margin = new Padding(4, 3, 4, 3);
-            textBoxYear.Name = "textBoxYear";
-            textBoxYear.Size = new Size(287, 25);
-            textBoxYear.TabIndex = 16;
             // 
             // labelBrand
             // 
@@ -385,19 +359,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             labelStatus.TabIndex = 24;
             labelStatus.Text = "Статус заявки: ";
             // 
-            // textBoxStatus
-            // 
-            textBoxStatus.Anchor = AnchorStyles.Left;
-            textBoxStatus.BackColor = Color.GhostWhite;
-            textBoxStatus.BorderStyle = BorderStyle.None;
-            textBoxStatus.Font = new Font("Consolas", 9.75F);
-            textBoxStatus.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxStatus.Location = new Point(413, 462);
-            textBoxStatus.Name = "textBoxStatus";
-            textBoxStatus.ReadOnly = true;
-            textBoxStatus.Size = new Size(288, 16);
-            textBoxStatus.TabIndex = 25;
-            // 
             // buttonSave
             // 
             buttonSave.Anchor = AnchorStyles.None;
@@ -416,6 +377,45 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             buttonSave.Text = "Сохранить";
             buttonSave.UseVisualStyleBackColor = false;
             buttonSave.Click += buttonSave_Click;
+            // 
+            // textBoxStatus
+            // 
+            textBoxStatus.Anchor = AnchorStyles.Left;
+            textBoxStatus.BackColor = Color.GhostWhite;
+            textBoxStatus.BorderStyle = BorderStyle.None;
+            textBoxStatus.Font = new Font("Consolas", 9.75F);
+            textBoxStatus.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxStatus.Location = new Point(413, 462);
+            textBoxStatus.Name = "textBoxStatus";
+            textBoxStatus.ReadOnly = true;
+            textBoxStatus.Size = new Size(288, 16);
+            textBoxStatus.TabIndex = 25;
+            // 
+            // textBoxCode
+            // 
+            textBoxCode.Anchor = AnchorStyles.Left;
+            textBoxCode.BackColor = Color.White;
+            textBoxCode.BorderStyle = BorderStyle.FixedSingle;
+            textBoxCode.Font = new Font("Segoe UI", 9.75F);
+            textBoxCode.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxCode.Location = new Point(413, 25);
+            textBoxCode.Mask = ">AAAAAAAAA";
+            textBoxCode.Name = "textBoxCode";
+            textBoxCode.Size = new Size(287, 25);
+            textBoxCode.TabIndex = 28;
+            // 
+            // textBoxYear
+            // 
+            textBoxYear.Anchor = AnchorStyles.Left;
+            textBoxYear.BackColor = Color.White;
+            textBoxYear.BorderStyle = BorderStyle.FixedSingle;
+            textBoxYear.Font = new Font("Segoe UI", 9.75F);
+            textBoxYear.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxYear.Location = new Point(413, 121);
+            textBoxYear.Mask = "0000";
+            textBoxYear.Name = "textBoxYear";
+            textBoxYear.Size = new Size(288, 25);
+            textBoxYear.TabIndex = 29;
             // 
             // TransportCreateView
             // 
@@ -445,11 +445,9 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
         private Components.Labels.PrimaryLabel labelRegion;
         private Components.Controls.TextBoxes.DefaultTextBox textBoxBrand;
         private Components.Labels.PrimaryLabel labelBrand;
-        private Components.Controls.TextBoxes.DefaultTextBox textBoxCode;
         private Components.Labels.PrimaryLabel labelYear;
         private Components.Controls.TextBoxes.DefaultTextBox textBoxRegion;
         private Components.Labels.PrimaryLabel labelModel;
-        private Components.Controls.TextBoxes.DefaultTextBox textBoxYear;
         private Components.Labels.PrimaryLabel labelMileAge;
         private Components.Controls.TextBoxes.DefaultTextBox textBoxModel;
         private Components.Controls.NumericUpDowns.DefaultNumericUpDown numericUpDownMileAge;
@@ -460,5 +458,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
         private Components.Controls.TextBoxes.ReadOnlyTextBox textBoxStatus;
         private Components.Labels.PrimaryLabel labelOwnershipDate;
         private Components.Controls.DateTimePickers.DefaultDateTimePicker ownershipDateTimePicker;
+        private Components.Controls.MaskedTextBoxes.DefaultMaskedTextBox textBoxCode;
+        private Components.Controls.MaskedTextBoxes.DefaultMaskedTextBox textBoxYear;
     }
 }

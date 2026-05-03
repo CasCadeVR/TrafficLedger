@@ -16,7 +16,8 @@ public class DriverLicenseCreateModel : RequestedCreateModel
     /// </summary>
     [Required(ErrorMessage = "Номер удостоверения обязателен")]
     [StringLength(DriverLicenseValidationRules.LicenseNumberLength,
-        ErrorMessage = "Номер удостоверения должен быть 12 символов")]
+        MinimumLength = DriverLicenseValidationRules.LicenseNumberLength,
+        ErrorMessage = "Номер удостоверения должен быть 10 символов")]
     public string LicenseNumber { get; set; } = string.Empty;
 
     /// <summary>

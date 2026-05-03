@@ -49,7 +49,7 @@ namespace TrafficLedger.Context.SeedData
             var adminPasswordHash = SecurityHelper.HashPassword32("admin", adminSaltValue);
             var admin = new User()
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.Parse("aaa85f64-5717-4562-b3fc-2c963f66afa6"),
                 Login = "admin",
                 Role = Role.Admin,
                 PasswordSalt = adminSaltValue,
@@ -62,7 +62,6 @@ namespace TrafficLedger.Context.SeedData
             var userPasswordHash = SecurityHelper.HashPassword32("user", userSaltValue);
             var user = new User()
             {
-                Id = Guid.NewGuid(),
                 Login = "user",
                 Role = Role.Default,
                 PasswordSalt = userSaltValue,
@@ -75,7 +74,6 @@ namespace TrafficLedger.Context.SeedData
             var policePasswordHash = SecurityHelper.HashPassword32("police", policeSaltValue);
             var police = new User()
             {
-                Id = Guid.NewGuid(),
                 Login = "police",
                 Role = Role.TrafficPolice,
                 PasswordSalt = policeSaltValue,
