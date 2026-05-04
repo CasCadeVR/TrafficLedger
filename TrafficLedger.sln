@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36811.4
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11716.218 insiders
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrafficLedger.Context", "TrafficLedger.Context\TrafficLedger.Context.csproj", "{479C9CA6-2E6F-4F31-92CE-B1F6BB12D23C}"
 EndProject
@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLedger.Services", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLedger.Services.Contracts", "TrafficLedger.Services.Contracts\TrafficLedger.Services.Contracts.csproj", "{E6C2BCFB-E0D3-49C3-84A4-E4383EAF84E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLedger.Storage.Tests", "TrafficLedger.Storage.Tests\TrafficLedger.Storage.Tests.csproj", "{D2EC0BA0-F0EE-4147-9E62-C715C5F3EDA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLedger.Database.Tests", "TrafficLedger.Storage.Tests\TrafficLedger.Database.Tests.csproj", "{D2EC0BA0-F0EE-4147-9E62-C715C5F3EDA4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLedger.Desktop", "TrafficLedger.Desktop\TrafficLedger.Desktop.csproj", "{87A87EBD-7402-47CB-8E9C-3C1E0F0BA516}"
 EndProject
@@ -144,6 +144,7 @@ Global
 		{83B1787A-C9F8-417E-8B2E-CF82635073E1} = {B3B666C7-DE42-4A55-B743-5EFC2BA615B2}
 		{6ADE4472-1821-409C-A1AC-B3BFF723408B} = {B3B666C7-DE42-4A55-B743-5EFC2BA615B2}
 		{218C45CD-699F-4800-B5BE-8C5102D52A3F} = {B3B666C7-DE42-4A55-B743-5EFC2BA615B2}
+		{D2EC0BA0-F0EE-4147-9E62-C715C5F3EDA4} = {B3B666C7-DE42-4A55-B743-5EFC2BA615B2}
 		{2BE5758D-3062-4223-B3D4-D4BDE4745AE5} = {A9E7F351-593A-4599-9DD6-052B7BB96CEE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

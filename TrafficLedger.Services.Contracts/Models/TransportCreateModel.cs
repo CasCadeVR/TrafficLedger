@@ -14,24 +14,26 @@ public class TransportCreateModel : RequestedCreateModel
     /// <summary>
     /// Регистрационный номер
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
-    [StringLength(TransportValidationRules.TransportCodeLength, 
-        MinimumLength = TransportValidationRules.TransportCodeLength, 
+    [Required(ErrorMessage = "Регистрационный номер обязателен")]
+    [StringLength(TransportValidationRules.TransportCodeMaxLength, 
+        MinimumLength = TransportValidationRules.TransportCodeMinLength, 
         ErrorMessage = "Регистрационный номер должен быть длиной 9 символов")]
+    [RegularExpression(@"^[ABEKMHOPCTYX]{1}\d{3}[ABEKMHOPCTYX]{2}\d{2,3}$", 
+        ErrorMessage = "Формат регистрационного номера не соответсвует стандарту")]
     public string TransportCode { get; set; } = string.Empty;
 
     /// <summary>
     /// Регион изготовления
     /// </summary>
     [StringLength(TransportValidationRules.RegionMaxLength,
-    MinimumLength = TransportValidationRules.RegionMinLength,
+        MinimumLength = TransportValidationRules.RegionMinLength,
         ErrorMessage = "Регион изготовления должен быть от 3 до 255 символов")]
     public string Region { get; set; } = string.Empty;
 
     /// <summary>
     /// Марка
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Марка обязательна")]
     [StringLength(TransportValidationRules.BrandMaxLength,
         MinimumLength = TransportValidationRules.BrandMinLength,
         ErrorMessage = "Марка должна быть от 3 до 255 символов")]

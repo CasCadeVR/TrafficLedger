@@ -27,6 +27,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+            SearchHintMessage = "Введите ФИО водителя или его уникальный идентификатор";
         }
 
         protected override async Task<IEnumerable<Driver>> LoadItemsAsync(CancellationToken cancellationToken)

@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace TrafficLedger.Desktop.Contracts
+﻿namespace TrafficLedger.Desktop.Contracts
 {
     /// <summary>
     /// Схема шрифтов приложения

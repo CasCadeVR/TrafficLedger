@@ -1,4 +1,5 @@
-﻿using TrafficLedger.Desktop.Infrastructure.Models;
+﻿using TrafficLedger.Common.Core.Extensions;
+using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
@@ -85,7 +86,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Payments
 
             if (currentPayment != null)
             {
-                textBoxStatus.Text = Enum.GetName(currentPayment.Status);
+                textBoxStatus.Text = currentPayment.Status.GetDescription();
             }
 
             multiImageUploader.Clear();

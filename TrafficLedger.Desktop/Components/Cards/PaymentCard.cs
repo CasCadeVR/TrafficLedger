@@ -1,6 +1,6 @@
-﻿using TrafficLedger.Desktop.Contracts.Views.Cards;
+﻿using TrafficLedger.Common.Core.Extensions;
+using TrafficLedger.Desktop.Contracts.Views.Cards;
 using TrafficLedger.Desktop.Services;
-using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
 using TrafficLedger.Repositories.Contracts.Models.Payments;
 
@@ -45,21 +45,7 @@ namespace TrafficLedger.Desktop.Components.Cards
 
         private void FillFields(PaymentFineDBModel request)
         {
-            switch(request.Status)
-            {
-                case RequestStatus.Pending:
-                    status.Text = "В процессе";
-                    break;
-
-                case RequestStatus.Approved:
-                    status.Text = "Одобрен";
-                    break;
-
-                case RequestStatus.Rejected:
-                    status.Text = "Отклонён";
-                    break;
-            }
-
+            status.Text = request.Status.GetDescription();
             paymentDate.Text = request.Date.DateTime.ToLongDateString();
             fineDate.Text = request.Fine.Date.DateTime.ToLongDateString();
             violationName.Text = request.Fine.Violation.Name;

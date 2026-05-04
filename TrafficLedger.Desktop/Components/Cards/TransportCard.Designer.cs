@@ -289,7 +289,7 @@ namespace TrafficLedger.Desktop.Components.Cards
             buttonAddFine.Padding = new Padding(8, 4, 8, 4);
             buttonAddFine.Size = new Size(185, 41);
             buttonAddFine.TabIndex = 18;
-            buttonAddFine.Text = "Добавить штраф";
+            buttonAddFine.Text = "Оформить штраф";
             buttonAddFine.UseVisualStyleBackColor = false;
             buttonAddFine.Click += buttonAddFine_Click;
             // 

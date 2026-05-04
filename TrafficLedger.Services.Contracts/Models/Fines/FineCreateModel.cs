@@ -19,7 +19,7 @@ public class FineCreateModel
     /// <summary>
     /// Адрес, по которому произошло нарушение
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Адрес обязателен")]
     public string Address { get; set; } = string.Empty;
 
     /// <summary>

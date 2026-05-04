@@ -12,6 +12,11 @@ namespace TrafficLedger.Desktop.Components.Controls.SearchBars
             tableLayoutPanel.BackColor = ColorScheme.MenuButton;
         }
 
+        public void SetSearchPlaceholder(string text)
+        {
+            searchTerm.PlaceholderText = text;
+        }
+
         private void search_Click(object sender, EventArgs e)
         {
             Clicked?.Invoke();

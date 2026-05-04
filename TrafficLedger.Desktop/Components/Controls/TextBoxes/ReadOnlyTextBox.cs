@@ -22,7 +22,7 @@ namespace TrafficLedger.Desktop.Components.Controls.TextBoxes
             BackColor = ColorScheme.MainPanelBackground;
             ForeColor = ColorScheme.TextPrimary;
             Font = FontScheme.Monospace;
-            BorderStyle = System.Windows.Forms.BorderStyle.None;
+            BorderStyle = BorderStyle.None;
         }
     }
 }

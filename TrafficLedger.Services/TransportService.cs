@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using TrafficLedger.Common.Core.Extensions;
+﻿using TrafficLedger.Common.Core.Extensions;
 using TrafficLedger.Common.Services.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
@@ -198,7 +197,7 @@ namespace TrafficLedger.Services
             existingTransport.TransportCategoryId = model.TransportCategoryId;
 
             var existingOwnerships = existingTransport.Ownerships;
-            var existingOwnershipsDictionary = existingOwnerships.ToDictionary(x => x.TransportId);
+            var existingOwnershipsDictionary = existingOwnerships.ToDictionary(x => x.DriverId);
 
             var modelOwnerships = model.Ownerships.Select(x =>
                new Ownership()
@@ -210,9 +209,10 @@ namespace TrafficLedger.Services
 
             foreach (var ownership in modelOwnerships)
             {
-                if (existingOwnershipsDictionary.TryGetValue(ownership.TransportId, out var foundOwnership))
+                if (existingOwnershipsDictionary.TryGetValue(ownership.DriverId, out var foundOwnership))
                 {
                     foundOwnership.Date = ownership.Date;
+                    foundOwnership.DriverId = ownership.DriverId;
                     foundOwnership.TransportId = ownership.TransportId;
                     ownershipWriteRepository.Update(foundOwnership);
                 }
@@ -223,7 +223,7 @@ namespace TrafficLedger.Services
                 }
             }
 
-            var ownershipsIdsToDelete = existingOwnerships.Select(x => x.TransportId).Except(modelOwnerships.Select(x => x.TransportId)).ToList();
+            var ownershipsIdsToDelete = existingOwnerships.Select(x => x.DriverId).Except(modelOwnerships.Select(x => x.DriverId)).ToList();
 
             foreach (var ownershipId in ownershipsIdsToDelete)
             {

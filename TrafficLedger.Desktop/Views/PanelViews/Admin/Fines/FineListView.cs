@@ -23,6 +23,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Fines
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+            SearchHintMessage = "Введите код нарушения, номер транспорта, наименование нарушения или дату штрафа";
         }
 
         protected override async Task<IEnumerable<Fine>> LoadItemsAsync(CancellationToken cancellationToken)

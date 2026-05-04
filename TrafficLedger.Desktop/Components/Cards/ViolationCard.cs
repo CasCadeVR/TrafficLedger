@@ -2,6 +2,7 @@
 using TrafficLedger.Desktop.Contracts.Views.Cards;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Desktop.Components.Cards
 {
@@ -37,7 +38,7 @@ namespace TrafficLedger.Desktop.Components.Cards
             description.Text = request.Description;
             code.Text = request.ViolationCode;
             finePrice.Text = request.MinFinePrice.ToString();
-            if (request.MaxFinePrice != request.MinFinePrice)
+            if (request.MaxFinePrice > request.MinFinePrice)
             {
                 finePrice.Text += $" - {request.MaxFinePrice.ToString()}";
             }

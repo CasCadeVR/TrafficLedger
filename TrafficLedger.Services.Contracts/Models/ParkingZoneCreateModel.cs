@@ -20,7 +20,7 @@ public class ParkingZoneCreateModel
     /// <summary>
     /// Цена парковки в час
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
+    [Required(ErrorMessage = "Цена парковки в час обязательна")]
     public decimal HourlyRate { get; set; }
 
     /// <summary>

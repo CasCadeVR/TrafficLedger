@@ -28,66 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.title = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
-            this.SuspendLayout();
+            tableLayoutPanel = new TableLayoutPanel();
+            pictureBox = new PictureBox();
+            title = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            tableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
+            SuspendLayout();
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.ColumnCount = 1;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.Controls.Add(this.pictureBox, 0, 0);
-            this.tableLayoutPanel.Controls.Add(this.title, 0, 1);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 2;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.33334F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.66667F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(150, 150);
-            this.tableLayoutPanel.TabIndex = 2;
+            tableLayoutPanel.ColumnCount = 1;
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel.Controls.Add(pictureBox, 0, 0);
+            tableLayoutPanel.Controls.Add(title, 0, 1);
+            tableLayoutPanel.Dock = DockStyle.Fill;
+            tableLayoutPanel.Location = new Point(0, 0);
+            tableLayoutPanel.Margin = new Padding(4, 3, 4, 3);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 2;
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 67.89474F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 32.1052628F));
+            tableLayoutPanel.Size = new Size(175, 190);
+            tableLayoutPanel.TabIndex = 2;
             // 
             // pictureBox
             // 
-            this.pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox.Location = new System.Drawing.Point(5, 5);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(140, 112);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
+            pictureBox.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox.Dock = DockStyle.Fill;
+            pictureBox.Location = new Point(6, 6);
+            pictureBox.Margin = new Padding(6);
+            pictureBox.Name = "pictureBox";
+            pictureBox.Size = new Size(163, 117);
+            pictureBox.TabIndex = 0;
+            pictureBox.TabStop = false;
             // 
             // title
             // 
-            this.title.AutoSize = true;
-            this.title.Dock = System.Windows.Forms.DockStyle.Top;
-            this.title.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.title.Location = new System.Drawing.Point(0, 122);
-            this.title.Margin = new System.Windows.Forms.Padding(0);
-            this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(150, 17);
-            this.title.TabIndex = 1;
-            this.title.Text = "Title here...";
-            this.title.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            title.AutoSize = true;
+            title.Dock = DockStyle.Top;
+            title.Font = new Font("Segoe UI", 9.75F);
+            title.ForeColor = Color.FromArgb(0, 0, 0);
+            title.Location = new Point(0, 129);
+            title.Margin = new Padding(0);
+            title.Name = "title";
+            title.Size = new Size(175, 17);
+            title.TabIndex = 1;
+            title.Text = "Title here...";
+            title.TextAlign = ContentAlignment.TopCenter;
             // 
             // MenuButton
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel);
-            this.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
-            this.Name = "MenuButton";
-            this.Click += new System.EventHandler(this.MenuButton_Click);
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(tableLayoutPanel);
+            Cursor = Cursors.Hand;
+            Margin = new Padding(0, 0, 0, 5);
+            Name = "MenuButton";
+            Size = new Size(175, 190);
+            Click += MenuButton_Click;
+            tableLayoutPanel.ResumeLayout(false);
+            tableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
+            ResumeLayout(false);
 
         }
 

@@ -5,6 +5,7 @@ using TrafficLedger.Desktop.Infrastructure.Navigation;
 using TrafficLedger.Desktop.Views.PanelViews.Payments;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Fines
@@ -24,6 +25,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
 
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
+            SearchHintMessage = "Введите дату, название нарушения или код нарушения";
         }
 
         /// <summary>

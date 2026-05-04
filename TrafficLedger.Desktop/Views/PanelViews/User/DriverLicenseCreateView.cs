@@ -1,4 +1,5 @@
-﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
+﻿using TrafficLedger.Common.Core.Extensions;
+using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.Wrappers;
@@ -93,7 +94,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
         protected override void SetupBindings()
         {
-
             textBoxLicenseNumber.AddBindings(x => x.Text, CurrentModel, x => x.LicenseNumber, errorProvider);
             textBoxIssuedBy.AddBindings(x => x.Text, CurrentModel, x => x.IssuedBy, errorProvider);
             textBoxResidence.AddBindings(x => x.Text, CurrentModel, x => x.Residence, errorProvider);
@@ -174,7 +174,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
             labelStatus.Visible = currentDriverLicense != null;
             textBoxStatus.Visible = currentDriverLicense != null;
-            textBoxStatus.Text = CurrentModel.Status.ToString();
+            textBoxStatus.Text = CurrentModel.Status.GetDescription();
 
             if (CurrentModel.Attachment != null)
             {

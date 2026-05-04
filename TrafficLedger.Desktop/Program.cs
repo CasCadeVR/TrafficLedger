@@ -1,5 +1,4 @@
-using System.Configuration;
-using System.Diagnostics;
+﻿using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -30,154 +29,163 @@ using TrafficLedger.Repositories.WriteRepositories;
 using TrafficLedger.Services;
 using TrafficLedger.Services.Contracts.Interfaces;
 
-namespace TrafficLedger.Desktop
+namespace TrafficLedger.Desktop;
+
+internal static class Program
 {
-    internal static class Program
+    /// <summary>
+    /// Главный метод приложения
+    /// </summary>
+    [STAThread]
+    static void Main()
     {
-        /// <summary>
-        /// ������� ����� ���������
-        /// </summary>
-        [STAThread]
-        static void Main()
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+
+        var services = new ServiceCollection();
+
+        ConfigureServices(services);
+
+        var serviceProvider = services.BuildServiceProvider();
+
+        var context = serviceProvider.GetRequiredService<TrafficLedgerContext>();
+        if (!context.Database.CanConnect())
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-            var services = new ServiceCollection();
-
-            ConfigureServices(services);
-
-            var serviceProvider = services.BuildServiceProvider();
-
-            var mainForm = serviceProvider.GetRequiredService<MainView>();
-
-            Application.Run(mainForm);
+            MessageBox.Show("Не удалось подключиться к базе данных. Проверьте сетевое соединение и повторите попытку",
+                "Ошибка",
+                MessageBoxButtons.OK, icon:
+                MessageBoxIcon.Error);
+            return;
         }
 
-        private static void ConfigureServices(IServiceCollection services)
+        var mainForm = serviceProvider.GetRequiredService<MainView>();
+
+        Application.Run(mainForm);
+    }
+
+    private static void ConfigureServices(IServiceCollection services)
+    {
+        // Database
+        var connectionString = ConfigurationManager.ConnectionStrings["TrafficLedgerConnectionString"]?.ConnectionString;
+
+        services.AddDbContext<TrafficLedgerContext>(options =>
         {
-            // Database
-            var connectionString = ConfigurationManager.ConnectionStrings["TrafficLedgerConnectionString"]?.ConnectionString;
+            options.UseSqlServer(connectionString).LogTo(
+                message => Console.WriteLine(message),
+                [DbLoggerCategory.Database.Command.Name],
+                LogLevel.Information);
+        });
 
-            services.AddDbContext<TrafficLedgerContext>(options =>
-            {
-                options.UseSqlServer(connectionString).LogTo(
-                    message => Debug.WriteLine(message),
-                    new[] { DbLoggerCategory.Database.Command.Name },
-                    LogLevel.Information);
-            });
+        services.AddScoped<IWriter>(x => x.GetRequiredService<TrafficLedgerContext>());
+        services.AddScoped<IReader>(x => x.GetRequiredService<TrafficLedgerContext>());
+        services.AddScoped<IUnitOfWork>(x => x.GetRequiredService<TrafficLedgerContext>());
 
-            services.AddScoped<IWriter>(x => x.GetRequiredService<TrafficLedgerContext>());
-            services.AddScoped<IReader>(x => x.GetRequiredService<TrafficLedgerContext>());
-            services.AddScoped<IUnitOfWork>(x => x.GetRequiredService<TrafficLedgerContext>());
+        // Repostories and services
+        services.AddScoped<IAttachmentReadRepository, AttachmentReadRepository>();
+        services.AddScoped<IAttachmentWriteRepository, AttachmentWriteRepository>();
+        services.AddScoped<IOwnershipWriteRepository, OwnershipWriteRepository>();
+        services.AddScoped<ILicenseCategoryWriteRepository, LicenseCategoryWriteRepository>();
 
-            // Repostories and services
-            services.AddScoped<IAttachmentReadRepository, AttachmentReadRepository>();
-            services.AddScoped<IAttachmentWriteRepository, AttachmentWriteRepository>();
-            services.AddScoped<IOwnershipWriteRepository, OwnershipWriteRepository>();
-            services.AddScoped<ILicenseCategoryWriteRepository, LicenseCategoryWriteRepository>();
+        services.AddScoped<ITransportCategoryReadRepository, TransportCategoryReadRepository>();
+        services.AddScoped<ITransportCategoryWriteRepository, TransportCategoryWriteRepository>();
+        services.AddScoped<ITransportService, TransportService>();
 
-            services.AddScoped<ITransportCategoryReadRepository, TransportCategoryReadRepository>();
-            services.AddScoped<ITransportCategoryWriteRepository, TransportCategoryWriteRepository>();
-            services.AddScoped<ITransportService, TransportService>();
+        services.AddScoped<IViolationReadRepository, ViolationReadRepository>();
+        services.AddScoped<IViolationWriteRepository, ViolationWriteRepository>();
+        services.AddScoped<IViolationService, ViolationService>();
 
-            services.AddScoped<IViolationReadRepository, ViolationReadRepository>();
-            services.AddScoped<IViolationWriteRepository, ViolationWriteRepository>();
-            services.AddScoped<IViolationService, ViolationService>();
+        services.AddScoped<IUserReadRepository, UserReadRepository>();
+        services.AddScoped<IUserWriteRepository, UserWriteRepository>();
+        services.AddScoped<IUserService, UserService>();
 
-            services.AddScoped<IUserReadRepository, UserReadRepository>();
-            services.AddScoped<IUserWriteRepository, UserWriteRepository>();
-            services.AddScoped<IUserService, UserService>();
+        services.AddScoped<ITransportReadRepository, TransportReadRepository>();
+        services.AddScoped<ITransportWriteRepository, TransportWriteRepository>();
+        services.AddScoped<ITransportCategoryService, TransportCategoryService>();
 
-            services.AddScoped<ITransportReadRepository, TransportReadRepository>();
-            services.AddScoped<ITransportWriteRepository, TransportWriteRepository>();
-            services.AddScoped<ITransportCategoryService, TransportCategoryService>();
+        services.AddScoped<IFineReadRepository, FineReadRepository>();
+        services.AddScoped<IFineWriteRepository, FineWriteRepository>();
+        services.AddScoped<IFineService, FineService>();
 
-            services.AddScoped<IFineReadRepository, FineReadRepository>();
-            services.AddScoped<IFineWriteRepository, FineWriteRepository>();
-            services.AddScoped<IFineService, FineService>();
+        services.AddScoped<IPaymentReadRepository, PaymentReadRepository>();
+        services.AddScoped<IPaymentWriteRepository, PaymentWriteRepository>();
+        services.AddScoped<IPaymentService, PaymentService>();
 
-            services.AddScoped<IPaymentReadRepository, PaymentReadRepository>();
-            services.AddScoped<IPaymentWriteRepository, PaymentWriteRepository>();
-            services.AddScoped<IPaymentService, PaymentService>();
+        services.AddScoped<IDriverReadRepository, DriverReadRepository>();
+        services.AddScoped<IDriverWriteRepository, DriverWriteRepository>();
+        services.AddScoped<IDriverService, DriverService>();
 
-            services.AddScoped<IDriverReadRepository, DriverReadRepository>();
-            services.AddScoped<IDriverWriteRepository, DriverWriteRepository>();
-            services.AddScoped<IDriverService, DriverService>();
+        services.AddScoped<IDriverLicenseReadRepository, DriverLicenseReadRepository>();
+        services.AddScoped<IDriverLicenseWriteRepository, DriverLicenseWriteRepository>();
+        services.AddScoped<IDriverLicenseService, DriverLicenseService>();
 
-            services.AddScoped<IDriverLicenseReadRepository, DriverLicenseReadRepository>();
-            services.AddScoped<IDriverLicenseWriteRepository, DriverLicenseWriteRepository>();
-            services.AddScoped<IDriverLicenseService, DriverLicenseService>();
+        services.AddScoped<IParkingZoneReadRepository, ParkingZoneReadRepository>();
+        services.AddScoped<IParkingZoneWriteRepository, ParkingZoneWriteRepository>();
+        services.AddScoped<IParkingZoneService, ParkingZoneService>();
 
-            services.AddScoped<IParkingZoneReadRepository, ParkingZoneReadRepository>();
-            services.AddScoped<IParkingZoneWriteRepository, ParkingZoneWriteRepository>();
-            services.AddScoped<IParkingZoneService, ParkingZoneService>();
+        services.AddScoped<IParkingSessionReadRepository, ParkingSessionReadRepository>();
+        services.AddScoped<IParkingSessionWriteRepository, ParkingSessionWriteRepository>();
+        services.AddScoped<IParkingSessionService, ParkingSessionService>();
 
-            services.AddScoped<IParkingSessionReadRepository, ParkingSessionReadRepository>();
-            services.AddScoped<IParkingSessionWriteRepository, ParkingSessionWriteRepository>();
-            services.AddScoped<IParkingSessionService, ParkingSessionService>();
+        // Helper services
+        services.AddSingleton<AuthenticationService>();
 
-            // Helper services
-            services.AddSingleton<AuthenticationService>();
+        // Main
+        services.AddScoped<AuthorizeView>();
+        services.AddScoped<MainView>();
+        services.AddScoped<INavigationService>(x => x.GetRequiredService<MainView>());
+        services.AddScoped(x => new Lazy<INavigationService>(() => x.GetRequiredService<INavigationService>()));
 
-            // Main
-            services.AddScoped<AuthorizeView>();
-            services.AddScoped<MainView>();
-            services.AddScoped<INavigationService>(x => x.GetRequiredService<MainView>());
-            services.AddScoped(x => new Lazy<INavigationService>(() => x.GetRequiredService<INavigationService>()));
+        // User
+        services.AddScoped<UserView>();
+        services.AddScoped<DriverCreateView>();
+        services.AddScoped<DriverLicenseCreateView>();
 
-            // User
-            services.AddScoped<UserView>();
-            services.AddScoped<DriverCreateView>();
-            services.AddScoped<DriverLicenseCreateView>();
+        services.AddScoped<OwnershipView>();
+        services.AddScoped<OwnershipCreateView>();
+        services.AddScoped<OwnershipListView>();
 
-            services.AddScoped<OwnershipView>();
-            services.AddScoped<OwnershipCreateView>();
-            services.AddScoped<OwnershipListView>();
+        // Transport
+        services.AddScoped<TransportUserListView>();
 
-            // Transport
-            services.AddScoped<TransportUserListView>();
+        // Payment
+        services.AddScoped<PaymentParkingSessionCreateView>();
+        services.AddScoped<PaymentFineCreateView>();
+        services.AddScoped<PaymentFineListView>();
+        services.AddScoped<PaymentFineUserListView>();
 
-            // Payment
-            services.AddScoped<PaymentParkingSessionCreateView>();
-            services.AddScoped<PaymentFineCreateView>();
-            services.AddScoped<PaymentFineListView>();
-            services.AddScoped<PaymentFineUserListView>();
+        // Fines
+        services.AddScoped<FineCreateView>();
+        services.AddScoped<FineTransportListView>();
 
-            // Fines
-            services.AddScoped<FineCreateView>();
-            services.AddScoped<FineTransportListView>();
+        services.AddScoped<TransportListView>();
+        services.AddScoped<TransportUserView>();
+        services.AddScoped<TransportCreateView>();
 
-            services.AddScoped<TransportListView>();
-            services.AddScoped<TransportUserView>();
-            services.AddScoped<TransportCreateView>();
+        // Parkings
+        services.AddScoped<ParkingSessionView>();
+        services.AddScoped<ParkingZoneView>();
 
-            // Parkings
-            services.AddScoped<ParkingSessionView>();
-            services.AddScoped<ParkingZoneView>();
+        services.AddScoped<ParkingZoneCreateView>();
+        services.AddScoped<ParkingZoneListView>();
 
-            services.AddScoped<ParkingZoneCreateView>();
-            services.AddScoped<ParkingZoneListView>();
+        services.AddScoped<ParkingSessionCreateView>();
+        services.AddScoped<ParkingSessionUserListView>();
 
-            services.AddScoped<ParkingSessionCreateView>();
-            services.AddScoped<ParkingSessionUserListView>();
+        // Admin
+        services.AddScoped<AdminView>();
+        services.AddScoped<StatsView>();
+        services.AddScoped<RequestView>();
+        services.AddScoped<UserListView>();
+        services.AddScoped<UserCreateView>();
 
-            // Admin
-            services.AddScoped<AdminView>();
-            services.AddScoped<StatsView>();
-            services.AddScoped<RequestView>();
-            services.AddScoped<UserListView>();
-            services.AddScoped<UserCreateView>();
+        services.AddScoped<DriverListView>();
 
-            services.AddScoped<DriverListView>();
+        services.AddScoped<DriverLicenseListView>();
 
-            services.AddScoped<DriverLicenseListView>();
+        services.AddScoped<ViolationView>();
+        services.AddScoped<ViolationListView>();
+        services.AddScoped<ViolationCreateView>();
 
-            services.AddScoped<ViolationView>();
-            services.AddScoped<ViolationListView>();
-            services.AddScoped<ViolationCreateView>();
-
-            services.AddScoped<FineListView>();
-        }
+        services.AddScoped<FineListView>();
     }
 }

@@ -9,6 +9,7 @@ using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.Fines;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews
@@ -33,6 +34,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             ItemsContainer = flowLayoutPanel;
             SearchBar = searchBar;
             NoItemsMessage = "У вас не зарегистрирован не один транспорт. Нажмите на кнопку \"Привязать транспорт\" чтобы отправить заявку на добавления транспорта";
+            SearchHintMessage = "Введите номер, модель или марку транспорта";
         }
 
         protected override async Task<IEnumerable<Transport>> LoadItemsAsync(CancellationToken cancellationToken)

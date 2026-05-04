@@ -13,7 +13,7 @@ namespace TrafficLedger.Desktop.Components.ComplexControls
         /// </summary>
         public event EventHandler<List<AttachmentCreateModel>>? ImagesChanged;
 
-        private int PictureBoxSize => Height - Padding.Top;
+        private int PictureBoxSize => Height - Padding.Vertical;
 
         public MultiImageUploader()
         {

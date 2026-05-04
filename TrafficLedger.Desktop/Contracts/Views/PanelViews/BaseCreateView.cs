@@ -55,14 +55,21 @@ namespace TrafficLedger.Desktop.Contracts.Views.PanelViews
         /// </summary>
         protected async Task HandleSaveAsync(params Control[] validationControls)
         {
+            var validateResults = new List<ValidationResult>();
+
             bool isValid = Validator.TryValidateObject(CurrentModel,
                 new ValidationContext(CurrentModel),
-                new List<ValidationResult>(), 
+                validateResults, 
                 validateAllProperties: true);
 
             if (!isValid)
             {
-                HandleError("Исправьте ошибки ввода перед сохранением.");
+                var errors = string.Empty;
+                foreach (var error in validateResults)
+                {
+                    errors += error.ErrorMessage + ", ";
+                }
+                HandleError($"Исправьте ошибки ввода перед сохранением: {errors[..^2]}");
                 return;
             }
 

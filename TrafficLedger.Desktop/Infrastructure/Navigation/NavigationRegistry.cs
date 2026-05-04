@@ -2,7 +2,7 @@
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.FineCreate;
 using TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions;
-using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Desktop.Infrastructure.Navigation
 {
@@ -47,7 +47,7 @@ namespace TrafficLedger.Desktop.Infrastructure.Navigation
 
                 new NavigationItem
                 {
-                    Title = "Оформление штрафа",
+                    Title = "Оформление\nштрафа",
                     Icon = ImageResources.Police,
                     RequiredRole = Role.TrafficPolice,
                     ViewType = typeof(TransportListView)

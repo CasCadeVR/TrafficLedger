@@ -34,7 +34,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         {
             //System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DriverCreateView));
             tableLayoutPanelMain = new TableLayoutPanel();
-            buttonSave = new TrafficLedger.Desktop.Components.CommonButton();
+            buttonSave = new CommonButton();
             labelUniqueId = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxUniqueId = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
             labelBirthPlace = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
@@ -43,8 +43,8 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             dateTimePickerBirthDate = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
             labelFullName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             textBoxFullName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
-            driverPhoto = new TrafficLedger.Desktop.Components.Controls.PictureBoxes.FunctionalPictureBox();
             pictureOpenFileDialog = new OpenFileDialog();
+            driverPhoto = new TrafficLedger.Desktop.Components.Controls.PictureBoxes.FunctionalPictureBox();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
@@ -79,14 +79,15 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             tableLayoutPanelMain.Location = new Point(0, 0);
             tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
             tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            tableLayoutPanelMain.RowCount = 7;
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 79F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 79F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanelMain.RowCount = 8;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanelMain.Size = new Size(821, 576);
             tableLayoutPanelMain.TabIndex = 0;
             // 
@@ -99,11 +100,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonSave.FlatStyle = FlatStyle.Flat;
             buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonSave.ForeColor = Color.White;
-            buttonSave.Location = new Point(208, 503);
+            buttonSave.Location = new Point(238, 387);
             buttonSave.Margin = new Padding(4, 3, 4, 3);
             buttonSave.Name = "buttonSave";
             buttonSave.Padding = new Padding(9, 5, 9, 5);
-            buttonSave.Size = new Size(404, 60);
+            buttonSave.Size = new Size(345, 38);
             buttonSave.TabIndex = 8;
             buttonSave.Text = "Сохранить";
             buttonSave.UseVisualStyleBackColor = false;
@@ -115,7 +116,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             labelUniqueId.AutoSize = true;
             labelUniqueId.Font = new Font("Segoe UI", 9.75F);
             labelUniqueId.ForeColor = Color.FromArgb(0, 0, 0);
-            labelUniqueId.Location = new Point(230, 440);
+            labelUniqueId.Location = new Point(230, 349);
             labelUniqueId.Margin = new Padding(4, 0, 4, 0);
             labelUniqueId.Name = "labelUniqueId";
             labelUniqueId.Size = new Size(176, 17);
@@ -129,7 +130,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             textBoxUniqueId.BorderStyle = BorderStyle.None;
             textBoxUniqueId.Font = new Font("Segoe UI", 9.75F);
             textBoxUniqueId.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxUniqueId.Location = new Point(414, 439);
+            textBoxUniqueId.Location = new Point(414, 349);
             textBoxUniqueId.Margin = new Padding(4, 3, 4, 3);
             textBoxUniqueId.Name = "textBoxUniqueId";
             textBoxUniqueId.ReadOnly = true;
@@ -142,7 +143,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             labelBirthPlace.AutoSize = true;
             labelBirthPlace.Font = new Font("Segoe UI", 9.75F);
             labelBirthPlace.ForeColor = Color.FromArgb(0, 0, 0);
-            labelBirthPlace.Location = new Point(293, 357);
+            labelBirthPlace.Location = new Point(293, 301);
             labelBirthPlace.Margin = new Padding(4, 0, 4, 0);
             labelBirthPlace.Name = "labelBirthPlace";
             labelBirthPlace.Size = new Size(113, 17);
@@ -156,7 +157,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             textBoxBirthPlace.BorderStyle = BorderStyle.FixedSingle;
             textBoxBirthPlace.Font = new Font("Segoe UI", 9.75F);
             textBoxBirthPlace.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxBirthPlace.Location = new Point(414, 353);
+            textBoxBirthPlace.Location = new Point(414, 297);
             textBoxBirthPlace.Margin = new Padding(4, 3, 4, 3);
             textBoxBirthPlace.Name = "textBoxBirthPlace";
             textBoxBirthPlace.Size = new Size(287, 25);
@@ -168,7 +169,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             labelBirthDate.AutoSize = true;
             labelBirthDate.Font = new Font("Segoe UI", 9.75F);
             labelBirthDate.ForeColor = Color.FromArgb(0, 0, 0);
-            labelBirthDate.Location = new Point(303, 274);
+            labelBirthDate.Location = new Point(303, 253);
             labelBirthDate.Margin = new Padding(4, 0, 4, 0);
             labelBirthDate.Name = "labelBirthDate";
             labelBirthDate.Size = new Size(103, 17);
@@ -181,7 +182,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             dateTimePickerBirthDate.BackColor = Color.White;
             dateTimePickerBirthDate.Font = new Font("Segoe UI", 9.75F);
             dateTimePickerBirthDate.ForeColor = Color.FromArgb(0, 0, 0);
-            dateTimePickerBirthDate.Location = new Point(414, 270);
+            dateTimePickerBirthDate.Location = new Point(414, 249);
             dateTimePickerBirthDate.Margin = new Padding(4, 3, 4, 3);
             dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
             dateTimePickerBirthDate.Size = new Size(286, 25);
@@ -194,7 +195,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             labelFullName.AutoSize = true;
             labelFullName.Font = new Font("Segoe UI", 9.75F);
             labelFullName.ForeColor = Color.FromArgb(0, 0, 0);
-            labelFullName.Location = new Point(366, 191);
+            labelFullName.Location = new Point(366, 205);
             labelFullName.Margin = new Padding(4, 0, 4, 0);
             labelFullName.Name = "labelFullName";
             labelFullName.Size = new Size(40, 17);
@@ -208,15 +209,19 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             textBoxFullName.BorderStyle = BorderStyle.FixedSingle;
             textBoxFullName.Font = new Font("Segoe UI", 9.75F);
             textBoxFullName.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxFullName.Location = new Point(414, 187);
+            textBoxFullName.Location = new Point(414, 201);
             textBoxFullName.Margin = new Padding(4, 3, 4, 3);
             textBoxFullName.Name = "textBoxFullName";
             textBoxFullName.Size = new Size(287, 25);
             textBoxFullName.TabIndex = 1;
             // 
+            // pictureOpenFileDialog
+            // 
+            pictureOpenFileDialog.FileName = "pictureOpenFileDialog";
+            // 
             // driverPhoto
             // 
-            driverPhoto.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            driverPhoto.Anchor = AnchorStyles.Bottom;
             driverPhoto.BorderStyle = BorderStyle.FixedSingle;
             tableLayoutPanelMain.SetColumnSpan(driverPhoto, 2);
             //driverPhoto.Image = (Image)resources.GetObject("driverPhoto.Image");
@@ -224,14 +229,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             driverPhoto.MaximumSize = new Size(158, 158);
             driverPhoto.Name = "driverPhoto";
             tableLayoutPanelMain.SetRowSpan(driverPhoto, 2);
-            driverPhoto.Size = new Size(158, 152);
-            driverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+            driverPhoto.Size = new Size(184, 184);
+            driverPhoto.SizeMode = PictureBoxSizeMode.Zoom;
             driverPhoto.TabIndex = 9;
             driverPhoto.TabStop = false;
-            // 
-            // pictureOpenFileDialog
-            // 
-            pictureOpenFileDialog.FileName = "pictureOpenFileDialog";
             // 
             // DriverCreateView
             // 

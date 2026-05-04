@@ -1,6 +1,7 @@
 ﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
 
@@ -15,7 +16,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Users
         private User currentUser;
 
         /// <summary>
-        /// Инициализирует новый экзмепляр <see cref="BaseCreateView"/>
+        /// Инициализирует новый экзмепляр <see cref="UserCreateView"/>
         /// </summary>
         public UserCreateView(IUserService userService)
         {

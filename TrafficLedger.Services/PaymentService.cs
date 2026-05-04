@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using TrafficLedger.Common.Core.Extensions;
+﻿using TrafficLedger.Common.Core.Extensions;
 using TrafficLedger.Common.Services.Contracts;
 using TrafficLedger.Context.Contracts;
 using TrafficLedger.Entities;
@@ -128,6 +127,7 @@ namespace TrafficLedger.Services
                     .OrThrowIfNull(() => new InvalidOperationException($"Парковочная сессия с id {payment.EntityId} не существует"));
 
                 session!.Status = SessionStatus.Active;
+                session.EndTime = null;
                 parkingSessionWriteRepository.Update(session);
             }
 
@@ -175,10 +175,11 @@ namespace TrafficLedger.Services
                     EntityId = model.EntityId,
                     UserId = user!.Id,
                     CapturedPrice = price,
-                    EntityType = EntityTypes.FineType,
+                    EntityType = EntityTypes.ParkingSessionType,
                 };
 
                 session.Status = SessionStatus.Completed;
+                session.EndTime = DateTimeOffset.Now;
                 parkingSessionWriteRepository.Update(session);
             }
 

@@ -7,6 +7,7 @@ using TrafficLedger.Services.Contracts.Interfaces;
 using TrafficLedger.Services.Contracts.Models;
 using TrafficLedger.Common.Core.Extensions;
 using TrafficLedger.Common.Services.Contracts;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Services
 {

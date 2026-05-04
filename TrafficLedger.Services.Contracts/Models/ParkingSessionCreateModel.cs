@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using TrafficLedger.Entities;
-using TrafficLedger.Entities.ValidationRules;
+﻿using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Services.Contracts.Models;
 
@@ -27,11 +26,7 @@ public class ParkingSessionCreateModel
     /// <summary>
     /// Номер транспорта
     /// </summary>
-    [Required(ErrorMessage = "Это поле обязательно")]
-        [StringLength(TransportValidationRules.TransportCodeLength,
-        MinimumLength = TransportValidationRules.TransportCodeLength,
-        ErrorMessage = "Регистрационный номер должен быть длиной 9 символов")]
-    public string TransportCode { get; set; } = string.Empty;
+    public Guid TransportId { get; set; } 
 
     /// <summary>
     /// Идентификатор <see cref="User"/>

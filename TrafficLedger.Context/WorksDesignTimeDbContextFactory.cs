@@ -28,12 +28,18 @@ namespace TrafficLedger.Context
                 {
                     UserSeeder.Seed(context);
                     TransportCategorySeeder.Seed(context);
+                    ViolationSeeder.Seed(context);
+                    ParkingZoneSeeder.Seed(context);
+                    TransportSeeder.Seed(context);
                     context.SaveChanges();
                 })
                 .UseAsyncSeeding(async (context, _, cancellationToken) =>
                 {
                     await UserSeeder.SeedAsync(context, cancellationToken);
                     await TransportCategorySeeder.SeedAsync(context, cancellationToken);
+                    await ViolationSeeder.SeedAsync(context, cancellationToken);
+                    await ParkingZoneSeeder.SeedAsync(context, cancellationToken);
+                    await TransportSeeder.SeedAsync(context, cancellationToken);
                     await context.SaveChangesAsync(cancellationToken);
                 })
                 .LogTo(Console.WriteLine)

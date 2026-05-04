@@ -32,10 +32,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         private void InitializeComponent()
         {
             tableLayoutPanelMain = new TableLayoutPanel();
-            buttonDriver = new CommonButton();
-            buttonDriverLicense = new CommonButton();
-            buttonListUserPayments = new CommonButton();
             buttonLogout = new CommonButton();
+            buttonListUserPayments = new CommonButton();
+            buttonDriverLicense = new CommonButton();
+            buttonDriver = new CommonButton();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
             splitContainer.SuspendLayout();
@@ -62,68 +62,14 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
             tableLayoutPanelMain.Name = "tableLayoutPanelMain";
             tableLayoutPanelMain.RowCount = 6;
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50.0000076F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 49.9999962F));
             tableLayoutPanelMain.Size = new Size(821, 576);
             tableLayoutPanelMain.TabIndex = 1;
-            // 
-            // buttonDriver
-            // 
-            buttonDriver.Anchor = AnchorStyles.None;
-            buttonDriver.BackColor = Color.BlueViolet;
-            buttonDriver.FlatAppearance.BorderColor = Color.DarkGray;
-            buttonDriver.FlatStyle = FlatStyle.Flat;
-            buttonDriver.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
-            buttonDriver.ForeColor = Color.AntiqueWhite;
-            buttonDriver.Location = new Point(227, 118);
-            buttonDriver.Margin = new Padding(4, 3, 4, 3);
-            buttonDriver.Name = "buttonDriver";
-            buttonDriver.Padding = new Padding(9, 5, 9, 5);
-            buttonDriver.Size = new Size(366, 52);
-            buttonDriver.TabIndex = 0;
-            buttonDriver.Text = "Данные водителя";
-            buttonDriver.UseVisualStyleBackColor = false;
-            buttonDriver.Click += buttonDriver_Click;
-            // 
-            // buttonDriverLicense
-            // 
-            buttonDriverLicense.Anchor = AnchorStyles.None;
-            buttonDriverLicense.BackColor = Color.BlueViolet;
-            buttonDriverLicense.FlatAppearance.BorderColor = Color.DarkGray;
-            buttonDriverLicense.FlatStyle = FlatStyle.Flat;
-            buttonDriverLicense.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
-            buttonDriverLicense.ForeColor = Color.AntiqueWhite;
-            buttonDriverLicense.Location = new Point(226, 214);
-            buttonDriverLicense.Margin = new Padding(4, 3, 4, 3);
-            buttonDriverLicense.Name = "buttonDriverLicense";
-            buttonDriverLicense.Padding = new Padding(9, 5, 9, 5);
-            buttonDriverLicense.Size = new Size(368, 52);
-            buttonDriverLicense.TabIndex = 1;
-            buttonDriverLicense.Text = "Данные водительского удостоверения";
-            buttonDriverLicense.UseVisualStyleBackColor = false;
-            buttonDriverLicense.Click += buttonDriverLicense_Click;
-            // 
-            // buttonListUserPayments
-            // 
-            buttonListUserPayments.Anchor = AnchorStyles.None;
-            buttonListUserPayments.BackColor = Color.BlueViolet;
-            buttonListUserPayments.FlatAppearance.BorderColor = Color.DarkGray;
-            buttonListUserPayments.FlatStyle = FlatStyle.Flat;
-            buttonListUserPayments.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
-            buttonListUserPayments.ForeColor = Color.AntiqueWhite;
-            buttonListUserPayments.Location = new Point(226, 310);
-            buttonListUserPayments.Margin = new Padding(4, 3, 4, 3);
-            buttonListUserPayments.Name = "buttonListUserPayments";
-            buttonListUserPayments.Padding = new Padding(9, 5, 9, 5);
-            buttonListUserPayments.Size = new Size(368, 52);
-            buttonListUserPayments.TabIndex = 3;
-            buttonListUserPayments.Text = "Оплаченные штрафы";
-            buttonListUserPayments.UseVisualStyleBackColor = false;
-            buttonListUserPayments.Click += buttonListUserPayments_Click;
             // 
             // buttonLogout
             // 
@@ -133,15 +79,69 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             buttonLogout.FlatStyle = FlatStyle.Flat;
             buttonLogout.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonLogout.ForeColor = Color.AntiqueWhite;
-            buttonLogout.Location = new Point(226, 406);
+            buttonLogout.Location = new Point(226, 339);
             buttonLogout.Margin = new Padding(4, 3, 4, 3);
             buttonLogout.Name = "buttonLogout";
             buttonLogout.Padding = new Padding(9, 5, 9, 5);
-            buttonLogout.Size = new Size(368, 52);
+            buttonLogout.Size = new Size(368, 42);
             buttonLogout.TabIndex = 2;
             buttonLogout.Text = "Выйти из аккаунта";
             buttonLogout.UseVisualStyleBackColor = false;
             buttonLogout.Click += buttonLogout_Click;
+            // 
+            // buttonListUserPayments
+            // 
+            buttonListUserPayments.Anchor = AnchorStyles.None;
+            buttonListUserPayments.BackColor = Color.BlueViolet;
+            buttonListUserPayments.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonListUserPayments.FlatStyle = FlatStyle.Flat;
+            buttonListUserPayments.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonListUserPayments.ForeColor = Color.AntiqueWhite;
+            buttonListUserPayments.Location = new Point(226, 291);
+            buttonListUserPayments.Margin = new Padding(4, 3, 4, 3);
+            buttonListUserPayments.Name = "buttonListUserPayments";
+            buttonListUserPayments.Padding = new Padding(9, 5, 9, 5);
+            buttonListUserPayments.Size = new Size(368, 42);
+            buttonListUserPayments.TabIndex = 3;
+            buttonListUserPayments.Text = "Оплаченные штрафы";
+            buttonListUserPayments.UseVisualStyleBackColor = false;
+            buttonListUserPayments.Click += buttonListUserPayments_Click;
+            // 
+            // buttonDriverLicense
+            // 
+            buttonDriverLicense.Anchor = AnchorStyles.None;
+            buttonDriverLicense.BackColor = Color.BlueViolet;
+            buttonDriverLicense.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonDriverLicense.FlatStyle = FlatStyle.Flat;
+            buttonDriverLicense.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonDriverLicense.ForeColor = Color.AntiqueWhite;
+            buttonDriverLicense.Location = new Point(226, 243);
+            buttonDriverLicense.Margin = new Padding(4, 3, 4, 3);
+            buttonDriverLicense.Name = "buttonDriverLicense";
+            buttonDriverLicense.Padding = new Padding(9, 5, 9, 5);
+            buttonDriverLicense.Size = new Size(368, 42);
+            buttonDriverLicense.TabIndex = 1;
+            buttonDriverLicense.Text = "Данные водительского удостоверения";
+            buttonDriverLicense.UseVisualStyleBackColor = false;
+            buttonDriverLicense.Click += buttonDriverLicense_Click;
+            // 
+            // buttonDriver
+            // 
+            buttonDriver.Anchor = AnchorStyles.None;
+            buttonDriver.BackColor = Color.BlueViolet;
+            buttonDriver.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonDriver.FlatStyle = FlatStyle.Flat;
+            buttonDriver.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonDriver.ForeColor = Color.AntiqueWhite;
+            buttonDriver.Location = new Point(227, 195);
+            buttonDriver.Margin = new Padding(4, 3, 4, 3);
+            buttonDriver.Name = "buttonDriver";
+            buttonDriver.Padding = new Padding(9, 5, 9, 5);
+            buttonDriver.Size = new Size(366, 42);
+            buttonDriver.TabIndex = 0;
+            buttonDriver.Text = "Данные водителя";
+            buttonDriver.UseVisualStyleBackColor = false;
+            buttonDriver.Click += buttonDriver_Click;
             // 
             // UserView
             // 

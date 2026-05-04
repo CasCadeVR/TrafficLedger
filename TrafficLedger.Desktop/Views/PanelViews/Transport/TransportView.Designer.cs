@@ -71,11 +71,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             buttonAddTransport.FlatStyle = FlatStyle.Flat;
             buttonAddTransport.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonAddTransport.ForeColor = Color.AntiqueWhite;
-            buttonAddTransport.Location = new Point(227, 233);
+            buttonAddTransport.Location = new Point(227, 243);
             buttonAddTransport.Margin = new Padding(4, 3, 4, 3);
             buttonAddTransport.Name = "buttonAddTransport";
             buttonAddTransport.Padding = new Padding(9, 5, 9, 5);
-            buttonAddTransport.Size = new Size(366, 52);
+            buttonAddTransport.Size = new Size(366, 42);
             buttonAddTransport.TabIndex = 0;
             buttonAddTransport.Text = "Привязать транспорт";
             buttonAddTransport.UseVisualStyleBackColor = false;
@@ -93,7 +93,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             buttonListTransport.Margin = new Padding(4, 3, 4, 3);
             buttonListTransport.Name = "buttonListTransport";
             buttonListTransport.Padding = new Padding(9, 5, 9, 5);
-            buttonListTransport.Size = new Size(368, 52);
+            buttonListTransport.Size = new Size(368, 42);
             buttonListTransport.TabIndex = 2;
             buttonListTransport.Text = "Список транспортов";
             buttonListTransport.UseVisualStyleBackColor = false;

@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using OfficeOpenXml;
 using TrafficLedger.Desktop.Contracts.Views.PanelViews;
-using TrafficLedger.Entities;
 using TrafficLedger.Entities.Enums;
 using TrafficLedger.Entities.Generics;
 using TrafficLedger.Services.Contracts.Interfaces;
@@ -189,7 +188,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
                 ExportStats(saveDialog.FileName);
-                MessageBox.Show("Экспорт завершен!");
+                MessageBox.Show("Экспорт завершен!", "Успех", MessageBoxButtons.OK, icon: MessageBoxIcon.Information);
             }
         }
     }

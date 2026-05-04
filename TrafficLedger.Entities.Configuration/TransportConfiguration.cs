@@ -20,7 +20,7 @@ public class TransportConfiguration : IEntityTypeConfiguration<Transport>
 
         builder.Property(x => x.TransportCode)
             .IsRequired()
-            .HasMaxLength(TransportValidationRules.TransportCodeLength);
+            .HasMaxLength(TransportValidationRules.TransportCodeMaxLength);
 
         builder.Property(x => x.Region)
             .HasMaxLength(TransportValidationRules.RegionMaxLength);

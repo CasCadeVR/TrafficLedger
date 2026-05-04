@@ -31,134 +31,140 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.labelTransportCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.buttonSave = new TrafficLedger.Desktop.Components.CommonButton();
-            this.textBoxTransportCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
-            this.labelDateTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            this.dateTimePickerDate = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            this.tableLayoutPanelMain.SuspendLayout();
-            this.SuspendLayout();
+            tableLayoutPanelMain = new TableLayoutPanel();
+            labelTransportCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            buttonSave = new CommonButton();
+            textBoxTransportCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            labelDateTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            dateTimePickerDate = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            tableLayoutPanelMain.SuspendLayout();
+            SuspendLayout();
             // 
             // splitContainer
             // 
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanelMain);
+            splitContainer.Panel2.Controls.Add(tableLayoutPanelMain);
             // 
             // tableLayoutPanelMain
             // 
-            this.tableLayoutPanelMain.ColumnCount = 2;
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.Controls.Add(this.labelTransportCode, 0, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.buttonSave, 0, 9);
-            this.tableLayoutPanelMain.Controls.Add(this.textBoxTransportCode, 1, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.labelDateTitle, 0, 1);
-            this.tableLayoutPanelMain.Controls.Add(this.dateTimePickerDate, 1, 1);
-            this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            this.tableLayoutPanelMain.RowCount = 10;
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.9991F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.9991F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.9991F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.9991F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.9991F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.9991F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.9991F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0021F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0021F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0021F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(704, 500);
-            this.tableLayoutPanelMain.TabIndex = 0;
+            tableLayoutPanelMain.ColumnCount = 2;
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.Controls.Add(buttonSave, 0, 6);
+            tableLayoutPanelMain.Controls.Add(labelDateTitle, 0, 5);
+            tableLayoutPanelMain.Controls.Add(dateTimePickerDate, 1, 5);
+            tableLayoutPanelMain.Controls.Add(labelTransportCode, 0, 4);
+            tableLayoutPanelMain.Controls.Add(textBoxTransportCode, 1, 4);
+            tableLayoutPanelMain.Dock = DockStyle.Fill;
+            tableLayoutPanelMain.Location = new Point(0, 0);
+            tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
+            tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            tableLayoutPanelMain.RowCount = 10;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 49.9925F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50.0075F));
+            tableLayoutPanelMain.Size = new Size(821, 576);
+            tableLayoutPanelMain.TabIndex = 0;
             // 
             // labelTransportCode
             // 
-            this.labelTransportCode.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelTransportCode.AutoSize = true;
-            this.labelTransportCode.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelTransportCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelTransportCode.Location = new System.Drawing.Point(235, 16);
-            this.labelTransportCode.Name = "labelTransportCode";
-            this.labelTransportCode.Size = new System.Drawing.Size(114, 17);
-            this.labelTransportCode.TabIndex = 6;
-            this.labelTransportCode.Text = "Код транспорта:  ";
+            labelTransportCode.Anchor = AnchorStyles.Right;
+            labelTransportCode.AutoSize = true;
+            labelTransportCode.Font = new Font("Segoe UI", 9.75F);
+            labelTransportCode.ForeColor = Color.FromArgb(0, 0, 0);
+            labelTransportCode.Location = new Point(292, 254);
+            labelTransportCode.Margin = new Padding(4, 0, 4, 0);
+            labelTransportCode.Name = "labelTransportCode";
+            labelTransportCode.Size = new Size(114, 17);
+            labelTransportCode.TabIndex = 6;
+            labelTransportCode.Text = "Код транспорта:  ";
             // 
             // buttonSave
             // 
-            this.buttonSave.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonSave.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanelMain.SetColumnSpan(this.buttonSave, 2);
-            this.buttonSave.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            this.buttonSave.ForeColor = System.Drawing.Color.White;
-            this.buttonSave.Location = new System.Drawing.Point(179, 450);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.buttonSave.Size = new System.Drawing.Size(346, 43);
-            this.buttonSave.TabIndex = 8;
-            this.buttonSave.Text = "Сохранить";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            buttonSave.Anchor = AnchorStyles.None;
+            buttonSave.BackColor = Color.Green;
+            tableLayoutPanelMain.SetColumnSpan(buttonSave, 2);
+            buttonSave.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonSave.FlatStyle = FlatStyle.Flat;
+            buttonSave.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonSave.ForeColor = Color.White;
+            buttonSave.Location = new Point(256, 338);
+            buttonSave.Margin = new Padding(4, 3, 4, 3);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Padding = new Padding(9, 5, 9, 5);
+            buttonSave.Size = new Size(309, 42);
+            buttonSave.TabIndex = 8;
+            buttonSave.Text = "Сохранить";
+            buttonSave.UseVisualStyleBackColor = false;
+            buttonSave.Click += buttonSave_Click;
             // 
             // textBoxTransportCode
             // 
-            this.textBoxTransportCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxTransportCode.BackColor = System.Drawing.Color.White;
-            this.textBoxTransportCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxTransportCode.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.textBoxTransportCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBoxTransportCode.Location = new System.Drawing.Point(355, 12);
-            this.textBoxTransportCode.Name = "textBoxTransportCode";
-            this.textBoxTransportCode.Size = new System.Drawing.Size(246, 25);
-            this.textBoxTransportCode.TabIndex = 10;
+            textBoxTransportCode.Anchor = AnchorStyles.Left;
+            textBoxTransportCode.BackColor = Color.White;
+            textBoxTransportCode.BorderStyle = BorderStyle.FixedSingle;
+            textBoxTransportCode.Font = new Font("Segoe UI", 9.75F);
+            textBoxTransportCode.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxTransportCode.Location = new Point(414, 250);
+            textBoxTransportCode.Margin = new Padding(4, 3, 4, 3);
+            textBoxTransportCode.Name = "textBoxTransportCode";
+            textBoxTransportCode.Size = new Size(287, 25);
+            textBoxTransportCode.TabIndex = 10;
             // 
             // labelDateTitle
             // 
-            this.labelDateTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelDateTitle.AutoSize = true;
-            this.labelDateTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelDateTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelDateTitle.Location = new System.Drawing.Point(98, 65);
-            this.labelDateTitle.Name = "labelDateTitle";
-            this.labelDateTitle.Size = new System.Drawing.Size(251, 17);
-            this.labelDateTitle.TabIndex = 19;
-            this.labelDateTitle.Text = "Дата подписания договора о владении: ";
+            labelDateTitle.Anchor = AnchorStyles.Right;
+            labelDateTitle.AutoSize = true;
+            labelDateTitle.Font = new Font("Segoe UI", 9.75F);
+            labelDateTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelDateTitle.Location = new Point(155, 302);
+            labelDateTitle.Margin = new Padding(4, 0, 4, 0);
+            labelDateTitle.Name = "labelDateTitle";
+            labelDateTitle.Size = new Size(251, 17);
+            labelDateTitle.TabIndex = 19;
+            labelDateTitle.Text = "Дата подписания договора о владении: ";
             // 
             // dateTimePickerDate
             // 
-            this.dateTimePickerDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dateTimePickerDate.BackColor = System.Drawing.Color.White;
-            this.dateTimePickerDate.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.dateTimePickerDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.dateTimePickerDate.Location = new System.Drawing.Point(355, 61);
-            this.dateTimePickerDate.Name = "dateTimePickerDate";
-            this.dateTimePickerDate.Size = new System.Drawing.Size(246, 25);
-            this.dateTimePickerDate.TabIndex = 20;
-            this.dateTimePickerDate.Tag = "";
-            this.dateTimePickerDate.Format = DateTimePickerFormat.Custom;
-            this.dateTimePickerDate.CustomFormat = "dd/MM/yyyy HH:mm";
+            dateTimePickerDate.Anchor = AnchorStyles.Left;
+            dateTimePickerDate.BackColor = Color.White;
+            dateTimePickerDate.CustomFormat = "dd/MM/yyyy HH:mm";
+            dateTimePickerDate.Font = new Font("Segoe UI", 9.75F);
+            dateTimePickerDate.ForeColor = Color.FromArgb(0, 0, 0);
+            dateTimePickerDate.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDate.Location = new Point(414, 298);
+            dateTimePickerDate.Margin = new Padding(4, 3, 4, 3);
+            dateTimePickerDate.Name = "dateTimePickerDate";
+            dateTimePickerDate.Size = new Size(286, 25);
+            dateTimePickerDate.TabIndex = 20;
+            dateTimePickerDate.Tag = "";
             // 
             // OwnershipCreateView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "OwnershipCreateView";
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            this.tableLayoutPanelMain.ResumeLayout(false);
-            this.tableLayoutPanelMain.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Margin = new Padding(5, 3, 5, 3);
+            Name = "OwnershipCreateView";
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
+            splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            tableLayoutPanelMain.ResumeLayout(false);
+            tableLayoutPanelMain.PerformLayout();
+            ResumeLayout(false);
 
         }
 

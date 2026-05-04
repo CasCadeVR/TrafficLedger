@@ -27,7 +27,6 @@ namespace TrafficLedger.Desktop.Components
             FlatStyle = FlatStyle.Flat;
             FlatAppearance.BorderColor = ColorScheme.ButtonBorder;
             FlatAppearance.BorderSize = 1;
-            Padding = new Padding(8, 4, 8, 4);
         }
 
         /// <inheritdoc cref="Control.OnHandleCreated(EventArgs)"/>

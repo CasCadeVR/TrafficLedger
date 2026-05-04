@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using TrafficLedger.Desktop.Contracts.Views.PanelViews;
-using TrafficLedger.Entities;
+using TrafficLedger.Entities.Enums;
 
 namespace TrafficLedger.Desktop.Infrastructure.Navigation
 {

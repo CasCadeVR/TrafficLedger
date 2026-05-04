@@ -4,7 +4,7 @@ using TrafficLedger.Context.Tests;
 using TrafficLedger.Entities;
 using Xunit;
 
-namespace TrafficLedger.Storage
+namespace TrafficLedger.Database.Tests
 {
     /// <summary>
     /// Тесты для базы данных таблицы <see cref="Violation"/>

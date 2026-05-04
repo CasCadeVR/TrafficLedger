@@ -6,9 +6,14 @@
 public static class TransportValidationRules
 {
     /// <summary>
-    /// Длина <see cref="Transport.TransportCode"/>
+    /// Минимальная длина <see cref="Transport.TransportCode"/>
     /// </summary>
-    public const int TransportCodeLength = 9;
+    public const int TransportCodeMinLength = 8;
+
+    /// <summary>
+    /// Максимальная длина <see cref="Transport.TransportCode"/>
+    /// </summary>
+    public const int TransportCodeMaxLength = 9;
 
     /// <summary>
     /// Минимальная длина <see cref="Transport.Region"/>
