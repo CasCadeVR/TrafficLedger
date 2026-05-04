@@ -84,7 +84,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
                             FileName = x.FileName
                         }).ToList(),
 
-                    Ownerships = transport.Ownerships.Select(x => 
+                    Ownerships = transport.Ownerships.Select(x =>
                         new OwnershipDriverCreateModel()
                         {
                             Date = x.Date,
@@ -108,15 +108,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
                     Attachments = new List<AttachmentCreateModel>(),
                     Ownerships = new List<OwnershipDriverCreateModel>()
                 };
-
-                if (isUserAdding)
-                {
-                    CurrentModel.Ownerships.Add(new OwnershipDriverCreateModel()
-                    {
-                        Date = DateTimeOffset.Now,
-                        DriverId = currentDriver.Id
-                    });
-                }
             }
         }
 
@@ -188,15 +179,14 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             textBoxStatus.Visible = currentTransport != null;
             textBoxStatus.Text = CurrentModel.Status.GetDescription();
 
-            if (!isUserAdding)
-            {
-                labelOwnershipDate.Visible = false;
-                ownershipDateTimePicker.Visible = false;
-            }
-            else
+            var isUserOwned = currentTransport != null
+                ? currentTransport.Ownerships.Any(x => x.DriverId == currentDriver.Id)
+                : false;
+            ownershipCheckBox.Checked = isUserOwned;
+
+            if (isUserAdding)
             {
                 comboBoxCategory.SelectedIndex = 0;
-                ownershipDateTimePicker.Value = CurrentModel.Ownerships.First()!.Date.DateTime;
             }
 
             isInitializingAttachments = true;
@@ -229,7 +219,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             {
                 await transportService.Update(EntityId, CurrentModel, CancellationToken.None);
                 MessageBox.Show("Данные транспорта обновлены.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } 
+            }
             else
             {
                 var transport = await transportService.Create(CurrentModel, CancellationToken.None);
@@ -243,6 +233,34 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
         private async void buttonSave_Click(object sender, EventArgs e)
         {
             await HandleSaveAsync(textBoxCode, textBoxRegion, textBoxYear, textBoxBrand, textBoxModel);
+        }
+
+        private void ownershipCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            labelOwnershipDate.Visible = ownershipCheckBox.Checked;
+            ownershipDateTimePicker.Visible = ownershipCheckBox.Checked;
+
+            if (ownershipCheckBox.Checked && !CurrentModel.Ownerships.Any(x => x.DriverId == currentDriver.Id))
+            {
+                CurrentModel.Ownerships.Add(new OwnershipDriverCreateModel()
+                {
+                    Date = DateTimeOffset.Now,
+                    DriverId = currentDriver.Id
+                });
+            }
+            else
+            {
+                var foundOwnership = CurrentModel.Ownerships.FirstOrDefault(x => x.DriverId == currentDriver.Id);
+                if (foundOwnership != null)
+                {
+                    CurrentModel.Ownerships.Remove(foundOwnership);
+                }
+            }
+        }
+
+        private void ownershipDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
