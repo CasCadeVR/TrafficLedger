@@ -32,7 +32,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DriverCreateView));
+            //System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DriverCreateView));
             tableLayoutPanelMain = new TableLayoutPanel();
             buttonSave = new TrafficLedger.Desktop.Components.CommonButton();
             labelUniqueId = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
@@ -219,7 +219,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             driverPhoto.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             driverPhoto.BorderStyle = BorderStyle.FixedSingle;
             tableLayoutPanelMain.SetColumnSpan(driverPhoto, 2);
-            driverPhoto.Image = (Image)resources.GetObject("driverPhoto.Image");
+            //driverPhoto.Image = (Image)resources.GetObject("driverPhoto.Image");
             driverPhoto.Location = new Point(331, 3);
             driverPhoto.MaximumSize = new Size(158, 158);
             driverPhoto.Name = "driverPhoto";

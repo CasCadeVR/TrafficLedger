@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DriverLicenseCreateView));
+            //System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DriverLicenseCreateView));
             tableLayoutPanelMain = new TableLayoutPanel();
             buttonSave = new TrafficLedger.Desktop.Components.CommonButton();
             labelStatus = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
@@ -300,7 +300,7 @@
             licensePhoto.Anchor = AnchorStyles.None;
             licensePhoto.BorderStyle = BorderStyle.FixedSingle;
             tableLayoutPanelMain.SetColumnSpan(licensePhoto, 2);
-            licensePhoto.Image = (Image)resources.GetObject("licensePhoto.Image");
+            //licensePhoto.Image = (Image)resources.GetObject("licensePhoto.Image");
             licensePhoto.Location = new Point(345, 3);
             licensePhoto.Name = "licensePhoto";
             tableLayoutPanelMain.SetRowSpan(licensePhoto, 3);

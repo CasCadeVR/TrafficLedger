@@ -82,19 +82,33 @@ namespace TrafficLedger.Desktop.Views.PanelViews
             allActiveFinesCount = allFines.Where(x => x.Status == SessionStatus.Active).Count();
             allPayedFinesCount = allFines.Where(x => x.Status == SessionStatus.Completed).Count();
             allPayedFinesSum = allFinePayments.Select(x => x.CapturedPrice).Sum();
-            mostCommonFineName = allFines.GroupBy(f => f.ViolationId)
-                .OrderByDescending(g => g.Count())
-                .FirstOrDefault()!.Select(x => x.Violation.Name).First();
-
+            if (allFines.Any())
+            {
+                mostCommonFineName = allFines.GroupBy(f => f.ViolationId)
+                    .OrderByDescending(g => g.Count())
+                    .FirstOrDefault()!.Select(x => x.Violation.Name).First();
+            }
+            else
+            {
+                mostCommonFineName = "Штрафов не было";
+            }
+            
             var allZones = await parkingZoneService.GetAll(cancellationToken);
             var allSessions = await parkingSessionService.GetAll(cancellationToken);
             var allSessionPayments = await paymentService.GetAllParkingSessions(cancellationToken);
 
             allParkingZoneCount = allZones.Count;
             allZonesSum = allSessionPayments.Select(x => x.CapturedPrice).Sum();
-            mostCommonParkingZone = allSessions.GroupBy(f => f.ParkingZoneId)
-                .OrderByDescending(g => g.Count())
-                .FirstOrDefault()!.Select(x => x.ParkingZone.Address).First()!;
+            if (allSessions.Any())
+            {
+                mostCommonParkingZone = allSessions.GroupBy(f => f.ParkingZoneId)
+                    .OrderByDescending(g => g.Count())
+                    .FirstOrDefault()!.Select(x => x.ParkingZone.Address).First()!;
+            }
+            else
+            {
+                mostCommonParkingZone = "Парковочных сессий не было";
+            }
 
             var allPayments = await paymentService.GetAll(cancellationToken);
 

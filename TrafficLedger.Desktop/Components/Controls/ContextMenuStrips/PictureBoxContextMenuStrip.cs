@@ -21,7 +21,7 @@
                 Size = new Size(180, 22)
             };
             showPictureToolStripMenuItem.Click += PictureBoxContextMenuStrip_Click;
-            this.Items.AddRange([showPictureToolStripMenuItem]);
+            this.Items.AddRange(new List<ToolStripItem>() { showPictureToolStripMenuItem }.ToArray());
         }
 
         private void PictureBoxContextMenuStrip_Click(object? sender, EventArgs e)
