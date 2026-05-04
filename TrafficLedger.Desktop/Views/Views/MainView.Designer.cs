@@ -84,7 +84,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(809, 861);
             Controls.Add(splitContainer);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 4, 5, 4);
             MinimumSize = new Size(825, 900);
             Name = "MainView";

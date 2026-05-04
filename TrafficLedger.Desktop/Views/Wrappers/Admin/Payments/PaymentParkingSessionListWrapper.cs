@@ -3,9 +3,9 @@ using TrafficLedger.Repositories.Contracts.Models.Payments;
 
 namespace TrafficLedger.Desktop.Views.Wrappers
 {
-    public partial class PaymentListWrapper : BaseListView<PaymentFineDBModel>
+    public partial class PaymentParkingSessionListWrapper : BaseListView<PaymentParkingSessionDBModel>
     {
-        public PaymentListWrapper()
+        public PaymentParkingSessionListWrapper()
         {
             InitializeComponent();
         }

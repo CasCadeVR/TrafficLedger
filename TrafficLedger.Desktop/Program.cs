@@ -151,7 +151,9 @@ internal static class Program
         services.AddScoped<PaymentParkingSessionCreateView>();
         services.AddScoped<PaymentFineCreateView>();
         services.AddScoped<PaymentFineListView>();
+        services.AddScoped<PaymentParkingSessionListView>();
         services.AddScoped<PaymentFineUserListView>();
+        services.AddScoped<PaymentParkingSessionUserListView>();
 
         // Fines
         services.AddScoped<FineCreateView>();
@@ -174,6 +176,7 @@ internal static class Program
         // Admin
         services.AddScoped<AdminView>();
         services.AddScoped<StatsView>();
+        services.AddScoped<PaymentView>();
         services.AddScoped<RequestView>();
         services.AddScoped<UserListView>();
         services.AddScoped<UserCreateView>();

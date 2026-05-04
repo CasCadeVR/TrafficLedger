@@ -1,6 +1,6 @@
 ﻿namespace TrafficLedger.Desktop.Views.Wrappers
 {
-    partial class PaymentUserListWrapper
+    partial class PaymentParkingSessionListWrapper
     {
         /// <summary> 
         /// Required designer variable.

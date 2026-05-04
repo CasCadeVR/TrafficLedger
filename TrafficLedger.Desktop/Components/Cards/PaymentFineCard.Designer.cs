@@ -32,24 +32,24 @@ namespace TrafficLedger.Desktop.Components.Cards
         {
             components = new System.ComponentModel.Container();
             tableLayoutPanel1 = new TableLayoutPanel();
-            transportCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            labelAddressTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            labelFinePriceTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            finePrice = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            labelNameTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            violationName = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            labelNumberTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            code = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            labelDateTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            fineDate = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            labelPaymentDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            paymentDate = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            transportCodeTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            labelStatusTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            status = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            address = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            labelDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            description = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            transportCode = new Controls.TextBoxes.ReadOnlyTextBox();
+            labelAddressTitle = new Labels.PrimaryLabel();
+            labelFinePriceTitle = new Labels.PrimaryLabel();
+            finePrice = new Controls.TextBoxes.ReadOnlyTextBox();
+            labelNameTitle = new Labels.PrimaryLabel();
+            violationName = new Controls.TextBoxes.ReadOnlyTextBox();
+            labelNumberTitle = new Labels.PrimaryLabel();
+            code = new Controls.TextBoxes.ReadOnlyTextBox();
+            labelDateTitle = new Labels.PrimaryLabel();
+            fineDate = new Controls.TextBoxes.ReadOnlyTextBox();
+            labelPaymentDate = new Labels.PrimaryLabel();
+            paymentDate = new Controls.TextBoxes.ReadOnlyTextBox();
+            transportCodeTitle = new Labels.PrimaryLabel();
+            labelStatusTitle = new Labels.PrimaryLabel();
+            status = new Controls.TextBoxes.ReadOnlyTextBox();
+            address = new Controls.TextBoxes.ReadOnlyTextBox();
+            labelDescriptionTitle = new Labels.PrimaryLabel();
+            description = new Controls.TextBoxes.ReadOnlyTextBox();
             buttonDelete = new CommonButton();
             buttonReject = new CommonButton();
             buttonApprove = new CommonButton();
@@ -413,7 +413,6 @@ namespace TrafficLedger.Desktop.Components.Cards
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
-
         }
 
         #endregion

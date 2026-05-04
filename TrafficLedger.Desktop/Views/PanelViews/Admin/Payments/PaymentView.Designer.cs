@@ -1,9 +1,8 @@
 ﻿using TrafficLedger.Desktop.Components;
-using TrafficLedger.Desktop.Components.Controls;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Requests
 {
-    partial class RequestView
+    partial class PaymentView
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,8 +31,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Requests
         private void InitializeComponent()
         {
             tableLayoutPanelMain = new TableLayoutPanel();
-            buttonDriverLicenses = new CommonButton();
-            buttonTransports = new CommonButton();
             buttonPaymentsFines = new CommonButton();
             buttonPaymentsParkingSessions = new CommonButton();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
@@ -53,69 +50,27 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Requests
             // 
             tableLayoutPanelMain.ColumnCount = 1;
             tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelMain.Controls.Add(buttonDriverLicenses, 0, 1);
-            tableLayoutPanelMain.Controls.Add(buttonTransports, 0, 2);
-            tableLayoutPanelMain.Controls.Add(buttonPaymentsFines, 0, 3);
-            tableLayoutPanelMain.Controls.Add(buttonPaymentsParkingSessions, 0, 4);
+            tableLayoutPanelMain.Controls.Add(buttonPaymentsFines, 0, 0);
+            tableLayoutPanelMain.Controls.Add(buttonPaymentsParkingSessions, 0, 1);
             tableLayoutPanelMain.Dock = DockStyle.Fill;
             tableLayoutPanelMain.Location = new Point(0, 0);
             tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
             tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            tableLayoutPanelMain.RowCount = 6;
+            tableLayoutPanelMain.RowCount = 2;
             tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
             tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanelMain.Size = new Size(821, 576);
             tableLayoutPanelMain.TabIndex = 0;
             // 
-            // buttonDriverLicenses
-            // 
-            buttonDriverLicenses.Anchor = AnchorStyles.None;
-            buttonDriverLicenses.BackColor = Color.BlueViolet;
-            buttonDriverLicenses.FlatAppearance.BorderColor = Color.DarkGray;
-            buttonDriverLicenses.FlatStyle = FlatStyle.Flat;
-            buttonDriverLicenses.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
-            buttonDriverLicenses.ForeColor = Color.AntiqueWhite;
-            buttonDriverLicenses.Location = new Point(219, 195);
-            buttonDriverLicenses.Margin = new Padding(4, 3, 4, 3);
-            buttonDriverLicenses.Name = "buttonDriverLicenses";
-            buttonDriverLicenses.Padding = new Padding(9, 5, 9, 5);
-            buttonDriverLicenses.Size = new Size(382, 42);
-            buttonDriverLicenses.TabIndex = 1;
-            buttonDriverLicenses.Text = "Данные водительских удостоверений";
-            buttonDriverLicenses.UseVisualStyleBackColor = false;
-            buttonDriverLicenses.Click += buttonDriverLicenses_Click;
-            // 
-            // buttonTransports
-            // 
-            buttonTransports.Anchor = AnchorStyles.None;
-            buttonTransports.BackColor = Color.BlueViolet;
-            buttonTransports.FlatAppearance.BorderColor = Color.DarkGray;
-            buttonTransports.FlatStyle = FlatStyle.Flat;
-            buttonTransports.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
-            buttonTransports.ForeColor = Color.AntiqueWhite;
-            buttonTransports.Location = new Point(219, 243);
-            buttonTransports.Margin = new Padding(4, 3, 4, 3);
-            buttonTransports.Name = "buttonTransports";
-            buttonTransports.Padding = new Padding(9, 5, 9, 5);
-            buttonTransports.Size = new Size(382, 42);
-            buttonTransports.TabIndex = 2;
-            buttonTransports.Text = "Данные автомобилей";
-            buttonTransports.UseVisualStyleBackColor = false;
-            buttonTransports.Click += buttonTransports_Click;
-            // 
             // buttonPaymentsFines
             // 
-            buttonPaymentsFines.Anchor = AnchorStyles.None;
+            buttonPaymentsFines.Anchor = AnchorStyles.Bottom;
             buttonPaymentsFines.BackColor = Color.BlueViolet;
             buttonPaymentsFines.FlatAppearance.BorderColor = Color.DarkGray;
             buttonPaymentsFines.FlatStyle = FlatStyle.Flat;
             buttonPaymentsFines.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonPaymentsFines.ForeColor = Color.AntiqueWhite;
-            buttonPaymentsFines.Location = new Point(219, 291);
+            buttonPaymentsFines.Location = new Point(219, 243);
             buttonPaymentsFines.Margin = new Padding(4, 3, 4, 3);
             buttonPaymentsFines.Name = "buttonPaymentsFines";
             buttonPaymentsFines.Padding = new Padding(9, 5, 9, 5);
@@ -127,13 +82,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Requests
             // 
             // buttonPaymentsParkingSessions
             // 
-            buttonPaymentsParkingSessions.Anchor = AnchorStyles.None;
+            buttonPaymentsParkingSessions.Anchor = AnchorStyles.Top;
             buttonPaymentsParkingSessions.BackColor = Color.BlueViolet;
             buttonPaymentsParkingSessions.FlatAppearance.BorderColor = Color.DarkGray;
             buttonPaymentsParkingSessions.FlatStyle = FlatStyle.Flat;
             buttonPaymentsParkingSessions.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonPaymentsParkingSessions.ForeColor = Color.AntiqueWhite;
-            buttonPaymentsParkingSessions.Location = new Point(219, 339);
+            buttonPaymentsParkingSessions.Location = new Point(219, 291);
             buttonPaymentsParkingSessions.Margin = new Padding(4, 3, 4, 3);
             buttonPaymentsParkingSessions.Name = "buttonPaymentsParkingSessions";
             buttonPaymentsParkingSessions.Padding = new Padding(9, 5, 9, 5);
@@ -143,12 +98,12 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Requests
             buttonPaymentsParkingSessions.UseVisualStyleBackColor = false;
             buttonPaymentsParkingSessions.Click += buttonPaymentsParkingSessions_Click;
             // 
-            // RequestView
+            // PaymentView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Margin = new Padding(5, 3, 5, 3);
-            Name = "RequestView";
+            Name = "PaymentView";
             splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
             splitContainer.ResumeLayout(false);
@@ -159,9 +114,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Requests
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
-        private CommonButton buttonTransports;
         private CommonButton buttonPaymentsFines;
-        private CommonButton buttonDriverLicenses;
         private CommonButton buttonPaymentsParkingSessions;
     }
 }

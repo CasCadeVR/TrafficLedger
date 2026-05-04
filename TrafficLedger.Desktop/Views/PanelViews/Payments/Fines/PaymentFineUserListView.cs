@@ -6,7 +6,7 @@ using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Payments
 {
-    public partial class PaymentFineUserListView : PaymentUserListWrapper
+    public partial class PaymentFineUserListView : PaymentFineUserListWrapper
     {
         private readonly IPaymentService paymentService;
         private bool ownPayment;

@@ -49,7 +49,7 @@ namespace TrafficLedger.Desktop.Components.Controls.PictureBoxes
             pictureBoxContextMenuStrip.OnItemClick += OnPictureBoxClick;
             pictureBoxContextMenuStrip.Opening += PictureBoxContextMenuStrip_Opening;
 
-            placeholderImage = ImageResources.PlaceHolder;
+            placeholderImage = ImageResources.placeholder;
             this.Image = placeholderImage;
             this.SizeMode = PictureBoxSizeMode.Zoom;
             this.BorderStyle = BorderStyle.FixedSingle;

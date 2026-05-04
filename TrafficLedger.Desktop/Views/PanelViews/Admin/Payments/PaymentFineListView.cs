@@ -10,7 +10,7 @@ using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
 {
-    public partial class PaymentFineListView : PaymentListWrapper
+    public partial class PaymentFineListView : PaymentFineListWrapper
     {
         private readonly IPaymentService paymentService;
         private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
@@ -26,9 +26,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Payments
         }
 
         protected override async Task<IEnumerable<PaymentFineDBModel>> LoadItemsAsync(CancellationToken cancellationToken)
-        {
-            return await paymentService.GetAllFines(cancellationToken);
-        }
+            => await paymentService.GetAllFines(cancellationToken);
 
         protected override IEnumerable<PaymentFineDBModel> FilterItems(string searchQuery, IEnumerable<PaymentFineDBModel> items)
         {

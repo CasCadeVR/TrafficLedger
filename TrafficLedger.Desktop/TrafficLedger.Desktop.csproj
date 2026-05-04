@@ -41,6 +41,9 @@
     <Compile Update="Components\Cards\ParkingZoneCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Components\Cards\PaymentFineCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Components\Cards\TransportRequestCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -51,6 +54,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\PanelViews\Admin\Parkings\ParkingZoneView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\PanelViews\Admin\Payments\PaymentParkingSessionListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\PanelViews\Admin\Payments\PaymentView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\PanelViews\Admin\Requests\RequestView.cs">
@@ -74,6 +83,9 @@
     <Compile Update="Views\PanelViews\Parkings\Sessions\ParkingSessionCreateView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Views\PanelViews\Payments\ParkingSessions\PaymentParkingSessionUserListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Views\PanelViews\Payments\ParkingSessions\PaymentParkingSessionCreateView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,7 +107,10 @@
     <Compile Update="Views\Wrappers\Admin\Parkings\ParkingZoneCreateWrapper.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Views\Wrappers\Admin\Payments\PaymentListWrapper.cs">
+    <Compile Update="Views\Wrappers\Admin\Payments\PaymentParkingSessionListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Admin\Payments\PaymentFineListWrapper.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Wrappers\Admin\Requests\TransportListWrapper.cs">
@@ -137,7 +152,10 @@
     <Compile Update="Views\Wrappers\Payments\PaymentFineCreateWrapper.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Views\Wrappers\Payments\PaymentUserListWrapper.cs">
+    <Compile Update="Views\Wrappers\Payments\PaymentParkingSessionUserListWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Wrappers\Payments\PaymentFineUserListWrapper.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Wrappers\Transport\TransportUserListWrapper.cs">

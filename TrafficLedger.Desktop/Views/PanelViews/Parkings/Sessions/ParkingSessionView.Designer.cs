@@ -34,6 +34,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             tableLayoutPanelMain = new TableLayoutPanel();
             buttonParkingZones = new CommonButton();
             buttonListUserSessions = new CommonButton();
+            buttonListUserParkingSessionsPayments = new CommonButton();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
             splitContainer.SuspendLayout();
@@ -51,14 +52,18 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             // 
             tableLayoutPanelMain.ColumnCount = 1;
             tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelMain.Controls.Add(buttonParkingZones, 0, 0);
-            tableLayoutPanelMain.Controls.Add(buttonListUserSessions, 0, 1);
+            tableLayoutPanelMain.Controls.Add(buttonListUserParkingSessionsPayments, 0, 3);
+            tableLayoutPanelMain.Controls.Add(buttonListUserSessions, 0, 2);
+            tableLayoutPanelMain.Controls.Add(buttonParkingZones, 0, 1);
             tableLayoutPanelMain.Dock = DockStyle.Fill;
             tableLayoutPanelMain.Location = new Point(0, 0);
             tableLayoutPanelMain.Margin = new Padding(4, 3, 4, 3);
             tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            tableLayoutPanelMain.RowCount = 2;
+            tableLayoutPanelMain.RowCount = 5;
             tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
             tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanelMain.Size = new Size(821, 576);
             tableLayoutPanelMain.TabIndex = 1;
@@ -71,7 +76,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             buttonParkingZones.FlatStyle = FlatStyle.Flat;
             buttonParkingZones.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonParkingZones.ForeColor = Color.AntiqueWhite;
-            buttonParkingZones.Location = new Point(227, 243);
+            buttonParkingZones.Location = new Point(227, 219);
             buttonParkingZones.Margin = new Padding(4, 3, 4, 3);
             buttonParkingZones.Name = "buttonParkingZones";
             buttonParkingZones.Padding = new Padding(9, 5, 9, 5);
@@ -89,7 +94,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             buttonListUserSessions.FlatStyle = FlatStyle.Flat;
             buttonListUserSessions.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             buttonListUserSessions.ForeColor = Color.AntiqueWhite;
-            buttonListUserSessions.Location = new Point(226, 291);
+            buttonListUserSessions.Location = new Point(226, 267);
             buttonListUserSessions.Margin = new Padding(4, 3, 4, 3);
             buttonListUserSessions.Name = "buttonListUserSessions";
             buttonListUserSessions.Padding = new Padding(9, 5, 9, 5);
@@ -98,6 +103,24 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             buttonListUserSessions.Text = "Текущие сессии";
             buttonListUserSessions.UseVisualStyleBackColor = false;
             buttonListUserSessions.Click += buttonListUserSessions_Click;
+            // 
+            // buttonListUserParkingSessionsPayments
+            // 
+            buttonListUserParkingSessionsPayments.Anchor = AnchorStyles.Top;
+            buttonListUserParkingSessionsPayments.BackColor = Color.BlueViolet;
+            buttonListUserParkingSessionsPayments.FlatAppearance.BorderColor = Color.DarkGray;
+            buttonListUserParkingSessionsPayments.FlatStyle = FlatStyle.Flat;
+            buttonListUserParkingSessionsPayments.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            buttonListUserParkingSessionsPayments.ForeColor = Color.AntiqueWhite;
+            buttonListUserParkingSessionsPayments.Location = new Point(226, 315);
+            buttonListUserParkingSessionsPayments.Margin = new Padding(4, 3, 4, 3);
+            buttonListUserParkingSessionsPayments.Name = "buttonListUserParkingSessionsPayments";
+            buttonListUserParkingSessionsPayments.Padding = new Padding(9, 5, 9, 5);
+            buttonListUserParkingSessionsPayments.Size = new Size(368, 42);
+            buttonListUserParkingSessionsPayments.TabIndex = 3;
+            buttonListUserParkingSessionsPayments.Text = "Чеки оплаченных парковок";
+            buttonListUserParkingSessionsPayments.UseVisualStyleBackColor = false;
+            buttonListUserParkingSessionsPayments.Click += buttonListUserParkingSessionsPayments_Click;
             // 
             // ParkingSessionView
             // 
@@ -110,7 +133,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             splitContainer.ResumeLayout(false);
             tableLayoutPanelMain.ResumeLayout(false);
             ResumeLayout(false);
-
         }
 
         #endregion
@@ -118,5 +140,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private CommonButton buttonParkingZones;
         private CommonButton buttonListUserSessions;
+        private CommonButton buttonListUserParkingSessionsPayments;
     }
 }

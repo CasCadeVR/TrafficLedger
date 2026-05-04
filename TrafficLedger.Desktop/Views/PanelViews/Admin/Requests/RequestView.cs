@@ -44,12 +44,24 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Requests
             navigationService.NavigateTo(navigationItem);
         }
 
-        private void buttonPayments_Click(object sender, EventArgs e)
+        private void buttonPaymentsFines_Click(object sender, EventArgs e)
         {
             var navigationItem = new NavigationItem()
             {
-                Title = "Список заявок чеков оплат",
+                Title = "Список заявок чеков оплат штрафов",
                 ViewType = typeof(PaymentFineListView),
+                Parent = CurrentNavigationItem,
+            };
+
+            navigationService.NavigateTo(navigationItem);
+        }
+
+        private void buttonPaymentsParkingSessions_Click(object sender, EventArgs e)
+        {
+            var navigationItem = new NavigationItem()
+            {
+                Title = "Список заявок чеков оплат парковок",
+                ViewType = typeof(PaymentParkingSessionListView),
                 Parent = CurrentNavigationItem,
             };
 

@@ -89,7 +89,7 @@ namespace TrafficLedger.Services
                 StartTime = model.StartTime,
                 EndTime = model.EndTime,
                 Status = model.Status,
-                CapturedTotalCost = model.EndTime != null ? parkingZone!.HourlyRate * model.EndTime.Value.Hour : default,
+                CapturedTotalCost = model.EndTime != null ? parkingZone!.HourlyRate * model.EndTime.Value.Hour : null,
                 UserId = model.UserId,
                 TransportId = existingTransport!.Id,
                 ParkingZoneId = model.ParkingZoneId,
