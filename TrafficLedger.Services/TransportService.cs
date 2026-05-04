@@ -218,7 +218,8 @@ namespace TrafficLedger.Services
                 }
                 else
                 {
-                    ownership.DriverId = existingTransport.Id;
+                    ownership.TransportId = existingTransport.Id;
+                    ownership.DriverId = ownership.DriverId;
                     ownershipWriteRepository.Add(ownership);
                 }
             }

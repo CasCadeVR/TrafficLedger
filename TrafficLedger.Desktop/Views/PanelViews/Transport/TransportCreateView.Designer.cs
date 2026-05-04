@@ -32,30 +32,30 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
         private void InitializeComponent()
         {
             tableLayoutPanelMain = new TableLayoutPanel();
-            multiImageUploader = new Components.ComplexControls.MultiImageUploader();
-            labelCode = new Components.Labels.PrimaryLabel();
-            labelRegion = new Components.Labels.PrimaryLabel();
-            textBoxRegion = new Components.Controls.TextBoxes.DefaultTextBox();
-            labelYear = new Components.Labels.PrimaryLabel();
-            labelBrand = new Components.Labels.PrimaryLabel();
-            textBoxBrand = new Components.Controls.TextBoxes.DefaultTextBox();
-            labelModel = new Components.Labels.PrimaryLabel();
-            textBoxModel = new Components.Controls.TextBoxes.DefaultTextBox();
-            labelMileAge = new Components.Labels.PrimaryLabel();
-            numericUpDownMileAge = new Components.Controls.NumericUpDowns.DefaultNumericUpDown();
-            labelFullName = new Components.Labels.PrimaryLabel();
-            comboBoxCategory = new Components.Controls.TextBoxes.DefaultComboBox();
-            labelCategoryDescription = new Components.Labels.PrimaryLabel();
-            textBoxCategoryDescription = new Components.Controls.TextBoxes.ReadOnlyTextBox();
-            labelOwnershipDate = new Components.Labels.PrimaryLabel();
-            ownershipDateTimePicker = new Components.Controls.DateTimePickers.DefaultDateTimePicker();
-            labelStatus = new Components.Labels.PrimaryLabel();
-            textBoxStatus = new Components.Controls.TextBoxes.ReadOnlyTextBox();
-            textBoxCode = new Components.Controls.MaskedTextBoxes.DefaultMaskedTextBox();
-            textBoxYear = new Components.Controls.MaskedTextBoxes.DefaultMaskedTextBox();
+            multiImageUploader = new TrafficLedger.Desktop.Components.ComplexControls.MultiImageUploader();
+            labelCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            labelRegion = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxRegion = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            labelYear = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            labelBrand = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxBrand = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            labelModel = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxModel = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            labelMileAge = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            numericUpDownMileAge = new TrafficLedger.Desktop.Components.Controls.NumericUpDowns.DefaultNumericUpDown();
+            labelFullName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            comboBoxCategory = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultComboBox();
+            labelCategoryDescription = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxCategoryDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            textBoxCode = new TrafficLedger.Desktop.Components.Controls.MaskedTextBoxes.DefaultMaskedTextBox();
+            textBoxYear = new TrafficLedger.Desktop.Components.Controls.MaskedTextBoxes.DefaultMaskedTextBox();
             buttonSave = new CommonButton();
-            ownershipCheckBox = new Components.Controls.CheckBoxes.DefaultCheckBox();
-            secondaryLabel1 = new Components.Labels.SecondaryLabel();
+            labelStatus = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxStatus = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelOwnershipDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            ownershipCheckBox = new TrafficLedger.Desktop.Components.Controls.CheckBoxes.DefaultCheckBox();
+            ownershipDateTimePicker = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
+            secondaryLabel1 = new TrafficLedger.Desktop.Components.Labels.SecondaryLabel();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
@@ -326,57 +326,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             textBoxCategoryDescription.Size = new Size(403, 42);
             textBoxCategoryDescription.TabIndex = 22;
             // 
-            // labelOwnershipDate
-            // 
-            labelOwnershipDate.Anchor = AnchorStyles.Right;
-            labelOwnershipDate.AutoSize = true;
-            labelOwnershipDate.Font = new Font("Segoe UI", 9.75F);
-            labelOwnershipDate.ForeColor = Color.FromArgb(0, 0, 0);
-            labelOwnershipDate.Location = new Point(155, 437);
-            labelOwnershipDate.Margin = new Padding(4, 0, 4, 0);
-            labelOwnershipDate.Name = "labelOwnershipDate";
-            labelOwnershipDate.Size = new Size(251, 17);
-            labelOwnershipDate.TabIndex = 26;
-            labelOwnershipDate.Text = "Дата подписания договора о владении: ";
-            // 
-            // ownershipDateTimePicker
-            // 
-            ownershipDateTimePicker.Anchor = AnchorStyles.Left;
-            ownershipDateTimePicker.BackColor = Color.White;
-            ownershipDateTimePicker.Font = new Font("Segoe UI", 9.75F);
-            ownershipDateTimePicker.ForeColor = Color.FromArgb(0, 0, 0);
-            ownershipDateTimePicker.Location = new Point(413, 433);
-            ownershipDateTimePicker.Name = "ownershipDateTimePicker";
-            ownershipDateTimePicker.Size = new Size(288, 25);
-            ownershipDateTimePicker.TabIndex = 27;
-            ownershipDateTimePicker.ValueChanged += ownershipDateTimePicker_ValueChanged;
-            // 
-            // labelStatus
-            // 
-            labelStatus.Anchor = AnchorStyles.Right;
-            labelStatus.AutoSize = true;
-            labelStatus.Font = new Font("Segoe UI", 9.75F);
-            labelStatus.ForeColor = Color.FromArgb(0, 0, 0);
-            labelStatus.Location = new Point(310, 485);
-            labelStatus.Margin = new Padding(4, 0, 4, 0);
-            labelStatus.Name = "labelStatus";
-            labelStatus.Size = new Size(96, 17);
-            labelStatus.TabIndex = 24;
-            labelStatus.Text = "Статус заявки: ";
-            // 
-            // textBoxStatus
-            // 
-            textBoxStatus.Anchor = AnchorStyles.Left;
-            textBoxStatus.BackColor = Color.GhostWhite;
-            textBoxStatus.BorderStyle = BorderStyle.None;
-            textBoxStatus.Font = new Font("Consolas", 9.75F);
-            textBoxStatus.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxStatus.Location = new Point(413, 486);
-            textBoxStatus.Name = "textBoxStatus";
-            textBoxStatus.ReadOnly = true;
-            textBoxStatus.Size = new Size(288, 16);
-            textBoxStatus.TabIndex = 25;
-            // 
             // textBoxCode
             // 
             textBoxCode.Anchor = AnchorStyles.Left;
@@ -422,6 +371,45 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             buttonSave.UseVisualStyleBackColor = false;
             buttonSave.Click += buttonSave_Click;
             // 
+            // labelStatus
+            // 
+            labelStatus.Anchor = AnchorStyles.Right;
+            labelStatus.AutoSize = true;
+            labelStatus.Font = new Font("Segoe UI", 9.75F);
+            labelStatus.ForeColor = Color.FromArgb(0, 0, 0);
+            labelStatus.Location = new Point(310, 485);
+            labelStatus.Margin = new Padding(4, 0, 4, 0);
+            labelStatus.Name = "labelStatus";
+            labelStatus.Size = new Size(96, 17);
+            labelStatus.TabIndex = 24;
+            labelStatus.Text = "Статус заявки: ";
+            // 
+            // textBoxStatus
+            // 
+            textBoxStatus.Anchor = AnchorStyles.Left;
+            textBoxStatus.BackColor = Color.GhostWhite;
+            textBoxStatus.BorderStyle = BorderStyle.None;
+            textBoxStatus.Font = new Font("Consolas", 9.75F);
+            textBoxStatus.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxStatus.Location = new Point(413, 486);
+            textBoxStatus.Name = "textBoxStatus";
+            textBoxStatus.ReadOnly = true;
+            textBoxStatus.Size = new Size(288, 16);
+            textBoxStatus.TabIndex = 25;
+            // 
+            // labelOwnershipDate
+            // 
+            labelOwnershipDate.Anchor = AnchorStyles.Right;
+            labelOwnershipDate.AutoSize = true;
+            labelOwnershipDate.Font = new Font("Segoe UI", 9.75F);
+            labelOwnershipDate.ForeColor = Color.FromArgb(0, 0, 0);
+            labelOwnershipDate.Location = new Point(155, 437);
+            labelOwnershipDate.Margin = new Padding(4, 0, 4, 0);
+            labelOwnershipDate.Name = "labelOwnershipDate";
+            labelOwnershipDate.Size = new Size(251, 17);
+            labelOwnershipDate.TabIndex = 26;
+            labelOwnershipDate.Text = "Дата подписания договора о владении: ";
+            // 
             // ownershipCheckBox
             // 
             ownershipCheckBox.Anchor = AnchorStyles.Right;
@@ -435,6 +423,17 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             ownershipCheckBox.Text = "Я - владелец";
             ownershipCheckBox.UseVisualStyleBackColor = false;
             ownershipCheckBox.CheckedChanged += ownershipCheckBox_CheckedChanged;
+            // 
+            // ownershipDateTimePicker
+            // 
+            ownershipDateTimePicker.Anchor = AnchorStyles.Left;
+            ownershipDateTimePicker.BackColor = Color.White;
+            ownershipDateTimePicker.Font = new Font("Segoe UI", 9.75F);
+            ownershipDateTimePicker.ForeColor = Color.FromArgb(0, 0, 0);
+            ownershipDateTimePicker.Location = new Point(413, 433);
+            ownershipDateTimePicker.Name = "ownershipDateTimePicker";
+            ownershipDateTimePicker.Size = new Size(288, 25);
+            ownershipDateTimePicker.TabIndex = 27;
             // 
             // secondaryLabel1
             // 

@@ -54,7 +54,7 @@
             // splitContainer.Panel2
             // 
             splitContainer.Panel2.Controls.Add(mainContentPanel);
-            splitContainer.Size = new Size(809, 861);
+            splitContainer.Size = new Size(809, 886);
             splitContainer.SplitterDistance = 112;
             splitContainer.TabIndex = 0;
             // 
@@ -66,7 +66,7 @@
             flowLayoutPanelButtons.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanelButtons.Location = new Point(0, 0);
             flowLayoutPanelButtons.Name = "flowLayoutPanelButtons";
-            flowLayoutPanelButtons.Size = new Size(112, 861);
+            flowLayoutPanelButtons.Size = new Size(112, 886);
             flowLayoutPanelButtons.TabIndex = 0;
             flowLayoutPanelButtons.WrapContents = false;
             // 
@@ -75,17 +75,18 @@
             mainContentPanel.Dock = DockStyle.Fill;
             mainContentPanel.Location = new Point(0, 0);
             mainContentPanel.Name = "mainContentPanel";
-            mainContentPanel.Size = new Size(693, 861);
+            mainContentPanel.Size = new Size(693, 886);
             mainContentPanel.TabIndex = 0;
             // 
             // MainView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(809, 861);
+            ClientSize = new Size(809, 886);
             Controls.Add(splitContainer);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 4, 5, 4);
-            MinimumSize = new Size(825, 900);
+            MinimumSize = new Size(825, 925);
             Name = "MainView";
             Text = "TrafficLedger";
             splitContainer.Panel1.ResumeLayout(false);

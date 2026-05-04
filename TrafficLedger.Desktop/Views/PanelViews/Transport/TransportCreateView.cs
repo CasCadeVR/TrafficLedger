@@ -18,6 +18,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
     public partial class TransportCreateView : TransportCreateWrapper
     {
         private readonly ITransportCategoryService transportCategoryService;
+        private readonly IDriverService driverService;
         private readonly ITransportService transportService;
         private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
         private Transport currentTransport;
@@ -28,10 +29,13 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
         /// <summary>
         /// Инициализирует новый экзмепляр <see cref="BaseCreateView"/>
         /// </summary>
-        public TransportCreateView(ITransportService transportService, ITransportCategoryService transportCategoryService)
+        public TransportCreateView(ITransportService transportService,
+            IDriverService driverService,
+            ITransportCategoryService transportCategoryService)
         {
             InitializeComponent();
             this.transportService = transportService;
+            this.driverService = driverService;
             this.transportCategoryService = transportCategoryService;
 
             comboBoxCategory.SelectedIndexChanged += OnCategorySelected;
@@ -120,19 +124,6 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             textBoxModel.AddBindings(x => x.Text, CurrentModel, x => x.Model, errorProvider);
             numericUpDownMileAge.AddBindings(x => x.Value, CurrentModel, x => x.MileAge, errorProvider);
 
-            if (isUserAdding)
-            {
-                var selfOwnership = CurrentModel.Ownerships.First();
-
-                ownershipDateTimePicker.AddBindingWithConversion(
-                    x => x.Value,
-                    selfOwnership,
-                    x => selfOwnership.Date,
-                    dto => dto.DateTime,
-                    dt => new DateTimeOffset(dt, TimeSpan.Zero),
-                    errorProvider);
-            }
-
             multiImageUploader.ResetImageBindings();
             multiImageUploader.ImagesChanged += (sender, attachments) =>
             {
@@ -179,10 +170,16 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
             textBoxStatus.Visible = currentTransport != null;
             textBoxStatus.Text = CurrentModel.Status.GetDescription();
 
-            var isUserOwned = currentTransport != null
-                ? currentTransport.Ownerships.Any(x => x.DriverId == currentDriver.Id)
-                : false;
+            var isUserOwned = false;
+            if (currentTransport != null)
+            {
+                var creatorDriver = await driverService.GetByUserId(currentTransport.UserId, CancellationToken.None);
+                isUserOwned = currentTransport.Ownerships.Any(x => x.DriverId == creatorDriver?.Id);
+            }
+
             ownershipCheckBox.Checked = isUserOwned;
+            labelOwnershipDate.Enabled = ownershipCheckBox.Checked;
+            ownershipDateTimePicker.Enabled = ownershipCheckBox.Checked;
 
             if (isUserAdding)
             {
@@ -232,35 +229,47 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Transports
 
         private async void buttonSave_Click(object sender, EventArgs e)
         {
-            await HandleSaveAsync(textBoxCode, textBoxRegion, textBoxYear, textBoxBrand, textBoxModel);
+            await HandleSaveAsync(textBoxCode, textBoxRegion, textBoxYear, textBoxBrand, textBoxModel, ownershipDateTimePicker, numericUpDownMileAge);
         }
 
-        private void ownershipCheckBox_CheckedChanged(object sender, EventArgs e)
+        private async void ownershipCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            labelOwnershipDate.Visible = ownershipCheckBox.Checked;
-            ownershipDateTimePicker.Visible = ownershipCheckBox.Checked;
+            labelOwnershipDate.Enabled = ownershipCheckBox.Checked;
+            ownershipDateTimePicker.Enabled = ownershipCheckBox.Checked;
 
-            if (ownershipCheckBox.Checked && !CurrentModel.Ownerships.Any(x => x.DriverId == currentDriver.Id))
+            var creatorDriver = await driverService.GetByUserId(CurrentModel.UserId, CancellationToken.None); 
+            if (creatorDriver == null)
             {
-                CurrentModel.Ownerships.Add(new OwnershipDriverCreateModel()
+                return;
+            }
+
+            if (ownershipCheckBox.Checked && !CurrentModel.Ownerships.Any(x => x.DriverId == creatorDriver.Id))
+            {
+                var model = new OwnershipDriverCreateModel()
                 {
                     Date = DateTimeOffset.Now,
-                    DriverId = currentDriver.Id
-                });
+                    DriverId = creatorDriver.Id
+                };
+
+                CurrentModel.Ownerships.Add(model);
+
+                ownershipDateTimePicker.DataBindings.Clear();
+                ownershipDateTimePicker.AddBindingWithConversion(
+                    x => x.Value,
+                    model,
+                    x => model.Date,
+                    dto => dto.DateTime,
+                    dt => new DateTimeOffset(dt, TimeSpan.Zero),
+                    errorProvider);
             }
             else
             {
-                var foundOwnership = CurrentModel.Ownerships.FirstOrDefault(x => x.DriverId == currentDriver.Id);
+                var foundOwnership = CurrentModel.Ownerships.FirstOrDefault(x => x.DriverId == creatorDriver.Id);
                 if (foundOwnership != null)
                 {
                     CurrentModel.Ownerships.Remove(foundOwnership);
                 }
             }
-        }
-
-        private void ownershipDateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
