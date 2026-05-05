@@ -12,10 +12,6 @@
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 	<ApplicationIcon>Resources\TrafficLedgerIcon.ico</ApplicationIcon>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="Resources\TrafficLedgerIcon.ico" />
-  </ItemGroup>
 	
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="8.5.0" />

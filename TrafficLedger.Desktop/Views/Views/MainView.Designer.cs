@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             splitContainer = new SplitContainer();
             flowLayoutPanelButtons = new FlowLayoutPanel();
             mainContentPanel = new Panel();
@@ -84,7 +83,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(809, 886);
             Controls.Add(splitContainer);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 4, 5, 4);
             MinimumSize = new Size(825, 925);
             Name = "MainView";
@@ -94,7 +92,6 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
             splitContainer.ResumeLayout(false);
             ResumeLayout(false);
-
         }
 
         #endregion
