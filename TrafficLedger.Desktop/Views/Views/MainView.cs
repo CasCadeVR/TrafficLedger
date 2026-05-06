@@ -28,6 +28,7 @@ namespace TrafficLedger.Desktop
         /// </summary>
         public MainView(IServiceProvider serviceProvider)
         {
+            this.Icon = ImageResources.TrafficLedgerIcon;
             this.serviceProvider = serviceProvider;
             InitializeComponent();
             splitContainer.Panel1Collapsed = true;

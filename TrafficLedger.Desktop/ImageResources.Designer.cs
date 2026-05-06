@@ -69,7 +69,20 @@ namespace TrafficLedger.Desktop {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon.
+        /// </summary>
+        public static System.Drawing.Icon TrafficLedgerIcon
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("TrafficLedgerIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
