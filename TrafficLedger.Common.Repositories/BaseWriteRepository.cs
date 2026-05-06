@@ -50,6 +50,16 @@ namespace TrafficLedger.Common.Repositories
                 BaseWriteRepository<T>.AuditUpdate(entity);
                 softEntity.DeletedAt = DateTime.UtcNow;
                 writer.Update(entity);
+
+                // Защита от ошибок
+                if (entity is IEntityWithProtectedProperties protectable)
+                {
+                    var entry = ((TrafficLedgerContext)writer).Entry(entity);
+                    foreach (var prop in protectable.GetProtectedProperties())
+                    {
+                        entry.Property(prop).IsModified = false;
+                    }
+                }
             }
             else
             {

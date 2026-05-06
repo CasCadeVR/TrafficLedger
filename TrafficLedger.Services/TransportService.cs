@@ -111,13 +111,28 @@ namespace TrafficLedger.Services
             var license = await driverLicenseReadRepository.GetByDriverId(driver!.Id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException(noLicenseErrorMessage));
 
-            await transportReadRepository.IsCodeExists(model.TransportCode.ToLower(), cancellationToken)
-                .AndThrowIfTrue(() => new InvalidOperationException($"Транспорт с кодом {model.TransportCode} уже существует"));
+            var exists = await transportReadRepository.IsCodeExists(model.TransportCode.ToLower(), cancellationToken);
+            if (exists)
+            {
+                var existing = await transportReadRepository.GetByTransportCode(model.TransportCode.ToLower(), cancellationToken)
+                    .OrThrowIfNull(() => new InvalidOperationException("Что-то пошло не так"));
+                
+                foreach (var ownership in existing!.Ownerships)
+                {
+                    model.Ownerships.Add(new Contracts.Models.Ownerships.OwnershipDriverCreateModel()
+                    {
+                        Date = ownership.Date,
+                        DriverId = ownership.DriverId,
+                    });
+                }
+
+                return await Update(existing!.Id, model, cancellationToken);
+            }
 
             var category = await transportCategoryReadRepository.GetById(model.TransportCategoryId, cancellationToken)
                .OrThrowIfNull(() => new InvalidOperationException($"Категория транспорта с id {model.TransportCategoryId} не существует"));
 
-            if (!license!.LicenseCategories.Select(x => x.TransportCategory.CategoryName).Contains(category!.CategoryName) && license.Status == RequestStatus.Approved)
+            if (license!.Status != RequestStatus.Approved)
             {
                 throw new InvalidOperationException(noLicenseErrorMessage);
             }
@@ -176,7 +191,8 @@ namespace TrafficLedger.Services
             return transport;
         }
 
-        async Task<Transport> IBaseService<Transport, TransportCreateModel>.Update(Guid id, TransportCreateModel model, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        public async Task<Transport> Update(Guid id, TransportCreateModel model, CancellationToken cancellationToken)
         {
             var existingTransport = await transportReadRepository.GetById(id, cancellationToken)
                 .OrThrowIfNull(() => new InvalidOperationException($"Не удалось найти транспорт с идентификатором {id}"));

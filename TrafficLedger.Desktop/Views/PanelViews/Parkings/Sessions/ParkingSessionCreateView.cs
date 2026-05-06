@@ -1,5 +1,4 @@
-﻿using TrafficLedger.Desktop.Infrastructure.Extensions;
-using TrafficLedger.Desktop.Infrastructure.Models;
+﻿using TrafficLedger.Desktop.Infrastructure.Models;
 using TrafficLedger.Desktop.Services;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
@@ -82,11 +81,10 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
 
         protected override async void FillControls()
         {
-
             var transports = await transportService.GetAllByDriverId(currentDriver.Id, CancellationToken.None);
-            var currentCategories = transports.ToList();
+            var driverTransport = transports.ToList();
 
-            comboBoxTransport.DataSource = currentCategories;
+            comboBoxTransport.DataSource = driverTransport;
             comboBoxTransport.DisplayMember = nameof(Transport.TransportCode);
             comboBoxTransport.ValueMember = nameof(Transport.Id);
 
@@ -103,6 +101,9 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             Uri.TryCreate(currentParkingZone.CoordinatesLink, UriKind.Absolute, out var uri);
             webView.Source = uri;
 
+            buttonSave.Enabled = comboBoxTransport.SelectedIndex != -1;
+
+
             if (currentParkingSession == null)
             {
                 return;
@@ -115,7 +116,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             {
                 await parkingSessionService.Update(EntityId, CurrentModel, CancellationToken.None);
                 MessageBox.Show("Данные парковочной сессии обновлены.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } 
+            }
             else
             {
                 var request = await parkingSessionService.Create(CurrentModel, CancellationToken.None);
@@ -129,6 +130,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
         private async void buttonSave_Click(object sender, EventArgs e)
         {
             await HandleSaveAsync();
+        }
+
+        private void comboBoxTransport_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buttonSave.Enabled = comboBoxTransport.SelectedIndex != -1;
         }
     }
 }

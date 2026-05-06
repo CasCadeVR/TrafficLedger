@@ -1,4 +1,5 @@
-﻿using TrafficLedger.Desktop.Views.PanelViews;
+﻿using TrafficLedger.Desktop.Contracts.Interfaces;
+using TrafficLedger.Desktop.Views.PanelViews;
 using TrafficLedger.Desktop.Views.PanelViews.Admin.Transports;
 using TrafficLedger.Desktop.Views.PanelViews.FineCreate;
 using TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions;
@@ -61,5 +62,6 @@ namespace TrafficLedger.Desktop.Infrastructure.Navigation
                     ViewType = typeof(AdminView)
                 }
             };
+
     }
 }

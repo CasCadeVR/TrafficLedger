@@ -219,7 +219,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews
 
         private async void buttonSave_Click(object sender, EventArgs e)
         {
-            await HandleSaveAsync(textBoxLicenseNumber, textBoxResidence, textBoxIssuedBy, dateTimePickerDateOfIssue);
+            await HandleSaveAsync(textBoxLicenseNumber, textBoxResidence, textBoxIssuedBy);
         }
 
         private void listBoxCategories_SelectedIndexChanged(object sender, EventArgs e)

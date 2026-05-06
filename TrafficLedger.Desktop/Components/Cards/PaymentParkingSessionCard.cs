@@ -49,8 +49,18 @@ namespace TrafficLedger.Desktop.Components.Cards
             paymentDate.Text = request.Date.DateTime.ToLongDateString();
             startDate.Text = request.ParkingSession.StartTime.DateTime.ToLongDateString()
                 + ", " + request.ParkingSession.StartTime.DateTime.ToShortTimeString();
-            endDate.Text = request.ParkingSession.EndTime!.Value.DateTime.ToLongDateString()
-                + ", " + request.ParkingSession.EndTime.Value.DateTime.ToShortTimeString();
+
+            if (request.ParkingSession.EndTime.HasValue)
+            {
+                endDate.Text = request.ParkingSession.EndTime.Value.DateTime.ToLongDateString()
+                    + ", " + request.ParkingSession.EndTime.Value.DateTime.ToShortTimeString();
+            }
+            else
+            {
+                labelEndDate.Visible = false;
+                endDate.Visible = false;
+            }
+            
             finePrice.Text = request.CapturedPrice.ToString();
             transportCode.Text = request.ParkingSession.Transport.TransportCode;
             address.Text = request.ParkingSession.ParkingZone.Address;

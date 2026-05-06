@@ -55,7 +55,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
             var card = new DriverCard(driver);
 
             card.EditClicked += () => EditDriver(driver);
-            card.DeleteClicked += () => DeleteDriver(driver);
+            card.DeleteClicked += async () => await DeleteDriver(driver);
             card.ConnectTransportClicked += () => ConnectDriver(driver);
             card.ConnectDriverLicenseClicked += () => ConnectDriverLicense(driver);
 
@@ -78,7 +78,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
             navigationService.NavigateTo(navigationItem);
         }
 
-        private void DeleteDriver(Driver driver)
+        private async Task DeleteDriver(Driver driver)
         {
             var result = MessageBox.Show(
                $"Вы действительно хотите удалить водителя {driver.FullName}?",
@@ -89,7 +89,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Admin.Drivers
 
             if (result == DialogResult.Yes)
             {
-                driverService.Delete(driver.Id, CancellationToken.None);
+                await driverService.Delete(driver.Id, CancellationToken.None);
                 MessageBox.Show($"Водитель {driver.FullName} успешно удалён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 base.OnNavigation(CurrentNavigationItem);
             }

@@ -200,10 +200,11 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions
             comboBoxTransport.Font = new Font("Segoe UI", 9.75F);
             comboBoxTransport.ForeColor = Color.FromArgb(0, 0, 0);
             comboBoxTransport.FormattingEnabled = true;
-            comboBoxTransport.Location = new Point(413, 60);
+            comboBoxTransport.Location = new Point(413, 59);
             comboBoxTransport.Name = "comboBoxTransport";
             comboBoxTransport.Size = new Size(288, 25);
             comboBoxTransport.TabIndex = 27;
+            comboBoxTransport.SelectedIndexChanged += comboBoxTransport_SelectedIndexChanged;
             // 
             // ParkingSessionCreateView
             // 
