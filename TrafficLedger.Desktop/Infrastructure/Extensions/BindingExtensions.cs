@@ -81,7 +81,7 @@ namespace TrafficLedger.Desktop.Infrastructure.Extensions
 
                     if (!Validator.TryValidateObject(source, context, result, true))
                     {
-                        foreach (var error in result)
+                        foreach (var error in result.Where(x => x.MemberNames.Contains(sourceName)))
                         {
                             errorProvider.SetError(control, error.ErrorMessage);
                         }

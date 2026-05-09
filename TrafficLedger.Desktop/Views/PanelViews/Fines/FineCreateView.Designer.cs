@@ -32,22 +32,22 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
         private void InitializeComponent()
         {
             tableLayoutPanelMain = new TableLayoutPanel();
-            textBoxFineDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
-            labelAddressTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            labelDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            dateTimePickerDate = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
-            labelDescription = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            labelDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            textBoxAddress = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            multiImageUploader = new TrafficLedger.Desktop.Components.ComplexControls.MultiImageUploader();
             buttonSave = new CommonButton();
             textBoxDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            multiImageUploader = new TrafficLedger.Desktop.Components.ComplexControls.MultiImageUploader();
+            labelDescription = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            labelCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
+            labelName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            comboBoxViolation = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultComboBox();
             labelFinePrice = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
             numericUpDownPrice = new TrafficLedger.Desktop.Components.Controls.NumericUpDowns.DefaultNumericUpDown();
-            labelCode = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            labelName = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
-            textBoxCode = new TrafficLedger.Desktop.Components.Controls.TextBoxes.ReadOnlyTextBox();
-            comboBoxViolation = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultComboBox();
+            labelDescriptionTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxFineDescription = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            labelAddressTitle = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            textBoxAddress = new TrafficLedger.Desktop.Components.Controls.TextBoxes.DefaultTextBox();
+            labelDate = new TrafficLedger.Desktop.Components.Labels.PrimaryLabel();
+            dateTimePickerDate = new TrafficLedger.Desktop.Components.Controls.DateTimePickers.DefaultDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel2.SuspendLayout();
@@ -107,98 +107,18 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             tableLayoutPanelMain.Size = new Size(821, 600);
             tableLayoutPanelMain.TabIndex = 0;
             // 
-            // textBoxFineDescription
+            // multiImageUploader
             // 
-            textBoxFineDescription.Anchor = AnchorStyles.Left;
-            textBoxFineDescription.BackColor = Color.White;
-            textBoxFineDescription.BorderStyle = BorderStyle.FixedSingle;
-            textBoxFineDescription.Font = new Font("Segoe UI", 9.75F);
-            textBoxFineDescription.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxFineDescription.Location = new Point(414, 119);
-            textBoxFineDescription.Margin = new Padding(4, 3, 4, 3);
-            textBoxFineDescription.Name = "textBoxFineDescription";
-            textBoxFineDescription.Size = new Size(287, 25);
-            textBoxFineDescription.TabIndex = 30;
-            // 
-            // labelAddressTitle
-            // 
-            labelAddressTitle.Anchor = AnchorStyles.Right;
-            labelAddressTitle.AutoSize = true;
-            labelAddressTitle.Font = new Font("Segoe UI", 9.75F);
-            labelAddressTitle.ForeColor = Color.FromArgb(0, 0, 0);
-            labelAddressTitle.Location = new Point(355, 75);
-            labelAddressTitle.Margin = new Padding(4, 0, 4, 0);
-            labelAddressTitle.Name = "labelAddressTitle";
-            labelAddressTitle.Size = new Size(51, 17);
-            labelAddressTitle.TabIndex = 27;
-            labelAddressTitle.Text = "Адрес: ";
-            // 
-            // labelDate
-            // 
-            labelDate.Anchor = AnchorStyles.Right;
-            labelDate.AutoSize = true;
-            labelDate.Font = new Font("Segoe UI", 9.75F);
-            labelDate.ForeColor = Color.FromArgb(0, 0, 0);
-            labelDate.Location = new Point(292, 27);
-            labelDate.Margin = new Padding(4, 0, 4, 0);
-            labelDate.Name = "labelDate";
-            labelDate.Size = new Size(114, 17);
-            labelDate.TabIndex = 6;
-            labelDate.Text = "Дата нарушения: ";
-            // 
-            // dateTimePickerDate
-            // 
-            dateTimePickerDate.Anchor = AnchorStyles.Left;
-            dateTimePickerDate.BackColor = Color.White;
-            dateTimePickerDate.CustomFormat = "dd/MM/yyyy HH:mm";
-            dateTimePickerDate.Font = new Font("Segoe UI", 9.75F);
-            dateTimePickerDate.ForeColor = Color.FromArgb(0, 0, 0);
-            dateTimePickerDate.Format = DateTimePickerFormat.Custom;
-            dateTimePickerDate.Location = new Point(414, 23);
-            dateTimePickerDate.Margin = new Padding(4, 3, 4, 3);
-            dateTimePickerDate.Name = "dateTimePickerDate";
-            dateTimePickerDate.Size = new Size(286, 25);
-            dateTimePickerDate.TabIndex = 21;
-            dateTimePickerDate.Tag = "";
-            // 
-            // labelDescription
-            // 
-            labelDescription.Anchor = AnchorStyles.Right;
-            labelDescription.AutoSize = true;
-            labelDescription.Font = new Font("Segoe UI", 9.75F);
-            labelDescription.ForeColor = Color.FromArgb(0, 0, 0);
-            labelDescription.Location = new Point(333, 315);
-            labelDescription.Margin = new Padding(4, 0, 4, 0);
-            labelDescription.Name = "labelDescription";
-            labelDescription.Size = new Size(73, 17);
-            labelDescription.TabIndex = 15;
-            labelDescription.Text = "Описание: ";
-            // 
-            // labelDescriptionTitle
-            // 
-            labelDescriptionTitle.Anchor = AnchorStyles.Right;
-            labelDescriptionTitle.AutoSize = true;
-            labelDescriptionTitle.Font = new Font("Segoe UI", 9.75F);
-            labelDescriptionTitle.ForeColor = Color.FromArgb(0, 0, 0);
-            labelDescriptionTitle.Location = new Point(316, 123);
-            labelDescriptionTitle.Margin = new Padding(4, 0, 4, 0);
-            labelDescriptionTitle.Name = "labelDescriptionTitle";
-            labelDescriptionTitle.Size = new Size(90, 17);
-            labelDescriptionTitle.TabIndex = 28;
-            labelDescriptionTitle.Text = "Примечание: ";
-            // 
-            // textBoxAddress
-            // 
-            textBoxAddress.Anchor = AnchorStyles.Left;
-            textBoxAddress.BackColor = Color.White;
-            textBoxAddress.BorderStyle = BorderStyle.FixedSingle;
-            textBoxAddress.Font = new Font("Segoe UI", 9.75F);
-            textBoxAddress.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxAddress.Location = new Point(414, 71);
-            textBoxAddress.Margin = new Padding(4, 3, 4, 3);
-            textBoxAddress.Name = "textBoxAddress";
-            textBoxAddress.Size = new Size(287, 25);
-            textBoxAddress.TabIndex = 29;
+            multiImageUploader.AutoScroll = true;
+            multiImageUploader.BackColor = SystemColors.Control;
+            tableLayoutPanelMain.SetColumnSpan(multiImageUploader, 2);
+            multiImageUploader.Dock = DockStyle.Fill;
+            multiImageUploader.Location = new Point(3, 399);
+            multiImageUploader.Name = "multiImageUploader";
+            multiImageUploader.Padding = new Padding(5);
+            tableLayoutPanelMain.SetRowSpan(multiImageUploader, 3);
+            multiImageUploader.Size = new Size(815, 138);
+            multiImageUploader.TabIndex = 31;
             // 
             // buttonSave
             // 
@@ -237,18 +157,73 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             textBoxDescription.TabIndex = 26;
             textBoxDescription.Text = ". . .";
             // 
-            // multiImageUploader
+            // labelDescription
             // 
-            multiImageUploader.AutoScroll = true;
-            multiImageUploader.BackColor = SystemColors.Control;
-            tableLayoutPanelMain.SetColumnSpan(multiImageUploader, 2);
-            multiImageUploader.Dock = DockStyle.Fill;
-            multiImageUploader.Location = new Point(3, 399);
-            multiImageUploader.Name = "multiImageUploader";
-            multiImageUploader.Padding = new Padding(5);
-            tableLayoutPanelMain.SetRowSpan(multiImageUploader, 3);
-            multiImageUploader.Size = new Size(815, 138);
-            multiImageUploader.TabIndex = 31;
+            labelDescription.Anchor = AnchorStyles.Right;
+            labelDescription.AutoSize = true;
+            labelDescription.Font = new Font("Segoe UI", 9.75F);
+            labelDescription.ForeColor = Color.FromArgb(0, 0, 0);
+            labelDescription.Location = new Point(333, 315);
+            labelDescription.Margin = new Padding(4, 0, 4, 0);
+            labelDescription.Name = "labelDescription";
+            labelDescription.Size = new Size(73, 17);
+            labelDescription.TabIndex = 15;
+            labelDescription.Text = "Описание: ";
+            // 
+            // labelCode
+            // 
+            labelCode.Anchor = AnchorStyles.Right;
+            labelCode.AutoSize = true;
+            labelCode.Font = new Font("Segoe UI", 9.75F);
+            labelCode.ForeColor = Color.FromArgb(0, 0, 0);
+            labelCode.Location = new Point(297, 267);
+            labelCode.Margin = new Padding(4, 0, 4, 0);
+            labelCode.Name = "labelCode";
+            labelCode.Size = new Size(109, 17);
+            labelCode.TabIndex = 23;
+            labelCode.Text = "Код нарушения: ";
+            // 
+            // textBoxCode
+            // 
+            textBoxCode.Anchor = AnchorStyles.Left;
+            textBoxCode.BackColor = Color.GhostWhite;
+            textBoxCode.BorderStyle = BorderStyle.None;
+            textBoxCode.Font = new Font("Consolas", 9.75F);
+            textBoxCode.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxCode.Location = new Point(414, 268);
+            textBoxCode.Margin = new Padding(4, 3, 4, 3);
+            textBoxCode.Name = "textBoxCode";
+            textBoxCode.ReadOnly = true;
+            textBoxCode.Size = new Size(287, 16);
+            textBoxCode.TabIndex = 24;
+            textBoxCode.Text = ". . .";
+            // 
+            // labelName
+            // 
+            labelName.Anchor = AnchorStyles.Right;
+            labelName.AutoSize = true;
+            labelName.Font = new Font("Segoe UI", 9.75F);
+            labelName.ForeColor = Color.FromArgb(0, 0, 0);
+            labelName.Location = new Point(322, 219);
+            labelName.Margin = new Padding(4, 0, 4, 0);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(84, 17);
+            labelName.TabIndex = 13;
+            labelName.Text = "Нарушение: ";
+            // 
+            // comboBoxViolation
+            // 
+            comboBoxViolation.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            comboBoxViolation.BackColor = Color.White;
+            comboBoxViolation.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxViolation.Font = new Font("Segoe UI", 9.75F);
+            comboBoxViolation.ForeColor = Color.FromArgb(0, 0, 0);
+            comboBoxViolation.FormattingEnabled = true;
+            comboBoxViolation.Location = new Point(414, 215);
+            comboBoxViolation.Margin = new Padding(4, 3, 4, 3);
+            comboBoxViolation.Name = "comboBoxViolation";
+            comboBoxViolation.Size = new Size(403, 25);
+            comboBoxViolation.TabIndex = 22;
             // 
             // labelFinePrice
             // 
@@ -278,60 +253,85 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Fines
             numericUpDownPrice.TabIndex = 32;
             numericUpDownPrice.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
-            // labelCode
+            // labelDescriptionTitle
             // 
-            labelCode.Anchor = AnchorStyles.Right;
-            labelCode.AutoSize = true;
-            labelCode.Font = new Font("Segoe UI", 9.75F);
-            labelCode.ForeColor = Color.FromArgb(0, 0, 0);
-            labelCode.Location = new Point(297, 267);
-            labelCode.Margin = new Padding(4, 0, 4, 0);
-            labelCode.Name = "labelCode";
-            labelCode.Size = new Size(109, 17);
-            labelCode.TabIndex = 23;
-            labelCode.Text = "Код нарушения: ";
+            labelDescriptionTitle.Anchor = AnchorStyles.Right;
+            labelDescriptionTitle.AutoSize = true;
+            labelDescriptionTitle.Font = new Font("Segoe UI", 9.75F);
+            labelDescriptionTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelDescriptionTitle.Location = new Point(316, 123);
+            labelDescriptionTitle.Margin = new Padding(4, 0, 4, 0);
+            labelDescriptionTitle.Name = "labelDescriptionTitle";
+            labelDescriptionTitle.Size = new Size(90, 17);
+            labelDescriptionTitle.TabIndex = 28;
+            labelDescriptionTitle.Text = "Примечание: ";
             // 
-            // labelName
+            // textBoxFineDescription
             // 
-            labelName.Anchor = AnchorStyles.Right;
-            labelName.AutoSize = true;
-            labelName.Font = new Font("Segoe UI", 9.75F);
-            labelName.ForeColor = Color.FromArgb(0, 0, 0);
-            labelName.Location = new Point(322, 219);
-            labelName.Margin = new Padding(4, 0, 4, 0);
-            labelName.Name = "labelName";
-            labelName.Size = new Size(84, 17);
-            labelName.TabIndex = 13;
-            labelName.Text = "Нарушение: ";
+            textBoxFineDescription.Anchor = AnchorStyles.Left;
+            textBoxFineDescription.BackColor = Color.White;
+            textBoxFineDescription.BorderStyle = BorderStyle.FixedSingle;
+            textBoxFineDescription.Font = new Font("Segoe UI", 9.75F);
+            textBoxFineDescription.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxFineDescription.Location = new Point(414, 119);
+            textBoxFineDescription.Margin = new Padding(4, 3, 4, 3);
+            textBoxFineDescription.Name = "textBoxFineDescription";
+            textBoxFineDescription.Size = new Size(287, 25);
+            textBoxFineDescription.TabIndex = 30;
             // 
-            // textBoxCode
+            // labelAddressTitle
             // 
-            textBoxCode.Anchor = AnchorStyles.Left;
-            textBoxCode.BackColor = Color.GhostWhite;
-            textBoxCode.BorderStyle = BorderStyle.None;
-            textBoxCode.Font = new Font("Consolas", 9.75F);
-            textBoxCode.ForeColor = Color.FromArgb(0, 0, 0);
-            textBoxCode.Location = new Point(414, 268);
-            textBoxCode.Margin = new Padding(4, 3, 4, 3);
-            textBoxCode.Name = "textBoxCode";
-            textBoxCode.ReadOnly = true;
-            textBoxCode.Size = new Size(287, 16);
-            textBoxCode.TabIndex = 24;
-            textBoxCode.Text = ". . .";
+            labelAddressTitle.Anchor = AnchorStyles.Right;
+            labelAddressTitle.AutoSize = true;
+            labelAddressTitle.Font = new Font("Segoe UI", 9.75F);
+            labelAddressTitle.ForeColor = Color.FromArgb(0, 0, 0);
+            labelAddressTitle.Location = new Point(355, 75);
+            labelAddressTitle.Margin = new Padding(4, 0, 4, 0);
+            labelAddressTitle.Name = "labelAddressTitle";
+            labelAddressTitle.Size = new Size(51, 17);
+            labelAddressTitle.TabIndex = 27;
+            labelAddressTitle.Text = "Адрес: ";
             // 
-            // comboBoxViolation
+            // textBoxAddress
             // 
-            comboBoxViolation.Anchor = AnchorStyles.Left;
-            comboBoxViolation.BackColor = Color.White;
-            comboBoxViolation.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxViolation.Font = new Font("Segoe UI", 9.75F);
-            comboBoxViolation.ForeColor = Color.FromArgb(0, 0, 0);
-            comboBoxViolation.FormattingEnabled = true;
-            comboBoxViolation.Location = new Point(414, 215);
-            comboBoxViolation.Margin = new Padding(4, 3, 4, 3);
-            comboBoxViolation.Name = "comboBoxViolation";
-            comboBoxViolation.Size = new Size(287, 25);
-            comboBoxViolation.TabIndex = 22;
+            textBoxAddress.Anchor = AnchorStyles.Left;
+            textBoxAddress.BackColor = Color.White;
+            textBoxAddress.BorderStyle = BorderStyle.FixedSingle;
+            textBoxAddress.Font = new Font("Segoe UI", 9.75F);
+            textBoxAddress.ForeColor = Color.FromArgb(0, 0, 0);
+            textBoxAddress.Location = new Point(414, 71);
+            textBoxAddress.Margin = new Padding(4, 3, 4, 3);
+            textBoxAddress.Name = "textBoxAddress";
+            textBoxAddress.Size = new Size(287, 25);
+            textBoxAddress.TabIndex = 29;
+            // 
+            // labelDate
+            // 
+            labelDate.Anchor = AnchorStyles.Right;
+            labelDate.AutoSize = true;
+            labelDate.Font = new Font("Segoe UI", 9.75F);
+            labelDate.ForeColor = Color.FromArgb(0, 0, 0);
+            labelDate.Location = new Point(292, 27);
+            labelDate.Margin = new Padding(4, 0, 4, 0);
+            labelDate.Name = "labelDate";
+            labelDate.Size = new Size(114, 17);
+            labelDate.TabIndex = 6;
+            labelDate.Text = "Дата нарушения: ";
+            // 
+            // dateTimePickerDate
+            // 
+            dateTimePickerDate.Anchor = AnchorStyles.Left;
+            dateTimePickerDate.BackColor = Color.White;
+            dateTimePickerDate.CustomFormat = "dd/MM/yyyy HH:mm";
+            dateTimePickerDate.Font = new Font("Segoe UI", 9.75F);
+            dateTimePickerDate.ForeColor = Color.FromArgb(0, 0, 0);
+            dateTimePickerDate.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDate.Location = new Point(414, 23);
+            dateTimePickerDate.Margin = new Padding(4, 3, 4, 3);
+            dateTimePickerDate.Name = "dateTimePickerDate";
+            dateTimePickerDate.Size = new Size(286, 25);
+            dateTimePickerDate.TabIndex = 21;
+            dateTimePickerDate.Tag = "";
             // 
             // FineCreateView
             // 

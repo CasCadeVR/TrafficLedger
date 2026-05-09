@@ -8,7 +8,6 @@ using TrafficLedger.Desktop.Views.PanelViews.Admin.Parkings;
 using TrafficLedger.Desktop.Views.PanelViews.Parkings.Sessions;
 using TrafficLedger.Desktop.Views.Wrappers;
 using TrafficLedger.Entities;
-using TrafficLedger.Services;
 using TrafficLedger.Services.Contracts.Interfaces;
 
 namespace TrafficLedger.Desktop.Views.PanelViews.Parkings
@@ -18,7 +17,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings
         private readonly INavigationService navigationService;
         private readonly IDriverService driverService;
         private readonly IParkingZoneService parkingZoneService;
-        private AppUser currentUser => AuthenticationService.Instance.CurrentUser;
+        private AppUser CurrentUser => AuthenticationService.Instance.CurrentUser;
         private bool asAdmin;
 
         public ParkingZoneListView(INavigationService navigationService,
@@ -77,7 +76,7 @@ namespace TrafficLedger.Desktop.Views.PanelViews.Parkings
 
         private async void Choose(ParkingZone item)
         {
-            var driver = await driverService.GetByUserId(currentUser.Id, CancellationToken.None);
+            var driver = await driverService.GetByUserId(CurrentUser.Id, CancellationToken.None);
             var createView = navigationService.ServiceProvider.GetRequiredService<ParkingSessionCreateView>();
             createView.Initialize(driver, item, null!);
 
